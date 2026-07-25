@@ -17,9 +17,9 @@
 <link href="./manifest.webmanifest" rel="manifest"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<script>(()=>{try{const saved=localStorage.getItem('ajay-nxt-theme');document.documentElement.dataset.theme=saved||'dark';}catch(e){document.documentElement.dataset.theme='dark';}})();</script><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>document.documentElement.dataset.theme='light';</script><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="./style.css" rel="stylesheet"/>
-<script src="./site-config.js"></script><script defer="" src="./script.js"></script>
+<script src="./site-config.js"></script><script defer="" src="./script.js"></script><script type="module" src="./motion/motion-bundle.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a><div aria-hidden="true" class="shader-bg"><i class="shader-blob shader-one"></i><i class="shader-blob shader-two"></i><i class="shader-blob shader-three"></i></div>
@@ -41,30 +41,34 @@
 <a href="#about">About</a>
 <a href="#reviews">Reviews</a>
 <a class="nav-cta" href="#book">Start a project</a>
-</nav><button aria-label="Switch colour theme" class="theme-toggle" data-theme-toggle="" type="button"><span aria-hidden="true" class="theme-icon">☀</span><span class="theme-text">Light</span></button><button aria-controls="site-nav" aria-expanded="false" class="menu-toggle" data-menu-toggle="" type="button">
+</nav><button aria-controls="site-nav" aria-expanded="false" class="menu-toggle" data-menu-toggle="" type="button">
 <span></span><span></span><span></span><span class="sr-only">Open menu</span>
 </button></div></header>
 <main id="main">
 <section class="hero section" id="top">
+<div aria-label="Interactive hyperspeed background. Press and hold to accelerate." class="hyperspeed-layer" data-hyperspeed=""></div>
 <div aria-hidden="true" class="hero-orbit orbit-one"></div>
 <div aria-hidden="true" class="hero-orbit orbit-two"></div>
 <div class="hero-copy reveal">
-<div class="eyebrow"><span class="status-dot"></span>Available for projects across India and worldwide</div>
-<h1>Digital work that makes <span class="accent-white">good businesses</span> <em>impossible to ignore.</em></h1>
-<p class="hero-lede">I design premium websites, web and app experiences, cinematic edits and visual content for restaurants, hotels, wedding brands and growing businesses.</p>
+<div class="eyebrow"><span class="status-dot"></span>Web • App • Video • Visuals</div>
+<h1>Digital work.<br><em>Built to be noticed.</em></h1>
+<p class="hero-lede">Premium websites, app experiences and cinematic content for growing brands.</p>
 <div class="hero-actions">
-<a class="button button-primary magnetic" href="#work">Explore selected work <span>↘</span></a>
-<a class="button button-quiet" href="#book">Book a project</a>
+<a class="button button-primary magnetic" href="#work">View work <span>↘</span></a>
+<a class="button button-quiet" href="#book">Let’s talk</a>
 </div>
 <div class="hero-proof">
-<div><small>Focus</small><strong>Trust + Conversion</strong></div>
-<div><small>Disciplines</small><strong>Web · App · Film · Visuals</strong></div>
-<div><small>Working</small><strong>India + Worldwide</strong></div>
+<div><small>Focus</small><strong>Trust + Results</strong></div>
+<div><small>Work</small><strong>Web · App · Film</strong></div>
+<div><small>Reach</small><strong>India + Global</strong></div>
 </div>
 </div>
 <div class="hero-stage reveal">
-<figure class="portrait-frame portrait-clean">
-<img alt="Ajay Saini in a black suit" height="1374" src="./assets/ajay-full.webp" width="1100"/>
+<figure class="portrait-frame portrait-clean portrait-reveal" data-portrait-reveal>
+<img alt="Ajay Saini portrait in black and white" class="portrait-base" height="1024" src="./assets/ajay-hero-bw-embedded.webp" width="1536"/>
+<img alt="" aria-hidden="true" class="portrait-colour" height="1024" src="./assets/ajay-hero-color-embedded.webp" width="1536"/>
+<span aria-hidden="true" class="portrait-reveal-ring"></span>
+<span class="portrait-reveal-hint">Move to reveal colour</span>
 <div aria-hidden="true" class="portrait-glass"></div>
 
 
@@ -74,10 +78,12 @@
 <span class="tool-node tool-ae">Ae</span>
 <span class="tool-node tool-figma">F</span>
 <span class="tool-node tool-web">&lt;/&gt;</span>
+<span class="tool-node tool-ui">UI</span>
+<span class="tool-node tool-seo">↗</span>
 </div>
 <div class="current-mode-card">
 <small>CURRENT MODE</small>
-<strong>Build what matters</strong>
+<strong>Creating what’s next</strong>
 </div>
 <figcaption>
 <span>AJAY NXT</span>
@@ -86,7 +92,7 @@
 </figure>
 </div>
 <div class="hero-foot reveal">
-<span>INDIA · AVAILABLE WORLDWIDE</span>
+<span>INDIA · GLOBAL PROJECTS</span>
 <a aria-label="Continue to the next section" class="hero-scroll" href="#approach">
 <span>Explore</span><b>↓</b>
 </a>
@@ -103,19 +109,16 @@
 </div>
 </section>
 <section class="statement section-pad" id="approach">
-<p class="section-kicker reveal">The approach</p>
+<p class="section-kicker reveal">Why it works</p>
 <div class="statement-grid">
-<h2 class="reveal">Not decoration.<br/>A <span class="accent-lime-dark">stronger first impression.</span></h2>
-<p class="reveal">
-          Strong design removes doubt. Every screen, word and interaction should make the business
-          feel more credible, easier to understand and safer to hire.
-        </p>
+<h2 class="reveal">Built for trust.<br/><span class="accent-lime-dark">Designed for action.</span></h2>
+<p class="reveal">Clear design turns attention into trust.</p>
 </div>
 </section>
 <section class="work section-pad" id="work">
 <div class="section-heading reveal">
 <p class="section-kicker">Selected work</p>
-<h2>Real work, shown with <span class="accent-lime-dark">context.</span></h2>
+<h2>Work that <span class="accent-lime-dark">speaks clearly.</span></h2>
 </div>
 <div aria-label="Work categories" class="work-tabs reveal" role="tablist">
 <button aria-selected="true" class="work-tab is-active" data-work-tab="websites" role="tab">Websites</button>
@@ -160,18 +163,13 @@
 <a class="system-live" href="https://diamondrestaurants.com/" rel="noreferrer" target="_blank">View live website ↗</a>
 </div>
 <div class="project-summary">
-<p>A complete digital presence combining a premium customer website with practical controls for menus, photos, slides, stories, reviews and order links.</p>
+<p>A premium customer website with simple content controls.</p>
 <ul>
-<li>Responsive website</li>
-<li>Visual admin workflow</li>
-<li>187 menu items structured</li>
-<li>Deployment + handover</li>
+<li>Responsive experience</li>
+<li>Simple admin workflow</li>
+<li>187 menu items</li>
+<li>Complete handover</li>
 </ul>
-</div>
-<div class="case-strip">
-<div><small>Challenge</small><p>Bring restaurant, bakery, sweets and Mega Mart into one clear digital experience.</p></div>
-<div><small>Solution</small><p>Premium public website backed by an editable admin control system.</p></div>
-<div><small>Outcome</small><p>A brand-led experience that is easier to manage on desktop and mobile.</p></div>
 </div>
 </article>
 <article class="project concept-project reveal">
@@ -208,15 +206,12 @@
               </div>
 </div>
 <div class="project-summary">
-<p>
-                A connected custom web system planned for bike rides, parcel delivery, taxi, bus,
-                rider onboarding, settlement and admin operations.
-              </p>
+<p>One connected system for customers, riders and operations.</p>
 <ul>
-<li>Multi-role product flow</li>
+<li>Multi-role product</li>
 <li>Location-led booking</li>
-<li>Rider alerts and tracking</li>
-<li>Operations dashboard</li>
+<li>Live rider flow</li>
+<li>Admin dashboard</li>
 </ul>
 </div>
 </article>
@@ -233,7 +228,7 @@
 <small>SELECTED VIDEO EDITING</small>
 <h3>One frame at a time. <mark>Emotion in motion.</mark></h3>
 </div>
-<p>Ten landscape films in one large slider. Posters load first, and each film opens securely from Google Drive after Play is pressed.</p>
+<p>Selected cinematic edits.</p>
 </div>
 <div class="cinema-stage">
 <button aria-label="Previous video" class="cinema-arrow cinema-prev" data-video-prev="" type="button">←</button>
@@ -293,33 +288,33 @@
 <div class="work-panel" data-work-panel="photos">
 <div class="category-intro reveal">
 <span>03</span>
-<div><p>Photo work</p><h3>Cleaner products. Better presentation. <span class="accent-lime-dark">Stronger catalogues.</span></h3></div>
+<div><p>Photo work</p><h3>Cleaner visuals. <span class="accent-lime-dark">Stronger presentation.</span></h3></div>
 </div>
 <div class="photo-grid reveal">
 <article class="photo-card product-card">
 <div class="photo-art sweets-art"><span></span><span></span><span></span><span></span></div>
-<div><small>PRODUCT RETOUCHING</small><h4>Original product, cleaner presentation</h4><p>White-background catalog photos, controlled shadows and consistent 1:1 framing.</p></div>
+<div><small>PRODUCT RETOUCHING</small><h4>Clean catalogue finish</h4><p>Controlled shadows and consistent framing.</p></div>
 </article>
 <article class="photo-card food-card">
 <div class="photo-art plate-art"><span></span><i></i><b></b></div>
-<div><small>FOOD VISUALS</small><h4>Background and plate styling</h4><p>Restaurant-ready images with the food kept authentic and recognisable.</p></div>
+<div><small>FOOD VISUALS</small><h4>Restaurant-ready imagery</h4><p>Styled while keeping the food authentic.</p></div>
 </article>
 <article class="photo-card portrait-card">
 <img alt="Portrait branding edit example" height="1402" src="./assets/ajay-full.webp" width="1122"/>
-<div><small>BRAND PORTRAIT</small><h4>Background replacement and grading</h4><p>Professional identity visuals for profiles, websites and campaign artwork.</p></div>
+<div><small>BRAND PORTRAIT</small><h4>Portrait finishing</h4><p>Clean backgrounds and cinematic grading.</p></div>
 </article>
 </div>
 </div>
 <div class="work-panel" data-work-panel="collaboration">
 <div class="category-intro reveal">
 <span>04</span>
-<div><p>Collaboration</p><h3>Working with teams, owners and <span class="accent-lime-dark">operational stakeholders.</span></h3></div>
+<div><p>Collaboration</p><h3>Shared vision. <span class="accent-lime-dark">Stronger outcomes.</span></h3></div>
 </div>
-<div class="collab-slider reveal" data-collab-slider="">
+<div class="collab-slider reveal" data-card-swap="" data-collab-slider="">
 <div class="collab-slider-head">
 <div>
 <p class="section-kicker">Featured collaborations</p>
-<p class="collab-slider-note">Swipe or use the arrows to explore each collaboration.</p>
+<p class="collab-slider-note">Swipe to explore.</p>
 </div>
 <div class="collab-slider-controls">
 <button aria-label="Previous collaboration" class="collab-slider-arrow" data-collab-prev="" type="button">←</button>
@@ -336,11 +331,9 @@
 </div>
 <div class="collab-copy wedding-collab-copy">
 <p class="wedding-main-name">Wedding Shedding</p>
-<p class="section-kicker">Creative collaboration with AJAY NXT</p>
-<h3>Real celebrations, shaped into <span class="accent-lime-dark">timeless visual stories.</span></h3>
-<p class="wedding-intro">
-Wedding Shedding is a Delhi-based wedding photography and cinematography team with an extensive portfolio of celebrations across India. The collaboration combines on-location photography and videography with selected video editing, website design and polished digital presentation.
-</p>
+<p class="section-kicker">Wedding media collaboration</p>
+<h3>Real moments. <span class="accent-lime-dark">Timeless stories.</span></h3>
+<p class="wedding-intro">Photography, films and digital presentation for celebrations across India.</p>
 
 <div class="collab-split">
 <div>
@@ -360,14 +353,7 @@ Wedding Shedding is a Delhi-based wedding photography and cinematography team wi
 </div>
 
 <div class="role-list wedding-services">
-<span>Wedding photography</span>
-<span>Candid photography</span>
-<span>Cinematic videography</span>
-<span>Pre-wedding shoots</span>
-<span>Drone shoots</span>
-<span>Albums</span>
-<span>Photobooth</span>
-<span>Live screening</span>
+<span>Photography</span><span>Films</span><span>Pre-wedding</span><span>Digital experience</span>
 </div>
 
 <div class="collab-action-grid">
@@ -390,10 +376,7 @@ Wedding Shedding is a Delhi-based wedding photography and cinematography team wi
 <div class="collab-copy">
 <p class="section-kicker">Srijanbhog Co. Pvt. Ltd.</p>
 <h3>Diamond Restaurants digital experience</h3>
-<p>
-                Built through continuous collaboration on brand presentation, content structure,
-                menu operations, admin controls, corrections and deployment.
-              </p>
+<p>Brand presentation, content systems and a confident digital launch.</p>
 <div class="role-list">
 <span>UI direction</span><span>Development</span><span>Content system</span><span>Deployment</span>
 </div>
@@ -417,19 +400,19 @@ Wedding Shedding is a Delhi-based wedding photography and cinematography team wi
 <div class="service-list">
 <article class="service-row reveal">
 <span>01</span><h3>Website design &amp; development</h3>
-<p>Responsive business websites, landing pages, portfolios, custom web system and admin experiences.</p><i>↗</i>
+<p>Fast websites, portfolios and admin experiences.</p><i>↗</i>
 </article>
 <article class="service-row reveal">
 <span>02</span><h3>Video editing &amp; brand reels</h3>
-<p>Wedding films, restaurant promotions, social reels, motion graphics, sound and color.</p><i>↗</i>
+<p>Films, reels, motion, sound and colour.</p><i>↗</i>
 </article>
 <article class="service-row reveal">
 <span>03</span><h3>Photo &amp; product presentation</h3>
-<p>Catalog photos, food imagery, background replacement, retouching and visual consistency.</p><i>↗</i>
+<p>Product, food and brand imagery.</p><i>↗</i>
 </article>
 <article class="service-row reveal">
 <span>04</span><h3>AI-assisted creative systems</h3>
-<p>AI-supported concepts, image workflows, prompts and faster production without losing brand control.</p><i>↗</i>
+<p>Faster workflows with brand control.</p><i>↗</i>
 </article>
 </div>
 </section>
@@ -443,13 +426,11 @@ Wedding Shedding is a Delhi-based wedding photography and cinematography team wi
 <div class="about-copy reveal">
 <p class="section-kicker">About Ajay</p>
 <h2>I combine <span class="accent-cyan-dark">design</span>, development and <span class="accent-lime-dark">visual storytelling.</span></h2>
-<p>I’m Ajay Saini, a digital creator from India. My work sits between design and execution: shaping the idea, building the screen, refining the visual and helping the final experience feel complete.</p>
+<p>I’m Ajay Saini, a digital creator from India. I turn ideas into clear, polished digital experiences.</p>
 <div class="about-tags">
-<span>India</span>
 <span>Web + App</span>
 <span>Video + Visuals</span>
-<span>Hindi + English</span>
-<span>Worldwide collaboration</span>
+<span>India + Global</span>
 </div>
 </div>
 </div>
@@ -460,10 +441,10 @@ Wedding Shedding is a Delhi-based wedding photography and cinematography team wi
 <h2>Clear steps. <span class="accent-coral-dark">Fewer surprises.</span></h2>
 </div>
 <div class="process-grid">
-<article class="reveal process-lime"><span>01</span><h3>Understand</h3><p>Business, audience, goals, existing problems and the action a visitor should take.</p></article>
-<article class="reveal process-cyan"><span>02</span><h3>Structure</h3><p>Content, screens, sections, project flow and the system needed behind the design.</p></article>
-<article class="reveal process-coral"><span>03</span><h3>Create</h3><p>Design, development, editing, testing and feedback in focused revision rounds.</p></article>
-<article class="reveal process-gold"><span>04</span><h3>Deliver</h3><p>Final files, deployment, handover notes and support for a confident launch.</p></article>
+<article class="reveal process-lime"><span>01</span><h3>Understand</h3><p>Goals, audience and the action that matters.</p></article>
+<article class="reveal process-cyan"><span>02</span><h3>Structure</h3><p>Content and screens shaped into a clear flow.</p></article>
+<article class="reveal process-coral"><span>03</span><h3>Create</h3><p>Design, build, edit, test and refine.</p></article>
+<article class="reveal process-gold"><span>04</span><h3>Deliver</h3><p>Launch-ready work with a clean handover.</p></article>
 </div>
 </section>
 <section class="reviews section-pad" id="reviews">
@@ -471,43 +452,28 @@ Wedding Shedding is a Delhi-based wedding photography and cinematography team wi
 <p class="section-kicker">Client confidence</p>
 <h2>Real proof belongs <span class="accent-lime">beside the work.</span></h2>
 </div>
-<div class="review-layout reveal">
-<div class="review-intro">
-<span class="review-score">5.0</span>
-<div aria-label="Five stars" class="stars">★★★★★</div>
-<p>Rated 5.0 for design, functionality and project support.</p>
-</div>
+<div class="review-layout review-layout-compact reveal">
 <article class="review-card primary-review">
-<small>DIAMOND RESTAURANTS · CLIENT REVIEW</small>
+<small>DIAMOND RESTAURANTS</small>
 <blockquote>
-          “Ajay delivered a <mark>premium and responsive website</mark> with a practical
-          admin panel. He understood our requirements carefully, handled every correction
-          patiently and created a final experience that
-          <mark>represents Diamond Restaurants professionally</mark>.”
+          “Premium, responsive and easy to manage. Ajay understood our requirements
+          and delivered a website that represents Diamond Restaurants professionally.”
         </blockquote>
 <footer>
 <div>
 <strong>Aman Sharma</strong>
-<span>Diamond Restaurants · Srijanbhog Co. Pvt. Ltd.</span>
+<span>Diamond Restaurants</span>
 </div>
 <span class="review-badge">★★★★★ 5.0</span>
 </footer>
 </article>
-<div class="review-mini-grid">
-<div><small>DESIGN</small><strong>Premium brand presentation</strong></div>
-<div><small>USABILITY</small><strong>Simple content controls</strong></div>
-<div><small>SUPPORT</small><strong>Careful revisions &amp; delivery</strong></div>
-</div>
 </div>
 </section>
 <section class="contact section-pad" id="book">
 <div class="contact-card reveal">
 <p class="section-kicker">Start a project</p>
 <h2>Have something <span class="contact-highlight">worth building?</span></h2>
-<p>
-          Share the service, business, timeline and budget. The form prepares a clean WhatsApp enquiry
-          so the conversation starts with useful details.
-        </p>
+<p>Share the essentials. Continue directly on WhatsApp.</p>
 <form class="booking-form" data-booking-form="">
 <div class="form-grid">
 <label>
@@ -602,8 +568,8 @@ Wedding Shedding is a Delhi-based wedding photography and cinematography team wi
           </p>
 </form>
 <div class="social-links">
-<a href="https://www.instagram.com/aj__editz_2.0/" rel="noreferrer" target="_blank">
-<span>◎</span><b>Instagram</b><small>@aj__editz_2.0</small>
+<a href="https://www.instagram.com/ajay_nxt_/" rel="noreferrer" target="_blank">
+<span>◎</span><b>Instagram</b><small>@ajay_nxt_</small>
 </a>
 <a href="https://wa.me/919929562585" rel="noreferrer" target="_blank">
 <span>◉</span><b>WhatsApp</b><small>Discuss a project</small>

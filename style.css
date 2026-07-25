@@ -1480,3 +1480,549 @@ html[data-theme="light"] .collab-slider-dot.is-active {
     transition: none;
   }
 }
+
+
+/* Compact collaboration visuals: full image visible, no oversized crop */
+.collab-card.wedding-shedding-card,
+.collab-card.diamond-collab-card {
+  align-items: center;
+}
+
+.collab-visual-card {
+  min-height: 0 !important;
+  width: min(100%, 350px);
+  aspect-ratio: 1 / 1;
+  justify-self: center;
+  margin: 28px;
+  border-radius: 26px;
+}
+
+.collab-visual-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  border-radius: 26px;
+}
+
+.collab-visual-card::before {
+  inset: 9px;
+  border-radius: 20px;
+}
+
+/* Keep Diamond artwork clean instead of stacking extra words over the image */
+.diamond-visual-copy {
+  display: none;
+}
+
+@media (min-width: 721px) {
+  .wedding-shedding-card,
+  .diamond-collab-card {
+    grid-template-columns: minmax(280px, .64fr) 1.36fr !important;
+  }
+
+  .collab-copy,
+  .wedding-collab-copy {
+    padding: 34px 38px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .collab-visual-card {
+    width: min(calc(100% - 36px), 280px);
+    margin: 20px auto 4px;
+    border-radius: 22px;
+  }
+
+  .collab-visual-card img {
+    border-radius: 22px;
+  }
+
+  .collab-copy,
+  .wedding-collab-copy {
+    padding: 24px 22px 26px !important;
+  }
+}
+
+
+/* AJAY NXT warm minimal update: orange + off-white, shorter copy, clean section boundaries */
+:root {
+  --paper: #f4efe6;
+  --paper-2: #e8ddce;
+  --lime: #ff8a32;
+  --lime-soft: #ffb36b;
+  --coral: #ff6a2a;
+  --cyan: #f4efe6;
+  --gold: #ff9a3d;
+  --line: rgba(244,239,230,.14);
+}
+
+::selection { background: var(--lime); color: var(--ink); }
+.accent-lime-dark,
+.accent-cyan-dark,
+.accent-coral-dark { color: #df681c !important; }
+
+/* Animated grid with slow orange/off-white light travelling across the page */
+.shader-bg {
+  background:
+    radial-gradient(circle at 50% -20%, rgba(255,138,50,.10), transparent 38%),
+    linear-gradient(155deg, #06111a 0%, #08151e 48%, #0b1b22 100%);
+}
+.shader-bg::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  opacity: .34;
+  background-image:
+    linear-gradient(rgba(244,239,230,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244,239,230,.055) 1px, transparent 1px);
+  background-size: 74px 74px;
+  transform: rotate(-3deg);
+  animation: warmGridDrift 28s linear infinite;
+}
+.shader-bg::after {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  opacity: .72;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(255,138,50,.46) 0 1px, rgba(255,138,50,.14) 2px, transparent 12%),
+    radial-gradient(circle at 74% 68%, rgba(244,239,230,.34) 0 1px, rgba(244,239,230,.11) 2px, transparent 10%),
+    conic-gradient(from 0deg at 50% 50%, transparent 0 37%, rgba(255,138,50,.12) 43%, transparent 49% 78%, rgba(244,239,230,.08) 84%, transparent 90%);
+  mix-blend-mode: screen;
+  animation: warmGridLight 18s linear infinite;
+}
+.shader-one { background: rgba(255,138,50,.22) !important; }
+.shader-two { background: rgba(244,239,230,.10) !important; }
+.shader-three { background: rgba(255,106,42,.10) !important; }
+
+@keyframes warmGridDrift {
+  to { transform: translate3d(74px,74px,0) rotate(-3deg); }
+}
+@keyframes warmGridLight {
+  to { transform: rotate(360deg) scale(1.04); }
+}
+
+/* Keep every section visually inside its own area */
+main > section {
+  position: relative;
+  isolation: isolate;
+  scroll-margin-top: 104px;
+}
+main > section:not(.hero):not(.marquee) {
+  overflow: clip;
+}
+.section-pad {
+  padding-top: clamp(70px, 8vw, 108px);
+  padding-bottom: clamp(70px, 8vw, 108px);
+}
+.work-tabs {
+  position: relative !important;
+  top: auto !important;
+}
+.project { margin-bottom: 62px; }
+.collab-slider-viewport,
+.project-system-card,
+.mobility-showcase,
+.video-cinema,
+.about-card,
+.contact-card { isolation: isolate; }
+
+/* Less text, smaller scale, stronger hierarchy */
+h1 {
+  max-width: 720px;
+  font-size: clamp(48px, 5.3vw, 84px);
+  line-height: .95;
+}
+.hero-lede {
+  max-width: 590px;
+  margin-top: 22px;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.6;
+}
+.hero-actions { margin-top: 26px; }
+.hero-proof { margin-top: 30px; padding-top: 17px; }
+.hero-proof small { font-size: 9px; }
+.hero-proof strong { font-size: 11px; }
+
+.statement h2,
+.section-heading h2,
+.about h2,
+.contact h2,
+.gallery-copy h2 {
+  font-size: clamp(38px, 4.4vw, 64px);
+  line-height: 1;
+}
+.statement-grid > p,
+.about-copy > p:not(.section-kicker),
+.contact-card > p:not(.section-kicker) {
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.65;
+}
+.section-heading { margin-bottom: 36px; }
+.project-meta h3 { font-size: clamp(27px, 3.2vw, 46px); }
+.project-summary { gap: 30px; padding-block: 22px; }
+.project-summary p,
+.project-summary li,
+.case-strip p,
+.service-row p,
+.collab-copy > p:not(.section-kicker),
+.wedding-intro {
+  font-size: 13px;
+  line-height: 1.58;
+}
+.case-strip { display: none; }
+.video-cinema-head { gap: 30px; }
+.video-cinema-head h3 { font-size: clamp(31px, 4vw, 54px); }
+.video-cinema-head p { max-width: 430px; font-size: 13px; line-height: 1.55; }
+.collab-slider-note { display: none; }
+.collab-copy h3,
+.wedding-collab-copy h3 { font-size: clamp(30px, 3vw, 46px) !important; }
+.collab-split,
+.wedding-stats { display: none !important; }
+.role-list span:nth-child(n+5),
+.wedding-services span:nth-child(n+5) { display: none; }
+
+/* Move all tool icons away from the face and keep them softly animated */
+.tool-orbit {
+  inset: 0;
+  z-index: 8;
+  transform: none !important;
+}
+.tool-node {
+  top: auto;
+  left: auto;
+  width: 42px;
+  height: 42px;
+  margin: 0;
+  animation: toolFloat 4.8s ease-in-out infinite !important;
+  background: rgba(7,19,29,.86);
+  border-color: rgba(255,138,50,.30);
+}
+.tool-node::after { border-bottom-color: rgba(255,138,50,.68); }
+
+.tool-web   { left: -20px; top: 12%; }
+.tool-ps    { left: -34px; top: 37%; animation-delay: -.8s !important; }
+.tool-pr    { left: -18px; top: 64%; animation-delay: -1.6s !important; }
+.tool-seo   { left: 8px; bottom: 4%; animation-delay: -2.4s !important; }
+
+.tool-ui    { right: -18px; top: 12%; animation-delay: -.4s !important; }
+.tool-figma { right: -34px; top: 37%; animation-delay: -1.2s !important; }
+.tool-ae    { right: -18px; top: 64%; animation-delay: -2s !important; }
+
+@keyframes toolFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+.current-mode-card {
+  right: -18px;
+  bottom: 34px;
+  width: min(218px, 52%);
+  padding: 15px 17px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,138,50,.95), rgba(255,179,107,.84));
+  box-shadow: 0 18px 48px rgba(255,106,42,.17), inset 0 1px rgba(255,255,255,.62);
+}
+.current-mode-card strong { font-size: clamp(13px, 1.35vw, 18px); }
+
+/* Warm accents */
+.status-dot,
+.button-primary,
+.work-tab.is-active,
+.mobile-contact a:last-child { background: var(--lime); }
+.site-header::before {
+  background: linear-gradient(90deg, transparent, rgba(255,138,50,.96), rgba(244,239,230,.66), transparent);
+}
+.theme-toggle:hover,
+.collab-slider-arrow:hover {
+  border-color: rgba(255,138,50,.48);
+  background: rgba(255,138,50,.08);
+}
+.contact-card {
+  background: linear-gradient(135deg, #ff8a32, #ffb36b);
+}
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  border-color: #df681c;
+  box-shadow: 0 0 0 3px rgba(223,104,28,.12);
+}
+
+/* Mobile: compact, no section collision, no icon over subject */
+@media (max-width: 720px) {
+  .hero { min-height: auto; padding-top: 112px; gap: 28px; }
+  h1 { font-size: clamp(43px, 13vw, 62px); }
+  .hero-lede { font-size: 15px; }
+  .hero-proof { grid-template-columns: repeat(3,1fr); gap: 6px; }
+  .hero-proof div { padding: 10px 8px; }
+  .hero-proof strong { font-size: 9px; }
+  .hero-proof small { font-size: 7px; }
+  .section-pad { padding-top: 62px; padding-bottom: 62px; }
+  .statement h2,
+  .section-heading h2,
+  .about h2,
+  .contact h2 { font-size: clamp(34px, 10vw, 48px); }
+  .tool-node { width: 34px; height: 34px; border-radius: 11px; font-size: 9px; }
+  .tool-web, .tool-ps, .tool-pr, .tool-seo { left: -8px; }
+  .tool-ui, .tool-figma, .tool-ae { right: -8px; }
+  .tool-web, .tool-ui { top: 10%; }
+  .tool-ps, .tool-figma { top: 38%; }
+  .tool-pr, .tool-ae { top: 66%; }
+  .tool-seo { bottom: 2%; }
+  .current-mode-card {
+    right: 8px;
+    bottom: 18px;
+    width: 50%;
+    padding: 12px 13px;
+  }
+  .current-mode-card small { font-size: 7px; margin-bottom: 4px; }
+  .current-mode-card strong { font-size: 11px; }
+  .project-summary > p { display: none; }
+  .project-summary ul { margin-top: 0; }
+  .video-cinema-head { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shader-bg::before,
+  .shader-bg::after,
+  .tool-node { animation: none !important; }
+}
+/* Light-only visual system and hero interactive portrait reveal */
+:root{color-scheme:light;--orange:#c45112;--light-ink:#121820;--light-muted:#4c5962;--light-paper:#f5f0e7;--light-card:#fffaf1;--light-line:rgba(18,24,32,.15)}
+html,html[data-theme="light"]{background:var(--light-paper)}
+html[data-theme="light"] body{background:var(--light-paper);color:var(--light-ink)}
+.theme-toggle{display:none!important}
+html[data-theme="light"] .shader-bg{background:radial-gradient(circle at 72% 12%,rgba(223,104,28,.16),transparent 32%),linear-gradient(145deg,#fffaf1,#eee7dc)}
+html[data-theme="light"] .site-header{background:rgba(255,250,241,.82);border-color:var(--light-line);box-shadow:0 14px 45px rgba(72,48,30,.1)}
+html[data-theme="light"] h1,html[data-theme="light"] h2,html[data-theme="light"] h3,html[data-theme="light"] h4,html[data-theme="light"] strong,html[data-theme="light"] .brand-copy strong,html[data-theme="light"] .site-nav a{color:var(--light-ink)}
+html[data-theme="light"] p,html[data-theme="light"] li,html[data-theme="light"] small,html[data-theme="light"] .hero-lede,html[data-theme="light"] .statement-grid>p,html[data-theme="light"] .project-summary>p,html[data-theme="light"] .case-strip p,html[data-theme="light"] .service-row p,html[data-theme="light"] .video-cinema-head p,html[data-theme="light"] .collab-copy>p:not(.section-kicker){color:var(--light-muted)}
+html[data-theme="light"] .section-kicker,html[data-theme="light"] .eyebrow,html[data-theme="light"] mark,html[data-theme="light"] em,html[data-theme="light"] [class*="accent-"]{color:#b94d0d!important}
+html[data-theme="light"] .work-tabs,html[data-theme="light"] .photo-card,html[data-theme="light"] .cinema-main,html[data-theme="light"] .primary-review,html[data-theme="light"] .collab-slide,html[data-theme="light"] .booking-form{background:var(--light-card);color:var(--light-ink);border-color:var(--light-line)}
+html[data-theme="light"] .about,html[data-theme="light"] .process,html[data-theme="light"] .contact{background:#eee6da;color:var(--light-ink)}
+html[data-theme="light"] .about-copy>p:not(.section-kicker),html[data-theme="light"] .process-grid p{color:var(--light-muted)}
+html[data-theme="light"] .about-tags span,html[data-theme="light"] .process-grid,html[data-theme="light"] .process-grid article,html[data-theme="light"] .service-list,html[data-theme="light"] .service-row{border-color:var(--light-line)}
+html[data-theme="light"] .button-primary,html[data-theme="light"] .site-nav .nav-cta{background:#c45112;color:#fff}
+html[data-theme="light"] .button-quiet{color:var(--light-ink);border-color:var(--light-line);background:rgba(255,255,255,.55)}
+html[data-theme="light"] .primary-review blockquote{color:var(--light-ink)}
+html[data-theme="light"] .form-grid input,
+html[data-theme="light"] .form-grid select,
+html[data-theme="light"] .form-grid textarea{
+  color:var(--light-ink);
+  background:#fffdf9;
+  border-color:rgba(18,24,32,.22);
+}
+html[data-theme="light"] .form-grid input::placeholder,
+html[data-theme="light"] .form-grid textarea::placeholder{color:#67717a;opacity:1}
+html[data-theme="light"] .form-grid select:invalid{color:#67717a}
+html[data-theme="light"] .form-grid select option{color:var(--light-ink);background:#fffdf9}
+
+.portrait-reveal{--reveal-x:50%;--reveal-y:48%;--reveal-size:0px;aspect-ratio:3/2;cursor:crosshair;isolation:isolate;touch-action:pan-y}
+.portrait-reveal .portrait-base,.portrait-reveal .portrait-colour{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit}
+.portrait-reveal .portrait-base{z-index:0}.portrait-reveal .portrait-colour{z-index:1;clip-path:circle(var(--reveal-size) at var(--reveal-x) var(--reveal-y));transition:clip-path 320ms cubic-bezier(.2,.75,.25,1);will-change:clip-path}
+.portrait-reveal.is-revealing{--reveal-size:clamp(110px,18vw,220px)}.portrait-reveal.is-pressed{--reveal-size:clamp(170px,28vw,340px)}
+.portrait-reveal-ring{position:absolute;z-index:4;left:var(--reveal-x);top:var(--reveal-y);width:calc(var(--reveal-size)*2);height:calc(var(--reveal-size)*2);border:1px solid rgba(223,104,28,.82);border-radius:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none;box-shadow:0 0 30px rgba(223,104,28,.22);transition:width 320ms cubic-bezier(.2,.75,.25,1),height 320ms cubic-bezier(.2,.75,.25,1),opacity 180ms ease}
+.portrait-reveal.is-revealing .portrait-reveal-ring{opacity:1}
+.portrait-reveal-hint{position:absolute;z-index:6;left:18px;top:18px;padding:8px 11px;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(22,24,28,.74);color:#fffaf1;font-size:11px;font-weight:700;backdrop-filter:blur(10px);pointer-events:none;transition:opacity 180ms ease,transform 180ms ease}
+.portrait-reveal.is-revealing .portrait-reveal-hint{opacity:0;transform:translateY(-5px)}
+.section-kicker,.hero-proof small,.hero-foot,.photo-card small,.form-grid label>span{font-size:max(11px,.72rem)}
+.service-row p,.process-grid p,.photo-card p,.wedding-intro{font-size:clamp(14px,1.05vw,16px);line-height:1.6}
+@media(max-width:700px){.portrait-reveal.is-revealing{--reveal-size:105px}.portrait-reveal.is-pressed{--reveal-size:150px}.portrait-reveal-hint{font-size:10px;left:12px;top:12px}.service-row p,.process-grid p,.photo-card p,.wedding-intro{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.portrait-reveal .portrait-colour{transition:none}.portrait-reveal-ring{display:none}}
+
+/* Compact copy and testimonial */
+.review-layout-compact{display:block;max-width:860px;margin-inline:auto}
+.review-layout-compact .primary-review{min-height:0;padding:clamp(24px,4vw,42px)}
+.review-layout-compact blockquote{font-size:clamp(22px,3vw,38px);line-height:1.25;margin:22px 0 28px}
+.review-layout-compact .review-badge{font-size:12px;white-space:nowrap}
+.services .section-heading,.reviews .section-heading{margin-bottom:clamp(28px,4vw,48px)}
+.service-row{min-height:0;padding-block:clamp(22px,3vw,34px)}
+.process-grid article{min-height:210px}.process-grid h3{margin-top:58px}
+.collab-copy{padding:clamp(24px,4vw,48px)}
+.collab-copy h3{font-size:clamp(30px,3.4vw,50px);margin-bottom:16px}
+.wedding-services{margin-block:16px}
+@media(max-width:700px){.review-layout-compact blockquote{font-size:22px}.review-layout-compact .primary-review footer{gap:14px}.process-grid article{min-height:180px}.process-grid h3{margin-top:36px}}
+
+/* Compact layout pass — retain hierarchy without oversized sections */
+.section-pad{padding-top:clamp(64px,7vw,96px);padding-bottom:clamp(64px,7vw,96px)}
+.section-heading{margin-bottom:clamp(28px,4vw,52px)}
+h1{font-size:clamp(52px,7vw,92px);line-height:.94}
+.statement h2,.section-heading h2,.about h2,.contact h2{font-size:clamp(38px,4.6vw,66px);line-height:1.02}
+.hero{min-height:auto;padding-top:118px;padding-bottom:24px;gap:clamp(28px,5vw,66px)}
+.hero-stage{width:min(100%,440px);max-width:440px}
+.hero-lede{margin-top:20px;max-width:590px;font-size:clamp(16px,1.25vw,19px);line-height:1.55}
+.hero-actions{margin-top:24px}
+.hero-proof{margin-top:26px;padding-top:15px}
+.hero-foot{margin-top:8px}
+.marquee{min-height:54px}.marquee-track{padding-block:15px}
+.statement{padding-top:62px;padding-bottom:62px}
+.statement-grid{gap:clamp(24px,5vw,60px)}
+.work-tabs{margin-bottom:34px}
+.project{padding-block:clamp(36px,5vw,64px)}
+.project-meta{margin-bottom:26px}
+.project-meta h3{font-size:clamp(30px,4vw,54px)}
+.project-system-card{min-height:420px}
+.system-grid{min-height:280px}
+.project-summary{padding-block:24px;gap:28px}
+.mobility-showcase{min-height:470px}
+.phone{transform:scale(.88)}
+.category-intro{padding-block:28px;margin-bottom:26px}
+.category-intro h3{font-size:clamp(28px,3.5vw,48px)}
+.video-cinema{padding-block:18px}
+.video-cinema-head{margin-bottom:24px}
+.video-cinema-head h3{font-size:clamp(28px,3.5vw,48px)}
+.cinema-stage{min-height:500px}
+.cinema-main{max-width:780px}
+.cinema-copy{padding:18px 20px}
+.premiere-motion-strip{margin-top:22px}
+.photo-grid{gap:14px}
+.photo-art,.portrait-card>img{height:270px}
+.photo-card>div:last-child{padding:18px}
+.photo-card h4{font-size:21px;margin:9px 0 7px}
+.collab-slider-head{margin-bottom:22px}
+.collab-card{min-height:0}
+.collab-visual-card{min-height:390px}
+.collab-copy{padding:clamp(22px,3.5vw,40px)}
+.collab-copy h3{font-size:clamp(28px,3vw,44px)}
+.wedding-stats{margin-block:16px}
+.wedding-stats span{padding:13px}
+.role-list span{padding:8px 10px}
+.service-row{padding-block:22px}
+.service-row h3{font-size:clamp(22px,2.4vw,34px)}
+.about-card{gap:clamp(30px,5vw,56px)}
+.about-photo-wrap{width:min(100%,300px)}
+.about-copy>p:not(.section-kicker){font-size:16px;line-height:1.6}
+.about-tags{margin-top:20px}
+.process-grid article{min-height:175px;padding:20px}
+.process-grid h3{margin-top:34px;font-size:23px}
+.reviews .section-heading{margin-bottom:28px}
+.review-layout-compact{max-width:760px}
+.review-layout-compact .primary-review{padding:clamp(22px,3vw,34px)}
+.review-layout-compact blockquote{font-size:clamp(21px,2.6vw,32px);margin:18px 0 24px}
+.contact-card{padding:clamp(30px,5vw,64px);border-radius:28px}
+.contact-card>p:not(.section-kicker){margin:18px 0 26px}
+.booking-form{padding:20px}
+.social-links{margin-top:22px}
+.footer{padding-block:22px}
+
+@media(max-width:980px){
+  .section-pad{padding-top:58px;padding-bottom:58px}
+  .hero{padding-top:104px}
+  .hero-stage{width:min(86vw,430px)}
+  .project-system-card{min-height:370px}
+  .mobility-showcase{min-height:430px}
+  .cinema-stage{min-height:440px}
+  .collab-visual-card{min-height:320px}
+}
+
+@media(max-width:700px){
+  .section-pad{padding-top:44px;padding-bottom:44px}
+  .section-heading{margin-bottom:24px}
+  h1{font-size:clamp(44px,13vw,62px)}
+  .statement h2,.section-heading h2,.about h2,.contact h2{font-size:clamp(34px,10vw,48px)}
+  .hero{padding-top:92px;padding-bottom:18px;gap:22px}
+  .hero-stage{width:100%;max-width:390px}
+  .hero-proof{margin-top:20px}
+  .statement{padding-top:44px;padding-bottom:44px}
+  .work-tabs{margin-bottom:22px}
+  .project{padding-block:32px}
+  .project-system-card{min-height:330px}
+  .system-grid{min-height:220px}
+  .mobility-showcase{min-height:370px}
+  .phone{transform:scale(.72)}
+  .category-intro{padding-block:20px;margin-bottom:18px}
+  .cinema-stage{min-height:350px}
+  .cinema-copy{padding:14px}
+  .photo-art,.portrait-card>img{height:235px}
+  .collab-visual-card{min-height:245px}
+  .collab-copy{padding:20px}
+  .wedding-stats{grid-template-columns:repeat(3,1fr)}
+  .service-row{padding-block:18px}
+  .about-photo-wrap{width:210px}
+  .process-grid article{min-height:150px}
+  .process-grid h3{margin-top:24px}
+  .contact-card{padding:26px 16px}
+  .booking-form{padding:16px}
+}
+
+/* Actual React Bits Hyperspeed integration */
+.shader-bg::before,.shader-bg::after{animation:none!important}
+.hero{isolation:isolate}
+.hyperspeed-layer{position:absolute;inset:0;z-index:0;overflow:hidden;border-radius:inherit;opacity:.88;background:#fff7ec}
+.hyperspeed-layer canvas{display:block;width:100%!important;height:100%!important}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(255,250,241,.94) 0%,rgba(255,250,241,.82) 38%,rgba(255,250,241,.18) 72%,rgba(255,250,241,.34) 100%)}
+.hero-copy,.hero-stage,.hero-foot,.hero-orbit{z-index:2}
+.hero-copy,.hero-stage,.hero-foot{pointer-events:auto}
+.hyperspeed-layer{pointer-events:auto}
+
+/* Actual React Bits CardSwap integration */
+[data-card-swap] .collab-slider-head{position:relative;z-index:20}
+[data-card-swap] .collab-slider-viewport{position:relative;height:570px;overflow:visible}
+[data-card-swap] .reactbits-card-swap-container{position:absolute;right:50%;bottom:18px;display:block!important;transition:none!important;transform:translateX(50%);transform-origin:bottom center;perspective:900px;overflow:visible}
+[data-card-swap] .reactbits-card{position:absolute;top:50%;left:50%;display:grid;grid-template-columns:.88fr 1.12fr;flex:none;border-radius:24px;border:1px solid rgba(223,104,28,.24);background:#fffaf1;box-shadow:0 25px 60px rgba(52,31,18,.18);transform-style:preserve-3d;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+[data-card-swap] .collab-slider-dots{display:none}
+[data-card-swap] .collab-visual-card{min-height:0;height:100%}
+[data-card-swap] .collab-copy{height:100%;overflow:auto}
+
+@media(max-width:700px){
+  .hyperspeed-layer{opacity:.74}
+  .hero::after{background:linear-gradient(180deg,rgba(255,250,241,.94) 0%,rgba(255,250,241,.78) 42%,rgba(255,250,241,.18) 66%,rgba(255,250,241,.38) 100%)}
+  [data-card-swap] .collab-slider-viewport{height:570px;overflow:hidden}
+  [data-card-swap] .reactbits-card-swap-container{right:50%;bottom:20px}
+  [data-card-swap] .reactbits-card{grid-template-columns:1fr;grid-template-rows:180px 1fr;border-radius:20px}
+  [data-card-swap] .collab-copy{padding:16px}
+  [data-card-swap] .wedding-stats,[data-card-swap] .collab-split{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hyperspeed-layer{display:none}
+  [data-card-swap] .collab-slider-viewport{height:auto;overflow:hidden}
+  [data-card-swap] .reactbits-card-swap-container{position:relative;inset:auto;transform:none!important;width:100%!important;height:auto!important}
+  [data-card-swap] .reactbits-card{position:relative;inset:auto!important;transform:none!important;width:100%!important;height:auto!important;margin-bottom:16px}
+}
+
+/* Final compact rhythm: less scrolling, clearer hierarchy */
+.section-pad{padding-top:clamp(48px,5.4vw,76px);padding-bottom:clamp(48px,5.4vw,76px)}
+h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
+.statement h2,.section-heading h2,.about h2,.contact h2{font-size:clamp(34px,4vw,54px);line-height:1.04}
+.statement{padding-top:44px;padding-bottom:44px}
+.section-heading{margin-bottom:28px}
+.work-tabs{margin-bottom:24px}
+.project{padding-block:clamp(26px,3.5vw,44px);margin-bottom:22px}
+.project-system-card{min-height:340px}
+.mobility-showcase{min-height:390px}
+.category-intro{padding-block:20px;margin-bottom:18px}
+.category-intro h3{font-size:clamp(26px,3vw,42px)}
+.cinema-stage{min-height:400px}
+.photo-art,.portrait-card>img{height:245px}
+.service-row{padding-block:18px}
+.about-card{gap:clamp(26px,4vw,46px)}
+.process-grid article{min-height:150px;padding:18px}
+.process-grid h3{margin-top:25px;font-size:22px}
+.reviews .section-heading{margin-bottom:22px}
+.review-layout-compact{max-width:700px}
+.review-layout-compact .primary-review{padding:clamp(20px,2.5vw,30px)}
+.review-layout-compact blockquote{font-size:clamp(20px,2.2vw,28px);margin:14px 0 20px}
+.review-badge{padding:8px 10px;font-size:11px}
+.contact-card{padding:clamp(26px,4vw,48px)}
+[data-card-swap] .collab-slider-viewport{height:520px}
+
+@media(max-width:700px){
+  .section-pad{padding-top:38px;padding-bottom:38px}
+  h1{font-size:clamp(42px,12vw,56px)}
+  .statement h2,.section-heading h2,.about h2,.contact h2{font-size:clamp(31px,9vw,43px)}
+  .hero{padding-top:88px;padding-bottom:14px}
+  .statement{padding-top:36px;padding-bottom:36px}
+  .project{padding-block:24px}
+  .project-system-card{min-height:300px}
+  .mobility-showcase{min-height:340px}
+  .cinema-stage{min-height:330px}
+  .photo-art,.portrait-card>img{height:220px}
+  .process-grid article{min-height:130px}
+  [data-card-swap] .collab-slider-viewport{height:530px}
+  .button{font-size:12px}
+  .hero-proof strong{font-size:12px}
+  .hero-proof small{font-size:11px}
+}

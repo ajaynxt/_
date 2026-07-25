@@ -252,7 +252,12 @@
 
   // Collaboration slider. Add another .collab-slide article and the controls update automatically.
   const collabSlider = document.querySelector('[data-collab-slider]');
-  if (collabSlider) {
+  const forceMotionPreview = new URLSearchParams(window.location.search).has('motion-preview');
+  if (
+    collabSlider &&
+    (!collabSlider.hasAttribute('data-card-swap') ||
+      (window.matchMedia('(prefers-reduced-motion: reduce)').matches && !forceMotionPreview))
+  ) {
     const track = collabSlider.querySelector('[data-collab-track]');
     const viewport = collabSlider.querySelector('[data-collab-viewport]');
     const slides = Array.from(collabSlider.querySelectorAll('[data-collab-slide]'));
@@ -397,6 +402,29 @@
     ].join('\n');
     window.open(`https://wa.me/919929562585?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   });
+
+  // Hero portrait: black-and-white base with a colour layer revealed by cursor/touch.
+  const portraitReveal = document.querySelector('[data-portrait-reveal]');
+  if (portraitReveal) {
+    const setReveal = (clientX, clientY) => {
+      const bounds = portraitReveal.getBoundingClientRect();
+      const x = Math.max(0, Math.min(bounds.width, clientX - bounds.left));
+      const y = Math.max(0, Math.min(bounds.height, clientY - bounds.top));
+      portraitReveal.style.setProperty('--reveal-x', `${x}px`);
+      portraitReveal.style.setProperty('--reveal-y', `${y}px`);
+      portraitReveal.classList.add('is-revealing');
+    };
+    portraitReveal.addEventListener('pointerenter', event => setReveal(event.clientX, event.clientY));
+    portraitReveal.addEventListener('pointermove', event => setReveal(event.clientX, event.clientY));
+    portraitReveal.addEventListener('pointerdown', event => {
+      portraitReveal.setPointerCapture?.(event.pointerId);
+      portraitReveal.classList.add('is-pressed');
+      setReveal(event.clientX, event.clientY);
+    });
+    portraitReveal.addEventListener('pointerup', () => portraitReveal.classList.remove('is-pressed'));
+    portraitReveal.addEventListener('pointercancel', () => portraitReveal.classList.remove('is-pressed'));
+    portraitReveal.addEventListener('pointerleave', () => portraitReveal.classList.remove('is-revealing', 'is-pressed'));
+  }
 
   // Wedding Shedding links are kept in site-config.js so they can be replaced later.
   document.querySelectorAll('[data-collab-link]').forEach((link) => {
