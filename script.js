@@ -96,10 +96,18 @@
   // Cursor glow only on fine-pointer devices.
   const glow = document.querySelector('[data-cursor-glow]');
   if (glow && !reduceMotion && window.matchMedia('(pointer:fine)').matches) {
+    let glowFrame = 0;
+    let glowPoint = null;
     window.addEventListener('pointermove', (event) => {
-      glow.style.left = `${event.clientX}px`;
-      glow.style.top = `${event.clientY}px`;
-      glow.style.opacity = '1';
+      glowPoint = { x: event.clientX, y: event.clientY };
+      if (glowFrame) return;
+      glowFrame = window.requestAnimationFrame(() => {
+        glowFrame = 0;
+        if (!glowPoint) return;
+        glow.style.left = `${glowPoint.x}px`;
+        glow.style.top = `${glowPoint.y}px`;
+        glow.style.opacity = '1';
+      });
     }, { passive: true });
   }
 
@@ -439,6 +447,8 @@
   // Hero portrait: black-and-white base with a colour layer revealed by cursor/touch.
   const portraitReveal = document.querySelector('[data-portrait-reveal]');
   if (portraitReveal) {
+    let revealFrame = 0;
+    let revealPoint = null;
     const setReveal = (clientX, clientY) => {
       const bounds = portraitReveal.getBoundingClientRect();
       const x = Math.max(0, Math.min(bounds.width, clientX - bounds.left));
@@ -447,12 +457,21 @@
       portraitReveal.style.setProperty('--reveal-y', `${y}px`);
       portraitReveal.classList.add('is-revealing');
     };
-    portraitReveal.addEventListener('pointerenter', event => setReveal(event.clientX, event.clientY));
-    portraitReveal.addEventListener('pointermove', event => setReveal(event.clientX, event.clientY));
+    const queueReveal = (event) => {
+      revealPoint = { x: event.clientX, y: event.clientY };
+      if (revealFrame) return;
+      revealFrame = window.requestAnimationFrame(() => {
+        revealFrame = 0;
+        if (!revealPoint) return;
+        setReveal(revealPoint.x, revealPoint.y);
+      });
+    };
+    portraitReveal.addEventListener('pointerenter', queueReveal, { passive: true });
+    portraitReveal.addEventListener('pointermove', queueReveal, { passive: true });
     portraitReveal.addEventListener('pointerdown', event => {
       portraitReveal.setPointerCapture?.(event.pointerId);
       portraitReveal.classList.add('is-pressed');
-      setReveal(event.clientX, event.clientY);
+      queueReveal(event);
     });
     portraitReveal.addEventListener('pointerup', () => portraitReveal.classList.remove('is-pressed'));
     portraitReveal.addEventListener('pointercancel', () => portraitReveal.classList.remove('is-pressed'));
