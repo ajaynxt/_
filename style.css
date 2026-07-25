@@ -2139,3 +2139,164 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   .photo-card-image img,
   .portrait-card>img{transition:none}
 }
+
+/* Final orange visual alignment */
+.brand-logo{
+  width:66px;
+  height:42px;
+  flex:0 0 66px;
+  object-fit:contain;
+  border-radius:10px;
+  background:#fffaf1;
+  border:1px solid rgba(18,24,32,.1);
+}
+.portrait-reveal .portrait-base,
+.portrait-reveal .portrait-colour{
+  transform:scale(1.085);
+  transform-origin:50% 38%;
+}
+.mobility-showcase svg{
+  color:#ff7f2d;
+  filter:drop-shadow(0 0 14px rgba(255,127,45,.28));
+}
+.phone{
+  color:#121820;
+  background:#fffaf1;
+}
+.phone small{
+  color:#a84413;
+  font-weight:800;
+}
+.phone h4,
+.phone .app-card b,
+.phone .alert-card b,
+.phone .earn-card strong{color:#121820}
+.phone .app-card span,
+.phone .alert-card span{color:#4f5c64}
+.phone .alert-card{
+  background:linear-gradient(135deg,#ff8a32,#ffc182);
+}
+.phone-a{transform:rotate(-4deg) scale(.9)}
+.phone-b{transform:rotate(4deg) scale(.9)}
+
+.collab-visual-wedding img,
+.collab-visual-diamond img{
+  filter:grayscale(1) sepia(.42) saturate(1.9) hue-rotate(334deg) contrast(1.08) brightness(.9);
+}
+.collab-visual-card{
+  background:linear-gradient(145deg,#26140b,#100d0b);
+}
+.diamond-visual-copy strong span:nth-child(2),
+.diamond-visual-copy strong span:nth-child(3){color:#ff8a32}
+
+.reviews{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 18% 82%,rgba(255,138,50,.13),transparent 30%),
+    radial-gradient(circle at 86% 18%,rgba(196,81,18,.08),transparent 28%);
+}
+.review-layout-compact .primary-review{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  border:1px solid rgba(196,81,18,.22);
+  box-shadow:0 24px 70px rgba(120,68,30,.1);
+}
+.review-layout-compact .primary-review>*{position:relative;z-index:2}
+.review-layout-compact .primary-review::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  width:240px;
+  height:240px;
+  left:-80px;
+  bottom:-115px;
+  border-radius:50%;
+  background:rgba(255,127,45,.24);
+  filter:blur(35px);
+  animation:reviewConfidenceGlow 7s ease-in-out infinite alternate;
+}
+.review-layout-compact .primary-review::after{
+  content:"“";
+  position:absolute;
+  z-index:1;
+  right:22px;
+  top:-55px;
+  font:600 210px/1 Syne;
+  color:rgba(196,81,18,.08);
+  pointer-events:none;
+}
+@keyframes reviewConfidenceGlow{
+  to{transform:translate(120px,-38px) scale(1.18);opacity:.7}
+}
+
+@media(max-width:700px){
+  .brand-logo{width:54px;height:36px;flex-basis:54px}
+  .mobility-showcase{min-height:390px}
+  .phone{width:154px;height:340px;padding:24px 12px;border-width:6px}
+  .phone-a{left:0;top:10%;transform:rotate(-2deg) scale(.9);transform-origin:left top}
+  .phone-b{right:0;top:14%;transform:rotate(2deg) scale(.9);transform-origin:right top}
+  .phone h4{font-size:18px;margin:22px 0}
+  .phone .app-card,
+  .phone .alert-card,
+  .phone .earn-card{padding:11px}
+  .phone .app-card b,
+  .phone .alert-card b{font-size:12px}
+  .phone .app-card span,
+  .phone .alert-card span,
+  .phone .earn-card span{font-size:9px}
+  .review-layout-compact .primary-review::after{font-size:150px;top:-30px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .review-layout-compact .primary-review::before{animation:none}
+}
+
+/* Keep the hero message clear of the portrait */
+.current-mode-card{
+  right:-72px;
+  bottom:22px;
+  width:170px;
+  padding:13px 14px;
+  border-radius:16px;
+}
+.current-mode-card small{
+  margin-bottom:5px;
+  font-size:10px;
+  color:#7b3b18;
+}
+.current-mode-card strong{font-size:15px;line-height:1.2}
+
+/* Readable micro-copy across project cards */
+.section-kicker,
+.eyebrow,
+.project-meta p,
+.project-index,
+.project-link,
+.project-status,
+.category-intro p,
+.photo-card small,
+.primary-review small,
+.mobility-caption{font-size:11px}
+.phone small{font-size:10px}
+.mobility-caption{
+  z-index:5;
+  color:rgba(255,250,241,.76);
+}
+
+@media(max-width:980px){
+  .current-mode-card{right:-52px}
+}
+@media(max-width:700px){
+  .hero-stage{margin-bottom:18px}
+  .current-mode-card{
+    right:10px;
+    bottom:72px;
+    width:136px;
+    padding:9px 10px;
+    border-radius:14px;
+  }
+  .current-mode-card small{font-size:8px}
+  .current-mode-card strong{font-size:12px}
+}

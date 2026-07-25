@@ -7,7 +7,7 @@
   "theme_color": "#07131d",
   "icons": [
     {
-      "src": "./assets/ajay-nxt-logo.png",
+      "src": "./assets/ajay-nxt-orange-mark.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
