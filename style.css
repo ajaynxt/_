@@ -2091,3 +2091,22 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   .social-links{grid-template-columns:1fr 1fr}
   .social-links a{min-height:64px;padding:10px}
 }
+
+/* Orange reading focus follows the service nearest the viewport centre */
+.service-row h3,
+.service-row>span,
+.service-row>i,
+.service-row p{transition:color .35s ease,transform .35s ease}
+.service-row.is-scroll-active h3,
+.service-row.is-scroll-active>span,
+.service-row.is-scroll-active>i,
+.service-row:hover h3,
+.service-row:hover>span,
+.service-row:hover>i{color:#c45112}
+.service-row.is-scroll-active p,
+.service-row:hover p{color:#9d4a1a}
+.service-row.is-scroll-active h3{transform:translateX(8px)}
+
+@media(prefers-reduced-motion:reduce){
+  .service-row.is-scroll-active h3{transform:none}
+}

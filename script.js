@@ -59,6 +59,38 @@
     revealElements.forEach((element) => observer.observe(element));
   }
 
+  // Give the service nearest the viewport centre an orange reading focus.
+  const serviceRows = [...document.querySelectorAll('.service-row')];
+  if (serviceRows.length) {
+    let serviceFocusFrame = 0;
+    const updateServiceFocus = () => {
+      serviceFocusFrame = 0;
+      const focusY = window.innerHeight * 0.54;
+      let closestRow = null;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      serviceRows.forEach((row) => {
+        const rect = row.getBoundingClientRect();
+        if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
+        const distance = Math.abs((rect.top + rect.height / 2) - focusY);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestRow = row;
+        }
+      });
+
+      serviceRows.forEach((row) => row.classList.toggle('is-scroll-active', row === closestRow));
+    };
+    const requestServiceFocus = () => {
+      if (serviceFocusFrame) return;
+      serviceFocusFrame = window.requestAnimationFrame(updateServiceFocus);
+    };
+
+    updateServiceFocus();
+    window.addEventListener('scroll', requestServiceFocus, { passive: true });
+    window.addEventListener('resize', requestServiceFocus);
+  }
+
   // Cursor glow only on fine-pointer devices.
   const glow = document.querySelector('[data-cursor-glow]');
   if (glow && !reduceMotion && window.matchMedia('(pointer:fine)').matches) {
