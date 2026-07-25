@@ -49,7 +49,7 @@ if (collabSlider && collabTrack && !reducedMotion) {
     height: compact ? 470 : 460,
     cardDistance: compact ? 14 : 30,
     verticalDistance: compact ? 16 : 32,
-    delay: 5200,
+    delay: 3200,
     pauseOnHover: true,
     skewAmount: compact ? 1 : 2,
     easing: 'linear',

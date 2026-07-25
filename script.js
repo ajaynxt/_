@@ -5,7 +5,9 @@
   const nav = document.querySelector('[data-nav]');
   const year = document.querySelector('[data-year]');
   const themeButton = document.querySelector('[data-theme-toggle]');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const forceMotionPreview = new URLSearchParams(window.location.search).has('motion-preview');
+  const reduceMotion =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches && !forceMotionPreview;
 
   if (year) year.textContent = new Date().getFullYear();
 
@@ -244,7 +246,7 @@
       if (!autoEnabled || reduceMotion || frameActive) return;
       autoTimer = setInterval(() => {
         if (!frameActive) next(false);
-      }, 6500);
+      }, 2000);
     }
 
     function restartAuto() {
@@ -284,7 +286,6 @@
 
   // Collaboration slider. Add another .collab-slide article and the controls update automatically.
   const collabSlider = document.querySelector('[data-collab-slider]');
-  const forceMotionPreview = new URLSearchParams(window.location.search).has('motion-preview');
   if (
     collabSlider &&
     (!collabSlider.hasAttribute('data-card-swap') ||
@@ -341,7 +342,7 @@
     function startCollabAutoplay() {
       clearInterval(autoplayTimer);
       if (reduceMotion || slides.length < 2) return;
-      autoplayTimer = setInterval(() => nextCollaboration(false), 7500);
+      autoplayTimer = setInterval(() => nextCollaboration(false), 3200);
     }
 
     function restartCollabAutoplay() {

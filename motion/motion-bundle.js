@@ -27172,7 +27172,7 @@ if (Vi && Ul && !uo) {
     height: t ? 470 : 460,
     cardDistance: t ? 14 : 30,
     verticalDistance: t ? 16 : 32,
-    delay: 5200,
+    delay: 3200,
     pauseOnHover: !0,
     skewAmount: t ? 1 : 2,
     easing: "linear",
