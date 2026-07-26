@@ -133,6 +133,7 @@
 
   const slider = document.querySelector('[data-video-slider]');
   if (slider && videoSlides.length) {
+    const screen = slider.querySelector('[data-video-screen]');
     const frame = slider.querySelector('[data-main-frame]');
     const localVideo = slider.querySelector('[data-main-local-video]');
     const mainPoster = slider.querySelector('[data-main-poster]');
@@ -155,6 +156,7 @@
     let autoTimer = null;
     let pointerStartX = 0;
     let frameActive = false;
+    let videoLoadingTimer = null;
 
     if (total) total.textContent = String(videoSlides.length).padStart(2, '0');
 
@@ -174,6 +176,8 @@
 
     function unloadFrame() {
       frameActive = false;
+      clearTimeout(videoLoadingTimer);
+      screen?.classList.remove('is-playing', 'is-loading-video');
       if (frame) {
         frame.src = 'about:blank';
         frame.hidden = true;
@@ -227,12 +231,15 @@
     function playCurrent() {
       const localUrl = localVideo?.dataset.localUrl;
       const driveUrl = frame?.dataset.previewUrl;
+      clearTimeout(videoLoadingTimer);
+      screen?.classList.add('is-playing', 'is-loading-video');
+      videoLoadingTimer = setTimeout(() => screen?.classList.remove('is-loading-video'), 3500);
 
       if (localUrl && localVideo) {
         localVideo.src = localUrl;
         localVideo.hidden = false;
         frameActive = true;
-        if (mainPoster) mainPoster.hidden = true;
+        if (mainPoster) mainPoster.hidden = false;
         if (playButton) playButton.hidden = true;
         clearInterval(autoTimer);
         localVideo.play().catch(() => {});
@@ -243,7 +250,7 @@
       frame.src = driveUrl;
       frame.hidden = false;
       frameActive = true;
-      if (mainPoster) mainPoster.hidden = true;
+      if (mainPoster) mainPoster.hidden = false;
       if (playButton) playButton.hidden = true;
       clearInterval(autoTimer);
     }
@@ -268,8 +275,18 @@
     slider.querySelector('[data-video-next-preview]')?.addEventListener('click', () => next(true));
     slider.querySelector('[data-video-prev-preview]')?.addEventListener('click', () => previous(true));
     playButton?.addEventListener('click', playCurrent);
+    frame?.addEventListener('load', () => {
+      clearTimeout(videoLoadingTimer);
+      screen?.classList.remove('is-loading-video');
+    });
+    localVideo?.addEventListener('playing', () => {
+      clearTimeout(videoLoadingTimer);
+      screen?.classList.remove('is-loading-video');
+      if (mainPoster) mainPoster.hidden = true;
+    });
     localVideo?.addEventListener('ended', () => {
       frameActive = false;
+      screen?.classList.remove('is-playing', 'is-loading-video');
       next(false);
       startAuto();
     });
@@ -430,7 +447,12 @@
   bookingForm?.addEventListener('submit', (event) => {
     event.preventDefault();
     const form = new FormData(bookingForm);
-    const budget = form.get('budgetAmount') ? `${form.get('budgetAmount')} ${form.get('currency')}` : 'Not specified';
+    const budgetAmount = Number(form.get('budgetAmount') || 0);
+    const budgetCode = String(form.get('currency') || 'INR');
+    const selectedCurrency = currency?.selectedOptions?.[0]?.textContent?.trim() || budgetCode;
+    const budget = budgetAmount ? `${budgetAmount} ${selectedCurrency}` : 'Not specified';
+    const budgetRate = rateCache[budgetCode] || fallbackRates[budgetCode] || 1;
+    const budgetInr = budgetAmount ? inrFormatter.format(budgetAmount * budgetRate) : '';
     const countryCode = form.get('countryCode') === 'other' ? '' : form.get('countryCode');
     const message = [
       'Hello Ajay, I want to discuss a project.', '',
@@ -440,9 +462,10 @@
       `Service: ${form.get('service') || ''}`,
       `Timeline: ${form.get('timeline') || ''}`,
       `Budget: ${budget}`,
+      budgetAmount ? `Approx INR: ${budgetInr}${budgetCode === 'INR' ? '' : ' (reference estimate)'}` : '',
       `Project details: ${form.get('details') || ''}`, '',
       'Sent from AJAY NXT portfolio.'
-    ].join('\n');
+    ].filter(Boolean).join('\n');
     window.open(`https://wa.me/919929562585?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   });
 

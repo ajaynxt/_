@@ -834,6 +834,25 @@ body { position: relative; isolation: isolate; }
 .cinema-screen-top { position: absolute; z-index: 2; left: 15px; right: 15px; top: 14px; display: flex; justify-content: space-between; pointer-events: none; }
 .cinema-screen-top span { padding: 7px 9px; border-radius: 999px; background: rgba(2,9,12,.7); color: #f1efe7; font-size: 9px; font-weight: 800; backdrop-filter: blur(12px); }
 .cinema-screen-top span:first-child { color: var(--lime); }
+.cinema-screen.is-loading-video::after {
+  content: "Loading video";
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(2,9,12,.72);
+  color: #f1efe7;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
 .cinema-copy { display: grid; grid-template-columns: 1fr .8fr; gap: 30px; align-items: end; padding: 23px 25px 26px; }
 .cinema-copy small { color: var(--lime); font-size: 9px; font-weight: 800; letter-spacing: .12em; }
 .cinema-copy h4 { margin: 9px 0 0; font-size: clamp(24px,2.8vw,39px); letter-spacing: -.045em; }
@@ -2001,6 +2020,26 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   .project-system-card{min-height:300px}
   .mobility-showcase{min-height:340px}
   .cinema-stage{min-height:330px}
+  .cinema-screen{min-height:176px}
+  .cinema-screen.is-playing .cinema-main-poster{
+    display:block;
+    position:absolute;
+    inset:0;
+    z-index:2;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.28;
+    filter:saturate(.9) brightness(.72);
+    pointer-events:none;
+  }
+  .cinema-screen.is-playing .cinema-drive-frame,
+  .cinema-screen.is-playing .cinema-local-video{
+    z-index:1;
+  }
+  .cinema-screen.is-playing .cinema-screen-top{
+    z-index:5;
+  }
   .photo-art,.portrait-card>img{height:220px}
   .process-grid article{min-height:130px}
   [data-card-swap] .collab-slider-viewport{height:530px}
