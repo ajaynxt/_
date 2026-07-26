@@ -775,22 +775,6 @@ body { position: relative; isolation: isolate; }
   88%  { transform: translate3d(-112px, 78px, 0) scale(.92); opacity: .9; }
   100% { transform: translate3d(0, 118px, 0) scale(1); opacity: .96; }
 }
-.current-mode-card {
-  position: absolute;
-  z-index: 6;
-  right: -36px;
-  bottom: 82px;
-  width: min(260px, 55%);
-  padding: 19px 21px;
-  border: 1px solid rgba(236,255,205,.4);
-  border-radius: 24px;
-  background: linear-gradient(135deg, rgba(201,255,74,.94), rgba(193,255,76,.78));
-  color: #0a1720;
-  box-shadow: 0 22px 55px rgba(119,178,24,.2), inset 0 1px rgba(255,255,255,.65);
-  backdrop-filter: blur(14px);
-}
-.current-mode-card small { display: block; margin-bottom: 8px; color: #65785f; font-size: 9px; letter-spacing: .13em; }
-.current-mode-card strong { font: 600 clamp(15px,1.7vw,22px) Syne, sans-serif; }
 .hero-profile-badge { display: none !important; }
 
 /* Large cinematic video slider */
@@ -949,7 +933,6 @@ html[data-theme="light"] .mobile-contact a { color: #0b1720; border-color: rgba(
   .cinema-copy { grid-template-columns: 1fr; gap: 12px; }
   .tool-node { width: 38px; height: 38px; margin: -19px 0 0 -19px; border-radius: 12px; }
   .tool-orbit { transform: scale(.82); transform-origin: 50% 38%; }
-  .current-mode-card { right: -10px; bottom: 76px; }
 }
 @media (max-width: 720px) {
   .header-controls { gap: 4px; }
@@ -958,8 +941,6 @@ html[data-theme="light"] .mobile-contact a { color: #0b1720; border-color: rgba(
   .site-nav { order: 3; }
   .hero-stage { width: 92%; max-width: 460px; justify-self: center; }
   .tool-orbit { transform: scale(.68); transform-origin: 50% 38%; }
-  .current-mode-card { width: 58%; right: -6px; bottom: 73px; padding: 14px 16px; border-radius: 19px; }
-  .current-mode-card strong { font-size: 13px; }
   .cinema-stage { grid-template-columns: 36px minmax(0,1fr) 36px; gap: 7px; }
   .cinema-arrow { width: 34px; height: 34px; }
   .cinema-main { border-radius: 20px; }
@@ -1717,17 +1698,6 @@ h1 {
   50% { transform: translateY(-9px); }
 }
 
-.current-mode-card {
-  right: -18px;
-  bottom: 34px;
-  width: min(218px, 52%);
-  padding: 15px 17px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255,138,50,.95), rgba(255,179,107,.84));
-  box-shadow: 0 18px 48px rgba(255,106,42,.17), inset 0 1px rgba(255,255,255,.62);
-}
-.current-mode-card strong { font-size: clamp(13px, 1.35vw, 18px); }
-
 /* Warm accents */
 .status-dot,
 .button-primary,
@@ -1772,14 +1742,6 @@ h1 {
   .tool-ps, .tool-figma { top: 38%; }
   .tool-pr, .tool-ae { top: 66%; }
   .tool-seo { bottom: 2%; }
-  .current-mode-card {
-    right: 8px;
-    bottom: 18px;
-    width: 50%;
-    padding: 12px 13px;
-  }
-  .current-mode-card small { font-size: 7px; margin-bottom: 4px; }
-  .current-mode-card strong { font-size: 11px; }
   .project-summary > p { display: none; }
   .project-summary ul { margin-top: 0; }
   .video-cinema-head { grid-template-columns: 1fr; }
@@ -2034,7 +1996,6 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
 .tool-figma{right:-58px}
 .tool-ae{right:-46px}
 .portrait-reveal-hint{left:18px;top:-18px}
-.current-mode-card{right:-58px;bottom:20px;width:min(205px,46%)}
 
 /* Shorter booking section without removing enquiry fields */
 .contact.section-pad{padding-top:40px;padding-bottom:42px}
@@ -2063,7 +2024,6 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   .hero-stage{width:min(88vw,480px);max-width:480px}
   .tool-web,.tool-ps,.tool-pr{left:-26px}
   .tool-ui,.tool-figma,.tool-ae{right:-26px}
-  .current-mode-card{right:-28px}
 }
 
 @media(max-width:700px){
@@ -2071,7 +2031,6 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   .tool-web,.tool-ps,.tool-pr,.tool-seo{left:-12px}
   .tool-ui,.tool-figma,.tool-ae{right:-12px}
   .portrait-reveal-hint{left:14px;top:-14px}
-  .current-mode-card{right:-8px;bottom:14px;width:48%}
   .contact.section-pad{padding-top:30px;padding-bottom:34px}
   .contact-card{padding:20px 14px}
   .booking-form{padding:13px}
@@ -2250,21 +2209,6 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   .review-layout-compact .primary-review::before{animation:none}
 }
 
-/* Keep the hero message clear of the portrait */
-.current-mode-card{
-  right:-72px;
-  bottom:22px;
-  width:170px;
-  padding:13px 14px;
-  border-radius:16px;
-}
-.current-mode-card small{
-  margin-bottom:5px;
-  font-size:10px;
-  color:#7b3b18;
-}
-.current-mode-card strong{font-size:15px;line-height:1.2}
-
 /* Readable micro-copy across project cards */
 .section-kicker,
 .eyebrow,
@@ -2282,20 +2226,8 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   color:rgba(255,250,241,.76);
 }
 
-@media(max-width:980px){
-  .current-mode-card{right:-52px}
-}
 @media(max-width:700px){
   .hero-stage{margin-bottom:18px}
-  .current-mode-card{
-    right:10px;
-    bottom:72px;
-    width:136px;
-    padding:9px 10px;
-    border-radius:14px;
-  }
-  .current-mode-card small{font-size:8px}
-  .current-mode-card strong{font-size:12px}
 }
 
 /* Compact Photo Work cards without hiding their captions */
