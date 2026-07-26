@@ -19,11 +19,13 @@
     const open = menuButton.getAttribute('aria-expanded') === 'true';
     menuButton.setAttribute('aria-expanded', String(!open));
     nav?.classList.toggle('is-open', !open);
+    header?.classList.toggle('nav-open', !open);
   });
 
   nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
     menuButton?.setAttribute('aria-expanded', 'false');
     nav?.classList.remove('is-open');
+    header?.classList.remove('nav-open');
   }));
 
   // Dark / light mode with saved preference.
@@ -443,40 +445,6 @@
     ].join('\n');
     window.open(`https://wa.me/919929562585?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   });
-
-  // Hero portrait: black-and-white base with a colour layer revealed by cursor/touch.
-  const portraitReveal = document.querySelector('[data-portrait-reveal]');
-  if (portraitReveal) {
-    let revealFrame = 0;
-    let revealPoint = null;
-    const setReveal = (clientX, clientY) => {
-      const bounds = portraitReveal.getBoundingClientRect();
-      const x = Math.max(0, Math.min(bounds.width, clientX - bounds.left));
-      const y = Math.max(0, Math.min(bounds.height, clientY - bounds.top));
-      portraitReveal.style.setProperty('--reveal-x', `${x}px`);
-      portraitReveal.style.setProperty('--reveal-y', `${y}px`);
-      portraitReveal.classList.add('is-revealing');
-    };
-    const queueReveal = (event) => {
-      revealPoint = { x: event.clientX, y: event.clientY };
-      if (revealFrame) return;
-      revealFrame = window.requestAnimationFrame(() => {
-        revealFrame = 0;
-        if (!revealPoint) return;
-        setReveal(revealPoint.x, revealPoint.y);
-      });
-    };
-    portraitReveal.addEventListener('pointerenter', queueReveal, { passive: true });
-    portraitReveal.addEventListener('pointermove', queueReveal, { passive: true });
-    portraitReveal.addEventListener('pointerdown', event => {
-      portraitReveal.setPointerCapture?.(event.pointerId);
-      portraitReveal.classList.add('is-pressed');
-      queueReveal(event);
-    });
-    portraitReveal.addEventListener('pointerup', () => portraitReveal.classList.remove('is-pressed'));
-    portraitReveal.addEventListener('pointercancel', () => portraitReveal.classList.remove('is-pressed'));
-    portraitReveal.addEventListener('pointerleave', () => portraitReveal.classList.remove('is-revealing', 'is-pressed'));
-  }
 
   // Wedding Shedding links are kept in site-config.js so they can be replaced later.
   document.querySelectorAll('[data-collab-link]').forEach((link) => {

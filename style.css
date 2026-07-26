@@ -692,6 +692,7 @@ body { position: relative; isolation: isolate; }
 }
 @keyframes glassSweep { 50%,100% { left: 112%; } }
 .header-controls { display: flex; align-items: center; gap: 8px; }
+.site-header.nav-open{overflow:visible}
 .brand-mark {
   position: relative;
   overflow: hidden;
@@ -1781,18 +1782,40 @@ html[data-theme="light"] .form-grid textarea::placeholder{color:#67717a;opacity:
 html[data-theme="light"] .form-grid select:invalid{color:#67717a}
 html[data-theme="light"] .form-grid select option{color:var(--light-ink);background:#fffdf9}
 
-.portrait-reveal{--reveal-x:50%;--reveal-y:48%;--reveal-size:0px;aspect-ratio:3/2;cursor:crosshair;isolation:isolate;touch-action:pan-y}
+.portrait-reveal{--liquid-speed:5.8s;aspect-ratio:3/2;cursor:default;isolation:isolate;touch-action:pan-y;overflow:hidden}
 .portrait-reveal .portrait-base,.portrait-reveal .portrait-colour{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit}
-.portrait-reveal .portrait-base{z-index:0}.portrait-reveal .portrait-colour{z-index:1;clip-path:circle(var(--reveal-size) at var(--reveal-x) var(--reveal-y));transition:clip-path 320ms cubic-bezier(.2,.75,.25,1);will-change:clip-path}
-.portrait-reveal.is-revealing{--reveal-size:clamp(110px,18vw,220px)}.portrait-reveal.is-pressed{--reveal-size:clamp(170px,28vw,340px)}
-.portrait-reveal-ring{position:absolute;z-index:4;left:var(--reveal-x);top:var(--reveal-y);width:calc(var(--reveal-size)*2);height:calc(var(--reveal-size)*2);border:1px solid rgba(223,104,28,.82);border-radius:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none;box-shadow:0 0 30px rgba(223,104,28,.22);transition:width 320ms cubic-bezier(.2,.75,.25,1),height 320ms cubic-bezier(.2,.75,.25,1),opacity 180ms ease}
-.portrait-reveal.is-revealing .portrait-reveal-ring{opacity:1}
-.portrait-reveal-hint{position:absolute;z-index:6;left:18px;top:18px;padding:8px 11px;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(22,24,28,.74);color:#fffaf1;font-size:11px;font-weight:700;backdrop-filter:blur(10px);pointer-events:none;transition:opacity 180ms ease,transform 180ms ease}
-.portrait-reveal.is-revealing .portrait-reveal-hint{opacity:0;transform:translateY(-5px)}
+.portrait-reveal .portrait-base{z-index:0}
+.portrait-reveal .portrait-colour{
+  z-index:1;
+  opacity:.96;
+  -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.08) 11%, rgba(0,0,0,.88) 28%, #000 50%, rgba(0,0,0,.88) 72%, rgba(0,0,0,.08) 89%, transparent 100%);
+  mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.08) 11%, rgba(0,0,0,.88) 28%, #000 50%, rgba(0,0,0,.88) 72%, rgba(0,0,0,.08) 89%, transparent 100%);
+  -webkit-mask-size:42% 100%;
+  mask-size:42% 100%;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-position:-56% 0;
+  mask-position:-56% 0;
+  animation:portraitLiquidReveal var(--liquid-speed) cubic-bezier(.64,0,.28,1) infinite;
+  will-change:mask-position,-webkit-mask-position;
+}
+.portrait-reveal::before{content:"";position:absolute;z-index:3;inset:-18% -34%;pointer-events:none;background:linear-gradient(102deg,transparent 35%,rgba(255,255,255,.08) 43%,rgba(116,229,214,.24) 49%,rgba(255,145,62,.16) 56%,transparent 66%);mix-blend-mode:screen;opacity:0;transform:translateX(-72%) skewX(-10deg);animation:portraitLiquidSheen var(--liquid-speed) cubic-bezier(.64,0,.28,1) infinite}
+@keyframes portraitLiquidReveal{
+  0%{-webkit-mask-position:-56% 0;mask-position:-56% 0}
+  44%{-webkit-mask-position:46% 0;mask-position:46% 0}
+  68%{-webkit-mask-position:78% 0;mask-position:78% 0}
+  100%{-webkit-mask-position:156% 0;mask-position:156% 0}
+}
+@keyframes portraitLiquidSheen{
+  0%,100%{opacity:0;transform:translateX(-72%) skewX(-10deg)}
+  18%{opacity:.52}
+  66%{opacity:.42}
+  86%{opacity:0;transform:translateX(72%) skewX(-10deg)}
+}
 .section-kicker,.hero-proof small,.hero-foot,.photo-card small,.form-grid label>span{font-size:max(11px,.72rem)}
 .service-row p,.process-grid p,.photo-card p,.wedding-intro{font-size:clamp(14px,1.05vw,16px);line-height:1.6}
-@media(max-width:700px){.portrait-reveal.is-revealing{--reveal-size:105px}.portrait-reveal.is-pressed{--reveal-size:150px}.portrait-reveal-hint{font-size:10px;left:12px;top:12px}.service-row p,.process-grid p,.photo-card p,.wedding-intro{font-size:16px}}
-@media(prefers-reduced-motion:reduce){.portrait-reveal .portrait-colour{transition:none}.portrait-reveal-ring{display:none}}
+@media(max-width:700px){.portrait-reveal{--liquid-speed:6.4s}.service-row p,.process-grid p,.photo-card p,.wedding-intro{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.portrait-reveal .portrait-colour{animation:none;-webkit-mask-image:none;mask-image:none}.portrait-reveal::before{display:none}}
 
 /* Compact copy and testimonial */
 .review-layout-compact{display:block;max-width:860px;margin-inline:auto}
@@ -1995,7 +2018,6 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
 .tool-ui{right:-44px}
 .tool-figma{right:-58px}
 .tool-ae{right:-46px}
-.portrait-reveal-hint{left:18px;top:-18px}
 
 /* Shorter booking section without removing enquiry fields */
 .contact.section-pad{padding-top:40px;padding-bottom:42px}
@@ -2030,7 +2052,6 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   .hero-stage{width:100%;max-width:420px}
   .tool-web,.tool-ps,.tool-pr,.tool-seo{left:-12px}
   .tool-ui,.tool-figma,.tool-ae{right:-12px}
-  .portrait-reveal-hint{left:14px;top:-14px}
   .contact.section-pad{padding-top:30px;padding-bottom:34px}
   .contact-card{padding:20px 14px}
   .booking-form{padding:13px}
@@ -2230,6 +2251,45 @@ h1{font-size:clamp(48px,5.8vw,80px);line-height:.96}
   .hero-stage{margin-bottom:18px}
 }
 
+/* Phone hamburger menu: clear, readable quick links */
+@media(max-width:720px){
+  .site-header.nav-open{overflow:visible}
+  .site-nav{
+    top:66px;
+    padding:10px;
+    gap:8px;
+    background:rgba(255,250,241,.98);
+    border-color:rgba(11,23,32,.12);
+    box-shadow:0 24px 60px rgba(7,19,29,.22);
+    -webkit-backdrop-filter:blur(18px);
+    backdrop-filter:blur(18px);
+  }
+  .site-nav a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-height:44px;
+    padding:12px 14px;
+    border:1px solid rgba(11,23,32,.10);
+    border-radius:12px;
+    background:rgba(255,255,255,.72);
+    color:#0b1720!important;
+    font-size:13px;
+  }
+  .site-nav a::after{
+    content:"↘";
+    color:#c45112;
+    font-size:12px;
+  }
+  .site-nav .nav-secondary{display:none}
+  .site-nav .nav-cta{
+    background:#c45112!important;
+    color:#fff!important;
+    border-color:transparent;
+  }
+  .site-nav .nav-cta::after{color:#fff}
+}
+
 /* Compact Photo Work cards without hiding their captions */
 .photo-art,
 .portrait-card > img{
@@ -2414,14 +2474,3 @@ html[data-theme="light"] .project-system-card .system-chip.lime small{
   .collab-slider-controls-bottom{margin-top:12px}
 }
 
-/* A tighter cursor reveal makes the portrait interaction more noticeable */
-.portrait-reveal.is-revealing{
-  --reveal-size:clamp(85px,11vw,140px);
-}
-.portrait-reveal.is-pressed{
-  --reveal-size:clamp(130px,18vw,220px);
-}
-@media(max-width:700px){
-  .portrait-reveal.is-revealing{--reveal-size:76px}
-  .portrait-reveal.is-pressed{--reveal-size:116px}
-}
