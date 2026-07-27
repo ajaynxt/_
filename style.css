@@ -3104,6 +3104,7 @@ html[data-theme="dark"] .hero-business{color:#fffaf1}
     line-height:1.5;
   }
   [data-card-swap] .collab-action-grid{
+    display:grid!important;
     grid-template-columns:1fr 1fr;
     gap:8px;
   }
@@ -3112,6 +3113,20 @@ html[data-theme="dark"] .hero-business{color:#fffaf1}
     min-height:42px;
     padding:10px 12px;
     font-size:10px;
+  }
+  [data-card-swap] .wedding-collab-copy{
+    justify-content:center;
+  }
+  [data-card-swap] .wedding-main-name{
+    margin:0 0 10px!important;
+    font:800 11px/1.2 Inter, sans-serif!important;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  [data-card-swap] .wedding-collab-copy h3{
+    margin:0 0 15px!important;
+    font-size:clamp(28px,2.45vw,34px)!important;
+    line-height:1.04!important;
   }
 }
 
