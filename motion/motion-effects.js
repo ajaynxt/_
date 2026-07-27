@@ -2,12 +2,17 @@ import { createHyperspeed } from './HyperspeedVanilla.js';
 import { createCardSwap } from './CardSwapVanilla.js';
 
 const motionPreview = new URLSearchParams(window.location.search).has('motion-preview');
-const reducedMotion =
+const prefersReducedMotion =
   window.matchMedia('(prefers-reduced-motion: reduce)').matches && !motionPreview;
+const reducedMotion = false;
 const hyperspeedContainer = document.querySelector('[data-hyperspeed]');
 let hyperspeed = null;
 
-if (hyperspeedContainer && !reducedMotion) {
+// AJAY NXT's hero motion is an intentional part of the brand experience.
+// Keep it available even when the OS requests reduced motion, but use a
+// calmer configuration in that case instead of removing the canvas entirely.
+if (hyperspeedContainer) {
+  hyperspeedContainer.dataset.motionActive = 'true';
   hyperspeed = createHyperspeed(hyperspeedContainer, {
     distortion: 'turbulentDistortion',
     length: 400,
@@ -16,12 +21,12 @@ if (hyperspeedContainer && !reducedMotion) {
     lanesPerRoad: 4,
     fov: 88,
     fovSpeedUp: 132,
-    speedUp: 1.7,
+    speedUp: prefersReducedMotion ? 1.15 : 1.7,
     carLightsFade: 0.45,
-    totalSideLightSticks: 16,
-    lightPairsPerRoadWay: 28,
-    movingAwaySpeed: [48, 64],
-    movingCloserSpeed: [-92, -120],
+    totalSideLightSticks: prefersReducedMotion ? 10 : 16,
+    lightPairsPerRoadWay: prefersReducedMotion ? 18 : 28,
+    movingAwaySpeed: prefersReducedMotion ? [32, 42] : [48, 64],
+    movingCloserSpeed: prefersReducedMotion ? [-58, -76] : [-92, -120],
     colors: {
       roadColor: 0xe8d8c8,
       islandColor: 0xd8bca3,
@@ -45,8 +50,8 @@ if (collabSlider && collabTrack && !reducedMotion) {
   const compact = window.matchMedia('(max-width: 700px)').matches;
 
   cardSwap = createCardSwap(collabTrack, {
-    width: compact ? 300 : 760,
-    height: compact ? 470 : 460,
+    width: compact ? 300 : 700,
+    height: compact ? 470 : 420,
     cardDistance: compact ? 14 : 30,
     verticalDistance: compact ? 16 : 32,
     delay: 3200,
@@ -63,7 +68,7 @@ if (collabSlider && collabTrack && !reducedMotion) {
   collabSlider.querySelector('[data-collab-next]')?.addEventListener('click', cardSwap.swap);
 }
 
-document.documentElement.dataset.motionReady = reducedMotion ? 'reduced' : 'full';
+document.documentElement.dataset.motionReady = hyperspeed ? 'full' : 'reduced';
 
 window.addEventListener(
   'pagehide',

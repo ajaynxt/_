@@ -2877,3 +2877,147 @@ html[data-theme="dark"] .hero-business{color:#fffaf1}
 @media(prefers-reduced-motion:reduce){
   .hero-role-track{animation:none}
 }
+
+/* Signature hero motion must stay visible. Reduced-motion users get the
+   calmer WebGL configuration from motion-effects.js, not a blank hero. */
+.hyperspeed-layer[data-motion-active="true"]{display:block}
+
+/* Fluid hero portrait reveal. Multiple soft ellipses merge into a moving
+   water shape; script.js supplies the drifting/pointer coordinates. */
+.portrait-reveal{
+  --reveal-x:50%;
+  --reveal-y:50%;
+  --reveal-width:118px;
+  --reveal-height:84px;
+  --reveal-lobe:58px;
+  --reveal-lobe-y:42px;
+  --reveal-lobe-small:46px;
+  --reveal-lobe-small-y:34px;
+  --wave-shift-x:0px;
+  --wave-shift-y:0px;
+  --wave-pulse:.5;
+}
+.portrait-reveal[data-motion-active="true"] .portrait-colour{
+  animation:none;
+  opacity:1;
+  -webkit-mask-image:
+    radial-gradient(ellipse var(--reveal-width) var(--reveal-height) at var(--reveal-x) var(--reveal-y),#000 0 54%,rgba(0,0,0,.9) 67%,transparent 100%),
+    radial-gradient(ellipse var(--reveal-lobe) var(--reveal-lobe-y) at calc(var(--reveal-x) + var(--wave-shift-x)) calc(var(--reveal-y) - 24px),#000 0 51%,transparent 100%),
+    radial-gradient(ellipse var(--reveal-lobe-small) var(--reveal-lobe-small-y) at calc(var(--reveal-x) - 52px) calc(var(--reveal-y) + var(--wave-shift-y)),#000 0 48%,transparent 100%),
+    radial-gradient(ellipse var(--reveal-lobe-small) var(--reveal-lobe-small-y) at calc(var(--reveal-x) + 58px) calc(var(--reveal-y) + 34px),#000 0 46%,transparent 100%);
+  mask-image:
+    radial-gradient(ellipse var(--reveal-width) var(--reveal-height) at var(--reveal-x) var(--reveal-y),#000 0 54%,rgba(0,0,0,.9) 67%,transparent 100%),
+    radial-gradient(ellipse var(--reveal-lobe) var(--reveal-lobe-y) at calc(var(--reveal-x) + var(--wave-shift-x)) calc(var(--reveal-y) - 24px),#000 0 51%,transparent 100%),
+    radial-gradient(ellipse var(--reveal-lobe-small) var(--reveal-lobe-small-y) at calc(var(--reveal-x) - 52px) calc(var(--reveal-y) + var(--wave-shift-y)),#000 0 48%,transparent 100%),
+    radial-gradient(ellipse var(--reveal-lobe-small) var(--reveal-lobe-small-y) at calc(var(--reveal-x) + 58px) calc(var(--reveal-y) + 34px),#000 0 46%,transparent 100%);
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-position:0 0;
+  mask-position:0 0;
+  -webkit-mask-size:100% 100%;
+  mask-size:100% 100%;
+  will-change:-webkit-mask-image,mask-image;
+}
+.portrait-reveal[data-motion-active="true"]::before{
+  display:block;
+  animation:portraitLiquidSheen 7.2s cubic-bezier(.64,0,.28,1) infinite;
+}
+.portrait-reveal.is-pressed{
+  --reveal-width:172px;
+  --reveal-height:122px;
+  --reveal-lobe:82px;
+  --reveal-lobe-y:60px;
+  --reveal-lobe-small:66px;
+  --reveal-lobe-small-y:48px;
+}
+
+@media(max-width:700px){
+  .portrait-reveal{
+    --reveal-width:88px;
+    --reveal-height:64px;
+    --reveal-lobe:42px;
+    --reveal-lobe-y:31px;
+    --reveal-lobe-small:34px;
+    --reveal-lobe-small-y:25px;
+  }
+  .portrait-reveal.is-pressed{
+    --reveal-width:126px;
+    --reveal-height:92px;
+    --reveal-lobe:60px;
+    --reveal-lobe-y:44px;
+    --reveal-lobe-small:48px;
+    --reveal-lobe-small-y:35px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hyperspeed-layer[data-motion-active="true"]{display:block}
+  .portrait-reveal[data-motion-active="true"] .portrait-colour{
+    animation:none;
+  }
+  .portrait-reveal[data-motion-active="true"]::before{
+    display:block;
+    animation:none;
+    opacity:.16;
+    transform:none;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-role-track{animation:heroRoles 20s linear infinite!important}
+  .portrait-reveal[data-motion-active="true"]::before{
+    display:block;
+    animation:portraitLiquidSheen 9s cubic-bezier(.64,0,.28,1) infinite!important;
+  }
+}
+
+/* Collaboration CardSwap: Wedding Shedding remains the lead card, while the
+   desktop composition stays compact enough for common laptop viewports. */
+@media(min-width:701px){
+  [data-card-swap] .collab-slider-viewport{
+    height:470px;
+    overflow:hidden;
+  }
+  [data-card-swap] .reactbits-card-swap-container{
+    bottom:14px;
+  }
+  [data-card-swap] .reactbits-card{
+    grid-template-columns:.74fr 1.26fr;
+    max-width:min(700px,calc(100vw - 104px));
+  }
+  [data-card-swap] .collab-visual-card{
+    width:calc(100% - 28px);
+    max-width:270px;
+    height:calc(100% - 28px);
+    aspect-ratio:auto;
+    margin:14px;
+    border-radius:22px;
+  }
+  [data-card-swap] .collab-visual-card img{
+    width:100%;
+    height:100%;
+    object-fit:contain!important;
+    border-radius:22px;
+  }
+  [data-card-swap] .collab-copy{
+    padding:24px 28px!important;
+  }
+  [data-card-swap] .collab-copy h3{
+    font-size:clamp(26px,2.6vw,36px);
+    line-height:1.02;
+  }
+  [data-card-swap] .collab-copy>p:not(.section-kicker){
+    font-size:13px;
+    line-height:1.5;
+  }
+  [data-card-swap] .collab-action-grid{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  [data-card-swap] .collab-action-grid .button,
+  [data-card-swap] .collab-copy>.button{
+    min-height:42px;
+    padding:10px 12px;
+    font-size:10px;
+  }
+}

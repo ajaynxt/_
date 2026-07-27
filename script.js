@@ -5,9 +5,9 @@
   const nav = document.querySelector('[data-nav]');
   const year = document.querySelector('[data-year]');
   const themeButton = document.querySelector('[data-theme-toggle]');
-  const forceMotionPreview = new URLSearchParams(window.location.search).has('motion-preview');
-  const reduceMotion =
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches && !forceMotionPreview;
+  // Motion is part of the approved AJAY NXT presentation. Individual effects
+  // use calmer settings when needed, but the page should not become static.
+  const reduceMotion = false;
 
   if (year) year.textContent = new Date().getFullYear();
 
@@ -111,6 +111,73 @@
         glow.style.opacity = '1';
       });
     }, { passive: true });
+  }
+
+  // Continuous water-like colour reveal for the hero portrait.
+  // It drifts automatically, then follows mouse/touch without becoming a
+  // rigid circular spotlight.
+  const portraitReveal = document.querySelector('[data-portrait-reveal]');
+  if (portraitReveal) {
+    let portraitFrame = 0;
+    let pointerActive = false;
+    let pressed = false;
+    let targetX = 50;
+    let targetY = 50;
+    let currentX = 50;
+    let currentY = 50;
+
+    portraitReveal.dataset.motionActive = 'true';
+    portraitReveal.classList.add('is-revealing');
+
+    const setPointerTarget = (event) => {
+      const rect = portraitReveal.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      targetX = Math.max(8, Math.min(92, ((event.clientX - rect.left) / rect.width) * 100));
+      targetY = Math.max(12, Math.min(88, ((event.clientY - rect.top) / rect.height) * 100));
+    };
+
+    const animatePortrait = (time) => {
+      if (!pointerActive) {
+        targetX = 50 + Math.sin(time * 0.00042) * 34;
+        targetY = 50 + Math.sin(time * 0.00073) * 16;
+      }
+
+      currentX += (targetX - currentX) * 0.075;
+      currentY += (targetY - currentY) * 0.075;
+
+      const pulse = 0.5 + Math.sin(time * 0.00115) * 0.5;
+      portraitReveal.style.setProperty('--reveal-x', `${currentX.toFixed(2)}%`);
+      portraitReveal.style.setProperty('--reveal-y', `${currentY.toFixed(2)}%`);
+      portraitReveal.style.setProperty('--wave-shift-x', `${(Math.sin(time * 0.0014) * 24).toFixed(1)}px`);
+      portraitReveal.style.setProperty('--wave-shift-y', `${(Math.cos(time * 0.0011) * 18).toFixed(1)}px`);
+      portraitReveal.style.setProperty('--wave-pulse', pulse.toFixed(3));
+      portraitFrame = window.requestAnimationFrame(animatePortrait);
+    };
+
+    portraitReveal.addEventListener('pointerenter', (event) => {
+      pointerActive = true;
+      setPointerTarget(event);
+    });
+    portraitReveal.addEventListener('pointermove', setPointerTarget, { passive: true });
+    portraitReveal.addEventListener('pointerleave', () => {
+      pointerActive = false;
+      pressed = false;
+      portraitReveal.classList.remove('is-pressed');
+    });
+    portraitReveal.addEventListener('pointerdown', (event) => {
+      pointerActive = true;
+      pressed = true;
+      setPointerTarget(event);
+      portraitReveal.classList.add('is-pressed');
+    });
+    window.addEventListener('pointerup', () => {
+      if (!pressed) return;
+      pressed = false;
+      portraitReveal.classList.remove('is-pressed');
+    });
+
+    portraitFrame = window.requestAnimationFrame(animatePortrait);
+    window.addEventListener('pagehide', () => window.cancelAnimationFrame(portraitFrame), { once: true });
   }
 
   // Work tabs.
@@ -385,8 +452,7 @@
   const collabSlider = document.querySelector('[data-collab-slider]');
   if (
     collabSlider &&
-    (!collabSlider.hasAttribute('data-card-swap') ||
-      (window.matchMedia('(prefers-reduced-motion: reduce)').matches && !forceMotionPreview))
+    !collabSlider.hasAttribute('data-card-swap')
   ) {
     const track = collabSlider.querySelector('[data-collab-track]');
     const viewport = collabSlider.querySelector('[data-collab-viewport]');
