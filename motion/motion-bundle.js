@@ -27196,7 +27196,7 @@ if (Vi && Nl) {
     height: t ? 470 : 420,
     cardDistance: t ? 14 : 30,
     verticalDistance: t ? 16 : 32,
-    delay: 3200,
+    delay: 2600,
     pauseOnHover: !0,
     skewAmount: t ? 1 : 2,
     easing: "linear",

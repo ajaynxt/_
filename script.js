@@ -8,6 +8,33 @@
   // Motion is part of the approved AJAY NXT presentation. Individual effects
   // use calmer settings when needed, but the page should not become static.
   const reduceMotion = false;
+  const motionSrc = window.AJAY_NXT_MOTION_SRC;
+
+  function loadMotionBundle() {
+    if (!motionSrc || document.querySelector('[data-motion-bundle]')) return;
+    const motionScript = document.createElement('script');
+    motionScript.type = 'module';
+    motionScript.src = motionSrc;
+    motionScript.dataset.motionBundle = '';
+    document.head.appendChild(motionScript);
+  }
+
+  function scheduleMotionBundle() {
+    if (!motionSrc) return;
+    if (reduceMotion) {
+      root.dataset.motionReady = 'reduced';
+      return;
+    }
+    const start = () => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadMotionBundle, { timeout: 900 });
+      } else {
+        window.setTimeout(loadMotionBundle, 450);
+      }
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+  }
 
   if (year) year.textContent = new Date().getFullYear();
 
@@ -147,6 +174,7 @@
     let portraitFrame = 0;
     let pointerActive = false;
     let pressed = false;
+    let revealTimer = null;
     let targetX = 50;
     let targetY = 50;
     let currentX = 50;
@@ -171,46 +199,61 @@
       portraitReveal.style.setProperty('--wave-shift-x', `${(Math.sin(time * 0.0014) * 24).toFixed(1)}px`);
       portraitReveal.style.setProperty('--wave-shift-y', `${(Math.cos(time * 0.0011) * 18).toFixed(1)}px`);
       portraitReveal.style.setProperty('--wave-pulse', pulse.toFixed(3));
-      portraitFrame = window.requestAnimationFrame(animatePortrait);
+      if (pointerActive || pressed) {
+        portraitFrame = window.requestAnimationFrame(animatePortrait);
+      } else {
+        portraitFrame = 0;
+      }
     };
 
-    portraitReveal.addEventListener('pointerenter', (event) => {
-      pointerActive = true;
-      setPointerTarget(event);
-      portraitReveal.classList.add('is-revealing');
-    });
-    portraitReveal.addEventListener('pointermove', (event) => {
-      if (event.pointerType !== 'mouse' && !pressed) return;
-      pointerActive = true;
-      setPointerTarget(event);
-      portraitReveal.classList.add('is-revealing');
-    }, { passive: true });
-    portraitReveal.addEventListener('pointerleave', () => {
+    const ensurePortraitAnimation = () => {
+      if (!portraitFrame) portraitFrame = window.requestAnimationFrame(animatePortrait);
+    };
+
+    const hidePortraitReveal = () => {
+      clearTimeout(revealTimer);
       pointerActive = false;
       pressed = false;
       portraitReveal.classList.remove('is-revealing');
       portraitReveal.classList.remove('is-pressed');
-    });
-    portraitReveal.addEventListener('pointerdown', (event) => {
+      if (portraitFrame) window.cancelAnimationFrame(portraitFrame);
+      portraitFrame = 0;
+    };
+
+    const showPortraitReveal = (event, temporary = false) => {
+      clearTimeout(revealTimer);
       pointerActive = true;
-      pressed = true;
       setPointerTarget(event);
       portraitReveal.classList.add('is-revealing');
+      ensurePortraitAnimation();
+      if (temporary) revealTimer = window.setTimeout(hidePortraitReveal, 3600);
+    };
+
+    portraitReveal.addEventListener('pointerenter', (event) => {
+      if (event.pointerType && event.pointerType !== 'mouse') return;
+      showPortraitReveal(event);
+    });
+    portraitReveal.addEventListener('pointermove', (event) => {
+      if (event.pointerType !== 'mouse' && !pressed) return;
+      showPortraitReveal(event);
+    }, { passive: true });
+    portraitReveal.addEventListener('pointerleave', hidePortraitReveal);
+    portraitReveal.addEventListener('pointerdown', (event) => {
+      pressed = true;
       portraitReveal.classList.add('is-pressed');
+      showPortraitReveal(event, event.pointerType !== 'mouse');
       portraitReveal.setPointerCapture?.(event.pointerId);
     });
     window.addEventListener('pointerup', (event) => {
       if (!pressed) return;
       pressed = false;
       portraitReveal.classList.remove('is-pressed');
-      if (event.pointerType !== 'mouse') {
-        pointerActive = false;
-        portraitReveal.classList.remove('is-revealing');
-      }
     });
 
-    portraitFrame = window.requestAnimationFrame(animatePortrait);
-    window.addEventListener('pagehide', () => window.cancelAnimationFrame(portraitFrame), { once: true });
+    window.addEventListener('pagehide', () => {
+      clearTimeout(revealTimer);
+      if (portraitFrame) window.cancelAnimationFrame(portraitFrame);
+    }, { once: true });
   }
 
   // Work tabs.
@@ -224,6 +267,7 @@
       item.setAttribute('aria-selected', String(active));
     });
     panels.forEach((panel) => panel.classList.toggle('is-active', panel.dataset.workPanel === target));
+    document.dispatchEvent(new CustomEvent('work-panel-change', { detail: { target } }));
   }));
 
   // Large Google Drive video slider.
@@ -258,6 +302,7 @@
     let pointerStartX = 0;
     let frameActive = false;
     let videoLoadingTimer = null;
+    let sliderReady = false;
 
     if (total) total.textContent = String(videoSlides.length).padStart(2, '0');
 
@@ -334,7 +379,7 @@
       const driveUrl = frame?.dataset.previewUrl;
       clearTimeout(videoLoadingTimer);
       screen?.classList.add('is-playing', 'is-loading-video');
-      videoLoadingTimer = setTimeout(() => screen?.classList.remove('is-loading-video'), 3500);
+      videoLoadingTimer = setTimeout(() => screen?.classList.remove('is-loading-video'), 1800);
 
       if (localUrl && localVideo) {
         localVideo.src = localUrl;
@@ -395,6 +440,14 @@
       startAuto();
     }
 
+    function activateSlider() {
+      if (!sliderReady) {
+        sliderReady = true;
+        showSlide(activeIndex);
+      }
+      startAuto();
+    }
+
     slider.querySelector('[data-video-next]')?.addEventListener('click', () => next(true));
     slider.querySelector('[data-video-prev]')?.addEventListener('click', () => previous(true));
     slider.querySelector('[data-video-next-preview]')?.addEventListener('click', () => next(true));
@@ -432,8 +485,11 @@
     slider.addEventListener('mouseenter', () => clearInterval(autoTimer));
     slider.addEventListener('mouseleave', startAuto);
 
-    showSlide(0);
-    startAuto();
+    document.addEventListener('work-panel-change', (event) => {
+      if (event.detail?.target === 'video') activateSlider();
+      else clearInterval(autoTimer);
+    });
+    if (slider.closest('[data-work-panel]')?.classList.contains('is-active')) activateSlider();
   }
 
   // Photo work uses the same automatic, swipeable presentation as the other media.
@@ -564,7 +620,7 @@
     function startCollabAutoplay() {
       clearInterval(autoplayTimer);
       if (reduceMotion || slides.length < 2) return;
-      autoplayTimer = setInterval(() => nextCollaboration(false), 3200);
+      autoplayTimer = setInterval(() => nextCollaboration(false), 2600);
     }
 
     function restartCollabAutoplay() {
@@ -685,6 +741,8 @@
       setTimeout(() => { link.textContent = oldText; }, 1800);
     });
   });
+
+  scheduleMotionBundle();
 })();
 
 // Load the large 3D motion bundle after the core page is interactive.
