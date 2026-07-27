@@ -15,6 +15,29 @@
   const themeColor = document.querySelector('meta[name="theme-color"]');
   if (themeColor && activeAccent) themeColor.content = activeAccent;
 
+  const rotatingPalettes = ['sunset', 'ocean', 'emerald', 'violet', 'rose', 'teal', 'gold'];
+  let paletteIndex = Math.max(0, rotatingPalettes.indexOf(root.dataset.dailyPalette));
+  const paletteDelay = new URLSearchParams(window.location.search).has('palette-preview')
+    ? 1500
+    : 5 * 60 * 1000;
+
+  const rotatePalette = () => {
+    paletteIndex = (paletteIndex + 1) % rotatingPalettes.length;
+    root.classList.add('palette-shifting');
+    root.dataset.dailyPalette = rotatingPalettes[paletteIndex];
+
+    const nextAccent = getComputedStyle(root).getPropertyValue('--daily-accent').trim();
+    if (themeColor && nextAccent) themeColor.content = nextAccent;
+
+    window.dispatchEvent(new CustomEvent('ajaynxt:palette-change', {
+      detail: { palette: rotatingPalettes[paletteIndex] }
+    }));
+    window.setTimeout(() => root.classList.remove('palette-shifting'), 900);
+  };
+
+  const paletteTimer = window.setInterval(rotatePalette, paletteDelay);
+  window.addEventListener('pagehide', () => window.clearInterval(paletteTimer), { once: true });
+
   const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
@@ -670,7 +693,7 @@ const loadMotionEffects = () => {
   const motionScript = document.createElement('script');
   motionScript.type = 'module';
   motionScript.src = new URL(
-    './motion/motion-bundle.js?v=20260727-daily18',
+    './motion/motion-bundle.js?v=20260727-palette19',
     document.baseURI
   ).href;
   motionScript.addEventListener('error', () => {

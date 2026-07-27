@@ -3258,3 +3258,23 @@ html[data-daily-palette] [data-card-swap] .reactbits-card{
   border-color:rgb(var(--daily-rgb) / .28);
   box-shadow:0 25px 60px rgb(var(--daily-rgb) / .12);
 }
+html.palette-shifting .shader-bg,
+html.palette-shifting .hyperspeed-layer,
+html.palette-shifting .button-primary,
+html.palette-shifting .work-tab,
+html.palette-shifting .current-mode-card,
+html.palette-shifting .status-dot,
+html.palette-shifting .hero-orbit,
+html.palette-shifting .reviews,
+html.palette-shifting .primary-review,
+html.palette-shifting [data-card-swap] .reactbits-card,
+html.palette-shifting .hero-title-old em,
+html.palette-shifting .section-kicker,
+html.palette-shifting [class*="accent-"]{
+  transition:
+    color .8s ease,
+    background .8s ease,
+    background-color .8s ease,
+    border-color .8s ease,
+    box-shadow .8s ease;
+}

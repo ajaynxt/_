@@ -18,13 +18,15 @@ function cssColorNumber(variable, fallback) {
 // AJAY NXT's hero motion is an intentional part of the brand experience.
 // Keep it available even when the OS requests reduced motion, but use a
 // calmer configuration in that case instead of removing the canvas entirely.
-if (hyperspeedContainer) {
+function startHyperspeed() {
+  if (!hyperspeedContainer) return null;
+
   const dailyAccent = cssColorNumber('--daily-accent', 0xc45112);
   const dailyAccentDark = cssColorNumber('--daily-accent-dark', 0x8f340a);
   const dailyAccentSoft = cssColorNumber('--daily-accent-soft', 0xffb36b);
 
   hyperspeedContainer.dataset.motionActive = 'true';
-  hyperspeed = createHyperspeed(hyperspeedContainer, {
+  return createHyperspeed(hyperspeedContainer, {
     distortion: 'turbulentDistortion',
     length: 400,
     roadWidth: 10,
@@ -48,6 +50,14 @@ if (hyperspeedContainer) {
       rightCars: [0x342018, dailyAccentDark, dailyAccentSoft],
       sticks: dailyAccent
     }
+  });
+}
+
+if (hyperspeedContainer) {
+  hyperspeed = startHyperspeed();
+  window.addEventListener('ajaynxt:palette-change', () => {
+    hyperspeed?.dispose();
+    hyperspeed = startHyperspeed();
   });
 }
 
