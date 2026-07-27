@@ -2950,6 +2950,43 @@ html[data-theme="dark"] .hero-business{color:#fffaf1}
   }
 }
 
+/* Hero tools sit outside the clipped portrait and stay gently animated. */
+.hero-stage>.tool-orbit{
+  inset:0;
+  z-index:10;
+  overflow:visible;
+}
+.hero-stage>.tool-orbit .tool-node{
+  color:#fffaf1;
+  box-shadow:
+    0 12px 28px rgba(52,30,18,.22),
+    0 0 0 1px rgba(255,138,50,.14),
+    inset 0 1px rgba(255,255,255,.12);
+}
+
+/* Colour is revealed only while the pointer or finger is on the portrait. */
+.portrait-reveal[data-motion-active="true"] .portrait-colour{
+  opacity:0;
+  transition:opacity .22s ease;
+}
+.portrait-reveal[data-motion-active="true"].is-revealing .portrait-colour{
+  opacity:1;
+}
+.portrait-reveal[data-motion-active="true"]::before{
+  animation:none!important;
+  opacity:0;
+  transition:opacity .22s ease;
+}
+.portrait-reveal[data-motion-active="true"].is-revealing::before{
+  opacity:.28;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-stage>.tool-orbit .tool-node{
+    animation:toolFloat 4.8s ease-in-out infinite!important;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){
   .hyperspeed-layer[data-motion-active="true"]{display:block}
   .portrait-reveal[data-motion-active="true"] .portrait-colour{
@@ -3020,4 +3057,87 @@ html[data-theme="dark"] .hero-business{color:#fffaf1}
     padding:10px 12px;
     font-size:10px;
   }
+}
+
+/* Mobile film player: keep the live video clear, fully framed and easy to expand. */
+.cinema-fullscreen{
+  position:absolute;
+  right:14px;
+  bottom:14px;
+  z-index:9;
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:13px;
+  background:rgba(12,9,8,.72);
+  color:#fffaf1;
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.cinema-fullscreen:hover{
+  border-color:rgba(255,138,50,.72);
+  background:rgba(196,81,18,.9);
+  transform:translateY(-2px);
+}
+.cinema-screen.is-playing .cinema-main-poster{
+  display:none!important;
+}
+.cinema-screen.is-playing .cinema-drive-frame,
+.cinema-screen.is-playing .cinema-local-video{
+  z-index:3;
+}
+
+@media(max-width:700px){
+  .video-cinema{overflow:visible}
+  .cinema-stage{min-height:0!important}
+  .cinema-main{width:100%;max-width:none}
+  .cinema-screen{
+    position:relative;
+    width:100%;
+    height:auto;
+    min-height:0!important;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    background:#080808;
+  }
+  .cinema-main-poster,
+  .cinema-drive-frame,
+  .cinema-local-video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+  }
+  .cinema-main-poster,
+  .cinema-local-video{object-fit:contain}
+  .cinema-side-preview{display:none!important}
+  .cinema-copy,
+  .premiere-motion-strip{display:none!important}
+  .cinema-screen-top{
+    top:10px;
+    left:10px;
+    right:10px;
+  }
+  .cinema-fullscreen{
+    right:10px;
+    bottom:10px;
+    width:42px;
+    height:42px;
+  }
+}
+
+/* Final interaction priority: no automatic colour sweep. */
+.portrait-reveal[data-motion-active="true"]::before{
+  animation:none!important;
+  opacity:0!important;
+}
+.portrait-reveal[data-motion-active="true"].is-revealing::before{
+  opacity:.28!important;
 }

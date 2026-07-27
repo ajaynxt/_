@@ -113,9 +113,8 @@
     }, { passive: true });
   }
 
-  // Continuous water-like colour reveal for the hero portrait.
-  // It drifts automatically, then follows mouse/touch without becoming a
-  // rigid circular spotlight.
+  // Manual water-like colour reveal for the hero portrait.
+  // The portrait stays monochrome until the user moves or drags over it.
   const portraitReveal = document.querySelector('[data-portrait-reveal]');
   if (portraitReveal) {
     let portraitFrame = 0;
@@ -127,7 +126,6 @@
     let currentY = 50;
 
     portraitReveal.dataset.motionActive = 'true';
-    portraitReveal.classList.add('is-revealing');
 
     const setPointerTarget = (event) => {
       const rect = portraitReveal.getBoundingClientRect();
@@ -137,13 +135,8 @@
     };
 
     const animatePortrait = (time) => {
-      if (!pointerActive) {
-        targetX = 50 + Math.sin(time * 0.00042) * 34;
-        targetY = 50 + Math.sin(time * 0.00073) * 16;
-      }
-
-      currentX += (targetX - currentX) * 0.075;
-      currentY += (targetY - currentY) * 0.075;
+      currentX += (targetX - currentX) * 0.2;
+      currentY += (targetY - currentY) * 0.2;
 
       const pulse = 0.5 + Math.sin(time * 0.00115) * 0.5;
       portraitReveal.style.setProperty('--reveal-x', `${currentX.toFixed(2)}%`);
@@ -157,23 +150,36 @@
     portraitReveal.addEventListener('pointerenter', (event) => {
       pointerActive = true;
       setPointerTarget(event);
+      portraitReveal.classList.add('is-revealing');
     });
-    portraitReveal.addEventListener('pointermove', setPointerTarget, { passive: true });
+    portraitReveal.addEventListener('pointermove', (event) => {
+      if (event.pointerType !== 'mouse' && !pressed) return;
+      pointerActive = true;
+      setPointerTarget(event);
+      portraitReveal.classList.add('is-revealing');
+    }, { passive: true });
     portraitReveal.addEventListener('pointerleave', () => {
       pointerActive = false;
       pressed = false;
+      portraitReveal.classList.remove('is-revealing');
       portraitReveal.classList.remove('is-pressed');
     });
     portraitReveal.addEventListener('pointerdown', (event) => {
       pointerActive = true;
       pressed = true;
       setPointerTarget(event);
+      portraitReveal.classList.add('is-revealing');
       portraitReveal.classList.add('is-pressed');
+      portraitReveal.setPointerCapture?.(event.pointerId);
     });
-    window.addEventListener('pointerup', () => {
+    window.addEventListener('pointerup', (event) => {
       if (!pressed) return;
       pressed = false;
       portraitReveal.classList.remove('is-pressed');
+      if (event.pointerType !== 'mouse') {
+        pointerActive = false;
+        portraitReveal.classList.remove('is-revealing');
+      }
     });
 
     portraitFrame = window.requestAnimationFrame(animatePortrait);
@@ -205,6 +211,7 @@
     const localVideo = slider.querySelector('[data-main-local-video]');
     const mainPoster = slider.querySelector('[data-main-poster]');
     const playButton = slider.querySelector('[data-main-play]');
+    const fullscreenButton = slider.querySelector('[data-video-fullscreen]');
     const title = slider.querySelector('[data-video-title]');
     const category = slider.querySelector('[data-video-category]');
     const description = slider.querySelector('[data-video-description]');
@@ -306,7 +313,7 @@
         localVideo.src = localUrl;
         localVideo.hidden = false;
         frameActive = true;
-        if (mainPoster) mainPoster.hidden = false;
+        if (mainPoster) mainPoster.hidden = true;
         if (playButton) playButton.hidden = true;
         clearInterval(autoTimer);
         localVideo.play().catch(() => {});
@@ -317,9 +324,33 @@
       frame.src = driveUrl;
       frame.hidden = false;
       frameActive = true;
-      if (mainPoster) mainPoster.hidden = false;
+      if (mainPoster) mainPoster.hidden = true;
       if (playButton) playButton.hidden = true;
       clearInterval(autoTimer);
+    }
+
+    function openFullscreen() {
+      if (document.fullscreenElement) {
+        document.exitFullscreen?.();
+        return;
+      }
+
+      if (!localVideo?.hidden && typeof localVideo.webkitEnterFullscreen === 'function') {
+        localVideo.webkitEnterFullscreen();
+        return;
+      }
+
+      const request = screen?.requestFullscreen || screen?.webkitRequestFullscreen;
+      if (request && screen) {
+        Promise.resolve(request.call(screen)).catch(() => {
+          const url = frame?.dataset.previewUrl;
+          if (url) window.open(url, '_blank', 'noopener,noreferrer');
+        });
+        return;
+      }
+
+      const url = frame?.dataset.previewUrl;
+      if (url) window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     function next(userAction = false) { showSlide(activeIndex + 1, userAction); }
@@ -342,6 +373,7 @@
     slider.querySelector('[data-video-next-preview]')?.addEventListener('click', () => next(true));
     slider.querySelector('[data-video-prev-preview]')?.addEventListener('click', () => previous(true));
     playButton?.addEventListener('click', playCurrent);
+    fullscreenButton?.addEventListener('click', openFullscreen);
     frame?.addEventListener('load', () => {
       clearTimeout(videoLoadingTimer);
       screen?.classList.remove('is-loading-video');
