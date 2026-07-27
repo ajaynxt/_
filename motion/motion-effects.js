@@ -8,10 +8,21 @@ const reducedMotion = false;
 const hyperspeedContainer = document.querySelector('[data-hyperspeed]');
 let hyperspeed = null;
 
+function cssColorNumber(variable, fallback) {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+  return /^#[0-9a-f]{6}$/i.test(value)
+    ? Number.parseInt(value.slice(1), 16)
+    : fallback;
+}
+
 // AJAY NXT's hero motion is an intentional part of the brand experience.
 // Keep it available even when the OS requests reduced motion, but use a
 // calmer configuration in that case instead of removing the canvas entirely.
 if (hyperspeedContainer) {
+  const dailyAccent = cssColorNumber('--daily-accent', 0xc45112);
+  const dailyAccentDark = cssColorNumber('--daily-accent-dark', 0x8f340a);
+  const dailyAccentSoft = cssColorNumber('--daily-accent-soft', 0xffb36b);
+
   hyperspeedContainer.dataset.motionActive = 'true';
   hyperspeed = createHyperspeed(hyperspeedContainer, {
     distortion: 'turbulentDistortion',
@@ -31,11 +42,11 @@ if (hyperspeedContainer) {
       roadColor: 0xe8d8c8,
       islandColor: 0xd8bca3,
       background: 0xfff7ec,
-      shoulderLines: 0xd85b16,
-      brokenLines: 0x7c4a31,
-      leftCars: [0xff7a2f, 0xd84f0d, 0xffae70],
-      rightCars: [0x342018, 0x74412a, 0xff8b45],
-      sticks: 0xff7a2f
+      shoulderLines: dailyAccent,
+      brokenLines: dailyAccentDark,
+      leftCars: [dailyAccent, dailyAccentDark, dailyAccentSoft],
+      rightCars: [0x342018, dailyAccentDark, dailyAccentSoft],
+      sticks: dailyAccent
     }
   });
 }

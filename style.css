@@ -3141,3 +3141,120 @@ html[data-theme="dark"] .hero-business{color:#fffaf1}
 .portrait-reveal[data-motion-active="true"].is-revealing::before{
   opacity:.28!important;
 }
+
+/* Seven-day colour rotation. The layout stays stable while the accent,
+   motion lights and supporting glow change with the day in India. */
+:root{
+  --daily-accent:#c45112;
+  --daily-accent-dark:#8f340a;
+  --daily-accent-soft:#ffb36b;
+  --daily-rgb:196 81 18;
+  --daily-tint:#fff4e8;
+}
+html[data-daily-palette="ocean"]{
+  --daily-accent:#1557b0;
+  --daily-accent-dark:#0d3978;
+  --daily-accent-soft:#7db7ff;
+  --daily-rgb:21 87 176;
+  --daily-tint:#edf5ff;
+}
+html[data-daily-palette="emerald"]{
+  --daily-accent:#087f5b;
+  --daily-accent-dark:#055c42;
+  --daily-accent-soft:#75d6b4;
+  --daily-rgb:8 127 91;
+  --daily-tint:#edf9f4;
+}
+html[data-daily-palette="violet"]{
+  --daily-accent:#6d3cc7;
+  --daily-accent-dark:#4b258f;
+  --daily-accent-soft:#b9a0f5;
+  --daily-rgb:109 60 199;
+  --daily-tint:#f5f0ff;
+}
+html[data-daily-palette="rose"]{
+  --daily-accent:#b42358;
+  --daily-accent-dark:#7f153c;
+  --daily-accent-soft:#f08aaa;
+  --daily-rgb:180 35 88;
+  --daily-tint:#fff0f5;
+}
+html[data-daily-palette="teal"]{
+  --daily-accent:#087b83;
+  --daily-accent-dark:#05545a;
+  --daily-accent-soft:#70cdd2;
+  --daily-rgb:8 123 131;
+  --daily-tint:#edfafa;
+}
+html[data-daily-palette="gold"]{
+  --daily-accent:#9a5b00;
+  --daily-accent-dark:#6b3e00;
+  --daily-accent-soft:#f0b65a;
+  --daily-rgb:154 91 0;
+  --daily-tint:#fff7e8;
+}
+html[data-daily-palette]{
+  --lime:var(--daily-accent);
+  --lime-soft:var(--daily-accent-soft);
+  --coral:var(--daily-accent);
+  --gold:var(--daily-accent-soft);
+  --orange:var(--daily-accent);
+}
+html[data-theme="light"][data-daily-palette] .shader-bg{
+  background:
+    radial-gradient(circle at 72% 12%,rgb(var(--daily-rgb) / .16),transparent 32%),
+    linear-gradient(145deg,var(--daily-tint),#eee7dc);
+}
+html[data-daily-palette] .shader-one{background:rgb(var(--daily-rgb) / .22)!important}
+html[data-daily-palette] .shader-three{background:rgb(var(--daily-rgb) / .1)!important}
+html[data-daily-palette] .hyperspeed-layer{background:var(--daily-tint)}
+html[data-theme="light"][data-daily-palette] .section-kicker,
+html[data-theme="light"][data-daily-palette] .eyebrow,
+html[data-theme="light"][data-daily-palette] mark,
+html[data-theme="light"][data-daily-palette] em,
+html[data-theme="light"][data-daily-palette] [class*="accent-"],
+html[data-daily-palette] .hero-role-track i,
+html[data-daily-palette] .media-slider-counter b,
+html[data-daily-palette] .project-link,
+html[data-daily-palette] .project-status{
+  color:var(--daily-accent)!important;
+}
+html[data-theme="light"][data-daily-palette] .button-primary,
+html[data-theme="light"][data-daily-palette] .site-nav .nav-cta,
+html[data-daily-palette] .work-tab.is-active,
+html[data-daily-palette] .photo-slider-dot.is-active{
+  background:var(--daily-accent);
+  color:#fff;
+}
+html[data-daily-palette] .button-primary:hover{background:var(--daily-accent-dark)}
+html[data-daily-palette] .status-dot{
+  background:var(--daily-accent);
+  box-shadow:0 0 0 6px rgb(var(--daily-rgb) / .1);
+}
+html[data-daily-palette] .hero-orbit{border-color:rgb(var(--daily-rgb) / .16)}
+html[data-daily-palette] .current-mode-card{
+  background:linear-gradient(135deg,var(--daily-accent),var(--daily-accent-soft));
+  color:#fff;
+}
+html[data-daily-palette] .hero-role-ticker{
+  border-color:rgb(var(--daily-rgb) / .24);
+  color:var(--daily-accent-dark);
+}
+html[data-daily-palette] .tool-node::after{border-bottom-color:rgb(var(--daily-rgb) / .7)}
+html[data-daily-palette] .project-system-card .orb-a{background:var(--daily-accent)}
+html[data-daily-palette] .project-system-card{
+  border-color:rgb(var(--daily-rgb) / .26);
+}
+html[data-daily-palette] .reviews{
+  background:
+    radial-gradient(circle at 18% 82%,rgb(var(--daily-rgb) / .13),transparent 30%),
+    radial-gradient(circle at 86% 18%,rgb(var(--daily-rgb) / .08),transparent 28%);
+}
+html[data-daily-palette] .review-layout-compact .primary-review{
+  border-color:rgb(var(--daily-rgb) / .24);
+  box-shadow:0 24px 70px rgb(var(--daily-rgb) / .09);
+}
+html[data-daily-palette] [data-card-swap] .reactbits-card{
+  border-color:rgb(var(--daily-rgb) / .28);
+  box-shadow:0 25px 60px rgb(var(--daily-rgb) / .12);
+}

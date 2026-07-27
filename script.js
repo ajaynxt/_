@@ -11,6 +11,10 @@
 
   if (year) year.textContent = new Date().getFullYear();
 
+  const activeAccent = getComputedStyle(root).getPropertyValue('--daily-accent').trim();
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor && activeAccent) themeColor.content = activeAccent;
+
   const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
@@ -666,7 +670,7 @@ const loadMotionEffects = () => {
   const motionScript = document.createElement('script');
   motionScript.type = 'module';
   motionScript.src = new URL(
-    './motion/motion-bundle.js?v=20260727-cleanup17',
+    './motion/motion-bundle.js?v=20260727-daily18',
     document.baseURI
   ).href;
   motionScript.addEventListener('error', () => {

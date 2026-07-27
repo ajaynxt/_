@@ -40,8 +40,20 @@
 <link as="image" href="./assets/ajay-hero-color-embedded.webp" rel="preload"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<script>document.documentElement.dataset.theme='light';</script><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="./style.css?v=20260727-media12" rel="stylesheet"/>
+<script>
+(() => {
+  const names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const palettes = ['sunset', 'ocean', 'emerald', 'violet', 'rose', 'teal', 'gold'];
+  const indiaDay = new Intl.DateTimeFormat('en-US', {
+    weekday: 'short',
+    timeZone: 'Asia/Kolkata'
+  }).format(new Date()).slice(0, 3);
+  const dayIndex = Math.max(0, names.indexOf(indiaDay));
+  document.documentElement.dataset.theme = 'light';
+  document.documentElement.dataset.dailyPalette = palettes[dayIndex];
+})();
+</script><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="./style.css?v=20260727-daily18" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -136,7 +148,7 @@
   ]
 }
 </script>
-<script src="./site-config.js"></script><script defer="" src="./script.js?v=20260727-cleanup17"></script>
+<script src="./site-config.js"></script><script defer="" src="./script.js?v=20260727-daily18"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a><div aria-hidden="true" class="shader-bg"><i class="shader-blob shader-one"></i><i class="shader-blob shader-two"></i><i class="shader-blob shader-three"></i></div>
