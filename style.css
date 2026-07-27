@@ -3258,6 +3258,75 @@ html[data-daily-palette] [data-card-swap] .reactbits-card{
   border-color:rgb(var(--daily-rgb) / .28);
   box-shadow:0 25px 60px rgb(var(--daily-rgb) / .12);
 }
+/* Keep the booking area in the active rotating palette. The outer panel
+   carries the colour while the form stays calm and highly legible. */
+html[data-daily-palette] .contact-card{
+  background:
+    radial-gradient(circle at 92% 8%,rgb(255 255 255 / .18),transparent 28%),
+    linear-gradient(135deg,var(--daily-accent),var(--daily-accent-dark));
+  box-shadow:0 28px 80px rgb(var(--daily-rgb) / .22);
+}
+html[data-daily-palette] .contact-card::before,
+html[data-daily-palette] .contact-card::after{
+  color:rgb(255 255 255 / .075);
+}
+html[data-daily-palette] .contact-card h2,
+html[data-daily-palette] .contact-card .section-kicker,
+html[data-daily-palette] .contact-card>p:not(.section-kicker){
+  color:#fff!important;
+}
+html[data-daily-palette] .contact-card .contact-highlight{
+  color:#fff;
+  text-decoration-color:rgb(255 255 255 / .52);
+}
+html[data-daily-palette] .booking-form{
+  background:rgb(255 250 241 / .95);
+  border:1px solid rgb(255 255 255 / .5);
+  box-shadow:0 18px 50px rgb(15 23 32 / .16);
+  color:#111820;
+}
+html[data-daily-palette] .booking-form .form-grid label>span{
+  color:#111820;
+}
+html[data-daily-palette] .form-grid input,
+html[data-daily-palette] .form-grid select,
+html[data-daily-palette] .form-grid textarea{
+  border-color:rgb(var(--daily-rgb) / .24);
+  background:#fff;
+  color:#111820;
+}
+html[data-daily-palette] .form-grid input:focus,
+html[data-daily-palette] .form-grid select:focus,
+html[data-daily-palette] .form-grid textarea:focus{
+  border-color:var(--daily-accent);
+  box-shadow:0 0 0 3px rgb(var(--daily-rgb) / .14);
+}
+html[data-daily-palette] .currency-preview{
+  border-color:rgb(var(--daily-rgb) / .32);
+  background:var(--daily-tint);
+  color:var(--daily-accent-dark);
+}
+html[data-daily-palette] .social-links a{
+  border-color:rgb(255 255 255 / .5);
+  background:rgb(255 250 241 / .88);
+  color:#111820;
+  box-shadow:0 12px 34px rgb(15 23 32 / .09);
+}
+html[data-daily-palette] .social-links a:hover{
+  border-color:rgb(255 255 255 / .88);
+  background:#fffaf1;
+  box-shadow:0 18px 42px rgb(15 23 32 / .16);
+}
+html[data-daily-palette] .social-links span{
+  background:var(--daily-accent);
+  color:#fff;
+}
+html[data-daily-palette] .social-links b{
+  color:#111820;
+}
+html[data-daily-palette] .social-links small{
+  color:#5e6872;
+}
 html.palette-shifting .shader-bg,
 html.palette-shifting .hyperspeed-layer,
 html.palette-shifting .button-primary,
@@ -3268,6 +3337,11 @@ html.palette-shifting .hero-orbit,
 html.palette-shifting .reviews,
 html.palette-shifting .primary-review,
 html.palette-shifting [data-card-swap] .reactbits-card,
+html.palette-shifting .contact-card,
+html.palette-shifting .booking-form,
+html.palette-shifting .social-links a,
+html.palette-shifting .social-links span,
+html.palette-shifting .currency-preview,
 html.palette-shifting .hero-title-old em,
 html.palette-shifting .section-kicker,
 html.palette-shifting [class*="accent-"]{
