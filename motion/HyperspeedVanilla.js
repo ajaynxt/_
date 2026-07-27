@@ -348,7 +348,8 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
           alpha: true
         });
         this.renderer.setSize(initW, initH, false);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        const maxPixelRatio = window.innerWidth < 700 ? 1 : 1.5;
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxPixelRatio));
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
 
@@ -369,6 +370,8 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
         this.clock = new THREE.Clock();
         this.assets = {};
         this.disposed = false;
+        this.isPageVisible = !document.hidden;
+        this.isOnScreen = true;
 
         this.road = new Road(this, options);
         this.leftCarLights = new CarLights(
@@ -405,6 +408,23 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
         this.onWindowResize = this.onWindowResize.bind(this);
         window.addEventListener('resize', this.onWindowResize);
 
+        this.onVisibilityChange = () => {
+          this.isPageVisible = !document.hidden;
+          if (this.isPageVisible) this.clock.getDelta();
+        };
+        document.addEventListener('visibilitychange', this.onVisibilityChange);
+
+        if ('IntersectionObserver' in window) {
+          this.visibilityObserver = new IntersectionObserver(
+            entries => {
+              this.isOnScreen = entries[0]?.isIntersecting ?? true;
+              if (this.isOnScreen) this.clock.getDelta();
+            },
+            { rootMargin: '160px 0px' }
+          );
+          this.visibilityObserver.observe(container);
+        }
+
         if (container.offsetWidth > 0 && container.offsetHeight > 0) {
           this.hasValidSize = true;
         }
@@ -433,7 +453,7 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
           new BloomEffect({
             luminanceThreshold: 0.2,
             luminanceSmoothing: 0,
-            resolutionScale: 1
+            resolutionScale: window.innerWidth < 700 ? 0.6 : 0.85
           })
         );
 
@@ -604,6 +624,8 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
         }
 
         window.removeEventListener('resize', this.onWindowResize);
+        document.removeEventListener('visibilitychange', this.onVisibilityChange);
+        this.visibilityObserver?.disconnect();
         if (this.container) {
           this.container.removeEventListener('mousedown', this.onMouseDown);
           this.container.removeEventListener('mouseup', this.onMouseUp);
@@ -627,6 +649,11 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
 
       tick() {
         if (this.disposed) return;
+
+        if (!this.isPageVisible || !this.isOnScreen) {
+          requestAnimationFrame(this.tick);
+          return;
+        }
 
         if (!this.hasValidSize) {
           const w = this.container.offsetWidth;

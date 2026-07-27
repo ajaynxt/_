@@ -659,3 +659,24 @@
     });
   });
 })();
+
+// Load the large 3D motion bundle after the core page is interactive.
+// This keeps the first paint quick without changing the real React Bits-derived effects.
+const loadMotionEffects = () => {
+  const motionScript = document.createElement('script');
+  motionScript.type = 'module';
+  motionScript.src = new URL(
+    './motion/motion-bundle.js?v=20260727-cleanup17',
+    document.baseURI
+  ).href;
+  motionScript.addEventListener('error', () => {
+    document.documentElement.dataset.motionReady = 'reduced';
+  }, { once: true });
+  document.head.append(motionScript);
+};
+
+if ('requestIdleCallback' in window) {
+  window.requestIdleCallback(loadMotionEffects, { timeout: 500 });
+} else {
+  window.setTimeout(loadMotionEffects, 100);
+}
