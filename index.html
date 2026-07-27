@@ -41,7 +41,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <script>document.documentElement.dataset.theme='light';</script><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="./style.css?v=20260725-compact10" rel="stylesheet"/>
+<link href="./style.css?v=20260727-media12" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -136,7 +136,7 @@
   ]
 }
 </script>
-<script src="./site-config.js"></script><script defer="" src="./script.js?v=20260725-compact10"></script><script type="module" src="./motion/motion-bundle.js?v=20260725-compact10"></script>
+<script src="./site-config.js"></script><script defer="" src="./script.js?v=20260727-media12"></script><script type="module" src="./motion/motion-bundle.js?v=20260727-media12"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a><div aria-hidden="true" class="shader-bg"><i class="shader-blob shader-one"></i><i class="shader-blob shader-two"></i><i class="shader-blob shader-three"></i></div>
@@ -169,7 +169,11 @@
 <div aria-hidden="true" class="hero-orbit orbit-two"></div>
 <div class="hero-copy reveal">
 <div class="eyebrow"><span class="status-dot"></span>Web • App • Video • Visuals</div>
-<h1>Digital work.<br><em>Built to be noticed.</em></h1>
+<h1 class="hero-title-old">
+<span>Digital work that makes</span>
+<span class="hero-business">good businesses</span>
+<em>impossible to ignore.</em>
+</h1>
 <p class="hero-lede">Premium websites, app experiences and cinematic content for growing brands.</p>
 <div class="hero-actions">
 <a class="button button-primary magnetic" href="#work">View work <span>↘</span></a>
@@ -199,8 +203,17 @@
 </div>
 <figcaption>
 <span>AJAY NXT</span>
-<span>Web · App · Video · Visuals</span>
+<span class="current-mode-card">
+<small>CURRENT MODE</small>
+<strong>Building what’s next</strong>
+</span>
 </figcaption>
+<div aria-label="Creative roles" class="hero-role-ticker">
+<div class="hero-role-track">
+<span>WEB DESIGNER</span><i>•</i><span>DEVELOPER</span><i>•</i><span>VIDEO EDITOR</span><i>•</i><span>APP EXPERIENCE</span><i>•</i>
+<span aria-hidden="true">WEB DESIGNER</span><i aria-hidden="true">•</i><span aria-hidden="true">DEVELOPER</span><i aria-hidden="true">•</i><span aria-hidden="true">VIDEO EDITOR</span><i aria-hidden="true">•</i><span aria-hidden="true">APP EXPERIENCE</span><i aria-hidden="true">•</i>
+</div>
+</div>
 </figure>
 </div>
 <div class="hero-foot reveal">
@@ -402,19 +415,29 @@
 <span>03</span>
 <div><p>Photo work</p><h3>Cleaner visuals. <span class="accent-lime-dark">Stronger presentation.</span></h3></div>
 </div>
-<div class="photo-grid reveal">
-<article class="photo-card product-card">
+<div class="photo-slider reveal" data-photo-slider>
+<div class="photo-slider-viewport" data-photo-viewport>
+<div class="photo-slider-track" data-photo-track>
+<article class="photo-card product-card" data-photo-slide>
 <div class="photo-art photo-card-image"><img alt="Premium product retouching example" height="600" loading="lazy" decoding="async" src="./assets/photo-product-studio.webp" width="900"/></div>
 <div><small>PRODUCT RETOUCHING</small><h4>Clean catalogue finish</h4><p>Controlled shadows and consistent framing.</p></div>
 </article>
-<article class="photo-card food-card">
+<article class="photo-card food-card" data-photo-slide>
 <a aria-label="View Diamond Restaurants" class="photo-art photo-card-image" href="https://diamondrestaurants.com/index.html" rel="noreferrer" target="_blank"><img alt="Diamond Restaurants sweet product visual" height="900" loading="lazy" decoding="async" src="./assets/photo-food-diamond.webp" width="1200"/></a>
 <div><small>FOOD VISUALS</small><h4>Restaurant-ready imagery</h4><p>Styled while keeping the food authentic.</p></div>
 </article>
-<article class="photo-card portrait-card">
+<article class="photo-card portrait-card" data-photo-slide>
 <img alt="Ajay Saini portrait branding edit" height="800" loading="lazy" decoding="async" src="./assets/ajay-about-orange.webp" width="800"/>
 <div><small>BRAND PORTRAIT</small><h4>Portrait finishing</h4><p>Clean backgrounds and cinematic grading.</p></div>
 </article>
+</div>
+</div>
+<div class="photo-slider-controls media-slider-controls">
+<button aria-label="Previous photo project" data-photo-prev type="button">←</button>
+<span class="media-slider-counter"><b data-photo-current>01</b> / <span data-photo-total>03</span></span>
+<div aria-label="Choose a photo project" class="photo-slider-dots" data-photo-dots></div>
+<button aria-label="Next photo project" data-photo-next type="button">→</button>
+</div>
 </div>
 </div>
 <div class="work-panel" data-work-panel="collaboration">

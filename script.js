@@ -310,6 +310,76 @@
     startAuto();
   }
 
+  // Photo work uses the same automatic, swipeable presentation as the other media.
+  const photoSlider = document.querySelector('[data-photo-slider]');
+  if (photoSlider) {
+    const track = photoSlider.querySelector('[data-photo-track]');
+    const viewport = photoSlider.querySelector('[data-photo-viewport]');
+    const slides = [...photoSlider.querySelectorAll('[data-photo-slide]')];
+    const prevButton = photoSlider.querySelector('[data-photo-prev]');
+    const nextButton = photoSlider.querySelector('[data-photo-next]');
+    const currentLabel = photoSlider.querySelector('[data-photo-current]');
+    const totalLabel = photoSlider.querySelector('[data-photo-total]');
+    const dotsWrap = photoSlider.querySelector('[data-photo-dots]');
+    let activeIndex = 0;
+    let autoTimer = null;
+    let pointerStartX = 0;
+
+    if (totalLabel) totalLabel.textContent = String(slides.length).padStart(2, '0');
+
+    slides.forEach((slide, index) => {
+      slide.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'photo-slider-dot';
+      dot.setAttribute('aria-label', `Show photo project ${index + 1}`);
+      dot.addEventListener('click', () => showPhoto(index, true));
+      dotsWrap?.appendChild(dot);
+    });
+
+    function showPhoto(index, userAction = false) {
+      activeIndex = (index + slides.length) % slides.length;
+      track.style.transform = `translate3d(-${activeIndex * 100}%, 0, 0)`;
+      if (currentLabel) currentLabel.textContent = String(activeIndex + 1).padStart(2, '0');
+      slides.forEach((slide, slideIndex) => {
+        slide.setAttribute('aria-hidden', slideIndex === activeIndex ? 'false' : 'true');
+      });
+      photoSlider.querySelectorAll('.photo-slider-dot').forEach((dot, dotIndex) => {
+        dot.classList.toggle('is-active', dotIndex === activeIndex);
+      });
+      if (userAction) startPhotoAuto();
+    }
+
+    function startPhotoAuto() {
+      clearInterval(autoTimer);
+      if (reduceMotion || slides.length < 2) return;
+      autoTimer = setInterval(() => showPhoto(activeIndex + 1), 3200);
+    }
+
+    prevButton?.addEventListener('click', () => {
+      showPhoto(activeIndex - 1, true);
+    });
+    nextButton?.addEventListener('click', () => {
+      showPhoto(activeIndex + 1, true);
+    });
+    viewport?.addEventListener('pointerdown', (event) => {
+      pointerStartX = event.clientX;
+    });
+    viewport?.addEventListener('pointerup', (event) => {
+      const distance = event.clientX - pointerStartX;
+      if (Math.abs(distance) > 50) {
+        showPhoto(activeIndex + (distance < 0 ? 1 : -1), true);
+      }
+    });
+    photoSlider.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    photoSlider.addEventListener('mouseleave', startPhotoAuto);
+    photoSlider.addEventListener('focusin', () => clearInterval(autoTimer));
+    photoSlider.addEventListener('focusout', startPhotoAuto);
+
+    showPhoto(0);
+    startPhotoAuto();
+  }
+
 
   // Collaboration slider. Add another .collab-slide article and the controls update automatically.
   const collabSlider = document.querySelector('[data-collab-slider]');
