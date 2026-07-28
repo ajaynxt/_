@@ -239,8 +239,75 @@
     return path.split('.').reduce((value, key) => value?.[key], object);
   }
 
+  let activeReviewIndex = 0;
+  let publicReviews = [];
+  const reviewCarousel = document.querySelector('[data-review-carousel]');
+  const reviewCard = document.querySelector('[data-review-card]');
+  const reviewControls = document.querySelector('[data-review-controls]');
+  const reviewCounter = document.querySelector('[data-review-counter]');
+
+  function safeProofUrl(value) {
+    try {
+      const url = new URL(String(value || ''), window.location.origin);
+      return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+    } catch {
+      return '';
+    }
+  }
+
+  function showReview(index, animate = false) {
+    if (!publicReviews.length || !reviewCard) return;
+    activeReviewIndex = (index + publicReviews.length) % publicReviews.length;
+    const review = publicReviews[activeReviewIndex];
+    const values = {
+      'review.label': review.label,
+      'review.quote': review.quote,
+      'review.name': review.name,
+      'review.company': review.company,
+      'review.rating': review.rating || '5.0',
+      'review.proofLabel': review.proofLabel || 'View project'
+    };
+
+    Object.entries(values).forEach(([path, value]) => {
+      const element = reviewCard.querySelector(`[data-content="${path}"]`);
+      if (element) element.textContent = value || '';
+    });
+
+    const proofLink = reviewCard.querySelector('[data-content-link="review.proofUrl"]');
+    if (proofLink) {
+      const url = safeProofUrl(review.proofUrl);
+      proofLink.hidden = !url;
+      if (url) proofLink.href = url;
+    }
+
+    if (reviewCounter) {
+      reviewCounter.textContent = `${String(activeReviewIndex + 1).padStart(2, '0')} / ${String(publicReviews.length).padStart(2, '0')}`;
+    }
+    if (reviewControls) reviewControls.hidden = publicReviews.length < 2;
+    if (animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      reviewCard.animate(
+        [{ opacity: 0.35, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
+        { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' }
+      );
+    }
+  }
+
+  function renderSiteReviews(source) {
+    const items = Array.isArray(source.reviews) && source.reviews.length
+      ? source.reviews
+      : (source.review ? [source.review] : []);
+    publicReviews = items.filter((item) => item && item.published !== false && item.quote && item.name);
+    if (!publicReviews.length && source.review) publicReviews = [source.review];
+    activeReviewIndex = Math.min(activeReviewIndex, Math.max(0, publicReviews.length - 1));
+    showReview(activeReviewIndex);
+  }
+
+  reviewCarousel?.querySelector('[data-review-prev]')?.addEventListener('click', () => showReview(activeReviewIndex - 1, true));
+  reviewCarousel?.querySelector('[data-review-next]')?.addEventListener('click', () => showReview(activeReviewIndex + 1, true));
+
   function applySiteContent(remote = {}) {
     siteContent = mergeContent(structuredClone(window.AJAY_NXT_DEFAULT_CONTENT || {}), remote);
+    if (!Array.isArray(remote.reviews) && remote.review) siteContent.reviews = [structuredClone(siteContent.review)];
     window.AJAY_NXT_SITE_CONTENT = siteContent;
 
     document.querySelectorAll('[data-content]').forEach((element) => {
@@ -271,6 +338,7 @@
       if (typeof value === 'string' && value.trim()) element.href = value;
     });
 
+    renderSiteReviews(siteContent);
     configurePalette(siteContent.settings);
   }
 

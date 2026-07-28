@@ -48,6 +48,7 @@
       <nav aria-label="Admin sections" class="admin-tabs">
         <button class="is-active" data-admin-tab="content" type="button">Content</button>
         <button data-admin-tab="projects" type="button">Case studies</button>
+        <button data-admin-tab="reviews" type="button">Reviews <b data-review-count>0</b></button>
         <button data-admin-tab="enquiries" type="button">Enquiries <b data-enquiry-count>0</b></button>
         <button data-admin-tab="analytics" type="button">Analytics</button>
         <button data-admin-tab="settings" type="button">Settings</button>
@@ -76,19 +77,6 @@
           </fieldset>
 
           <fieldset>
-            <legend>Review</legend>
-            <label>Label<input name="review.label" maxlength="80"/></label>
-            <label>Review<textarea name="review.quote" maxlength="600" rows="5"></textarea></label>
-            <div class="two-fields">
-              <label>Name<input name="review.name" maxlength="80"/></label>
-              <label>Rating<input name="review.rating" maxlength="8"/></label>
-            </div>
-            <label>Company<input name="review.company" maxlength="100"/></label>
-            <label>Proof URL<input name="review.proofUrl" type="url"/></label>
-            <label>Proof button text<input name="review.proofLabel" maxlength="40"/></label>
-          </fieldset>
-
-          <fieldset>
             <legend>Contact links</legend>
             <label>Instagram<input name="social.instagram" type="url"/></label>
             <label>WhatsApp<input name="social.whatsapp" type="url"/></label>
@@ -104,6 +92,18 @@
           <button class="primary-button" data-save-projects type="button">Save case studies</button>
         </div>
         <div class="project-editors" data-project-editors></div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="reviews">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Client confidence</p><h2>Reviews</h2></div>
+          <div class="panel-actions">
+            <button class="quiet-button" data-add-review type="button">+ Add review</button>
+            <button class="primary-button" data-save-reviews type="button">Save reviews</button>
+          </div>
+        </div>
+        <p class="panel-note">Published reviews appear on the website in this order. Keep only real, approved client feedback.</p>
+        <div class="review-editors" data-review-editors></div>
       </section>
 
       <section class="admin-panel" data-admin-panel="enquiries">

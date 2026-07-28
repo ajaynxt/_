@@ -37,6 +37,8 @@ const saveStatus = document.querySelector('[data-save-status]');
 const liveStatus = saveStatus?.closest('.live-status');
 const contentForm = document.querySelector('[data-content-form]');
 const projectEditors = document.querySelector('[data-project-editors]');
+const reviewEditors = document.querySelector('[data-review-editors]');
+const reviewCount = document.querySelector('[data-review-count]');
 const enquiryList = document.querySelector('[data-enquiry-list]');
 const enquiriesEmpty = document.querySelector('[data-enquiries-empty]');
 const enquiryCount = document.querySelector('[data-enquiry-count]');
@@ -135,6 +137,64 @@ function collectProjects() {
   return projects;
 }
 
+function normaliseReviews(source = content) {
+  const items = Array.isArray(source.reviews) && source.reviews.length
+    ? source.reviews
+    : (source.review ? [source.review] : []);
+
+  return items.map((item, index) => ({
+    id: clean(item.id || `review-${index + 1}`, 80),
+    label: clean(item.label, 80),
+    quote: clean(item.quote, 600),
+    name: clean(item.name, 80),
+    company: clean(item.company, 100),
+    rating: clean(item.rating || '5.0', 8),
+    proofUrl: clean(item.proofUrl, 500),
+    proofLabel: clean(item.proofLabel || 'View project', 40),
+    published: item.published !== false
+  }));
+}
+
+function renderReviewEditors() {
+  if (!reviewEditors) return;
+  const reviews = normaliseReviews();
+  if (reviewCount) reviewCount.textContent = String(reviews.length);
+  reviewEditors.innerHTML = reviews.map((review, index) => `
+    <article class="review-editor" data-review-editor="${escapeHtml(review.id)}">
+      <div class="review-editor-head">
+        <div><small>Review ${index + 1}</small><h3>${escapeHtml(review.name || 'New review')}</h3></div>
+        <button class="danger-button" data-delete-review type="button">Delete</button>
+      </div>
+      <label class="toggle-row review-publish">
+        <span><strong>Published</strong><small>Show this review on the public website.</small></span>
+        <input data-review-field="published" type="checkbox" ${review.published ? 'checked' : ''}/>
+      </label>
+      <div class="two-fields">
+        <label>Client name<input data-review-field="name" maxlength="80" value="${escapeHtml(review.name)}"/></label>
+        <label>Rating<input data-review-field="rating" inputmode="decimal" maxlength="8" value="${escapeHtml(review.rating)}"/></label>
+      </div>
+      <div class="two-fields">
+        <label>Company<input data-review-field="company" maxlength="100" value="${escapeHtml(review.company)}"/></label>
+        <label>Small label<input data-review-field="label" maxlength="80" value="${escapeHtml(review.label)}"/></label>
+      </div>
+      <label>Review<textarea data-review-field="quote" maxlength="600" rows="5">${escapeHtml(review.quote)}</textarea></label>
+      <label>Proof / project URL<input data-review-field="proofUrl" type="url" value="${escapeHtml(review.proofUrl)}"/></label>
+      <label>Proof button text<input data-review-field="proofLabel" maxlength="40" value="${escapeHtml(review.proofLabel)}"/></label>
+    </article>
+  `).join('');
+}
+
+function collectReviews() {
+  return [...(reviewEditors?.querySelectorAll('[data-review-editor]') || [])].map((editor, index) => {
+    const item = { id: clean(editor.dataset.reviewEditor || `review-${index + 1}`, 80) };
+    editor.querySelectorAll('[data-review-field]').forEach((field) => {
+      const name = field.dataset.reviewField;
+      item[name] = name === 'published' ? field.checked : clean(field.value, name === 'quote' ? 600 : 500);
+    });
+    return item;
+  }).filter((item) => item.name || item.quote);
+}
+
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => ({
     '&': '&amp;',
@@ -147,9 +207,12 @@ function escapeHtml(value) {
 
 async function loadContent() {
   const snapshot = await getDoc(doc(db, 'site', 'public'));
-  content = mergeDeep(clone(defaults), snapshot.exists() ? snapshot.data() : {});
+  const remote = snapshot.exists() ? snapshot.data() : {};
+  content = mergeDeep(clone(defaults), remote);
+  if (!Array.isArray(remote.reviews) && remote.review) content.reviews = [clone(content.review)];
   hydrateContentForm();
   renderProjectEditors();
+  renderReviewEditors();
   const rotation = document.querySelector('[data-setting-rotation]');
   const delay = document.querySelector('[data-setting-delay]');
   if (rotation) rotation.checked = content.settings?.paletteRotationEnabled !== false;
@@ -271,6 +334,50 @@ document.querySelector('[data-save-projects]')?.addEventListener('click', async 
   } catch (error) {
     setStatus(error.message || 'Case studies could not be saved.', 'error');
   }
+});
+
+document.querySelector('[data-add-review]')?.addEventListener('click', () => {
+  const next = clone(content);
+  next.reviews = collectReviews();
+  next.reviews.push({
+    id: `review-${Date.now()}`,
+    label: '',
+    quote: '',
+    name: '',
+    company: '',
+    rating: '5.0',
+    proofUrl: '',
+    proofLabel: 'View project',
+    published: true
+  });
+  content = next;
+  renderReviewEditors();
+  reviewEditors?.querySelector('[data-review-editor]:last-child input[data-review-field="name"]')?.focus();
+  setStatus('New review ready — save when complete');
+});
+
+document.querySelector('[data-save-reviews]')?.addEventListener('click', async () => {
+  try {
+    const next = clone(content);
+    next.reviews = collectReviews();
+    next.review = clone(next.reviews.find((item) => item.published) || next.reviews[0] || defaults.review);
+    await saveContent(next, 'Reviews saved');
+    renderReviewEditors();
+  } catch (error) {
+    setStatus(error.message || 'Reviews could not be saved.', 'error');
+  }
+});
+
+reviewEditors?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-delete-review]');
+  if (!button) return;
+  const editor = button.closest('[data-review-editor]');
+  if (!window.confirm('Delete this review? Save reviews to publish the change.')) return;
+  const next = clone(content);
+  next.reviews = collectReviews().filter((item) => item.id !== editor.dataset.reviewEditor);
+  content = next;
+  renderReviewEditors();
+  setStatus('Review removed — save to publish');
 });
 
 document.querySelector('[data-save-settings]')?.addEventListener('click', async () => {

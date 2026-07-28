@@ -19,6 +19,19 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
     proofUrl: 'https://diamondrestaurants.com/',
     proofLabel: 'View project'
   },
+  reviews: [
+    {
+      id: 'diamond-restaurants',
+      label: 'Diamond Restaurants',
+      quote: 'Premium, responsive and easy to manage. Ajay understood our requirements and delivered a website that represents Diamond Restaurants professionally.',
+      name: 'Aman Sharma',
+      company: 'Diamond Restaurants',
+      rating: '5.0',
+      proofUrl: 'https://diamondrestaurants.com/',
+      proofLabel: 'View project',
+      published: true
+    }
+  ],
   projects: {
     diamond: {
       title: 'Diamond Restaurants',
