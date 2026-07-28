@@ -368,6 +368,7 @@ async function loadAnalytics() {
     case_study_open: 'Case studies',
     project_live_click: 'Live project clicks',
     instagram_click: 'Instagram clicks',
+    linkedin_click: 'LinkedIn clicks',
     palette_lock: 'Palette locks'
   };
   const items = Object.entries(labels).map(([event, label]) => ({ event, label, count: counts[event] || 0 }));

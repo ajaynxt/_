@@ -113,6 +113,7 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
   ],
   social: {
     instagram: 'https://www.instagram.com/ajay_nxt_/',
+    linkedin: 'https://www.linkedin.com/in/ajaynxt/',
     whatsapp: 'https://wa.me/919929562585',
     email: 'mailto:ajayx3neha@gmail.com',
     phone: 'tel:+919929562585'
