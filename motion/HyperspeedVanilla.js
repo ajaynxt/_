@@ -42,7 +42,7 @@ const DEFAULT_EFFECT_OPTIONS = {
 
 export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIONS) {
   let appRef = null;
-  if (!container) return { dispose() {} };
+  if (!container) return { setColors() {}, dispose() {} };
   container.replaceChildren();
     const mountainUniforms = {
       uFreq: { value: new THREE.Vector3(3, 6, 10) },
@@ -446,6 +446,26 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
         this.hasValidSize = true;
       }
 
+      setColors(nextColors = {}) {
+        Object.assign(this.options.colors, nextColors);
+        const colors = this.options.colors;
+
+        if (this.scene?.fog) this.scene.fog.color.set(colors.background);
+        this.fogUniforms?.fogColor?.value?.set(colors.background);
+
+        [this.road?.leftRoadWay, this.road?.rightRoadWay].forEach(mesh => {
+          const uniforms = mesh?.material?.uniforms;
+          uniforms?.uColor?.value?.set(colors.roadColor);
+          uniforms?.uBrokenLinesColor?.value?.set(colors.brokenLines);
+          uniforms?.uShoulderLinesColor?.value?.set(colors.shoulderLines);
+        });
+        this.road?.island?.material?.uniforms?.uColor?.value?.set(colors.islandColor);
+
+        this.leftCarLights?.setColors(colors.leftCars);
+        this.rightCarLights?.setColors(colors.rightCars);
+        this.leftSticks?.setColors(colors.sticks);
+      }
+
       initPasses() {
         this.renderPass = new RenderPass(this.scene, this.camera);
         this.bloomPass = new EffectPass(
@@ -839,6 +859,19 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
       update(time) {
         this.mesh.material.uniforms.uTime.value = time;
       }
+
+      setColors(colors) {
+        this.colors = colors;
+        const colorAttribute = this.mesh?.geometry?.attributes?.aColor;
+        if (!colorAttribute) return;
+
+        const palette = (Array.isArray(colors) ? colors : [colors]).map(color => new THREE.Color(color));
+        for (let index = 0; index < colorAttribute.count; index += 1) {
+          const color = palette[Math.floor(index / 2) % palette.length];
+          colorAttribute.setXYZ(index, color.r, color.g, color.b);
+        }
+        colorAttribute.needsUpdate = true;
+      }
     }
 
     const carLightsFragment = `
@@ -962,6 +995,19 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
 
       update(time) {
         this.mesh.material.uniforms.uTime.value = time;
+      }
+
+      setColors(colors) {
+        this.options.colors.sticks = colors;
+        const colorAttribute = this.mesh?.geometry?.attributes?.aColor;
+        if (!colorAttribute) return;
+
+        const palette = (Array.isArray(colors) ? colors : [colors]).map(color => new THREE.Color(color));
+        for (let index = 0; index < colorAttribute.count; index += 1) {
+          const color = palette[index % palette.length];
+          colorAttribute.setXYZ(index, color.r, color.g, color.b);
+        }
+        colorAttribute.needsUpdate = true;
       }
     }
 
@@ -1181,6 +1227,9 @@ export function createHyperspeed(container, effectOptions = DEFAULT_EFFECT_OPTIO
     myApp.loadAssets().then(myApp.init);
 
     return {
+      setColors(colors) {
+        appRef?.setColors(colors);
+      },
       dispose() {
         if (appRef) {
           appRef.dispose();

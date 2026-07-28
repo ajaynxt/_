@@ -3213,56 +3213,14 @@ html[data-theme="dark"] .hero-business{color:#fffaf1}
   opacity:.28!important;
 }
 
-/* Seven-day colour rotation. The layout stays stable while the accent,
-   motion lights and supporting glow change with the day in India. */
+/* Soft rotating colour system. The original orange opens every visit, then
+   supporting accents move through calm, light palettes every five seconds. */
 :root{
   --daily-accent:#c45112;
   --daily-accent-dark:#8f340a;
   --daily-accent-soft:#ffb36b;
   --daily-rgb:196 81 18;
   --daily-tint:#fff4e8;
-}
-html[data-daily-palette="ocean"]{
-  --daily-accent:#1557b0;
-  --daily-accent-dark:#0d3978;
-  --daily-accent-soft:#7db7ff;
-  --daily-rgb:21 87 176;
-  --daily-tint:#edf5ff;
-}
-html[data-daily-palette="emerald"]{
-  --daily-accent:#087f5b;
-  --daily-accent-dark:#055c42;
-  --daily-accent-soft:#75d6b4;
-  --daily-rgb:8 127 91;
-  --daily-tint:#edf9f4;
-}
-html[data-daily-palette="violet"]{
-  --daily-accent:#6d3cc7;
-  --daily-accent-dark:#4b258f;
-  --daily-accent-soft:#b9a0f5;
-  --daily-rgb:109 60 199;
-  --daily-tint:#f5f0ff;
-}
-html[data-daily-palette="rose"]{
-  --daily-accent:#b42358;
-  --daily-accent-dark:#7f153c;
-  --daily-accent-soft:#f08aaa;
-  --daily-rgb:180 35 88;
-  --daily-tint:#fff0f5;
-}
-html[data-daily-palette="teal"]{
-  --daily-accent:#087b83;
-  --daily-accent-dark:#05545a;
-  --daily-accent-soft:#70cdd2;
-  --daily-rgb:8 123 131;
-  --daily-tint:#edfafa;
-}
-html[data-daily-palette="gold"]{
-  --daily-accent:#9a5b00;
-  --daily-accent-dark:#6b3e00;
-  --daily-accent-soft:#f0b65a;
-  --daily-rgb:154 91 0;
-  --daily-tint:#fff7e8;
 }
 html[data-daily-palette]{
   --lime:var(--daily-accent);
@@ -3304,8 +3262,10 @@ html[data-daily-palette] .status-dot{
 }
 html[data-daily-palette] .hero-orbit{border-color:rgb(var(--daily-rgb) / .16)}
 html[data-daily-palette] .current-mode-card{
-  background:linear-gradient(135deg,var(--daily-accent),var(--daily-accent-soft));
-  color:#fff;
+  background:linear-gradient(135deg,var(--daily-accent-soft),var(--daily-tint));
+  border-color:rgb(var(--daily-rgb) / .3);
+  color:#111820;
+  box-shadow:0 14px 36px rgb(var(--daily-rgb) / .16);
 }
 html[data-daily-palette] .hero-role-ticker{
   border-color:rgb(var(--daily-rgb) / .24);
@@ -3333,22 +3293,27 @@ html[data-daily-palette] [data-card-swap] .reactbits-card{
    carries the colour while the form stays calm and highly legible. */
 html[data-daily-palette] .contact-card{
   background:
-    radial-gradient(circle at 92% 8%,rgb(255 255 255 / .18),transparent 28%),
-    linear-gradient(135deg,var(--daily-accent),var(--daily-accent-dark));
-  box-shadow:0 28px 80px rgb(var(--daily-rgb) / .22);
+    radial-gradient(circle at 92% 8%,rgb(var(--daily-rgb) / .14),transparent 30%),
+    linear-gradient(135deg,var(--daily-tint),var(--daily-accent-soft));
+  border:1px solid rgb(var(--daily-rgb) / .22);
+  box-shadow:0 28px 80px rgb(var(--daily-rgb) / .12);
 }
 html[data-daily-palette] .contact-card::before,
 html[data-daily-palette] .contact-card::after{
-  color:rgb(255 255 255 / .075);
+  color:rgb(var(--daily-rgb) / .08);
 }
-html[data-daily-palette] .contact-card h2,
-html[data-daily-palette] .contact-card .section-kicker,
+html[data-daily-palette] .contact-card h2{
+  color:#111820!important;
+}
+html[data-daily-palette] .contact-card .section-kicker{
+  color:var(--daily-accent-dark)!important;
+}
 html[data-daily-palette] .contact-card>p:not(.section-kicker){
-  color:#fff!important;
+  color:#43505b!important;
 }
 html[data-daily-palette] .contact-card .contact-highlight{
-  color:#fff;
-  text-decoration-color:rgb(255 255 255 / .52);
+  color:var(--daily-accent-dark);
+  text-decoration-color:rgb(var(--daily-rgb) / .48);
 }
 html[data-daily-palette] .booking-form{
   background:rgb(255 250 241 / .95);
@@ -3378,13 +3343,13 @@ html[data-daily-palette] .currency-preview{
   color:var(--daily-accent-dark);
 }
 html[data-daily-palette] .social-links a{
-  border-color:rgb(255 255 255 / .5);
-  background:rgb(255 250 241 / .88);
+  border-color:rgb(var(--daily-rgb) / .2);
+  background:rgb(255 250 241 / .9);
   color:#111820;
   box-shadow:0 12px 34px rgb(15 23 32 / .09);
 }
 html[data-daily-palette] .social-links a:hover{
-  border-color:rgb(255 255 255 / .88);
+  border-color:rgb(var(--daily-rgb) / .38);
   background:#fffaf1;
   box-shadow:0 18px 42px rgb(15 23 32 / .16);
 }

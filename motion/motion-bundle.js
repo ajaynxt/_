@@ -1,4 +1,4 @@
-const tt = "srgb", ti = "srgb-linear", gs = "linear", et = "srgb";
+const tt = "srgb", ti = "srgb-linear", ms = "linear", et = "srgb";
 const So = "300 es";
 class Hn {
   /**
@@ -57,7 +57,7 @@ class Hn {
   }
 }
 const It = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0a", "0b", "0c", "0d", "0e", "0f", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1a", "1b", "1c", "1d", "1e", "1f", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2a", "2b", "2c", "2d", "2e", "2f", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "3a", "3b", "3c", "3d", "3e", "3f", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "4a", "4b", "4c", "4d", "4e", "4f", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "5a", "5b", "5c", "5d", "5e", "5f", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6a", "6b", "6c", "6d", "6e", "6f", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7a", "7b", "7c", "7d", "7e", "7f", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "8a", "8b", "8c", "8d", "8e", "8f", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "9a", "9b", "9c", "9d", "9e", "9f", "a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "aa", "ab", "ac", "ad", "ae", "af", "b0", "b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9", "ba", "bb", "bc", "bd", "be", "bf", "c0", "c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "ca", "cb", "cc", "cd", "ce", "cf", "d0", "d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "da", "db", "dc", "dd", "de", "df", "e0", "e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9", "ea", "eb", "ec", "ed", "ee", "ef", "f0", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "fa", "fb", "fc", "fd", "fe", "ff"], Ps = Math.PI / 180, Ma = 180 / Math.PI;
-function Br() {
+function Lr() {
   const i = Math.random() * 4294967295 | 0, e = Math.random() * 4294967295 | 0, t = Math.random() * 4294967295 | 0, n = Math.random() * 4294967295 | 0;
   return (It[i & 255] + It[i >> 8 & 255] + It[i >> 16 & 255] + It[i >> 24 & 255] + "-" + It[e & 255] + It[e >> 8 & 255] + "-" + It[e >> 16 & 15 | 64] + It[e >> 24 & 255] + "-" + It[t & 63 | 128] + It[t >> 8 & 255] + "-" + It[t >> 16 & 255] + It[t >> 24 & 255] + It[n & 255] + It[n >> 8 & 255] + It[n >> 16 & 255] + It[n >> 24 & 255]).toLowerCase();
 }
@@ -649,7 +649,7 @@ class ue {
     yield this.x, yield this.y;
   }
 }
-class Ur {
+class Br {
   /**
    * Constructs a new quaternion.
    *
@@ -689,8 +689,8 @@ class Ur {
       let m = 1 - o;
       const p = l * f + c * d + u * v + h * g, T = p >= 0 ? 1 : -1, S = 1 - p * p;
       if (S > Number.EPSILON) {
-        const y = Math.sqrt(S), b = Math.atan2(y, p * T);
-        m = Math.sin(m * b) / y, o = Math.sin(o * b) / y;
+        const y = Math.sqrt(S), R = Math.atan2(y, p * T);
+        m = Math.sin(m * R) / y, o = Math.sin(o * R) / y;
       }
       const _ = o * T;
       if (l = l * m + f * _, c = c * m + d * _, u = u * m + v * _, h = h * m + g * _, m === 1 - o) {
@@ -1858,7 +1858,7 @@ class U {
     yield this.x, yield this.y, yield this.z;
   }
 }
-const Ls = /* @__PURE__ */ new U(), Eo = /* @__PURE__ */ new Ur();
+const Ls = /* @__PURE__ */ new U(), Eo = /* @__PURE__ */ new Br();
 class Ge {
   /**
    * Constructs a new 3x3 matrix. The arguments are supposed to be
@@ -1993,8 +1993,8 @@ class Ge {
    * @return {Matrix3} A reference to this matrix.
    */
   multiplyMatrices(e, t) {
-    const n = e.elements, r = t.elements, s = this.elements, a = n[0], o = n[3], l = n[6], c = n[1], u = n[4], h = n[7], f = n[2], d = n[5], v = n[8], g = r[0], m = r[3], p = r[6], T = r[1], S = r[4], _ = r[7], y = r[2], b = r[5], C = r[8];
-    return s[0] = a * g + o * T + l * y, s[3] = a * m + o * S + l * b, s[6] = a * p + o * _ + l * C, s[1] = c * g + u * T + h * y, s[4] = c * m + u * S + h * b, s[7] = c * p + u * _ + h * C, s[2] = f * g + d * T + v * y, s[5] = f * m + d * S + v * b, s[8] = f * p + d * _ + v * C, this;
+    const n = e.elements, r = t.elements, s = this.elements, a = n[0], o = n[3], l = n[6], c = n[1], u = n[4], h = n[7], f = n[2], d = n[5], v = n[8], g = r[0], m = r[3], p = r[6], T = r[1], S = r[4], _ = r[7], y = r[2], R = r[5], C = r[8];
+    return s[0] = a * g + o * T + l * y, s[3] = a * m + o * S + l * R, s[6] = a * p + o * _ + l * C, s[1] = c * g + u * T + h * y, s[4] = c * m + u * S + h * R, s[7] = c * p + u * _ + h * C, s[2] = f * g + d * T + v * y, s[5] = f * m + d * S + v * R, s[8] = f * p + d * _ + v * C, this;
   }
   /**
    * Multiplies every component of the matrix by the given scalar.
@@ -2230,20 +2230,20 @@ class Ge {
   }
 }
 const Bs = /* @__PURE__ */ new Ge();
-function zl(i) {
+function Nl(i) {
   for (let e = i.length - 1; e >= 0; --e)
     if (i[e] >= 65535) return !0;
   return !1;
 }
-function vs(i) {
+function gs(i) {
   return document.createElementNS("http://www.w3.org/1999/xhtml", i);
 }
 function pu() {
-  const i = vs("canvas");
+  const i = gs("canvas");
   return i.style.display = "block", i;
 }
 const Mo = {};
-function yr(i) {
+function Tr(i) {
   i in Mo || (Mo[i] = !0, console.warn(i));
 }
 function mu(i, e, t) {
@@ -2320,7 +2320,7 @@ function gu() {
       return this.spaces[r].primaries;
     },
     getTransfer: function(r) {
-      return r === "" ? gs : this.spaces[r].transfer;
+      return r === "" ? ms : this.spaces[r].transfer;
     },
     getToneMappingMode: function(r) {
       return this.spaces[r].outputColorSpaceConfig.toneMappingMode || "standard";
@@ -2343,17 +2343,17 @@ function gu() {
     },
     // Deprecated
     fromWorkingColorSpace: function(r, s) {
-      return yr("THREE.ColorManagement: .fromWorkingColorSpace() has been renamed to .workingToColorSpace()."), i.workingToColorSpace(r, s);
+      return Tr("THREE.ColorManagement: .fromWorkingColorSpace() has been renamed to .workingToColorSpace()."), i.workingToColorSpace(r, s);
     },
     toWorkingColorSpace: function(r, s) {
-      return yr("THREE.ColorManagement: .toWorkingColorSpace() has been renamed to .colorSpaceToWorking()."), i.colorSpaceToWorking(r, s);
+      return Tr("THREE.ColorManagement: .toWorkingColorSpace() has been renamed to .colorSpaceToWorking()."), i.colorSpaceToWorking(r, s);
     }
   }, e = [0.64, 0.33, 0.3, 0.6, 0.15, 0.06], t = [0.2126, 0.7152, 0.0722], n = [0.3127, 0.329];
   return i.define({
     [ti]: {
       primaries: e,
       whitePoint: n,
-      transfer: gs,
+      transfer: ms,
       toXYZ: To,
       fromXYZ: yo,
       luminanceCoefficients: t,
@@ -2394,7 +2394,7 @@ class vu {
     if (e instanceof HTMLCanvasElement)
       n = e;
     else {
-      wi === void 0 && (wi = vs("canvas")), wi.width = e.width, wi.height = e.height;
+      wi === void 0 && (wi = gs("canvas")), wi.width = e.width, wi.height = e.height;
       const r = wi.getContext("2d");
       e instanceof ImageData ? r.putImageData(e, 0, 0) : r.drawImage(e, 0, 0, e.width, e.height), n = wi;
     }
@@ -2408,7 +2408,7 @@ class vu {
    */
   static sRGBToLinear(e) {
     if (typeof HTMLImageElement < "u" && e instanceof HTMLImageElement || typeof HTMLCanvasElement < "u" && e instanceof HTMLCanvasElement || typeof ImageBitmap < "u" && e instanceof ImageBitmap) {
-      const t = vs("canvas");
+      const t = gs("canvas");
       t.width = e.width, t.height = e.height;
       const n = t.getContext("2d");
       n.drawImage(e, 0, 0, e.width, e.height);
@@ -2437,7 +2437,7 @@ class Ha {
    * @param {any} [data=null] - The data definition of a texture.
    */
   constructor(e = null) {
-    this.isSource = !0, Object.defineProperty(this, "id", { value: _u++ }), this.uuid = Br(), this.data = e, this.dataReady = !0, this.version = 0;
+    this.isSource = !0, Object.defineProperty(this, "id", { value: _u++ }), this.uuid = Lr(), this.data = e, this.dataReady = !0, this.version = 0;
   }
   /**
    * Returns the dimensions of the source into the given target vector.
@@ -2515,7 +2515,7 @@ class wt extends Hn {
    * @param {string} [colorSpace=NoColorSpace] - The color space.
    */
   constructor(e = wt.DEFAULT_IMAGE, t = wt.DEFAULT_MAPPING, n = 1001, r = 1001, s = 1006, a = 1008, o = 1023, l = 1009, c = wt.DEFAULT_ANISOTROPY, u = "") {
-    super(), this.isTexture = !0, Object.defineProperty(this, "id", { value: xu++ }), this.uuid = Br(), this.name = "", this.source = new Ha(e), this.mipmaps = [], this.mapping = t, this.channel = 0, this.wrapS = n, this.wrapT = r, this.magFilter = s, this.minFilter = a, this.anisotropy = c, this.format = o, this.internalFormat = null, this.type = l, this.offset = new ue(0, 0), this.repeat = new ue(1, 1), this.center = new ue(0, 0), this.rotation = 0, this.matrixAutoUpdate = !0, this.matrix = new Ge(), this.generateMipmaps = !0, this.premultiplyAlpha = !1, this.flipY = !0, this.unpackAlignment = 4, this.colorSpace = u, this.userData = {}, this.updateRanges = [], this.version = 0, this.onUpdate = null, this.renderTarget = null, this.isRenderTargetTexture = !1, this.isArrayTexture = !!(e && e.depth && e.depth > 1), this.pmremVersion = 0;
+    super(), this.isTexture = !0, Object.defineProperty(this, "id", { value: xu++ }), this.uuid = Lr(), this.name = "", this.source = new Ha(e), this.mipmaps = [], this.mapping = t, this.channel = 0, this.wrapS = n, this.wrapT = r, this.magFilter = s, this.minFilter = a, this.anisotropy = c, this.format = o, this.internalFormat = null, this.type = l, this.offset = new ue(0, 0), this.repeat = new ue(1, 1), this.center = new ue(0, 0), this.rotation = 0, this.matrixAutoUpdate = !0, this.matrix = new Ge(), this.generateMipmaps = !0, this.premultiplyAlpha = !1, this.flipY = !0, this.unpackAlignment = 4, this.colorSpace = u, this.userData = {}, this.updateRanges = [], this.version = 0, this.onUpdate = null, this.renderTarget = null, this.isRenderTargetTexture = !1, this.isArrayTexture = !!(e && e.depth && e.depth > 1), this.pmremVersion = 0;
   }
   /**
    * The width of the texture in pixels.
@@ -3009,8 +3009,8 @@ class lt {
       if (Math.abs(u + f) < 0.1 && Math.abs(h + g) < 0.1 && Math.abs(v + m) < 0.1 && Math.abs(c + d + p - 3) < 0.1)
         return this.set(1, 0, 0, 0), this;
       t = Math.PI;
-      const S = (c + 1) / 2, _ = (d + 1) / 2, y = (p + 1) / 2, b = (u + f) / 4, C = (h + g) / 4, D = (v + m) / 4;
-      return S > _ && S > y ? S < 0.01 ? (n = 0, r = 0.707106781, s = 0.707106781) : (n = Math.sqrt(S), r = b / n, s = C / n) : _ > y ? _ < 0.01 ? (n = 0.707106781, r = 0, s = 0.707106781) : (r = Math.sqrt(_), n = b / r, s = D / r) : y < 0.01 ? (n = 0.707106781, r = 0.707106781, s = 0) : (s = Math.sqrt(y), n = C / s, r = D / s), this.set(n, r, s, t), this;
+      const S = (c + 1) / 2, _ = (d + 1) / 2, y = (p + 1) / 2, R = (u + f) / 4, C = (h + g) / 4, P = (v + m) / 4;
+      return S > _ && S > y ? S < 0.01 ? (n = 0, r = 0.707106781, s = 0.707106781) : (n = Math.sqrt(S), r = R / n, s = C / n) : _ > y ? _ < 0.01 ? (n = 0.707106781, r = 0, s = 0.707106781) : (r = Math.sqrt(_), n = R / r, s = P / r) : y < 0.01 ? (n = 0.707106781, r = 0.707106781, s = 0) : (s = Math.sqrt(y), n = C / s, r = P / s), this.set(n, r, s, t), this;
     }
     let T = Math.sqrt((m - v) * (m - v) + (h - g) * (h - g) + (f - u) * (f - u));
     return Math.abs(T) < 1e-3 && (T = 1), this.x = (m - v) / T, this.y = (h - g) / T, this.z = (f - u) / T, this.w = Math.acos((c + d + p - 1) / 2), this;
@@ -3413,7 +3413,7 @@ class Pt extends Au {
     super(e, t, n), this.isWebGLRenderTarget = !0;
   }
 }
-class Gl extends wt {
+class zl extends wt {
   /**
    * Constructs a new data array texture.
    *
@@ -3457,7 +3457,7 @@ class Su extends wt {
     super(null), this.isData3DTexture = !0, this.image = { data: e, width: t, height: n, depth: r }, this.magFilter = 1003, this.minFilter = 1003, this.wrapR = 1001, this.generateMipmaps = !1, this.flipY = !1, this.unpackAlignment = 1;
   }
 }
-class Fr {
+class Ur {
   /**
    * Constructs a new bounding box.
    *
@@ -3647,7 +3647,7 @@ class Fr {
         for (let a = 0, o = s.count; a < o; a++)
           e.isMesh === !0 ? e.getVertexPosition(a, mn) : mn.fromBufferAttribute(s, a), mn.applyMatrix4(e.matrixWorld), this.expandByPoint(mn);
       else
-        e.boundingBox !== void 0 ? (e.boundingBox === null && e.computeBoundingBox(), Hr.copy(e.boundingBox)) : (n.boundingBox === null && n.computeBoundingBox(), Hr.copy(n.boundingBox)), Hr.applyMatrix4(e.matrixWorld), this.union(Hr);
+        e.boundingBox !== void 0 ? (e.boundingBox === null && e.computeBoundingBox(), Gr.copy(e.boundingBox)) : (n.boundingBox === null && n.computeBoundingBox(), Gr.copy(n.boundingBox)), Gr.applyMatrix4(e.matrixWorld), this.union(Gr);
     }
     const r = e.children;
     for (let s = 0, a = r.length; s < a; s++)
@@ -3724,7 +3724,7 @@ class Fr {
   intersectsTriangle(e) {
     if (this.isEmpty())
       return !1;
-    this.getCenter(lr), kr.subVectors(this.max, lr), bi.subVectors(e.a, lr), Ri.subVectors(e.b, lr), Di.subVectors(e.c, lr), Vn.subVectors(Ri, bi), Wn.subVectors(Di, Ri), li.subVectors(bi, Di);
+    this.getCenter(lr), Hr.subVectors(this.max, lr), bi.subVectors(e.a, lr), Ri.subVectors(e.b, lr), Di.subVectors(e.c, lr), Vn.subVectors(Ri, bi), Wn.subVectors(Di, Ri), li.subVectors(bi, Di);
     let t = [
       0,
       -Vn.z,
@@ -3754,7 +3754,7 @@ class Fr {
       li.x,
       0
     ];
-    return !Os(t, bi, Ri, Di, kr) || (t = [1, 0, 0, 0, 1, 0, 0, 0, 1], !Os(t, bi, Ri, Di, kr)) ? !1 : (Vr.crossVectors(Vn, Wn), t = [Vr.x, Vr.y, Vr.z], Os(t, bi, Ri, Di, kr));
+    return !Os(t, bi, Ri, Di, Hr) || (t = [1, 0, 0, 0, 1, 0, 0, 0, 1], !Os(t, bi, Ri, Di, Hr)) ? !1 : (kr.crossVectors(Vn, Wn), t = [kr.x, kr.y, kr.z], Os(t, bi, Ri, Di, Hr));
   }
   /**
    * Clamps the given point within the bounds of this box.
@@ -3866,7 +3866,7 @@ const Rn = [
   /* @__PURE__ */ new U(),
   /* @__PURE__ */ new U(),
   /* @__PURE__ */ new U()
-], mn = /* @__PURE__ */ new U(), Hr = /* @__PURE__ */ new Fr(), bi = /* @__PURE__ */ new U(), Ri = /* @__PURE__ */ new U(), Di = /* @__PURE__ */ new U(), Vn = /* @__PURE__ */ new U(), Wn = /* @__PURE__ */ new U(), li = /* @__PURE__ */ new U(), lr = /* @__PURE__ */ new U(), kr = /* @__PURE__ */ new U(), Vr = /* @__PURE__ */ new U(), ci = /* @__PURE__ */ new U();
+], mn = /* @__PURE__ */ new U(), Gr = /* @__PURE__ */ new Ur(), bi = /* @__PURE__ */ new U(), Ri = /* @__PURE__ */ new U(), Di = /* @__PURE__ */ new U(), Vn = /* @__PURE__ */ new U(), Wn = /* @__PURE__ */ new U(), li = /* @__PURE__ */ new U(), lr = /* @__PURE__ */ new U(), Hr = /* @__PURE__ */ new U(), kr = /* @__PURE__ */ new U(), ci = /* @__PURE__ */ new U();
 function Os(i, e, t, n, r) {
   for (let s = 0, a = i.length - 3; s <= a; s += 3) {
     ci.fromArray(i, s);
@@ -3876,7 +3876,7 @@ function Os(i, e, t, n, r) {
   }
   return !0;
 }
-const Eu = /* @__PURE__ */ new Fr(), cr = /* @__PURE__ */ new U(), Ns = /* @__PURE__ */ new U();
+const Eu = /* @__PURE__ */ new Ur(), cr = /* @__PURE__ */ new U(), Ns = /* @__PURE__ */ new U();
 class ka {
   /**
    * Constructs a new sphere.
@@ -4096,7 +4096,7 @@ class ka {
     return this.radius = e.radius, this.center.fromArray(e.center), this;
   }
 }
-const Dn = /* @__PURE__ */ new U(), zs = /* @__PURE__ */ new U(), Wr = /* @__PURE__ */ new U(), Xn = /* @__PURE__ */ new U(), Gs = /* @__PURE__ */ new U(), Xr = /* @__PURE__ */ new U(), Hs = /* @__PURE__ */ new U();
+const Dn = /* @__PURE__ */ new U(), zs = /* @__PURE__ */ new U(), Vr = /* @__PURE__ */ new U(), Xn = /* @__PURE__ */ new U(), Gs = /* @__PURE__ */ new U(), Wr = /* @__PURE__ */ new U(), Hs = /* @__PURE__ */ new U();
 class Mu {
   /**
    * Constructs a new ray.
@@ -4195,8 +4195,8 @@ class Mu {
    * @return {number} The squared distance.
    */
   distanceSqToSegment(e, t, n, r) {
-    zs.copy(e).add(t).multiplyScalar(0.5), Wr.copy(t).sub(e).normalize(), Xn.copy(this.origin).sub(zs);
-    const s = e.distanceTo(t) * 0.5, a = -this.direction.dot(Wr), o = Xn.dot(this.direction), l = -Xn.dot(Wr), c = Xn.lengthSq(), u = Math.abs(1 - a * a);
+    zs.copy(e).add(t).multiplyScalar(0.5), Vr.copy(t).sub(e).normalize(), Xn.copy(this.origin).sub(zs);
+    const s = e.distanceTo(t) * 0.5, a = -this.direction.dot(Vr), o = Xn.dot(this.direction), l = -Xn.dot(Vr), c = Xn.lengthSq(), u = Math.abs(1 - a * a);
     let h, f, d, v;
     if (u > 0)
       if (h = a * l - o, f = a * o - l, v = s * u, h >= 0)
@@ -4212,7 +4212,7 @@ class Mu {
         f <= -v ? (h = Math.max(0, -(-a * s + o)), f = h > 0 ? -s : Math.min(Math.max(-s, -l), s), d = -h * h + f * (f + 2 * l) + c) : f <= v ? (h = 0, f = Math.min(Math.max(-s, -l), s), d = f * (f + 2 * l) + c) : (h = Math.max(0, -(a * s + o)), f = h > 0 ? s : Math.min(Math.max(-s, -l), s), d = -h * h + f * (f + 2 * l) + c);
     else
       f = a > 0 ? -s : s, h = Math.max(0, -(a * f + o)), d = -h * h + f * (f + 2 * l) + c;
-    return n && n.copy(this.origin).addScaledVector(this.direction, h), r && r.copy(zs).addScaledVector(Wr, f), d;
+    return n && n.copy(this.origin).addScaledVector(this.direction, h), r && r.copy(zs).addScaledVector(Vr, f), d;
   }
   /**
    * Intersects this ray with the given sphere, returning the intersection
@@ -4308,7 +4308,7 @@ class Mu {
    * @return {?Vector3} The intersection point.
    */
   intersectTriangle(e, t, n, r, s) {
-    Gs.subVectors(t, e), Xr.subVectors(n, e), Hs.crossVectors(Gs, Xr);
+    Gs.subVectors(t, e), Wr.subVectors(n, e), Hs.crossVectors(Gs, Wr);
     let a = this.direction.dot(Hs), o;
     if (a > 0) {
       if (r) return null;
@@ -4318,7 +4318,7 @@ class Mu {
     else
       return null;
     Xn.subVectors(this.origin, e);
-    const l = o * this.direction.dot(Xr.crossVectors(Xn, Xr));
+    const l = o * this.direction.dot(Wr.crossVectors(Xn, Wr));
     if (l < 0)
       return null;
     const c = o * this.direction.dot(Gs.cross(Xn));
@@ -4611,7 +4611,7 @@ class St {
    */
   lookAt(e, t, n) {
     const r = this.elements;
-    return qt.subVectors(e, t), qt.lengthSq() === 0 && (qt.z = 1), qt.normalize(), Yn.crossVectors(n, qt), Yn.lengthSq() === 0 && (Math.abs(n.z) === 1 ? qt.x += 1e-4 : qt.z += 1e-4, qt.normalize(), Yn.crossVectors(n, qt)), Yn.normalize(), Yr.crossVectors(qt, Yn), r[0] = Yn.x, r[4] = Yr.x, r[8] = qt.x, r[1] = Yn.y, r[5] = Yr.y, r[9] = qt.y, r[2] = Yn.z, r[6] = Yr.z, r[10] = qt.z, this;
+    return qt.subVectors(e, t), qt.lengthSq() === 0 && (qt.z = 1), qt.normalize(), Yn.crossVectors(n, qt), Yn.lengthSq() === 0 && (Math.abs(n.z) === 1 ? qt.x += 1e-4 : qt.z += 1e-4, qt.normalize(), Yn.crossVectors(n, qt)), Yn.normalize(), Xr.crossVectors(qt, Yn), r[0] = Yn.x, r[4] = Xr.x, r[8] = qt.x, r[1] = Yn.y, r[5] = Xr.y, r[9] = qt.y, r[2] = Yn.z, r[6] = Xr.z, r[10] = qt.z, this;
   }
   /**
    * Post-multiplies this matrix by the given 4x4 matrix.
@@ -4640,8 +4640,8 @@ class St {
    * @return {Matrix4} A reference to this matrix.
    */
   multiplyMatrices(e, t) {
-    const n = e.elements, r = t.elements, s = this.elements, a = n[0], o = n[4], l = n[8], c = n[12], u = n[1], h = n[5], f = n[9], d = n[13], v = n[2], g = n[6], m = n[10], p = n[14], T = n[3], S = n[7], _ = n[11], y = n[15], b = r[0], C = r[4], D = r[8], x = r[12], E = r[1], L = r[5], z = r[9], H = r[13], Q = r[2], Y = r[6], O = r[10], R = r[14], I = r[3], k = r[7], V = r[11], ee = r[15];
-    return s[0] = a * b + o * E + l * Q + c * I, s[4] = a * C + o * L + l * Y + c * k, s[8] = a * D + o * z + l * O + c * V, s[12] = a * x + o * H + l * R + c * ee, s[1] = u * b + h * E + f * Q + d * I, s[5] = u * C + h * L + f * Y + d * k, s[9] = u * D + h * z + f * O + d * V, s[13] = u * x + h * H + f * R + d * ee, s[2] = v * b + g * E + m * Q + p * I, s[6] = v * C + g * L + m * Y + p * k, s[10] = v * D + g * z + m * O + p * V, s[14] = v * x + g * H + m * R + p * ee, s[3] = T * b + S * E + _ * Q + y * I, s[7] = T * C + S * L + _ * Y + y * k, s[11] = T * D + S * z + _ * O + y * V, s[15] = T * x + S * H + _ * R + y * ee, this;
+    const n = e.elements, r = t.elements, s = this.elements, a = n[0], o = n[4], l = n[8], c = n[12], u = n[1], h = n[5], f = n[9], d = n[13], v = n[2], g = n[6], m = n[10], p = n[14], T = n[3], S = n[7], _ = n[11], y = n[15], R = r[0], C = r[4], P = r[8], x = r[12], E = r[1], L = r[5], z = r[9], V = r[13], Q = r[2], Y = r[6], O = r[10], w = r[14], D = r[3], k = r[7], G = r[11], $ = r[15];
+    return s[0] = a * R + o * E + l * Q + c * D, s[4] = a * C + o * L + l * Y + c * k, s[8] = a * P + o * z + l * O + c * G, s[12] = a * x + o * V + l * w + c * $, s[1] = u * R + h * E + f * Q + d * D, s[5] = u * C + h * L + f * Y + d * k, s[9] = u * P + h * z + f * O + d * G, s[13] = u * x + h * V + f * w + d * $, s[2] = v * R + g * E + m * Q + p * D, s[6] = v * C + g * L + m * Y + p * k, s[10] = v * P + g * z + m * O + p * G, s[14] = v * x + g * V + m * w + p * $, s[3] = T * R + S * E + _ * Q + y * D, s[7] = T * C + S * L + _ * Y + y * k, s[11] = T * P + S * z + _ * O + y * G, s[15] = T * x + S * V + _ * w + y * $, this;
   }
   /**
    * Multiplies every component of the matrix by the given scalar.
@@ -4695,9 +4695,9 @@ class St {
    * @return {Matrix4} A reference to this matrix.
    */
   invert() {
-    const e = this.elements, t = e[0], n = e[1], r = e[2], s = e[3], a = e[4], o = e[5], l = e[6], c = e[7], u = e[8], h = e[9], f = e[10], d = e[11], v = e[12], g = e[13], m = e[14], p = e[15], T = h * m * c - g * f * c + g * l * d - o * m * d - h * l * p + o * f * p, S = v * f * c - u * m * c - v * l * d + a * m * d + u * l * p - a * f * p, _ = u * g * c - v * h * c + v * o * d - a * g * d - u * o * p + a * h * p, y = v * h * l - u * g * l - v * o * f + a * g * f + u * o * m - a * h * m, b = t * T + n * S + r * _ + s * y;
-    if (b === 0) return this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    const C = 1 / b;
+    const e = this.elements, t = e[0], n = e[1], r = e[2], s = e[3], a = e[4], o = e[5], l = e[6], c = e[7], u = e[8], h = e[9], f = e[10], d = e[11], v = e[12], g = e[13], m = e[14], p = e[15], T = h * m * c - g * f * c + g * l * d - o * m * d - h * l * p + o * f * p, S = v * f * c - u * m * c - v * l * d + a * m * d + u * l * p - a * f * p, _ = u * g * c - v * h * c + v * o * d - a * g * d - u * o * p + a * h * p, y = v * h * l - u * g * l - v * o * f + a * g * f + u * o * m - a * h * m, R = t * T + n * S + r * _ + s * y;
+    if (R === 0) return this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    const C = 1 / R;
     return e[0] = T * C, e[1] = (g * f * s - h * m * s - g * r * d + n * m * d + h * r * p - n * f * p) * C, e[2] = (o * m * s - g * l * s + g * r * c - n * m * c - o * r * p + n * l * p) * C, e[3] = (h * l * s - o * f * s - h * r * c + n * f * c + o * r * d - n * l * d) * C, e[4] = S * C, e[5] = (u * m * s - v * f * s + v * r * d - t * m * d - u * r * p + t * f * p) * C, e[6] = (v * l * s - a * m * s - v * r * c + t * m * c + a * r * p - t * l * p) * C, e[7] = (a * f * s - u * l * s + u * r * c - t * f * c - a * r * d + t * l * d) * C, e[8] = _ * C, e[9] = (v * h * s - u * g * s - v * n * d + t * g * d + u * n * p - t * h * p) * C, e[10] = (a * g * s - v * o * s + v * n * c - t * g * c - a * n * p + t * o * p) * C, e[11] = (u * o * s - a * h * s - u * n * c + t * h * c + a * n * d - t * o * d) * C, e[12] = y * C, e[13] = (u * g * r - v * h * r + v * n * f - t * g * f - u * n * m + t * h * m) * C, e[14] = (v * o * r - a * g * r - v * n * l + t * g * l + a * n * m - t * o * m) * C, e[15] = (a * h * r - u * o * r + u * n * l - t * h * l - a * n * f + t * o * f) * C, this;
   }
   /**
@@ -4949,8 +4949,8 @@ class St {
    * @return {Matrix4} A reference to this matrix.
    */
   compose(e, t, n) {
-    const r = this.elements, s = t._x, a = t._y, o = t._z, l = t._w, c = s + s, u = a + a, h = o + o, f = s * c, d = s * u, v = s * h, g = a * u, m = a * h, p = o * h, T = l * c, S = l * u, _ = l * h, y = n.x, b = n.y, C = n.z;
-    return r[0] = (1 - (g + p)) * y, r[1] = (d + _) * y, r[2] = (v - S) * y, r[3] = 0, r[4] = (d - _) * b, r[5] = (1 - (f + p)) * b, r[6] = (m + T) * b, r[7] = 0, r[8] = (v + S) * C, r[9] = (m - T) * C, r[10] = (1 - (f + g)) * C, r[11] = 0, r[12] = e.x, r[13] = e.y, r[14] = e.z, r[15] = 1, this;
+    const r = this.elements, s = t._x, a = t._y, o = t._z, l = t._w, c = s + s, u = a + a, h = o + o, f = s * c, d = s * u, v = s * h, g = a * u, m = a * h, p = o * h, T = l * c, S = l * u, _ = l * h, y = n.x, R = n.y, C = n.z;
+    return r[0] = (1 - (g + p)) * y, r[1] = (d + _) * y, r[2] = (v - S) * y, r[3] = 0, r[4] = (d - _) * R, r[5] = (1 - (f + p)) * R, r[6] = (m + T) * R, r[7] = 0, r[8] = (v + S) * C, r[9] = (m - T) * C, r[10] = (1 - (f + g)) * C, r[11] = 0, r[12] = e.x, r[13] = e.y, r[14] = e.z, r[15] = 1, this;
   }
   /**
    * Decomposes this matrix into its position, rotation and scale components
@@ -5064,7 +5064,7 @@ class St {
     return e[t] = n[0], e[t + 1] = n[1], e[t + 2] = n[2], e[t + 3] = n[3], e[t + 4] = n[4], e[t + 5] = n[5], e[t + 6] = n[6], e[t + 7] = n[7], e[t + 8] = n[8], e[t + 9] = n[9], e[t + 10] = n[10], e[t + 11] = n[11], e[t + 12] = n[12], e[t + 13] = n[13], e[t + 14] = n[14], e[t + 15] = n[15], e;
   }
 }
-const Pi = /* @__PURE__ */ new U(), gn = /* @__PURE__ */ new St(), Tu = /* @__PURE__ */ new U(0, 0, 0), yu = /* @__PURE__ */ new U(1, 1, 1), Yn = /* @__PURE__ */ new U(), Yr = /* @__PURE__ */ new U(), qt = /* @__PURE__ */ new U(), Co = /* @__PURE__ */ new St(), wo = /* @__PURE__ */ new Ur();
+const Pi = /* @__PURE__ */ new U(), gn = /* @__PURE__ */ new St(), Tu = /* @__PURE__ */ new U(0, 0, 0), yu = /* @__PURE__ */ new U(1, 1, 1), Yn = /* @__PURE__ */ new U(), Xr = /* @__PURE__ */ new U(), qt = /* @__PURE__ */ new U(), Co = /* @__PURE__ */ new St(), wo = /* @__PURE__ */ new Br();
 class Nn {
   /**
    * Constructs a new euler instance.
@@ -5263,7 +5263,7 @@ class Nn {
   }
 }
 Nn.DEFAULT_ORDER = "XYZ";
-class Hl {
+class Gl {
   /**
    * Constructs a new layers instance, with membership
    * initially set to layer `0`.
@@ -5336,14 +5336,14 @@ class Hl {
   }
 }
 let Cu = 0;
-const bo = /* @__PURE__ */ new U(), Ii = /* @__PURE__ */ new Ur(), Pn = /* @__PURE__ */ new St(), Qr = /* @__PURE__ */ new U(), ur = /* @__PURE__ */ new U(), wu = /* @__PURE__ */ new U(), bu = /* @__PURE__ */ new Ur(), Ro = /* @__PURE__ */ new U(1, 0, 0), Do = /* @__PURE__ */ new U(0, 1, 0), Po = /* @__PURE__ */ new U(0, 0, 1), Io = { type: "added" }, Ru = { type: "removed" }, Li = { type: "childadded", child: null }, ks = { type: "childremoved", child: null };
+const bo = /* @__PURE__ */ new U(), Ii = /* @__PURE__ */ new Br(), Pn = /* @__PURE__ */ new St(), Yr = /* @__PURE__ */ new U(), ur = /* @__PURE__ */ new U(), wu = /* @__PURE__ */ new U(), bu = /* @__PURE__ */ new Br(), Ro = /* @__PURE__ */ new U(1, 0, 0), Do = /* @__PURE__ */ new U(0, 1, 0), Po = /* @__PURE__ */ new U(0, 0, 1), Io = { type: "added" }, Ru = { type: "removed" }, Li = { type: "childadded", child: null }, ks = { type: "childremoved", child: null };
 class nn extends Hn {
   /**
    * Constructs a new 3D object.
    */
   constructor() {
-    super(), this.isObject3D = !0, Object.defineProperty(this, "id", { value: Cu++ }), this.uuid = Br(), this.name = "", this.type = "Object3D", this.parent = null, this.children = [], this.up = nn.DEFAULT_UP.clone();
-    const e = new U(), t = new Nn(), n = new Ur(), r = new U(1, 1, 1);
+    super(), this.isObject3D = !0, Object.defineProperty(this, "id", { value: Cu++ }), this.uuid = Lr(), this.name = "", this.type = "Object3D", this.parent = null, this.children = [], this.up = nn.DEFAULT_UP.clone();
+    const e = new U(), t = new Nn(), n = new Br(), r = new U(1, 1, 1);
     function s() {
       n.setFromEuler(t, !1);
     }
@@ -5416,7 +5416,7 @@ class nn extends Hn {
       normalMatrix: {
         value: new Ge()
       }
-    }), this.matrix = new St(), this.matrixWorld = new St(), this.matrixAutoUpdate = nn.DEFAULT_MATRIX_AUTO_UPDATE, this.matrixWorldAutoUpdate = nn.DEFAULT_MATRIX_WORLD_AUTO_UPDATE, this.matrixWorldNeedsUpdate = !1, this.layers = new Hl(), this.visible = !0, this.castShadow = !1, this.receiveShadow = !1, this.frustumCulled = !0, this.renderOrder = 0, this.animations = [], this.customDepthMaterial = void 0, this.customDistanceMaterial = void 0, this.userData = {};
+    }), this.matrix = new St(), this.matrixWorld = new St(), this.matrixAutoUpdate = nn.DEFAULT_MATRIX_AUTO_UPDATE, this.matrixWorldAutoUpdate = nn.DEFAULT_MATRIX_WORLD_AUTO_UPDATE, this.matrixWorldNeedsUpdate = !1, this.layers = new Gl(), this.visible = !0, this.castShadow = !1, this.receiveShadow = !1, this.frustumCulled = !0, this.renderOrder = 0, this.animations = [], this.customDepthMaterial = void 0, this.customDistanceMaterial = void 0, this.userData = {};
   }
   /**
    * A callback that is executed immediately before a 3D object is rendered to a shadow map.
@@ -5632,9 +5632,9 @@ class nn extends Hn {
    * @param {number} [z] - The z coordinate in world space.
    */
   lookAt(e, t, n) {
-    e.isVector3 ? Qr.copy(e) : Qr.set(e, t, n);
+    e.isVector3 ? Yr.copy(e) : Yr.set(e, t, n);
     const r = this.parent;
-    this.updateWorldMatrix(!0, !1), ur.setFromMatrixPosition(this.matrixWorld), this.isCamera || this.isLight ? Pn.lookAt(ur, Qr, this.up) : Pn.lookAt(Qr, ur, this.up), this.quaternion.setFromRotationMatrix(Pn), r && (Pn.extractRotation(r.matrixWorld), Ii.setFromRotationMatrix(Pn), this.quaternion.premultiply(Ii.invert()));
+    this.updateWorldMatrix(!0, !1), ur.setFromMatrixPosition(this.matrixWorld), this.isCamera || this.isLight ? Pn.lookAt(ur, Yr, this.up) : Pn.lookAt(Yr, ur, this.up), this.quaternion.setFromRotationMatrix(Pn), r && (Pn.extractRotation(r.matrixWorld), Ii.setFromRotationMatrix(Pn), this.quaternion.premultiply(Ii.invert()));
   }
   /**
    * Adds the given 3D object as a child to this 3D object. An arbitrary number of
@@ -6281,7 +6281,7 @@ class _n {
     return e.a.equals(this.a) && e.b.equals(this.b) && e.c.equals(this.c);
   }
 }
-const kl = {
+const Hl = {
   aliceblue: 15792383,
   antiquewhite: 16444375,
   aqua: 65535,
@@ -6430,7 +6430,7 @@ const kl = {
   whitesmoke: 16119285,
   yellow: 16776960,
   yellowgreen: 10145074
-}, Qn = { h: 0, s: 0, l: 0 }, qr = { h: 0, s: 0, l: 0 };
+}, Qn = { h: 0, s: 0, l: 0 }, Qr = { h: 0, s: 0, l: 0 };
 function Js(i, e, t) {
   return t < 0 && (t += 1), t > 1 && (t -= 1), t < 1 / 6 ? i + (e - i) * 6 * t : t < 1 / 2 ? e : t < 2 / 3 ? i + (e - i) * 6 * (2 / 3 - t) : i;
 }
@@ -6594,7 +6594,7 @@ class Ve {
    * @return {Color} A reference to this color.
    */
   setColorName(e, t = tt) {
-    const n = kl[e.toLowerCase()];
+    const n = Hl[e.toLowerCase()];
     return n !== void 0 ? this.setHex(n, t) : console.warn("THREE.Color: Unknown color " + e), this;
   }
   /**
@@ -6826,8 +6826,8 @@ class Ve {
    * @return {Color} A reference to this color.
    */
   lerpHSL(e, t) {
-    this.getHSL(Qn), e.getHSL(qr);
-    const n = Is(Qn.h, qr.h, t), r = Is(Qn.s, qr.s, t), s = Is(Qn.l, qr.l, t);
+    this.getHSL(Qn), e.getHSL(Qr);
+    const n = Is(Qn.h, Qr.h, t), r = Is(Qn.s, Qr.s, t), s = Is(Qn.l, Qr.l, t);
     return this.setHSL(n, r, s), this;
   }
   /**
@@ -6903,14 +6903,14 @@ class Ve {
   }
 }
 const Lt = /* @__PURE__ */ new Ve();
-Ve.NAMES = kl;
+Ve.NAMES = Hl;
 let Du = 0;
 class rr extends Hn {
   /**
    * Constructs a new material.
    */
   constructor() {
-    super(), this.isMaterial = !0, Object.defineProperty(this, "id", { value: Du++ }), this.uuid = Br(), this.name = "", this.type = "Material", this.blending = 1, this.side = 0, this.vertexColors = !1, this.opacity = 1, this.transparent = !1, this.alphaHash = !1, this.blendSrc = 204, this.blendDst = 205, this.blendEquation = 100, this.blendSrcAlpha = null, this.blendDstAlpha = null, this.blendEquationAlpha = null, this.blendColor = new Ve(0, 0, 0), this.blendAlpha = 0, this.depthFunc = 3, this.depthTest = !0, this.depthWrite = !0, this.stencilWriteMask = 255, this.stencilFunc = 519, this.stencilRef = 0, this.stencilFuncMask = 255, this.stencilFail = 7680, this.stencilZFail = 7680, this.stencilZPass = 7680, this.stencilWrite = !1, this.clippingPlanes = null, this.clipIntersection = !1, this.clipShadows = !1, this.shadowSide = null, this.colorWrite = !0, this.precision = null, this.polygonOffset = !1, this.polygonOffsetFactor = 0, this.polygonOffsetUnits = 0, this.dithering = !1, this.alphaToCoverage = !1, this.premultipliedAlpha = !1, this.forceSinglePass = !1, this.allowOverride = !0, this.visible = !0, this.toneMapped = !0, this.userData = {}, this.version = 0, this._alphaTest = 0;
+    super(), this.isMaterial = !0, Object.defineProperty(this, "id", { value: Du++ }), this.uuid = Lr(), this.name = "", this.type = "Material", this.blending = 1, this.side = 0, this.vertexColors = !1, this.opacity = 1, this.transparent = !1, this.alphaHash = !1, this.blendSrc = 204, this.blendDst = 205, this.blendEquation = 100, this.blendSrcAlpha = null, this.blendDstAlpha = null, this.blendEquationAlpha = null, this.blendColor = new Ve(0, 0, 0), this.blendAlpha = 0, this.depthFunc = 3, this.depthTest = !0, this.depthWrite = !0, this.stencilWriteMask = 255, this.stencilFunc = 519, this.stencilRef = 0, this.stencilFuncMask = 255, this.stencilFail = 7680, this.stencilZFail = 7680, this.stencilZPass = 7680, this.stencilWrite = !1, this.clippingPlanes = null, this.clipIntersection = !1, this.clipShadows = !1, this.shadowSide = null, this.colorWrite = !0, this.precision = null, this.polygonOffset = !1, this.polygonOffsetFactor = 0, this.polygonOffsetUnits = 0, this.dithering = !1, this.alphaToCoverage = !1, this.premultipliedAlpha = !1, this.forceSinglePass = !1, this.allowOverride = !0, this.visible = !0, this.toneMapped = !0, this.userData = {}, this.version = 0, this._alphaTest = 0;
   }
   /**
    * Sets the alpha value to be used when running an alpha test. The material
@@ -7071,7 +7071,7 @@ class rr extends Hn {
     e === !0 && this.version++;
   }
 }
-class Vl extends rr {
+class kl extends rr {
   /**
    * Constructs a new mesh basic material.
    *
@@ -7088,7 +7088,7 @@ class Vl extends rr {
     return super.copy(e), this.color.copy(e.color), this.map = e.map, this.lightMap = e.lightMap, this.lightMapIntensity = e.lightMapIntensity, this.aoMap = e.aoMap, this.aoMapIntensity = e.aoMapIntensity, this.specularMap = e.specularMap, this.alphaMap = e.alphaMap, this.envMap = e.envMap, this.envMapRotation.copy(e.envMapRotation), this.combine = e.combine, this.reflectivity = e.reflectivity, this.refractionRatio = e.refractionRatio, this.wireframe = e.wireframe, this.wireframeLinewidth = e.wireframeLinewidth, this.wireframeLinecap = e.wireframeLinecap, this.wireframeLinejoin = e.wireframeLinejoin, this.fog = e.fog, this;
   }
 }
-const xt = /* @__PURE__ */ new U(), Kr = /* @__PURE__ */ new ue();
+const xt = /* @__PURE__ */ new U(), qr = /* @__PURE__ */ new ue();
 let Pu = 0;
 class rn {
   /**
@@ -7188,7 +7188,7 @@ class rn {
   applyMatrix3(e) {
     if (this.itemSize === 2)
       for (let t = 0, n = this.count; t < n; t++)
-        Kr.fromBufferAttribute(this, t), Kr.applyMatrix3(e), this.setXY(t, Kr.x, Kr.y);
+        qr.fromBufferAttribute(this, t), qr.applyMatrix3(e), this.setXY(t, qr.x, qr.y);
     else if (this.itemSize === 3)
       for (let t = 0, n = this.count; t < n; t++)
         xt.fromBufferAttribute(this, t), xt.applyMatrix3(e), this.setXYZ(t, xt.x, xt.y, xt.z);
@@ -7412,7 +7412,7 @@ class rn {
     return this.name !== "" && (e.name = this.name), this.usage !== 35044 && (e.usage = this.usage), e;
   }
 }
-class Wl extends rn {
+class Vl extends rn {
   /**
    * Constructs a new buffer attribute.
    *
@@ -7424,7 +7424,7 @@ class Wl extends rn {
     super(new Uint16Array(e), t, n);
   }
 }
-class Xl extends rn {
+class Wl extends rn {
   /**
    * Constructs a new buffer attribute.
    *
@@ -7449,13 +7449,13 @@ class yn extends rn {
   }
 }
 let Iu = 0;
-const un = /* @__PURE__ */ new St(), Zs = /* @__PURE__ */ new nn(), Fi = /* @__PURE__ */ new U(), Kt = /* @__PURE__ */ new Fr(), hr = /* @__PURE__ */ new Fr(), Ct = /* @__PURE__ */ new U();
+const un = /* @__PURE__ */ new St(), Zs = /* @__PURE__ */ new nn(), Fi = /* @__PURE__ */ new U(), Kt = /* @__PURE__ */ new Ur(), hr = /* @__PURE__ */ new Ur(), Ct = /* @__PURE__ */ new U();
 class wn extends Hn {
   /**
    * Constructs a new geometry.
    */
   constructor() {
-    super(), this.isBufferGeometry = !0, Object.defineProperty(this, "id", { value: Iu++ }), this.uuid = Br(), this.name = "", this.type = "BufferGeometry", this.index = null, this.indirect = null, this.attributes = {}, this.morphAttributes = {}, this.morphTargetsRelative = !1, this.groups = [], this.boundingBox = null, this.boundingSphere = null, this.drawRange = { start: 0, count: 1 / 0 }, this.userData = {};
+    super(), this.isBufferGeometry = !0, Object.defineProperty(this, "id", { value: Iu++ }), this.uuid = Lr(), this.name = "", this.type = "BufferGeometry", this.index = null, this.indirect = null, this.attributes = {}, this.morphAttributes = {}, this.morphTargetsRelative = !1, this.groups = [], this.boundingBox = null, this.boundingSphere = null, this.drawRange = { start: 0, count: 1 / 0 }, this.userData = {};
   }
   /**
    * Returns the index of this geometry.
@@ -7472,7 +7472,7 @@ class wn extends Hn {
    * @return {BufferGeometry} A reference to this instance.
    */
   setIndex(e) {
-    return Array.isArray(e) ? this.index = new (zl(e) ? Xl : Wl)(e, 1) : this.index = e, this;
+    return Array.isArray(e) ? this.index = new (Nl(e) ? Wl : Vl)(e, 1) : this.index = e, this;
   }
   /**
    * Sets the given indirect attribute to this geometry.
@@ -7700,7 +7700,7 @@ class wn extends Hn {
    * You may need to recompute the bounding box if the geometry vertices are modified.
    */
   computeBoundingBox() {
-    this.boundingBox === null && (this.boundingBox = new Fr());
+    this.boundingBox === null && (this.boundingBox = new Ur());
     const e = this.attributes.position, t = this.morphAttributes.position;
     if (e && e.isGLBufferAttribute) {
       console.error("THREE.BufferGeometry.computeBoundingBox(): GLBufferAttribute requires a manual bounding box.", this), this.boundingBox.set(
@@ -7767,40 +7767,40 @@ class wn extends Hn {
     const n = t.position, r = t.normal, s = t.uv;
     this.hasAttribute("tangent") === !1 && this.setAttribute("tangent", new rn(new Float32Array(4 * n.count), 4));
     const a = this.getAttribute("tangent"), o = [], l = [];
-    for (let D = 0; D < n.count; D++)
-      o[D] = new U(), l[D] = new U();
+    for (let P = 0; P < n.count; P++)
+      o[P] = new U(), l[P] = new U();
     const c = new U(), u = new U(), h = new U(), f = new ue(), d = new ue(), v = new ue(), g = new U(), m = new U();
-    function p(D, x, E) {
-      c.fromBufferAttribute(n, D), u.fromBufferAttribute(n, x), h.fromBufferAttribute(n, E), f.fromBufferAttribute(s, D), d.fromBufferAttribute(s, x), v.fromBufferAttribute(s, E), u.sub(c), h.sub(c), d.sub(f), v.sub(f);
+    function p(P, x, E) {
+      c.fromBufferAttribute(n, P), u.fromBufferAttribute(n, x), h.fromBufferAttribute(n, E), f.fromBufferAttribute(s, P), d.fromBufferAttribute(s, x), v.fromBufferAttribute(s, E), u.sub(c), h.sub(c), d.sub(f), v.sub(f);
       const L = 1 / (d.x * v.y - v.x * d.y);
-      isFinite(L) && (g.copy(u).multiplyScalar(v.y).addScaledVector(h, -d.y).multiplyScalar(L), m.copy(h).multiplyScalar(d.x).addScaledVector(u, -v.x).multiplyScalar(L), o[D].add(g), o[x].add(g), o[E].add(g), l[D].add(m), l[x].add(m), l[E].add(m));
+      isFinite(L) && (g.copy(u).multiplyScalar(v.y).addScaledVector(h, -d.y).multiplyScalar(L), m.copy(h).multiplyScalar(d.x).addScaledVector(u, -v.x).multiplyScalar(L), o[P].add(g), o[x].add(g), o[E].add(g), l[P].add(m), l[x].add(m), l[E].add(m));
     }
     let T = this.groups;
     T.length === 0 && (T = [{
       start: 0,
       count: e.count
     }]);
-    for (let D = 0, x = T.length; D < x; ++D) {
-      const E = T[D], L = E.start, z = E.count;
-      for (let H = L, Q = L + z; H < Q; H += 3)
+    for (let P = 0, x = T.length; P < x; ++P) {
+      const E = T[P], L = E.start, z = E.count;
+      for (let V = L, Q = L + z; V < Q; V += 3)
         p(
-          e.getX(H + 0),
-          e.getX(H + 1),
-          e.getX(H + 2)
+          e.getX(V + 0),
+          e.getX(V + 1),
+          e.getX(V + 2)
         );
     }
-    const S = new U(), _ = new U(), y = new U(), b = new U();
-    function C(D) {
-      y.fromBufferAttribute(r, D), b.copy(y);
-      const x = o[D];
-      S.copy(x), S.sub(y.multiplyScalar(y.dot(x))).normalize(), _.crossVectors(b, x);
-      const L = _.dot(l[D]) < 0 ? -1 : 1;
-      a.setXYZW(D, S.x, S.y, S.z, L);
+    const S = new U(), _ = new U(), y = new U(), R = new U();
+    function C(P) {
+      y.fromBufferAttribute(r, P), R.copy(y);
+      const x = o[P];
+      S.copy(x), S.sub(y.multiplyScalar(y.dot(x))).normalize(), _.crossVectors(R, x);
+      const L = _.dot(l[P]) < 0 ? -1 : 1;
+      a.setXYZW(P, S.x, S.y, S.z, L);
     }
-    for (let D = 0, x = T.length; D < x; ++D) {
-      const E = T[D], L = E.start, z = E.count;
-      for (let H = L, Q = L + z; H < Q; H += 3)
-        C(e.getX(H + 0)), C(e.getX(H + 1)), C(e.getX(H + 2));
+    for (let P = 0, x = T.length; P < x; ++P) {
+      const E = T[P], L = E.start, z = E.count;
+      for (let V = L, Q = L + z; V < Q; V += 3)
+        C(e.getX(V + 0)), C(e.getX(V + 1)), C(e.getX(V + 2));
     }
   }
   /**
@@ -7979,7 +7979,7 @@ class wn extends Hn {
     this.dispatchEvent({ type: "dispose" });
   }
 }
-const Bo = /* @__PURE__ */ new St(), ui = /* @__PURE__ */ new Mu(), Jr = /* @__PURE__ */ new ka(), Uo = /* @__PURE__ */ new U(), Zr = /* @__PURE__ */ new U(), jr = /* @__PURE__ */ new U(), $r = /* @__PURE__ */ new U(), js = /* @__PURE__ */ new U(), es = /* @__PURE__ */ new U(), Fo = /* @__PURE__ */ new U(), ts = /* @__PURE__ */ new U();
+const Bo = /* @__PURE__ */ new St(), ui = /* @__PURE__ */ new Mu(), Kr = /* @__PURE__ */ new ka(), Uo = /* @__PURE__ */ new U(), Jr = /* @__PURE__ */ new U(), Zr = /* @__PURE__ */ new U(), jr = /* @__PURE__ */ new U(), js = /* @__PURE__ */ new U(), $r = /* @__PURE__ */ new U(), Fo = /* @__PURE__ */ new U(), es = /* @__PURE__ */ new U();
 class $t extends nn {
   /**
    * Constructs a new mesh.
@@ -7987,7 +7987,7 @@ class $t extends nn {
    * @param {BufferGeometry} [geometry] - The mesh geometry.
    * @param {Material|Array<Material>} [material] - The mesh material.
    */
-  constructor(e = new wn(), t = new Vl()) {
+  constructor(e = new wn(), t = new kl()) {
     super(), this.isMesh = !0, this.type = "Mesh", this.geometry = e, this.material = t, this.morphTargetDictionary = void 0, this.morphTargetInfluences = void 0, this.count = 1, this.updateMorphTargets();
   }
   copy(e, t) {
@@ -8023,12 +8023,12 @@ class $t extends nn {
     t.fromBufferAttribute(r, e);
     const o = this.morphTargetInfluences;
     if (s && o) {
-      es.set(0, 0, 0);
+      $r.set(0, 0, 0);
       for (let l = 0, c = s.length; l < c; l++) {
         const u = o[l], h = s[l];
-        u !== 0 && (js.fromBufferAttribute(h, e), a ? es.addScaledVector(js, u) : es.addScaledVector(js.sub(t), u));
+        u !== 0 && (js.fromBufferAttribute(h, e), a ? $r.addScaledVector(js, u) : $r.addScaledVector(js.sub(t), u));
       }
-      t.add(es);
+      t.add($r);
     }
     return t;
   }
@@ -8040,7 +8040,7 @@ class $t extends nn {
    */
   raycast(e, t) {
     const n = this.geometry, r = this.material, s = this.matrixWorld;
-    r !== void 0 && (n.boundingSphere === null && n.computeBoundingSphere(), Jr.copy(n.boundingSphere), Jr.applyMatrix4(s), ui.copy(e.ray).recast(e.near), !(Jr.containsPoint(ui.origin) === !1 && (ui.intersectSphere(Jr, Uo) === null || ui.origin.distanceToSquared(Uo) > (e.far - e.near) ** 2)) && (Bo.copy(s).invert(), ui.copy(e.ray).applyMatrix4(Bo), !(n.boundingBox !== null && ui.intersectsBox(n.boundingBox) === !1) && this._computeIntersections(e, t, ui)));
+    r !== void 0 && (n.boundingSphere === null && n.computeBoundingSphere(), Kr.copy(n.boundingSphere), Kr.applyMatrix4(s), ui.copy(e.ray).recast(e.near), !(Kr.containsPoint(ui.origin) === !1 && (ui.intersectSphere(Kr, Uo) === null || ui.origin.distanceToSquared(Uo) > (e.far - e.near) ** 2)) && (Bo.copy(s).invert(), ui.copy(e.ray).applyMatrix4(Bo), !(n.boundingBox !== null && ui.intersectsBox(n.boundingBox) === !1) && this._computeIntersections(e, t, ui)));
   }
   _computeIntersections(e, t, n) {
     let r;
@@ -8050,15 +8050,15 @@ class $t extends nn {
         for (let v = 0, g = f.length; v < g; v++) {
           const m = f[v], p = a[m.materialIndex], T = Math.max(m.start, d.start), S = Math.min(o.count, Math.min(m.start + m.count, d.start + d.count));
           for (let _ = T, y = S; _ < y; _ += 3) {
-            const b = o.getX(_), C = o.getX(_ + 1), D = o.getX(_ + 2);
-            r = ns(this, p, e, n, c, u, h, b, C, D), r && (r.faceIndex = Math.floor(_ / 3), r.face.materialIndex = m.materialIndex, t.push(r));
+            const R = o.getX(_), C = o.getX(_ + 1), P = o.getX(_ + 2);
+            r = ts(this, p, e, n, c, u, h, R, C, P), r && (r.faceIndex = Math.floor(_ / 3), r.face.materialIndex = m.materialIndex, t.push(r));
           }
         }
       else {
         const v = Math.max(0, d.start), g = Math.min(o.count, d.start + d.count);
         for (let m = v, p = g; m < p; m += 3) {
           const T = o.getX(m), S = o.getX(m + 1), _ = o.getX(m + 2);
-          r = ns(this, a, e, n, c, u, h, T, S, _), r && (r.faceIndex = Math.floor(m / 3), t.push(r));
+          r = ts(this, a, e, n, c, u, h, T, S, _), r && (r.faceIndex = Math.floor(m / 3), t.push(r));
         }
       }
     else if (l !== void 0)
@@ -8066,15 +8066,15 @@ class $t extends nn {
         for (let v = 0, g = f.length; v < g; v++) {
           const m = f[v], p = a[m.materialIndex], T = Math.max(m.start, d.start), S = Math.min(l.count, Math.min(m.start + m.count, d.start + d.count));
           for (let _ = T, y = S; _ < y; _ += 3) {
-            const b = _, C = _ + 1, D = _ + 2;
-            r = ns(this, p, e, n, c, u, h, b, C, D), r && (r.faceIndex = Math.floor(_ / 3), r.face.materialIndex = m.materialIndex, t.push(r));
+            const R = _, C = _ + 1, P = _ + 2;
+            r = ts(this, p, e, n, c, u, h, R, C, P), r && (r.faceIndex = Math.floor(_ / 3), r.face.materialIndex = m.materialIndex, t.push(r));
           }
         }
       else {
         const v = Math.max(0, d.start), g = Math.min(l.count, d.start + d.count);
         for (let m = v, p = g; m < p; m += 3) {
           const T = m, S = m + 1, _ = m + 2;
-          r = ns(this, a, e, n, c, u, h, T, S, _), r && (r.faceIndex = Math.floor(m / 3), t.push(r));
+          r = ts(this, a, e, n, c, u, h, T, S, _), r && (r.faceIndex = Math.floor(m / 3), t.push(r));
         }
       }
   }
@@ -8082,20 +8082,20 @@ class $t extends nn {
 function Lu(i, e, t, n, r, s, a, o) {
   let l;
   if (e.side === 1 ? l = n.intersectTriangle(a, s, r, !0, o) : l = n.intersectTriangle(r, s, a, e.side === 0, o), l === null) return null;
-  ts.copy(o), ts.applyMatrix4(i.matrixWorld);
-  const c = t.ray.origin.distanceTo(ts);
+  es.copy(o), es.applyMatrix4(i.matrixWorld);
+  const c = t.ray.origin.distanceTo(es);
   return c < t.near || c > t.far ? null : {
     distance: c,
-    point: ts.clone(),
+    point: es.clone(),
     object: i
   };
 }
-function ns(i, e, t, n, r, s, a, o, l, c) {
-  i.getVertexPosition(o, Zr), i.getVertexPosition(l, jr), i.getVertexPosition(c, $r);
-  const u = Lu(i, e, t, n, Zr, jr, $r, Fo);
+function ts(i, e, t, n, r, s, a, o, l, c) {
+  i.getVertexPosition(o, Jr), i.getVertexPosition(l, Zr), i.getVertexPosition(c, jr);
+  const u = Lu(i, e, t, n, Jr, Zr, jr, Fo);
   if (u) {
     const h = new U();
-    _n.getBarycoord(Fo, Zr, jr, $r, h), r && (u.uv = _n.getInterpolatedAttribute(r, o, l, c, h, new ue())), s && (u.uv1 = _n.getInterpolatedAttribute(s, o, l, c, h, new ue())), a && (u.normal = _n.getInterpolatedAttribute(a, o, l, c, h, new U()), u.normal.dot(n.direction) > 0 && u.normal.multiplyScalar(-1));
+    _n.getBarycoord(Fo, Jr, Zr, jr, h), r && (u.uv = _n.getInterpolatedAttribute(r, o, l, c, h, new ue())), s && (u.uv1 = _n.getInterpolatedAttribute(s, o, l, c, h, new ue())), a && (u.normal = _n.getInterpolatedAttribute(a, o, l, c, h, new U()), u.normal.dot(n.direction) > 0 && u.normal.multiplyScalar(-1));
     const f = {
       a: o,
       b: l,
@@ -8103,11 +8103,11 @@ function ns(i, e, t, n, r, s, a, o, l, c) {
       normal: new U(),
       materialIndex: 0
     };
-    _n.getNormal(Zr, jr, $r, f.normal), u.face = f, u.barycoord = h;
+    _n.getNormal(Jr, Zr, jr, f.normal), u.face = f, u.barycoord = h;
   }
   return u;
 }
-class Or extends wn {
+class Fr extends wn {
   /**
    * Constructs a new box geometry.
    *
@@ -8132,23 +8132,23 @@ class Or extends wn {
     const l = [], c = [], u = [], h = [];
     let f = 0, d = 0;
     v("z", "y", "x", -1, -1, n, t, e, a, s, 0), v("z", "y", "x", 1, -1, n, t, -e, a, s, 1), v("x", "z", "y", 1, 1, e, n, t, r, a, 2), v("x", "z", "y", 1, -1, e, n, -t, r, a, 3), v("x", "y", "z", 1, -1, e, t, n, r, s, 4), v("x", "y", "z", -1, -1, e, t, -n, r, s, 5), this.setIndex(l), this.setAttribute("position", new yn(c, 3)), this.setAttribute("normal", new yn(u, 3)), this.setAttribute("uv", new yn(h, 2));
-    function v(g, m, p, T, S, _, y, b, C, D, x) {
-      const E = _ / C, L = y / D, z = _ / 2, H = y / 2, Q = b / 2, Y = C + 1, O = D + 1;
-      let R = 0, I = 0;
+    function v(g, m, p, T, S, _, y, R, C, P, x) {
+      const E = _ / C, L = y / P, z = _ / 2, V = y / 2, Q = R / 2, Y = C + 1, O = P + 1;
+      let w = 0, D = 0;
       const k = new U();
-      for (let V = 0; V < O; V++) {
-        const ee = V * L - H;
+      for (let G = 0; G < O; G++) {
+        const $ = G * L - V;
         for (let le = 0; le < Y; le++) {
           const Ee = le * E - z;
-          k[g] = Ee * T, k[m] = ee * S, k[p] = Q, c.push(k.x, k.y, k.z), k[g] = 0, k[m] = 0, k[p] = b > 0 ? 1 : -1, u.push(k.x, k.y, k.z), h.push(le / C), h.push(1 - V / D), R += 1;
+          k[g] = Ee * T, k[m] = $ * S, k[p] = Q, c.push(k.x, k.y, k.z), k[g] = 0, k[m] = 0, k[p] = R > 0 ? 1 : -1, u.push(k.x, k.y, k.z), h.push(le / C), h.push(1 - G / P), w += 1;
         }
       }
-      for (let V = 0; V < D; V++)
-        for (let ee = 0; ee < C; ee++) {
-          const le = f + ee + Y * V, Ee = f + ee + Y * (V + 1), we = f + (ee + 1) + Y * (V + 1), pe = f + (ee + 1) + Y * V;
-          l.push(le, Ee, pe), l.push(Ee, we, pe), I += 6;
+      for (let G = 0; G < P; G++)
+        for (let $ = 0; $ < C; $++) {
+          const le = f + $ + Y * G, Ee = f + $ + Y * (G + 1), we = f + ($ + 1) + Y * (G + 1), pe = f + ($ + 1) + Y * G;
+          l.push(le, Ee, pe), l.push(Ee, we, pe), D += 6;
         }
-      o.addGroup(d, I, x), d += I, f += R;
+      o.addGroup(d, D, x), d += D, f += w;
     }
   }
   copy(e) {
@@ -8162,7 +8162,7 @@ class Or extends wn {
    * @return {BoxGeometry} A new instance.
    */
   static fromJSON(e) {
-    return new Or(e.width, e.height, e.depth, e.widthSegments, e.heightSegments, e.depthSegments);
+    return new Fr(e.width, e.height, e.depth, e.widthSegments, e.heightSegments, e.depthSegments);
   }
 }
 function Zi(i) {
@@ -8191,7 +8191,7 @@ function Bu(i) {
     e.push(i[t].clone());
   return e;
 }
-function Yl(i) {
+function Xl(i) {
   const e = i.getRenderTarget();
   return e === null ? i.outputColorSpace : e.isXRRenderTarget === !0 ? e.texture.colorSpace : Ke.workingColorSpace;
 }
@@ -8263,7 +8263,7 @@ class Et extends rr {
     return Object.keys(n).length > 0 && (t.extensions = n), t;
   }
 }
-class Ql extends nn {
+class Yl extends nn {
   /**
    * Constructs a new camera.
    */
@@ -8305,7 +8305,7 @@ class Ql extends nn {
   }
 }
 const qn = /* @__PURE__ */ new U(), Oo = /* @__PURE__ */ new ue(), No = /* @__PURE__ */ new ue();
-class Zt extends Ql {
+class Zt extends Yl {
   /**
    * Constructs a new perspective camera.
    *
@@ -8527,7 +8527,7 @@ class Nu extends nn {
     n.texture.generateMipmaps = !1, e.setRenderTarget(n, 0, r), e.render(t, s), e.setRenderTarget(n, 1, r), e.render(t, a), e.setRenderTarget(n, 2, r), e.render(t, o), e.setRenderTarget(n, 3, r), e.render(t, l), e.setRenderTarget(n, 4, r), e.render(t, c), n.texture.generateMipmaps = g, e.setRenderTarget(n, 5, r), e.render(t, u), e.setRenderTarget(h, f, d), e.xr.enabled = v, n.texture.needsPMREMUpdate = !0;
   }
 }
-class ql extends wt {
+class Ql extends wt {
   /**
    * Constructs a new cube texture.
    *
@@ -8567,7 +8567,7 @@ class zu extends Pt {
   constructor(e = 1, t = {}) {
     super(e, e, t), this.isWebGLCubeRenderTarget = !0;
     const n = { width: e, height: e, depth: 1 }, r = [n, n, n, n, n, n];
-    this.texture = new ql(r), this._setTextureOptions(t), this.texture.isRenderTargetTexture = !0;
+    this.texture = new Ql(r), this._setTextureOptions(t), this.texture.isRenderTargetTexture = !0;
   }
   /**
    * Converts the given equirectangular texture to a cube map.
@@ -8625,7 +8625,7 @@ class zu extends Pt {
 				}
 			`
       )
-    }, r = new Or(5, 5, 5), s = new Et({
+    }, r = new Fr(5, 5, 5), s = new Et({
       name: "CubemapFromEquirect",
       uniforms: Zi(n.uniforms),
       vertexShader: n.vertexShader,
@@ -8652,7 +8652,7 @@ class zu extends Pt {
     e.setRenderTarget(s);
   }
 }
-class is extends nn {
+class ns extends nn {
   constructor() {
     super(), this.isGroup = !0, this.type = "Group";
   }
@@ -8671,7 +8671,7 @@ class $s {
    * @return {Group} A group representing the hand space of the XR controller.
    */
   getHandSpace() {
-    return this._hand === null && (this._hand = new is(), this._hand.matrixAutoUpdate = !1, this._hand.visible = !1, this._hand.joints = {}, this._hand.inputState = { pinching: !1 }), this._hand;
+    return this._hand === null && (this._hand = new ns(), this._hand.matrixAutoUpdate = !1, this._hand.visible = !1, this._hand.joints = {}, this._hand.inputState = { pinching: !1 }), this._hand;
   }
   /**
    * Returns a group representing the target ray space of the XR controller.
@@ -8679,7 +8679,7 @@ class $s {
    * @return {Group} A group representing the target ray space of the XR controller.
    */
   getTargetRaySpace() {
-    return this._targetRay === null && (this._targetRay = new is(), this._targetRay.matrixAutoUpdate = !1, this._targetRay.visible = !1, this._targetRay.hasLinearVelocity = !1, this._targetRay.linearVelocity = new U(), this._targetRay.hasAngularVelocity = !1, this._targetRay.angularVelocity = new U()), this._targetRay;
+    return this._targetRay === null && (this._targetRay = new ns(), this._targetRay.matrixAutoUpdate = !1, this._targetRay.visible = !1, this._targetRay.hasLinearVelocity = !1, this._targetRay.linearVelocity = new U(), this._targetRay.hasAngularVelocity = !1, this._targetRay.angularVelocity = new U()), this._targetRay;
   }
   /**
    * Returns a group representing the grip space of the XR controller.
@@ -8687,7 +8687,7 @@ class $s {
    * @return {Group} A group representing the grip space of the XR controller.
    */
   getGripSpace() {
-    return this._grip === null && (this._grip = new is(), this._grip.matrixAutoUpdate = !1, this._grip.visible = !1, this._grip.hasLinearVelocity = !1, this._grip.linearVelocity = new U(), this._grip.hasAngularVelocity = !1, this._grip.angularVelocity = new U()), this._grip;
+    return this._grip === null && (this._grip = new ns(), this._grip.matrixAutoUpdate = !1, this._grip.visible = !1, this._grip.hasLinearVelocity = !1, this._grip.linearVelocity = new U(), this._grip.hasAngularVelocity = !1, this._grip.angularVelocity = new U()), this._grip;
   }
   /**
    * Dispatches the given event to the groups representing
@@ -8769,7 +8769,7 @@ class $s {
    */
   _getHandJoint(e, t) {
     if (e.joints[t.jointName] === void 0) {
-      const n = new is();
+      const n = new ns();
       n.matrixAutoUpdate = !1, n.visible = !1, e.joints[t.jointName] = n, e.add(n);
     }
     return e.joints[t.jointName];
@@ -9056,8 +9056,8 @@ class gi {
     return new this.constructor().copy(this);
   }
 }
-const hi = /* @__PURE__ */ new ka(), Vu = /* @__PURE__ */ new ue(0.5, 0.5), rs = /* @__PURE__ */ new U();
-class Kl {
+const hi = /* @__PURE__ */ new ka(), Vu = /* @__PURE__ */ new ue(0.5, 0.5), is = /* @__PURE__ */ new U();
+class ql {
   /**
    * Constructs a new frustum.
    *
@@ -9169,7 +9169,7 @@ class Kl {
     const t = this.planes;
     for (let n = 0; n < 6; n++) {
       const r = t[n];
-      if (rs.x = r.normal.x > 0 ? e.max.x : e.min.x, rs.y = r.normal.y > 0 ? e.max.y : e.min.y, rs.z = r.normal.z > 0 ? e.max.z : e.min.z, r.distanceToPoint(rs) < 0)
+      if (is.x = r.normal.x > 0 ? e.max.x : e.min.x, is.y = r.normal.y > 0 ? e.max.y : e.min.y, is.z = r.normal.z > 0 ? e.max.z : e.min.z, r.distanceToPoint(is) < 0)
         return !1;
     }
     return !0;
@@ -9226,7 +9226,7 @@ class Wa extends wt {
     return this.compareFunction !== null && (t.compareFunction = this.compareFunction), t;
   }
 }
-class Jl extends wt {
+class Kl extends wt {
   /**
    * Creates a new raw texture.
    *
@@ -9473,7 +9473,7 @@ class kn {
     return this.arcLengthDivisions = e.arcLengthDivisions, this;
   }
 }
-class Zl extends kn {
+class Jl extends kn {
   /**
    * Constructs a new ellipse curve.
    *
@@ -9522,7 +9522,7 @@ class Zl extends kn {
     return super.fromJSON(e), this.aX = e.aX, this.aY = e.aY, this.xRadius = e.xRadius, this.yRadius = e.yRadius, this.aStartAngle = e.aStartAngle, this.aEndAngle = e.aEndAngle, this.aClockwise = e.aClockwise, this.aRotation = e.aRotation, this;
   }
 }
-class Wu extends Zl {
+class Wu extends Jl {
   /**
    * Constructs a new arc curve.
    *
@@ -9556,7 +9556,7 @@ function Xa() {
     }
   };
 }
-const ss = /* @__PURE__ */ new U(), ta = /* @__PURE__ */ new Xa(), na = /* @__PURE__ */ new Xa(), ia = /* @__PURE__ */ new Xa();
+const rs = /* @__PURE__ */ new U(), ta = /* @__PURE__ */ new Xa(), na = /* @__PURE__ */ new Xa(), ia = /* @__PURE__ */ new Xa();
 class Xu extends kn {
   /**
    * Constructs a new Catmull-Rom curve.
@@ -9581,9 +9581,9 @@ class Xu extends kn {
     let o = Math.floor(a), l = a - o;
     this.closed ? o += o > 0 ? 0 : (Math.floor(Math.abs(o) / s) + 1) * s : l === 0 && o === s - 1 && (o = s - 2, l = 1);
     let c, u;
-    this.closed || o > 0 ? c = r[(o - 1) % s] : (ss.subVectors(r[0], r[1]).add(r[0]), c = ss);
+    this.closed || o > 0 ? c = r[(o - 1) % s] : (rs.subVectors(r[0], r[1]).add(r[0]), c = rs);
     const h = r[o % s], f = r[(o + 1) % s];
-    if (this.closed || o + 2 < s ? u = r[(o + 2) % s] : (ss.subVectors(r[s - 1], r[s - 2]).add(r[s - 1]), u = ss), this.curveType === "centripetal" || this.curveType === "chordal") {
+    if (this.closed || o + 2 < s ? u = r[(o + 2) % s] : (rs.subVectors(r[s - 1], r[s - 2]).add(r[s - 1]), u = rs), this.curveType === "centripetal" || this.curveType === "chordal") {
       const d = this.curveType === "chordal" ? 0.5 : 0.25;
       let v = Math.pow(c.distanceToSquared(h), d), g = Math.pow(h.distanceToSquared(f), d), m = Math.pow(f.distanceToSquared(u), d);
       g < 1e-4 && (g = 1), v < 1e-4 && (v = g), m < 1e-4 && (m = g), ta.initNonuniformCatmullRom(c.x, h.x, f.x, u.x, v, g, m), na.initNonuniformCatmullRom(c.y, h.y, f.y, u.y, v, g, m), ia.initNonuniformCatmullRom(c.z, h.z, f.z, u.z, v, g, m);
@@ -9771,7 +9771,7 @@ class th extends kn {
     return super.fromJSON(e), this.v1.fromArray(e.v1), this.v2.fromArray(e.v2), this;
   }
 }
-class jl extends kn {
+class Zl extends kn {
   /**
    * Constructs a new line curve.
    *
@@ -9849,7 +9849,7 @@ class nh extends kn {
     return super.fromJSON(e), this.v0.fromArray(e.v0), this.v1.fromArray(e.v1), this.v2.fromArray(e.v2), this;
   }
 }
-class $l extends kn {
+class jl extends kn {
   /**
    * Constructs a new Quadratic Bezier curve.
    *
@@ -9941,11 +9941,11 @@ var rh = /* @__PURE__ */ Object.freeze({
   CatmullRomCurve3: Xu,
   CubicBezierCurve: $u,
   CubicBezierCurve3: eh,
-  EllipseCurve: Zl,
+  EllipseCurve: Jl,
   LineCurve: th,
-  LineCurve3: jl,
+  LineCurve3: Zl,
   QuadraticBezierCurve: nh,
-  QuadraticBezierCurve3: $l,
+  QuadraticBezierCurve3: jl,
   SplineCurve: ih
 });
 class ji extends wn {
@@ -9974,8 +9974,8 @@ class ji extends wn {
     }
     for (let p = 0; p < l; p++)
       for (let T = 0; T < o; T++) {
-        const S = T + c * p, _ = T + c * (p + 1), y = T + 1 + c * (p + 1), b = T + 1 + c * p;
-        d.push(S, _, b), d.push(_, y, b);
+        const S = T + c * p, _ = T + c * (p + 1), y = T + 1 + c * (p + 1), R = T + 1 + c * p;
+        d.push(S, _, R), d.push(_, y, R);
       }
     this.setIndex(d), this.setAttribute("position", new yn(v, 3)), this.setAttribute("normal", new yn(g, 3)), this.setAttribute("uv", new yn(m, 2));
   }
@@ -10003,7 +10003,7 @@ class Ya extends wn {
    * @param {number} [radialSegments=8] - The number of segments that make up the cross-section.
    * @param {boolean} [closed=false] - Whether the tube is closed or not.
    */
-  constructor(e = new $l(new U(-1, -1, 0), new U(-1, 1, 0), new U(1, 1, 0)), t = 64, n = 1, r = 8, s = !1) {
+  constructor(e = new jl(new U(-1, -1, 0), new U(-1, 1, 0), new U(1, 1, 0)), t = 64, n = 1, r = 8, s = !1) {
     super(), this.type = "TubeGeometry", this.parameters = {
       path: e,
       tubularSegments: t,
@@ -10025,16 +10025,16 @@ class Ya extends wn {
     function m(S) {
       u = e.getPointAt(S / t, u);
       const _ = a.normals[S], y = a.binormals[S];
-      for (let b = 0; b <= r; b++) {
-        const C = b / r * Math.PI * 2, D = Math.sin(C), x = -Math.cos(C);
-        l.x = x * _.x + D * y.x, l.y = x * _.y + D * y.y, l.z = x * _.z + D * y.z, l.normalize(), f.push(l.x, l.y, l.z), o.x = u.x + n * l.x, o.y = u.y + n * l.y, o.z = u.z + n * l.z, h.push(o.x, o.y, o.z);
+      for (let R = 0; R <= r; R++) {
+        const C = R / r * Math.PI * 2, P = Math.sin(C), x = -Math.cos(C);
+        l.x = x * _.x + P * y.x, l.y = x * _.y + P * y.y, l.z = x * _.z + P * y.z, l.normalize(), f.push(l.x, l.y, l.z), o.x = u.x + n * l.x, o.y = u.y + n * l.y, o.z = u.z + n * l.z, h.push(o.x, o.y, o.z);
       }
     }
     function p() {
       for (let S = 1; S <= t; S++)
         for (let _ = 1; _ <= r; _++) {
-          const y = (r + 1) * (S - 1) + (_ - 1), b = (r + 1) * S + (_ - 1), C = (r + 1) * S + _, D = (r + 1) * (S - 1) + _;
-          v.push(y, b, D), v.push(b, C, D);
+          const y = (r + 1) * (S - 1) + (_ - 1), R = (r + 1) * S + (_ - 1), C = (r + 1) * S + _, P = (r + 1) * (S - 1) + _;
+          v.push(y, R, P), v.push(R, C, P);
         }
     }
     function T() {
@@ -10101,7 +10101,7 @@ class ah extends rr {
     return super.copy(e), this.map = e.map, this.alphaMap = e.alphaMap, this.displacementMap = e.displacementMap, this.displacementScale = e.displacementScale, this.displacementBias = e.displacementBias, this;
   }
 }
-class ec {
+class $l {
   /**
    * Constructs a new loading manager.
    *
@@ -10140,7 +10140,7 @@ class ec {
     };
   }
 }
-class tc extends Ql {
+class ec extends Yl {
   /**
    * Constructs a new orthographic camera.
    *
@@ -10407,7 +10407,7 @@ typeof __THREE_DEVTOOLS__ < "u" && __THREE_DEVTOOLS__.dispatchEvent(new CustomEv
   revision: "180"
 } }));
 typeof window < "u" && (window.__THREE__ ? console.warn("WARNING: Multiple instances of Three.js being imported.") : window.__THREE__ = "180");
-function nc() {
+function tc() {
   let i = null, e = !1, t = null, n = null;
   function r(s, a) {
     t(s, a), n = i.requestAnimationFrame(r);
@@ -14644,7 +14644,7 @@ Sn.physical = {
   vertexShader: Re.meshphysical_vert,
   fragmentShader: Re.meshphysical_frag
 };
-const as = { r: 0, b: 0, g: 0 }, fi = /* @__PURE__ */ new Nn(), Xd = /* @__PURE__ */ new St();
+const ss = { r: 0, b: 0, g: 0 }, fi = /* @__PURE__ */ new Nn(), Xd = /* @__PURE__ */ new St();
 function Yd(i, e, t, n, r, s, a) {
   const o = new Ve(0);
   let l = s === !0 ? 0 : 1, c, u, h = null, f = 0, d = null;
@@ -14656,13 +14656,13 @@ function Yd(i, e, t, n, r, s, a) {
     let _ = !1;
     const y = v(S);
     y === null ? p(o, l) : y && y.isColor && (p(y, 1), _ = !0);
-    const b = i.xr.getEnvironmentBlendMode();
-    b === "additive" ? n.buffers.color.setClear(0, 0, 0, 1, a) : b === "alpha-blend" && n.buffers.color.setClear(0, 0, 0, 0, a), (i.autoClear || _) && (n.buffers.depth.setTest(!0), n.buffers.depth.setMask(!0), n.buffers.color.setMask(!0), i.clear(i.autoClearColor, i.autoClearDepth, i.autoClearStencil));
+    const R = i.xr.getEnvironmentBlendMode();
+    R === "additive" ? n.buffers.color.setClear(0, 0, 0, 1, a) : R === "alpha-blend" && n.buffers.color.setClear(0, 0, 0, 0, a), (i.autoClear || _) && (n.buffers.depth.setTest(!0), n.buffers.depth.setMask(!0), n.buffers.color.setMask(!0), i.clear(i.autoClearColor, i.autoClearDepth, i.autoClearStencil));
   }
   function m(S, _) {
     const y = v(_);
     y && (y.isCubeTexture || y.mapping === 306) ? (u === void 0 && (u = new $t(
-      new Or(1, 1, 1),
+      new Fr(1, 1, 1),
       new Et({
         name: "BackgroundCubeMaterial",
         uniforms: Zi(Sn.backgroundCube.uniforms),
@@ -14674,8 +14674,8 @@ function Yd(i, e, t, n, r, s, a) {
         fog: !1,
         allowOverride: !1
       })
-    ), u.geometry.deleteAttribute("normal"), u.geometry.deleteAttribute("uv"), u.onBeforeRender = function(b, C, D) {
-      this.matrixWorld.copyPosition(D.matrixWorld);
+    ), u.geometry.deleteAttribute("normal"), u.geometry.deleteAttribute("uv"), u.onBeforeRender = function(R, C, P) {
+      this.matrixWorld.copyPosition(P.matrixWorld);
     }, Object.defineProperty(u.material, "envMap", {
       get: function() {
         return this.uniforms.envMap.value;
@@ -14700,7 +14700,7 @@ function Yd(i, e, t, n, r, s, a) {
     }), r.update(c)), c.material.uniforms.t2D.value = y, c.material.uniforms.backgroundIntensity.value = _.backgroundIntensity, c.material.toneMapped = Ke.getTransfer(y.colorSpace) !== et, y.matrixAutoUpdate === !0 && y.updateMatrix(), c.material.uniforms.uvTransform.value.copy(y.matrix), (h !== y || f !== y.version || d !== i.toneMapping) && (c.material.needsUpdate = !0, h = y, f = y.version, d = i.toneMapping), c.layers.enableAll(), S.unshift(c, c.geometry, c.material, 0, 0, null));
   }
   function p(S, _) {
-    S.getRGB(as, Yl(i)), n.buffers.color.setClear(as.r, as.g, as.b, _, a);
+    S.getRGB(ss, Xl(i)), n.buffers.color.setClear(ss.r, ss.g, ss.b, _, a);
   }
   function T() {
     u !== void 0 && (u.geometry.dispose(), u.material.dispose(), u = void 0), c !== void 0 && (c.geometry.dispose(), c.material.dispose(), c = void 0);
@@ -14726,10 +14726,10 @@ function Yd(i, e, t, n, r, s, a) {
 function Qd(i, e) {
   const t = i.getParameter(i.MAX_VERTEX_ATTRIBS), n = {}, r = f(null);
   let s = r, a = !1;
-  function o(E, L, z, H, Q) {
+  function o(E, L, z, V, Q) {
     let Y = !1;
-    const O = h(H, z, L);
-    s !== O && (s = O, c(s.object)), Y = d(E, H, z, Q), Y && v(E, H, z, Q), Q !== null && e.update(Q, i.ELEMENT_ARRAY_BUFFER), (Y || a) && (a = !1, _(E, L, z, H), Q !== null && i.bindBuffer(i.ELEMENT_ARRAY_BUFFER, e.get(Q).buffer));
+    const O = h(V, z, L);
+    s !== O && (s = O, c(s.object)), Y = d(E, V, z, Q), Y && v(E, V, z, Q), Q !== null && e.update(Q, i.ELEMENT_ARRAY_BUFFER), (Y || a) && (a = !1, _(E, L, z, V), Q !== null && i.bindBuffer(i.ELEMENT_ARRAY_BUFFER, e.get(Q).buffer));
   }
   function l() {
     return i.createVertexArray();
@@ -14741,18 +14741,18 @@ function Qd(i, e) {
     return i.deleteVertexArray(E);
   }
   function h(E, L, z) {
-    const H = z.wireframe === !0;
+    const V = z.wireframe === !0;
     let Q = n[E.id];
     Q === void 0 && (Q = {}, n[E.id] = Q);
     let Y = Q[L.id];
     Y === void 0 && (Y = {}, Q[L.id] = Y);
-    let O = Y[H];
-    return O === void 0 && (O = f(l()), Y[H] = O), O;
+    let O = Y[V];
+    return O === void 0 && (O = f(l()), Y[V] = O), O;
   }
   function f(E) {
-    const L = [], z = [], H = [];
+    const L = [], z = [], V = [];
     for (let Q = 0; Q < t; Q++)
-      L[Q] = 0, z[Q] = 0, H[Q] = 0;
+      L[Q] = 0, z[Q] = 0, V[Q] = 0;
     return {
       // for backward compatibility on non-VAO support browser
       geometry: null,
@@ -14760,37 +14760,37 @@ function Qd(i, e) {
       wireframe: !1,
       newAttributes: L,
       enabledAttributes: z,
-      attributeDivisors: H,
+      attributeDivisors: V,
       object: E,
       attributes: {},
       index: null
     };
   }
-  function d(E, L, z, H) {
+  function d(E, L, z, V) {
     const Q = s.attributes, Y = L.attributes;
     let O = 0;
-    const R = z.getAttributes();
-    for (const I in R)
-      if (R[I].location >= 0) {
-        const V = Q[I];
-        let ee = Y[I];
-        if (ee === void 0 && (I === "instanceMatrix" && E.instanceMatrix && (ee = E.instanceMatrix), I === "instanceColor" && E.instanceColor && (ee = E.instanceColor)), V === void 0 || V.attribute !== ee || ee && V.data !== ee.data) return !0;
+    const w = z.getAttributes();
+    for (const D in w)
+      if (w[D].location >= 0) {
+        const G = Q[D];
+        let $ = Y[D];
+        if ($ === void 0 && (D === "instanceMatrix" && E.instanceMatrix && ($ = E.instanceMatrix), D === "instanceColor" && E.instanceColor && ($ = E.instanceColor)), G === void 0 || G.attribute !== $ || $ && G.data !== $.data) return !0;
         O++;
       }
-    return s.attributesNum !== O || s.index !== H;
+    return s.attributesNum !== O || s.index !== V;
   }
-  function v(E, L, z, H) {
+  function v(E, L, z, V) {
     const Q = {}, Y = L.attributes;
     let O = 0;
-    const R = z.getAttributes();
-    for (const I in R)
-      if (R[I].location >= 0) {
-        let V = Y[I];
-        V === void 0 && (I === "instanceMatrix" && E.instanceMatrix && (V = E.instanceMatrix), I === "instanceColor" && E.instanceColor && (V = E.instanceColor));
-        const ee = {};
-        ee.attribute = V, V && V.data && (ee.data = V.data), Q[I] = ee, O++;
+    const w = z.getAttributes();
+    for (const D in w)
+      if (w[D].location >= 0) {
+        let G = Y[D];
+        G === void 0 && (D === "instanceMatrix" && E.instanceMatrix && (G = E.instanceMatrix), D === "instanceColor" && E.instanceColor && (G = E.instanceColor));
+        const $ = {};
+        $.attribute = G, G && G.data && ($.data = G.data), Q[D] = $, O++;
       }
-    s.attributes = Q, s.attributesNum = O, s.index = H;
+    s.attributes = Q, s.attributesNum = O, s.index = V;
   }
   function g() {
     const E = s.newAttributes;
@@ -14801,83 +14801,83 @@ function Qd(i, e) {
     p(E, 0);
   }
   function p(E, L) {
-    const z = s.newAttributes, H = s.enabledAttributes, Q = s.attributeDivisors;
-    z[E] = 1, H[E] === 0 && (i.enableVertexAttribArray(E), H[E] = 1), Q[E] !== L && (i.vertexAttribDivisor(E, L), Q[E] = L);
+    const z = s.newAttributes, V = s.enabledAttributes, Q = s.attributeDivisors;
+    z[E] = 1, V[E] === 0 && (i.enableVertexAttribArray(E), V[E] = 1), Q[E] !== L && (i.vertexAttribDivisor(E, L), Q[E] = L);
   }
   function T() {
     const E = s.newAttributes, L = s.enabledAttributes;
-    for (let z = 0, H = L.length; z < H; z++)
+    for (let z = 0, V = L.length; z < V; z++)
       L[z] !== E[z] && (i.disableVertexAttribArray(z), L[z] = 0);
   }
-  function S(E, L, z, H, Q, Y, O) {
-    O === !0 ? i.vertexAttribIPointer(E, L, z, Q, Y) : i.vertexAttribPointer(E, L, z, H, Q, Y);
+  function S(E, L, z, V, Q, Y, O) {
+    O === !0 ? i.vertexAttribIPointer(E, L, z, Q, Y) : i.vertexAttribPointer(E, L, z, V, Q, Y);
   }
-  function _(E, L, z, H) {
+  function _(E, L, z, V) {
     g();
-    const Q = H.attributes, Y = z.getAttributes(), O = L.defaultAttributeValues;
-    for (const R in Y) {
-      const I = Y[R];
-      if (I.location >= 0) {
-        let k = Q[R];
-        if (k === void 0 && (R === "instanceMatrix" && E.instanceMatrix && (k = E.instanceMatrix), R === "instanceColor" && E.instanceColor && (k = E.instanceColor)), k !== void 0) {
-          const V = k.normalized, ee = k.itemSize, le = e.get(k);
+    const Q = V.attributes, Y = z.getAttributes(), O = L.defaultAttributeValues;
+    for (const w in Y) {
+      const D = Y[w];
+      if (D.location >= 0) {
+        let k = Q[w];
+        if (k === void 0 && (w === "instanceMatrix" && E.instanceMatrix && (k = E.instanceMatrix), w === "instanceColor" && E.instanceColor && (k = E.instanceColor)), k !== void 0) {
+          const G = k.normalized, $ = k.itemSize, le = e.get(k);
           if (le === void 0) continue;
           const Ee = le.buffer, we = le.type, pe = le.bytesPerElement, q = we === i.INT || we === i.UNSIGNED_INT || k.gpuType === 1013;
           if (k.isInterleavedBufferAttribute) {
             const j = k.data, ae = j.stride, De = k.offset;
             if (j.isInstancedInterleavedBuffer) {
-              for (let xe = 0; xe < I.locationSize; xe++)
-                p(I.location + xe, j.meshPerAttribute);
-              E.isInstancedMesh !== !0 && H._maxInstanceCount === void 0 && (H._maxInstanceCount = j.meshPerAttribute * j.count);
+              for (let xe = 0; xe < D.locationSize; xe++)
+                p(D.location + xe, j.meshPerAttribute);
+              E.isInstancedMesh !== !0 && V._maxInstanceCount === void 0 && (V._maxInstanceCount = j.meshPerAttribute * j.count);
             } else
-              for (let xe = 0; xe < I.locationSize; xe++)
-                m(I.location + xe);
+              for (let xe = 0; xe < D.locationSize; xe++)
+                m(D.location + xe);
             i.bindBuffer(i.ARRAY_BUFFER, Ee);
-            for (let xe = 0; xe < I.locationSize; xe++)
+            for (let xe = 0; xe < D.locationSize; xe++)
               S(
-                I.location + xe,
-                ee / I.locationSize,
+                D.location + xe,
+                $ / D.locationSize,
                 we,
-                V,
+                G,
                 ae * pe,
-                (De + ee / I.locationSize * xe) * pe,
+                (De + $ / D.locationSize * xe) * pe,
                 q
               );
           } else {
             if (k.isInstancedBufferAttribute) {
-              for (let j = 0; j < I.locationSize; j++)
-                p(I.location + j, k.meshPerAttribute);
-              E.isInstancedMesh !== !0 && H._maxInstanceCount === void 0 && (H._maxInstanceCount = k.meshPerAttribute * k.count);
+              for (let j = 0; j < D.locationSize; j++)
+                p(D.location + j, k.meshPerAttribute);
+              E.isInstancedMesh !== !0 && V._maxInstanceCount === void 0 && (V._maxInstanceCount = k.meshPerAttribute * k.count);
             } else
-              for (let j = 0; j < I.locationSize; j++)
-                m(I.location + j);
+              for (let j = 0; j < D.locationSize; j++)
+                m(D.location + j);
             i.bindBuffer(i.ARRAY_BUFFER, Ee);
-            for (let j = 0; j < I.locationSize; j++)
+            for (let j = 0; j < D.locationSize; j++)
               S(
-                I.location + j,
-                ee / I.locationSize,
+                D.location + j,
+                $ / D.locationSize,
                 we,
-                V,
-                ee * pe,
-                ee / I.locationSize * j * pe,
+                G,
+                $ * pe,
+                $ / D.locationSize * j * pe,
                 q
               );
           }
         } else if (O !== void 0) {
-          const V = O[R];
-          if (V !== void 0)
-            switch (V.length) {
+          const G = O[w];
+          if (G !== void 0)
+            switch (G.length) {
               case 2:
-                i.vertexAttrib2fv(I.location, V);
+                i.vertexAttrib2fv(D.location, G);
                 break;
               case 3:
-                i.vertexAttrib3fv(I.location, V);
+                i.vertexAttrib3fv(D.location, G);
                 break;
               case 4:
-                i.vertexAttrib4fv(I.location, V);
+                i.vertexAttrib4fv(D.location, G);
                 break;
               default:
-                i.vertexAttrib1fv(I.location, V);
+                i.vertexAttrib1fv(D.location, G);
             }
         }
       }
@@ -14885,25 +14885,25 @@ function Qd(i, e) {
     T();
   }
   function y() {
-    D();
+    P();
     for (const E in n) {
       const L = n[E];
       for (const z in L) {
-        const H = L[z];
-        for (const Q in H)
-          u(H[Q].object), delete H[Q];
+        const V = L[z];
+        for (const Q in V)
+          u(V[Q].object), delete V[Q];
         delete L[z];
       }
       delete n[E];
     }
   }
-  function b(E) {
+  function R(E) {
     if (n[E.id] === void 0) return;
     const L = n[E.id];
     for (const z in L) {
-      const H = L[z];
-      for (const Q in H)
-        u(H[Q].object), delete H[Q];
+      const V = L[z];
+      for (const Q in V)
+        u(V[Q].object), delete V[Q];
       delete L[z];
     }
     delete n[E.id];
@@ -14912,13 +14912,13 @@ function Qd(i, e) {
     for (const L in n) {
       const z = n[L];
       if (z[E.id] === void 0) continue;
-      const H = z[E.id];
-      for (const Q in H)
-        u(H[Q].object), delete H[Q];
+      const V = z[E.id];
+      for (const Q in V)
+        u(V[Q].object), delete V[Q];
       delete z[E.id];
     }
   }
-  function D() {
+  function P() {
     x(), a = !0, s !== r && (s = r, c(s.object));
   }
   function x() {
@@ -14926,10 +14926,10 @@ function Qd(i, e) {
   }
   return {
     setup: o,
-    reset: D,
+    reset: P,
     resetDefaultState: x,
     dispose: y,
-    releaseStatesOfGeometry: b,
+    releaseStatesOfGeometry: R,
     releaseStatesOfProgram: C,
     initAttributes: g,
     enableAttribute: m,
@@ -14986,9 +14986,9 @@ function Kd(i, e, t, n) {
     return !(C !== 1023 && n.convert(C) !== i.getParameter(i.IMPLEMENTATION_COLOR_READ_FORMAT));
   }
   function o(C) {
-    const D = C === 1016 && (e.has("EXT_color_buffer_half_float") || e.has("EXT_color_buffer_float"));
+    const P = C === 1016 && (e.has("EXT_color_buffer_half_float") || e.has("EXT_color_buffer_float"));
     return !(C !== 1009 && n.convert(C) !== i.getParameter(i.IMPLEMENTATION_COLOR_READ_TYPE) && // Edge and Chrome Mac < 52 (#9513)
-    C !== 1015 && !D);
+    C !== 1015 && !P);
   }
   function l(C) {
     if (C === "highp") {
@@ -15001,7 +15001,7 @@ function Kd(i, e, t, n) {
   let c = t.precision !== void 0 ? t.precision : "highp";
   const u = l(c);
   u !== c && (console.warn("THREE.WebGLRenderer:", c, "not supported, using", u, "instead."), c = u);
-  const h = t.logarithmicDepthBuffer === !0, f = t.reversedDepthBuffer === !0 && e.has("EXT_clip_control"), d = i.getParameter(i.MAX_TEXTURE_IMAGE_UNITS), v = i.getParameter(i.MAX_VERTEX_TEXTURE_IMAGE_UNITS), g = i.getParameter(i.MAX_TEXTURE_SIZE), m = i.getParameter(i.MAX_CUBE_MAP_TEXTURE_SIZE), p = i.getParameter(i.MAX_VERTEX_ATTRIBS), T = i.getParameter(i.MAX_VERTEX_UNIFORM_VECTORS), S = i.getParameter(i.MAX_VARYING_VECTORS), _ = i.getParameter(i.MAX_FRAGMENT_UNIFORM_VECTORS), y = v > 0, b = i.getParameter(i.MAX_SAMPLES);
+  const h = t.logarithmicDepthBuffer === !0, f = t.reversedDepthBuffer === !0 && e.has("EXT_clip_control"), d = i.getParameter(i.MAX_TEXTURE_IMAGE_UNITS), v = i.getParameter(i.MAX_VERTEX_TEXTURE_IMAGE_UNITS), g = i.getParameter(i.MAX_TEXTURE_SIZE), m = i.getParameter(i.MAX_CUBE_MAP_TEXTURE_SIZE), p = i.getParameter(i.MAX_VERTEX_ATTRIBS), T = i.getParameter(i.MAX_VERTEX_UNIFORM_VECTORS), S = i.getParameter(i.MAX_VARYING_VECTORS), _ = i.getParameter(i.MAX_FRAGMENT_UNIFORM_VECTORS), y = v > 0, R = i.getParameter(i.MAX_SAMPLES);
   return {
     isWebGL2: !0,
     // keeping this for backwards compatibility
@@ -15021,7 +15021,7 @@ function Kd(i, e, t, n) {
     maxVaryings: S,
     maxFragmentUniforms: _,
     vertexTextures: y,
-    maxSamples: b
+    maxSamples: R
   };
 }
 function Jd(i) {
@@ -15107,7 +15107,7 @@ function Zd(i) {
     dispose: s
   };
 }
-const Wi = 4, ko = [0.125, 0.215, 0.35, 0.446, 0.526, 0.582], xi = 20, ra = /* @__PURE__ */ new tc(), Vo = /* @__PURE__ */ new Ve();
+const Wi = 4, ko = [0.125, 0.215, 0.35, 0.446, 0.526, 0.582], xi = 20, ra = /* @__PURE__ */ new ec(), Vo = /* @__PURE__ */ new Ve();
 let sa = null, aa = 0, oa = 0, la = !1;
 const vi = (1 + Math.sqrt(5)) / 2, Gi = 1 / vi, Wo = [
   /* @__PURE__ */ new U(-vi, Gi, 0),
@@ -15210,7 +15210,7 @@ class Xo {
       this._lodPlanes[e].dispose();
   }
   _cleanup(e) {
-    this._renderer.setRenderTarget(sa, aa, oa), this._renderer.xr.enabled = la, e.scissorTest = !1, os(e, 0, 0, e.width, e.height);
+    this._renderer.setRenderTarget(sa, aa, oa), this._renderer.xr.enabled = la, e.scissorTest = !1, as(e, 0, 0, e.width, e.height);
   }
   _fromTexture(e, t) {
     e.mapping === 301 || e.mapping === 302 ? this._setSize(e.image.length === 0 ? 16 : e.image[0].width || e.image[0].image.width) : this._setSize(e.image.width / 4), sa = this._renderer.getRenderTarget(), aa = this._renderer.getActiveCubeFace(), oa = this._renderer.getActiveMipmapLevel(), la = this._renderer.xr.enabled, this._renderer.xr.enabled = !1;
@@ -15241,12 +15241,12 @@ class Xo {
   _sceneToCubeUV(e, t, n, r, s) {
     const l = new Zt(90, 1, t, n), c = [1, -1, 1, 1, 1, 1], u = [1, 1, 1, -1, -1, -1], h = this._renderer, f = h.autoClear, d = h.toneMapping;
     h.getClearColor(Vo), h.toneMapping = 0, h.autoClear = !1, h.state.buffers.depth.getReversed() && (h.setRenderTarget(r), h.clearDepth(), h.setRenderTarget(null));
-    const g = new Vl({
+    const g = new kl({
       name: "PMREM.Background",
       side: 1,
       depthWrite: !1,
       depthTest: !1
-    }), m = new $t(new Or(), g);
+    }), m = new $t(new Fr(), g);
     let p = !1;
     const T = e.background;
     T ? T.isColor && (g.color.copy(T), e.background = null, p = !0) : (g.color.copy(Vo), p = !0);
@@ -15254,7 +15254,7 @@ class Xo {
       const _ = S % 3;
       _ === 0 ? (l.up.set(0, c[S], 0), l.position.set(s.x, s.y, s.z), l.lookAt(s.x + u[S], s.y, s.z)) : _ === 1 ? (l.up.set(0, 0, c[S]), l.position.set(s.x, s.y, s.z), l.lookAt(s.x, s.y + u[S], s.z)) : (l.up.set(0, c[S], 0), l.position.set(s.x, s.y, s.z), l.lookAt(s.x, s.y, s.z + u[S]));
       const y = this._cubeSize;
-      os(r, _ * y, S > 2 ? y : 0, y, y), h.setRenderTarget(r), p && h.render(m, l), h.render(e, l);
+      as(r, _ * y, S > 2 ? y : 0, y, y), h.setRenderTarget(r), p && h.render(m, l), h.render(e, l);
     }
     m.geometry.dispose(), m.material.dispose(), h.toneMapping = d, h.autoClear = f, e.background = T;
   }
@@ -15264,7 +15264,7 @@ class Xo {
     const s = r ? this._cubemapMaterial : this._equirectMaterial, a = new $t(this._lodPlanes[0], s), o = s.uniforms;
     o.envMap.value = e;
     const l = this._cubeSize;
-    os(t, 0, 0, 3 * l, 2 * l), n.setRenderTarget(t), n.render(a, ra);
+    as(t, 0, 0, 3 * l, 2 * l), n.setRenderTarget(t), n.render(a, ra);
   }
   _applyPMREM(e) {
     const t = this._renderer, n = t.autoClear;
@@ -15320,7 +15320,7 @@ class Xo {
     const p = [];
     let T = 0;
     for (let C = 0; C < xi; ++C) {
-      const D = C / g, x = Math.exp(-D * D / 2);
+      const P = C / g, x = Math.exp(-P * P / 2);
       p.push(x), C === 0 ? T += x : C < m && (T += 2 * x);
     }
     for (let C = 0; C < p.length; C++)
@@ -15328,8 +15328,8 @@ class Xo {
     f.envMap.value = e.texture, f.samples.value = m, f.weights.value = p, f.latitudinal.value = a === "latitudinal", o && (f.poleAxis.value = o);
     const { _lodMax: S } = this;
     f.dTheta.value = v, f.mipInt.value = S - n;
-    const _ = this._sizeLods[r], y = 3 * _ * (r > S - Wi ? r - S + Wi : 0), b = 4 * (this._cubeSize - _);
-    os(t, y, b, 3 * _, 2 * _), l.setRenderTarget(t), l.render(h, ra);
+    const _ = this._sizeLods[r], y = 3 * _ * (r > S - Wi ? r - S + Wi : 0), R = 4 * (this._cubeSize - _);
+    as(t, y, R, 3 * _, 2 * _), l.setRenderTarget(t), l.render(h, ra);
   }
 }
 function $d(i) {
@@ -15342,30 +15342,30 @@ function $d(i) {
     let l = 1 / o;
     a > i - Wi ? l = ko[a - i + Wi - 1] : a === 0 && (l = 0), n.push(l);
     const c = 1 / (o - 2), u = -c, h = 1 + c, f = [u, u, h, u, h, h, u, u, h, h, u, h], d = 6, v = 6, g = 3, m = 2, p = 1, T = new Float32Array(g * v * d), S = new Float32Array(m * v * d), _ = new Float32Array(p * v * d);
-    for (let b = 0; b < d; b++) {
-      const C = b % 3 * 2 / 3 - 1, D = b > 2 ? 0 : -1, x = [
+    for (let R = 0; R < d; R++) {
+      const C = R % 3 * 2 / 3 - 1, P = R > 2 ? 0 : -1, x = [
         C,
-        D,
+        P,
         0,
         C + 2 / 3,
-        D,
+        P,
         0,
         C + 2 / 3,
-        D + 1,
+        P + 1,
         0,
         C,
-        D,
+        P,
         0,
         C + 2 / 3,
-        D + 1,
+        P + 1,
         0,
         C,
-        D + 1,
+        P + 1,
         0
       ];
-      T.set(x, g * v * b), S.set(f, m * v * b);
-      const E = [b, b, b, b, b, b];
-      _.set(E, p * v * b);
+      T.set(x, g * v * R), S.set(f, m * v * R);
+      const E = [R, R, R, R, R, R];
+      _.set(E, p * v * R);
     }
     const y = new wn();
     y.setAttribute("position", new rn(T, g)), y.setAttribute("uv", new rn(S, m)), y.setAttribute("faceIndex", new rn(_, p)), e.push(y), r > Wi && r--;
@@ -15376,7 +15376,7 @@ function Yo(i, e, t) {
   const n = new Pt(i, e, t);
   return n.texture.mapping = 306, n.texture.name = "PMREM.cubeUv", n.scissorTest = !0, n;
 }
-function os(i, e, t, n, r) {
+function as(i, e, t, n, r) {
   i.viewport.set(e, t, n, r), i.scissor.set(e, t, n, r);
 }
 function ep(i, e, t) {
@@ -15671,7 +15671,7 @@ function np(i) {
     },
     get: function(n) {
       const r = t(n);
-      return r === null && yr("THREE.WebGLRenderer: " + n + " extension not supported."), r;
+      return r === null && Tr("THREE.WebGLRenderer: " + n + " extension not supported."), r;
     }
   };
 }
@@ -15701,19 +15701,19 @@ function ip(i, e, t, n) {
       const T = d.array;
       g = d.version;
       for (let S = 0, _ = T.length; S < _; S += 3) {
-        const y = T[S + 0], b = T[S + 1], C = T[S + 2];
-        f.push(y, b, b, C, C, y);
+        const y = T[S + 0], R = T[S + 1], C = T[S + 2];
+        f.push(y, R, R, C, C, y);
       }
     } else if (v !== void 0) {
       const T = v.array;
       g = v.version;
       for (let S = 0, _ = T.length / 3 - 1; S < _; S += 3) {
-        const y = S + 0, b = S + 1, C = S + 2;
-        f.push(y, b, b, C, C, y);
+        const y = S + 0, R = S + 1, C = S + 2;
+        f.push(y, R, R, C, C, y);
       }
     } else
       return;
-    const m = new (zl(f) ? Xl : Wl)(f, 1);
+    const m = new (Nl(f) ? Wl : Vl)(f, 1);
     m.version = g;
     const p = s.get(h);
     p && e.remove(p), s.set(h, m);
@@ -15824,29 +15824,29 @@ function ap(i, e, t) {
     let f = n.get(o);
     if (f === void 0 || f.count !== h) {
       let E = function() {
-        D.dispose(), n.delete(o), o.removeEventListener("dispose", E);
+        P.dispose(), n.delete(o), o.removeEventListener("dispose", E);
       };
       var d = E;
       f !== void 0 && f.texture.dispose();
       const v = o.morphAttributes.position !== void 0, g = o.morphAttributes.normal !== void 0, m = o.morphAttributes.color !== void 0, p = o.morphAttributes.position || [], T = o.morphAttributes.normal || [], S = o.morphAttributes.color || [];
       let _ = 0;
       v === !0 && (_ = 1), g === !0 && (_ = 2), m === !0 && (_ = 3);
-      let y = o.attributes.position.count * _, b = 1;
-      y > e.maxTextureSize && (b = Math.ceil(y / e.maxTextureSize), y = e.maxTextureSize);
-      const C = new Float32Array(y * b * 4 * h), D = new Gl(C, y, b, h);
-      D.type = 1015, D.needsUpdate = !0;
+      let y = o.attributes.position.count * _, R = 1;
+      y > e.maxTextureSize && (R = Math.ceil(y / e.maxTextureSize), y = e.maxTextureSize);
+      const C = new Float32Array(y * R * 4 * h), P = new zl(C, y, R, h);
+      P.type = 1015, P.needsUpdate = !0;
       const x = _ * 4;
       for (let L = 0; L < h; L++) {
-        const z = p[L], H = T[L], Q = S[L], Y = y * b * 4 * L;
+        const z = p[L], V = T[L], Q = S[L], Y = y * R * 4 * L;
         for (let O = 0; O < z.count; O++) {
-          const R = O * x;
-          v === !0 && (r.fromBufferAttribute(z, O), C[Y + R + 0] = r.x, C[Y + R + 1] = r.y, C[Y + R + 2] = r.z, C[Y + R + 3] = 0), g === !0 && (r.fromBufferAttribute(H, O), C[Y + R + 4] = r.x, C[Y + R + 5] = r.y, C[Y + R + 6] = r.z, C[Y + R + 7] = 0), m === !0 && (r.fromBufferAttribute(Q, O), C[Y + R + 8] = r.x, C[Y + R + 9] = r.y, C[Y + R + 10] = r.z, C[Y + R + 11] = Q.itemSize === 4 ? r.w : 1);
+          const w = O * x;
+          v === !0 && (r.fromBufferAttribute(z, O), C[Y + w + 0] = r.x, C[Y + w + 1] = r.y, C[Y + w + 2] = r.z, C[Y + w + 3] = 0), g === !0 && (r.fromBufferAttribute(V, O), C[Y + w + 4] = r.x, C[Y + w + 5] = r.y, C[Y + w + 6] = r.z, C[Y + w + 7] = 0), m === !0 && (r.fromBufferAttribute(Q, O), C[Y + w + 8] = r.x, C[Y + w + 9] = r.y, C[Y + w + 10] = r.z, C[Y + w + 11] = Q.itemSize === 4 ? r.w : 1);
         }
       }
       f = {
         count: h,
-        texture: D,
-        size: new ue(y, b)
+        texture: P,
+        size: new ue(y, R)
       }, n.set(o, f), o.addEventListener("dispose", E);
     }
     if (a.isInstancedMesh === !0 && a.morphTexture !== null)
@@ -15886,7 +15886,7 @@ function op(i, e, t, n) {
     dispose: a
   };
 }
-const ic = /* @__PURE__ */ new wt(), Ko = /* @__PURE__ */ new Wa(1, 1), rc = /* @__PURE__ */ new Gl(), sc = /* @__PURE__ */ new Su(), ac = /* @__PURE__ */ new ql(), Jo = [], Zo = [], jo = new Float32Array(16), $o = new Float32Array(9), el = new Float32Array(4);
+const nc = /* @__PURE__ */ new wt(), Ko = /* @__PURE__ */ new Wa(1, 1), ic = /* @__PURE__ */ new zl(), rc = /* @__PURE__ */ new Su(), sc = /* @__PURE__ */ new Ql(), Jo = [], Zo = [], jo = new Float32Array(16), $o = new Float32Array(9), el = new Float32Array(4);
 function sr(i, e, t) {
   const n = i[0];
   if (n <= 0 || n > 0) return i;
@@ -16045,19 +16045,19 @@ function Mp(i, e, t) {
   const n = this.cache, r = t.allocateTextureUnit();
   n[0] !== r && (i.uniform1i(this.addr, r), n[0] = r);
   let s;
-  this.type === i.SAMPLER_2D_SHADOW ? (Ko.compareFunction = 515, s = Ko) : s = ic, t.setTexture2D(e || s, r);
+  this.type === i.SAMPLER_2D_SHADOW ? (Ko.compareFunction = 515, s = Ko) : s = nc, t.setTexture2D(e || s, r);
 }
 function Tp(i, e, t) {
   const n = this.cache, r = t.allocateTextureUnit();
-  n[0] !== r && (i.uniform1i(this.addr, r), n[0] = r), t.setTexture3D(e || sc, r);
+  n[0] !== r && (i.uniform1i(this.addr, r), n[0] = r), t.setTexture3D(e || rc, r);
 }
 function yp(i, e, t) {
   const n = this.cache, r = t.allocateTextureUnit();
-  n[0] !== r && (i.uniform1i(this.addr, r), n[0] = r), t.setTextureCube(e || ac, r);
+  n[0] !== r && (i.uniform1i(this.addr, r), n[0] = r), t.setTextureCube(e || sc, r);
 }
 function Cp(i, e, t) {
   const n = this.cache, r = t.allocateTextureUnit();
-  n[0] !== r && (i.uniform1i(this.addr, r), n[0] = r), t.setTexture2DArray(e || rc, r);
+  n[0] !== r && (i.uniform1i(this.addr, r), n[0] = r), t.setTexture2DArray(e || ic, r);
 }
 function wp(i) {
   switch (i) {
@@ -16199,25 +16199,25 @@ function Vp(i, e, t) {
   const n = this.cache, r = e.length, s = ys(t, r);
   Mt(n, s) || (i.uniform1iv(this.addr, s), Tt(n, s));
   for (let a = 0; a !== r; ++a)
-    t.setTexture2D(e[a] || ic, s[a]);
+    t.setTexture2D(e[a] || nc, s[a]);
 }
 function Wp(i, e, t) {
   const n = this.cache, r = e.length, s = ys(t, r);
   Mt(n, s) || (i.uniform1iv(this.addr, s), Tt(n, s));
   for (let a = 0; a !== r; ++a)
-    t.setTexture3D(e[a] || sc, s[a]);
+    t.setTexture3D(e[a] || rc, s[a]);
 }
 function Xp(i, e, t) {
   const n = this.cache, r = e.length, s = ys(t, r);
   Mt(n, s) || (i.uniform1iv(this.addr, s), Tt(n, s));
   for (let a = 0; a !== r; ++a)
-    t.setTextureCube(e[a] || ac, s[a]);
+    t.setTextureCube(e[a] || sc, s[a]);
 }
 function Yp(i, e, t) {
   const n = this.cache, r = e.length, s = ys(t, r);
   Mt(n, s) || (i.uniform1iv(this.addr, s), Tt(n, s));
   for (let a = 0; a !== r; ++a)
-    t.setTexture2DArray(e[a] || rc, s[a]);
+    t.setTexture2DArray(e[a] || ic, s[a]);
 }
 function Qp(i) {
   switch (i) {
@@ -16345,7 +16345,7 @@ function Zp(i, e, t) {
     }
   }
 }
-class us {
+class cs {
   constructor(e, t) {
     this.seq = [], this.map = {};
     const n = e.getProgramParameter(t, e.ACTIVE_UNIFORMS);
@@ -16398,7 +16398,7 @@ function tm(i) {
   Ke._getMatrix(il, Ke.workingColorSpace, i);
   const e = `mat3( ${il.elements.map((t) => t.toFixed(4))} )`;
   switch (Ke.getTransfer(i)) {
-    case gs:
+    case ms:
       return [e, "LinearTransferOETF"];
     case et:
       return [e, "sRGBTransferOETF"];
@@ -16458,10 +16458,10 @@ function im(i, e) {
   }
   return "vec3 " + i + "( vec3 color ) { return " + t + "ToneMapping( color ); }";
 }
-const ls = /* @__PURE__ */ new U();
+const os = /* @__PURE__ */ new U();
 function rm() {
-  Ke.getLuminanceCoefficients(ls);
-  const i = ls.x.toFixed(4), e = ls.y.toFixed(4), t = ls.z.toFixed(4);
+  Ke.getLuminanceCoefficients(os);
+  const i = os.x.toFixed(4), e = os.y.toFixed(4), t = os.z.toFixed(4);
   return [
     "float luminance( const in vec3 rgb ) {",
     `	const vec3 weights = vec3( ${i}, ${e}, ${t} );`,
@@ -16863,17 +16863,17 @@ function _m(i, e, t, n) {
   ].join(`
 `) + `
 ` + p);
-  const S = T + m + a, _ = T + p + o, y = nl(r, r.VERTEX_SHADER, S), b = nl(r, r.FRAGMENT_SHADER, _);
-  r.attachShader(g, y), r.attachShader(g, b), t.index0AttributeName !== void 0 ? r.bindAttribLocation(g, 0, t.index0AttributeName) : t.morphTargets === !0 && r.bindAttribLocation(g, 0, "position"), r.linkProgram(g);
+  const S = T + m + a, _ = T + p + o, y = nl(r, r.VERTEX_SHADER, S), R = nl(r, r.FRAGMENT_SHADER, _);
+  r.attachShader(g, y), r.attachShader(g, R), t.index0AttributeName !== void 0 ? r.bindAttribLocation(g, 0, t.index0AttributeName) : t.morphTargets === !0 && r.bindAttribLocation(g, 0, "position"), r.linkProgram(g);
   function C(L) {
     if (i.debug.checkShaderErrors) {
-      const z = r.getProgramInfoLog(g) || "", H = r.getShaderInfoLog(y) || "", Q = r.getShaderInfoLog(b) || "", Y = z.trim(), O = H.trim(), R = Q.trim();
-      let I = !0, k = !0;
+      const z = r.getProgramInfoLog(g) || "", V = r.getShaderInfoLog(y) || "", Q = r.getShaderInfoLog(R) || "", Y = z.trim(), O = V.trim(), w = Q.trim();
+      let D = !0, k = !0;
       if (r.getProgramParameter(g, r.LINK_STATUS) === !1)
-        if (I = !1, typeof i.debug.onShaderError == "function")
-          i.debug.onShaderError(r, g, y, b);
+        if (D = !1, typeof i.debug.onShaderError == "function")
+          i.debug.onShaderError(r, g, y, R);
         else {
-          const V = rl(r, y, "vertex"), ee = rl(r, b, "fragment");
+          const G = rl(r, y, "vertex"), $ = rl(r, R, "fragment");
           console.error(
             "THREE.WebGLProgram: Shader Error " + r.getError() + " - VALIDATE_STATUS " + r.getProgramParameter(g, r.VALIDATE_STATUS) + `
 
@@ -16881,29 +16881,29 @@ Material Name: ` + L.name + `
 Material Type: ` + L.type + `
 
 Program Info Log: ` + Y + `
-` + V + `
-` + ee
+` + G + `
+` + $
           );
         }
-      else Y !== "" ? console.warn("THREE.WebGLProgram: Program Info Log:", Y) : (O === "" || R === "") && (k = !1);
+      else Y !== "" ? console.warn("THREE.WebGLProgram: Program Info Log:", Y) : (O === "" || w === "") && (k = !1);
       k && (L.diagnostics = {
-        runnable: I,
+        runnable: D,
         programLog: Y,
         vertexShader: {
           log: O,
           prefix: m
         },
         fragmentShader: {
-          log: R,
+          log: w,
           prefix: p
         }
       });
     }
-    r.deleteShader(y), r.deleteShader(b), D = new us(r, g), x = om(r, g);
+    r.deleteShader(y), r.deleteShader(R), P = new cs(r, g), x = om(r, g);
   }
-  let D;
+  let P;
   this.getUniforms = function() {
-    return D === void 0 && C(this), D;
+    return P === void 0 && C(this), P;
   };
   let x;
   this.getAttributes = function() {
@@ -16914,7 +16914,7 @@ Program Info Log: ` + Y + `
     return E === !1 && (E = r.getProgramParameter(g, jp)), E;
   }, this.destroy = function() {
     n.releaseStatesOfProgram(this), r.deleteProgram(g), this.program = void 0;
-  }, this.type = t.shaderType, this.name = t.shaderName, this.id = $p++, this.cacheKey = e, this.usedTimes = 1, this.program = g, this.vertexShader = y, this.fragmentShader = b, this;
+  }, this.type = t.shaderType, this.name = t.shaderName, this.id = $p++, this.cacheKey = e, this.usedTimes = 1, this.program = g, this.vertexShader = y, this.fragmentShader = R, this;
 }
 let xm = 0;
 class Am {
@@ -16957,7 +16957,7 @@ class Sm {
   }
 }
 function Em(i, e, t, n, r, s, a) {
-  const o = new Hl(), l = new Am(), c = /* @__PURE__ */ new Set(), u = [], h = r.logarithmicDepthBuffer, f = r.vertexTextures;
+  const o = new Gl(), l = new Am(), c = /* @__PURE__ */ new Set(), u = [], h = r.logarithmicDepthBuffer, f = r.vertexTextures;
   let d = r.precision;
   const v = {
     MeshDepthMaterial: "depth",
@@ -16979,10 +16979,10 @@ function Em(i, e, t, n, r, s, a) {
   function g(x) {
     return c.add(x), x === 0 ? "uv" : `uv${x}`;
   }
-  function m(x, E, L, z, H) {
-    const Q = z.fog, Y = H.geometry, O = x.isMeshStandardMaterial ? z.environment : null, R = (x.isMeshStandardMaterial ? t : e).get(x.envMap || O), I = R && R.mapping === 306 ? R.image.height : null, k = v[x.type];
+  function m(x, E, L, z, V) {
+    const Q = z.fog, Y = V.geometry, O = x.isMeshStandardMaterial ? z.environment : null, w = (x.isMeshStandardMaterial ? t : e).get(x.envMap || O), D = w && w.mapping === 306 ? w.image.height : null, k = v[x.type];
     x.precision !== null && (d = r.getMaxPrecision(x.precision), d !== x.precision && console.warn("THREE.WebGLProgram.getParameters:", x.precision, "not supported, using", d, "instead."));
-    const V = Y.morphAttributes.position || Y.morphAttributes.normal || Y.morphAttributes.color, ee = V !== void 0 ? V.length : 0;
+    const G = Y.morphAttributes.position || Y.morphAttributes.normal || Y.morphAttributes.color, $ = G !== void 0 ? G.length : 0;
     let le = 0;
     Y.morphAttributes.position !== void 0 && (le = 1), Y.morphAttributes.normal !== void 0 && (le = 2), Y.morphAttributes.color !== void 0 && (le = 3);
     let Ee, we, pe, q;
@@ -16991,7 +16991,7 @@ function Em(i, e, t, n, r, s, a) {
       Ee = je.vertexShader, we = je.fragmentShader;
     } else
       Ee = x.vertexShader, we = x.fragmentShader, l.update(x), pe = l.getVertexShaderID(x), q = l.getFragmentShaderID(x);
-    const j = i.getRenderTarget(), ae = i.state.buffers.depth.getReversed(), De = H.isInstancedMesh === !0, xe = H.isBatchedMesh === !0, Ne = !!x.map, Rt = !!x.matcap, P = !!R, nt = !!x.aoMap, Fe = !!x.lightMap, Ie = !!x.bumpMap, ve = !!x.normalMap, Ze = !!x.displacementMap, Se = !!x.emissiveMap, ke = !!x.metalnessMap, yt = !!x.roughnessMap, vt = x.anisotropy > 0, w = x.clearcoat > 0, A = x.dispersion > 0, G = x.iridescence > 0, J = x.sheen > 0, $ = x.transmission > 0, K = vt && !!x.anisotropyMap, Ce = w && !!x.clearcoatMap, se = w && !!x.clearcoatNormalMap, Me = w && !!x.clearcoatRoughnessMap, Te = G && !!x.iridescenceMap, ie = G && !!x.iridescenceThicknessMap, de = J && !!x.sheenColorMap, Be = J && !!x.sheenRoughnessMap, ye = !!x.specularMap, he = !!x.specularColorMap, ze = !!x.specularIntensityMap, B = $ && !!x.transmissionMap, re = $ && !!x.thicknessMap, oe = !!x.gradientMap, ge = !!x.alphaMap, te = x.alphaTest > 0, Z = !!x.alphaHash, Ae = !!x.extensions;
+    const j = i.getRenderTarget(), ae = i.state.buffers.depth.getReversed(), De = V.isInstancedMesh === !0, xe = V.isBatchedMesh === !0, Ne = !!x.map, Rt = !!x.matcap, I = !!w, nt = !!x.aoMap, Fe = !!x.lightMap, Ie = !!x.bumpMap, ve = !!x.normalMap, Ze = !!x.displacementMap, Se = !!x.emissiveMap, ke = !!x.metalnessMap, yt = !!x.roughnessMap, vt = x.anisotropy > 0, b = x.clearcoat > 0, A = x.dispersion > 0, H = x.iridescence > 0, J = x.sheen > 0, ee = x.transmission > 0, K = vt && !!x.anisotropyMap, Ce = b && !!x.clearcoatMap, se = b && !!x.clearcoatNormalMap, Me = b && !!x.clearcoatRoughnessMap, Te = H && !!x.iridescenceMap, ie = H && !!x.iridescenceThicknessMap, de = J && !!x.sheenColorMap, Be = J && !!x.sheenRoughnessMap, ye = !!x.specularMap, he = !!x.specularColorMap, ze = !!x.specularIntensityMap, B = ee && !!x.transmissionMap, re = ee && !!x.thicknessMap, oe = !!x.gradientMap, ge = !!x.alphaMap, te = x.alphaTest > 0, Z = !!x.alphaHash, Ae = !!x.extensions;
     let Oe = 0;
     x.toneMapped && (j === null || j.isXRRenderTarget === !0) && (Oe = i.toneMapping);
     const at = {
@@ -17007,18 +17007,18 @@ function Em(i, e, t, n, r, s, a) {
       glslVersion: x.glslVersion,
       precision: d,
       batching: xe,
-      batchingColor: xe && H._colorsTexture !== null,
+      batchingColor: xe && V._colorsTexture !== null,
       instancing: De,
-      instancingColor: De && H.instanceColor !== null,
-      instancingMorph: De && H.morphTexture !== null,
+      instancingColor: De && V.instanceColor !== null,
+      instancingMorph: De && V.morphTexture !== null,
       supportsVertexTextures: f,
       outputColorSpace: j === null ? i.outputColorSpace : j.isXRRenderTarget === !0 ? j.texture.colorSpace : ti,
       alphaToCoverage: !!x.alphaToCoverage,
       map: Ne,
       matcap: Rt,
-      envMap: P,
-      envMapMode: P && R.mapping,
-      envMapCubeUVHeight: I,
+      envMap: I,
+      envMapMode: I && w.mapping,
+      envMapCubeUVHeight: D,
       aoMap: nt,
       lightMap: Fe,
       bumpMap: Ie,
@@ -17031,12 +17031,12 @@ function Em(i, e, t, n, r, s, a) {
       roughnessMap: yt,
       anisotropy: vt,
       anisotropyMap: K,
-      clearcoat: w,
+      clearcoat: b,
       clearcoatMap: Ce,
       clearcoatNormalMap: se,
       clearcoatRoughnessMap: Me,
       dispersion: A,
-      iridescence: G,
+      iridescence: H,
       iridescenceMap: Te,
       iridescenceThicknessMap: ie,
       sheen: J,
@@ -17045,7 +17045,7 @@ function Em(i, e, t, n, r, s, a) {
       specularMap: ye,
       specularColorMap: he,
       specularIntensityMap: ze,
-      transmission: $,
+      transmission: ee,
       transmissionMap: B,
       thicknessMap: re,
       gradientMap: oe,
@@ -17082,7 +17082,7 @@ function Em(i, e, t, n, r, s, a) {
       vertexTangents: !!Y.attributes.tangent && (ve || vt),
       vertexColors: x.vertexColors,
       vertexAlphas: x.vertexColors === !0 && !!Y.attributes.color && Y.attributes.color.itemSize === 4,
-      pointsUvs: H.isPoints === !0 && !!Y.attributes.uv && (Ne || ge),
+      pointsUvs: V.isPoints === !0 && !!Y.attributes.uv && (Ne || ge),
       fog: !!Q,
       useFog: x.fog === !0,
       fogExp2: !!Q && Q.isFogExp2,
@@ -17090,11 +17090,11 @@ function Em(i, e, t, n, r, s, a) {
       sizeAttenuation: x.sizeAttenuation === !0,
       logarithmicDepthBuffer: h,
       reversedDepthBuffer: ae,
-      skinning: H.isSkinnedMesh === !0,
+      skinning: V.isSkinnedMesh === !0,
       morphTargets: Y.morphAttributes.position !== void 0,
       morphNormals: Y.morphAttributes.normal !== void 0,
       morphColors: Y.morphAttributes.color !== void 0,
-      morphTargetsCount: ee,
+      morphTargetsCount: $,
       morphTextureStride: le,
       numDirLights: E.directional.length,
       numPointLights: E.point.length,
@@ -17153,7 +17153,7 @@ function Em(i, e, t, n, r, s, a) {
   }
   function y(x, E) {
     let L;
-    for (let z = 0, H = u.length; z < H; z++) {
+    for (let z = 0, V = u.length; z < V; z++) {
       const Q = u[z];
       if (Q.cacheKey === E) {
         L = Q, ++L.usedTimes;
@@ -17162,7 +17162,7 @@ function Em(i, e, t, n, r, s, a) {
     }
     return L === void 0 && (L = new _m(i, E, x, s), u.push(L)), L;
   }
-  function b(x) {
+  function R(x) {
     if (--x.usedTimes === 0) {
       const E = u.indexOf(x);
       u[E] = u[u.length - 1], u.pop(), x.destroy();
@@ -17171,7 +17171,7 @@ function Em(i, e, t, n, r, s, a) {
   function C(x) {
     l.remove(x);
   }
-  function D() {
+  function P() {
     l.dispose();
   }
   return {
@@ -17179,11 +17179,11 @@ function Em(i, e, t, n, r, s, a) {
     getProgramCacheKey: p,
     getUniforms: _,
     acquireProgram: y,
-    releaseProgram: b,
+    releaseProgram: R,
     releaseShaderCache: C,
     // Exposed for resource monitoring & error feedback via renderer.info:
     programs: u,
-    dispose: D
+    dispose: P
   };
 }
 function Mm() {
@@ -17423,50 +17423,50 @@ function Dm(i) {
   function o(c) {
     let u = 0, h = 0, f = 0;
     for (let x = 0; x < 9; x++) n.probe[x].set(0, 0, 0);
-    let d = 0, v = 0, g = 0, m = 0, p = 0, T = 0, S = 0, _ = 0, y = 0, b = 0, C = 0;
+    let d = 0, v = 0, g = 0, m = 0, p = 0, T = 0, S = 0, _ = 0, y = 0, R = 0, C = 0;
     c.sort(Rm);
     for (let x = 0, E = c.length; x < E; x++) {
-      const L = c[x], z = L.color, H = L.intensity, Q = L.distance, Y = L.shadow && L.shadow.map ? L.shadow.map.texture : null;
+      const L = c[x], z = L.color, V = L.intensity, Q = L.distance, Y = L.shadow && L.shadow.map ? L.shadow.map.texture : null;
       if (L.isAmbientLight)
-        u += z.r * H, h += z.g * H, f += z.b * H;
+        u += z.r * V, h += z.g * V, f += z.b * V;
       else if (L.isLightProbe) {
         for (let O = 0; O < 9; O++)
-          n.probe[O].addScaledVector(L.sh.coefficients[O], H);
+          n.probe[O].addScaledVector(L.sh.coefficients[O], V);
         C++;
       } else if (L.isDirectionalLight) {
         const O = e.get(L);
         if (O.color.copy(L.color).multiplyScalar(L.intensity), L.castShadow) {
-          const R = L.shadow, I = t.get(L);
-          I.shadowIntensity = R.intensity, I.shadowBias = R.bias, I.shadowNormalBias = R.normalBias, I.shadowRadius = R.radius, I.shadowMapSize = R.mapSize, n.directionalShadow[d] = I, n.directionalShadowMap[d] = Y, n.directionalShadowMatrix[d] = L.shadow.matrix, T++;
+          const w = L.shadow, D = t.get(L);
+          D.shadowIntensity = w.intensity, D.shadowBias = w.bias, D.shadowNormalBias = w.normalBias, D.shadowRadius = w.radius, D.shadowMapSize = w.mapSize, n.directionalShadow[d] = D, n.directionalShadowMap[d] = Y, n.directionalShadowMatrix[d] = L.shadow.matrix, T++;
         }
         n.directional[d] = O, d++;
       } else if (L.isSpotLight) {
         const O = e.get(L);
-        O.position.setFromMatrixPosition(L.matrixWorld), O.color.copy(z).multiplyScalar(H), O.distance = Q, O.coneCos = Math.cos(L.angle), O.penumbraCos = Math.cos(L.angle * (1 - L.penumbra)), O.decay = L.decay, n.spot[g] = O;
-        const R = L.shadow;
-        if (L.map && (n.spotLightMap[y] = L.map, y++, R.updateMatrices(L), L.castShadow && b++), n.spotLightMatrix[g] = R.matrix, L.castShadow) {
-          const I = t.get(L);
-          I.shadowIntensity = R.intensity, I.shadowBias = R.bias, I.shadowNormalBias = R.normalBias, I.shadowRadius = R.radius, I.shadowMapSize = R.mapSize, n.spotShadow[g] = I, n.spotShadowMap[g] = Y, _++;
+        O.position.setFromMatrixPosition(L.matrixWorld), O.color.copy(z).multiplyScalar(V), O.distance = Q, O.coneCos = Math.cos(L.angle), O.penumbraCos = Math.cos(L.angle * (1 - L.penumbra)), O.decay = L.decay, n.spot[g] = O;
+        const w = L.shadow;
+        if (L.map && (n.spotLightMap[y] = L.map, y++, w.updateMatrices(L), L.castShadow && R++), n.spotLightMatrix[g] = w.matrix, L.castShadow) {
+          const D = t.get(L);
+          D.shadowIntensity = w.intensity, D.shadowBias = w.bias, D.shadowNormalBias = w.normalBias, D.shadowRadius = w.radius, D.shadowMapSize = w.mapSize, n.spotShadow[g] = D, n.spotShadowMap[g] = Y, _++;
         }
         g++;
       } else if (L.isRectAreaLight) {
         const O = e.get(L);
-        O.color.copy(z).multiplyScalar(H), O.halfWidth.set(L.width * 0.5, 0, 0), O.halfHeight.set(0, L.height * 0.5, 0), n.rectArea[m] = O, m++;
+        O.color.copy(z).multiplyScalar(V), O.halfWidth.set(L.width * 0.5, 0, 0), O.halfHeight.set(0, L.height * 0.5, 0), n.rectArea[m] = O, m++;
       } else if (L.isPointLight) {
         const O = e.get(L);
         if (O.color.copy(L.color).multiplyScalar(L.intensity), O.distance = L.distance, O.decay = L.decay, L.castShadow) {
-          const R = L.shadow, I = t.get(L);
-          I.shadowIntensity = R.intensity, I.shadowBias = R.bias, I.shadowNormalBias = R.normalBias, I.shadowRadius = R.radius, I.shadowMapSize = R.mapSize, I.shadowCameraNear = R.camera.near, I.shadowCameraFar = R.camera.far, n.pointShadow[v] = I, n.pointShadowMap[v] = Y, n.pointShadowMatrix[v] = L.shadow.matrix, S++;
+          const w = L.shadow, D = t.get(L);
+          D.shadowIntensity = w.intensity, D.shadowBias = w.bias, D.shadowNormalBias = w.normalBias, D.shadowRadius = w.radius, D.shadowMapSize = w.mapSize, D.shadowCameraNear = w.camera.near, D.shadowCameraFar = w.camera.far, n.pointShadow[v] = D, n.pointShadowMap[v] = Y, n.pointShadowMatrix[v] = L.shadow.matrix, S++;
         }
         n.point[v] = O, v++;
       } else if (L.isHemisphereLight) {
         const O = e.get(L);
-        O.skyColor.copy(L.color).multiplyScalar(H), O.groundColor.copy(L.groundColor).multiplyScalar(H), n.hemi[p] = O, p++;
+        O.skyColor.copy(L.color).multiplyScalar(V), O.groundColor.copy(L.groundColor).multiplyScalar(V), n.hemi[p] = O, p++;
       }
     }
     m > 0 && (i.has("OES_texture_float_linear") === !0 ? (n.rectAreaLTC1 = ce.LTC_FLOAT_1, n.rectAreaLTC2 = ce.LTC_FLOAT_2) : (n.rectAreaLTC1 = ce.LTC_HALF_1, n.rectAreaLTC2 = ce.LTC_HALF_2)), n.ambient[0] = u, n.ambient[1] = h, n.ambient[2] = f;
-    const D = n.hash;
-    (D.directionalLength !== d || D.pointLength !== v || D.spotLength !== g || D.rectAreaLength !== m || D.hemiLength !== p || D.numDirectionalShadows !== T || D.numPointShadows !== S || D.numSpotShadows !== _ || D.numSpotMaps !== y || D.numLightProbes !== C) && (n.directional.length = d, n.spot.length = g, n.rectArea.length = m, n.point.length = v, n.hemi.length = p, n.directionalShadow.length = T, n.directionalShadowMap.length = T, n.pointShadow.length = S, n.pointShadowMap.length = S, n.spotShadow.length = _, n.spotShadowMap.length = _, n.directionalShadowMatrix.length = T, n.pointShadowMatrix.length = S, n.spotLightMatrix.length = _ + y - b, n.spotLightMap.length = y, n.numSpotLightShadowsWithMaps = b, n.numLightProbes = C, D.directionalLength = d, D.pointLength = v, D.spotLength = g, D.rectAreaLength = m, D.hemiLength = p, D.numDirectionalShadows = T, D.numPointShadows = S, D.numSpotShadows = _, D.numSpotMaps = y, D.numLightProbes = C, n.version = bm++);
+    const P = n.hash;
+    (P.directionalLength !== d || P.pointLength !== v || P.spotLength !== g || P.rectAreaLength !== m || P.hemiLength !== p || P.numDirectionalShadows !== T || P.numPointShadows !== S || P.numSpotShadows !== _ || P.numSpotMaps !== y || P.numLightProbes !== C) && (n.directional.length = d, n.spot.length = g, n.rectArea.length = m, n.point.length = v, n.hemi.length = p, n.directionalShadow.length = T, n.directionalShadowMap.length = T, n.pointShadow.length = S, n.pointShadowMap.length = S, n.spotShadow.length = _, n.spotShadowMap.length = _, n.directionalShadowMatrix.length = T, n.pointShadowMatrix.length = S, n.spotLightMatrix.length = _ + y - R, n.spotLightMap.length = y, n.numSpotLightShadowsWithMaps = R, n.numLightProbes = C, P.directionalLength = d, P.pointLength = v, P.spotLength = g, P.rectAreaLength = m, P.hemiLength = p, P.numDirectionalShadows = T, P.numPointShadows = S, P.numSpotShadows = _, P.numSpotMaps = y, P.numLightProbes = C, n.version = bm++);
   }
   function l(c, u) {
     let h = 0, f = 0, d = 0, v = 0, g = 0;
@@ -17575,7 +17575,7 @@ void main() {
 	gl_FragColor = pack2HalfToRGBA( vec2( mean, std_dev ) );
 }`;
 function Bm(i, e, t) {
-  let n = new Kl();
+  let n = new ql();
   const r = new ue(), s = new ue(), a = new lt(), o = new sh({ depthPacking: 3201 }), l = new ah(), c = {}, u = t.maxTextureSize, h = { 0: 1, 1: 0, 2: 2 }, f = new Et({
     defines: {
       VSM_SAMPLES: 8
@@ -17600,88 +17600,88 @@ function Bm(i, e, t) {
   const g = new $t(v, f), m = this;
   this.enabled = !1, this.autoUpdate = !0, this.needsUpdate = !1, this.type = 1;
   let p = this.type;
-  this.render = function(b, C, D) {
-    if (m.enabled === !1 || m.autoUpdate === !1 && m.needsUpdate === !1 || b.length === 0) return;
+  this.render = function(R, C, P) {
+    if (m.enabled === !1 || m.autoUpdate === !1 && m.needsUpdate === !1 || R.length === 0) return;
     const x = i.getRenderTarget(), E = i.getActiveCubeFace(), L = i.getActiveMipmapLevel(), z = i.state;
     z.setBlending(0), z.buffers.depth.getReversed() === !0 ? z.buffers.color.setClear(0, 0, 0, 0) : z.buffers.color.setClear(1, 1, 1, 1), z.buffers.depth.setTest(!0), z.setScissorTest(!1);
-    const H = p !== 3 && this.type === 3, Q = p === 3 && this.type !== 3;
-    for (let Y = 0, O = b.length; Y < O; Y++) {
-      const R = b[Y], I = R.shadow;
-      if (I === void 0) {
-        console.warn("THREE.WebGLShadowMap:", R, "has no shadow.");
+    const V = p !== 3 && this.type === 3, Q = p === 3 && this.type !== 3;
+    for (let Y = 0, O = R.length; Y < O; Y++) {
+      const w = R[Y], D = w.shadow;
+      if (D === void 0) {
+        console.warn("THREE.WebGLShadowMap:", w, "has no shadow.");
         continue;
       }
-      if (I.autoUpdate === !1 && I.needsUpdate === !1) continue;
-      r.copy(I.mapSize);
-      const k = I.getFrameExtents();
-      if (r.multiply(k), s.copy(I.mapSize), (r.x > u || r.y > u) && (r.x > u && (s.x = Math.floor(u / k.x), r.x = s.x * k.x, I.mapSize.x = s.x), r.y > u && (s.y = Math.floor(u / k.y), r.y = s.y * k.y, I.mapSize.y = s.y)), I.map === null || H === !0 || Q === !0) {
-        const ee = this.type !== 3 ? { minFilter: 1003, magFilter: 1003 } : {};
-        I.map !== null && I.map.dispose(), I.map = new Pt(r.x, r.y, ee), I.map.texture.name = R.name + ".shadowMap", I.camera.updateProjectionMatrix();
+      if (D.autoUpdate === !1 && D.needsUpdate === !1) continue;
+      r.copy(D.mapSize);
+      const k = D.getFrameExtents();
+      if (r.multiply(k), s.copy(D.mapSize), (r.x > u || r.y > u) && (r.x > u && (s.x = Math.floor(u / k.x), r.x = s.x * k.x, D.mapSize.x = s.x), r.y > u && (s.y = Math.floor(u / k.y), r.y = s.y * k.y, D.mapSize.y = s.y)), D.map === null || V === !0 || Q === !0) {
+        const $ = this.type !== 3 ? { minFilter: 1003, magFilter: 1003 } : {};
+        D.map !== null && D.map.dispose(), D.map = new Pt(r.x, r.y, $), D.map.texture.name = w.name + ".shadowMap", D.camera.updateProjectionMatrix();
       }
-      i.setRenderTarget(I.map), i.clear();
-      const V = I.getViewportCount();
-      for (let ee = 0; ee < V; ee++) {
-        const le = I.getViewport(ee);
+      i.setRenderTarget(D.map), i.clear();
+      const G = D.getViewportCount();
+      for (let $ = 0; $ < G; $++) {
+        const le = D.getViewport($);
         a.set(
           s.x * le.x,
           s.y * le.y,
           s.x * le.z,
           s.y * le.w
-        ), z.viewport(a), I.updateMatrices(R, ee), n = I.getFrustum(), _(C, D, I.camera, R, this.type);
+        ), z.viewport(a), D.updateMatrices(w, $), n = D.getFrustum(), _(C, P, D.camera, w, this.type);
       }
-      I.isPointLightShadow !== !0 && this.type === 3 && T(I, D), I.needsUpdate = !1;
+      D.isPointLightShadow !== !0 && this.type === 3 && T(D, P), D.needsUpdate = !1;
     }
     p = this.type, m.needsUpdate = !1, i.setRenderTarget(x, E, L);
   };
-  function T(b, C) {
-    const D = e.update(g);
-    f.defines.VSM_SAMPLES !== b.blurSamples && (f.defines.VSM_SAMPLES = b.blurSamples, d.defines.VSM_SAMPLES = b.blurSamples, f.needsUpdate = !0, d.needsUpdate = !0), b.mapPass === null && (b.mapPass = new Pt(r.x, r.y)), f.uniforms.shadow_pass.value = b.map.texture, f.uniforms.resolution.value = b.mapSize, f.uniforms.radius.value = b.radius, i.setRenderTarget(b.mapPass), i.clear(), i.renderBufferDirect(C, null, D, f, g, null), d.uniforms.shadow_pass.value = b.mapPass.texture, d.uniforms.resolution.value = b.mapSize, d.uniforms.radius.value = b.radius, i.setRenderTarget(b.map), i.clear(), i.renderBufferDirect(C, null, D, d, g, null);
+  function T(R, C) {
+    const P = e.update(g);
+    f.defines.VSM_SAMPLES !== R.blurSamples && (f.defines.VSM_SAMPLES = R.blurSamples, d.defines.VSM_SAMPLES = R.blurSamples, f.needsUpdate = !0, d.needsUpdate = !0), R.mapPass === null && (R.mapPass = new Pt(r.x, r.y)), f.uniforms.shadow_pass.value = R.map.texture, f.uniforms.resolution.value = R.mapSize, f.uniforms.radius.value = R.radius, i.setRenderTarget(R.mapPass), i.clear(), i.renderBufferDirect(C, null, P, f, g, null), d.uniforms.shadow_pass.value = R.mapPass.texture, d.uniforms.resolution.value = R.mapSize, d.uniforms.radius.value = R.radius, i.setRenderTarget(R.map), i.clear(), i.renderBufferDirect(C, null, P, d, g, null);
   }
-  function S(b, C, D, x) {
+  function S(R, C, P, x) {
     let E = null;
-    const L = D.isPointLight === !0 ? b.customDistanceMaterial : b.customDepthMaterial;
+    const L = P.isPointLight === !0 ? R.customDistanceMaterial : R.customDepthMaterial;
     if (L !== void 0)
       E = L;
-    else if (E = D.isPointLight === !0 ? l : o, i.localClippingEnabled && C.clipShadows === !0 && Array.isArray(C.clippingPlanes) && C.clippingPlanes.length !== 0 || C.displacementMap && C.displacementScale !== 0 || C.alphaMap && C.alphaTest > 0 || C.map && C.alphaTest > 0 || C.alphaToCoverage === !0) {
-      const z = E.uuid, H = C.uuid;
+    else if (E = P.isPointLight === !0 ? l : o, i.localClippingEnabled && C.clipShadows === !0 && Array.isArray(C.clippingPlanes) && C.clippingPlanes.length !== 0 || C.displacementMap && C.displacementScale !== 0 || C.alphaMap && C.alphaTest > 0 || C.map && C.alphaTest > 0 || C.alphaToCoverage === !0) {
+      const z = E.uuid, V = C.uuid;
       let Q = c[z];
       Q === void 0 && (Q = {}, c[z] = Q);
-      let Y = Q[H];
-      Y === void 0 && (Y = E.clone(), Q[H] = Y, C.addEventListener("dispose", y)), E = Y;
+      let Y = Q[V];
+      Y === void 0 && (Y = E.clone(), Q[V] = Y, C.addEventListener("dispose", y)), E = Y;
     }
-    if (E.visible = C.visible, E.wireframe = C.wireframe, x === 3 ? E.side = C.shadowSide !== null ? C.shadowSide : C.side : E.side = C.shadowSide !== null ? C.shadowSide : h[C.side], E.alphaMap = C.alphaMap, E.alphaTest = C.alphaToCoverage === !0 ? 0.5 : C.alphaTest, E.map = C.map, E.clipShadows = C.clipShadows, E.clippingPlanes = C.clippingPlanes, E.clipIntersection = C.clipIntersection, E.displacementMap = C.displacementMap, E.displacementScale = C.displacementScale, E.displacementBias = C.displacementBias, E.wireframeLinewidth = C.wireframeLinewidth, E.linewidth = C.linewidth, D.isPointLight === !0 && E.isMeshDistanceMaterial === !0) {
+    if (E.visible = C.visible, E.wireframe = C.wireframe, x === 3 ? E.side = C.shadowSide !== null ? C.shadowSide : C.side : E.side = C.shadowSide !== null ? C.shadowSide : h[C.side], E.alphaMap = C.alphaMap, E.alphaTest = C.alphaToCoverage === !0 ? 0.5 : C.alphaTest, E.map = C.map, E.clipShadows = C.clipShadows, E.clippingPlanes = C.clippingPlanes, E.clipIntersection = C.clipIntersection, E.displacementMap = C.displacementMap, E.displacementScale = C.displacementScale, E.displacementBias = C.displacementBias, E.wireframeLinewidth = C.wireframeLinewidth, E.linewidth = C.linewidth, P.isPointLight === !0 && E.isMeshDistanceMaterial === !0) {
       const z = i.properties.get(E);
-      z.light = D;
+      z.light = P;
     }
     return E;
   }
-  function _(b, C, D, x, E) {
-    if (b.visible === !1) return;
-    if (b.layers.test(C.layers) && (b.isMesh || b.isLine || b.isPoints) && (b.castShadow || b.receiveShadow && E === 3) && (!b.frustumCulled || n.intersectsObject(b))) {
-      b.modelViewMatrix.multiplyMatrices(D.matrixWorldInverse, b.matrixWorld);
-      const H = e.update(b), Q = b.material;
+  function _(R, C, P, x, E) {
+    if (R.visible === !1) return;
+    if (R.layers.test(C.layers) && (R.isMesh || R.isLine || R.isPoints) && (R.castShadow || R.receiveShadow && E === 3) && (!R.frustumCulled || n.intersectsObject(R))) {
+      R.modelViewMatrix.multiplyMatrices(P.matrixWorldInverse, R.matrixWorld);
+      const V = e.update(R), Q = R.material;
       if (Array.isArray(Q)) {
-        const Y = H.groups;
-        for (let O = 0, R = Y.length; O < R; O++) {
-          const I = Y[O], k = Q[I.materialIndex];
+        const Y = V.groups;
+        for (let O = 0, w = Y.length; O < w; O++) {
+          const D = Y[O], k = Q[D.materialIndex];
           if (k && k.visible) {
-            const V = S(b, k, x, E);
-            b.onBeforeShadow(i, b, C, D, H, V, I), i.renderBufferDirect(D, null, H, V, b, I), b.onAfterShadow(i, b, C, D, H, V, I);
+            const G = S(R, k, x, E);
+            R.onBeforeShadow(i, R, C, P, V, G, D), i.renderBufferDirect(P, null, V, G, R, D), R.onAfterShadow(i, R, C, P, V, G, D);
           }
         }
       } else if (Q.visible) {
-        const Y = S(b, Q, x, E);
-        b.onBeforeShadow(i, b, C, D, H, Y, null), i.renderBufferDirect(D, null, H, Y, b, null), b.onAfterShadow(i, b, C, D, H, Y, null);
+        const Y = S(R, Q, x, E);
+        R.onBeforeShadow(i, R, C, P, V, Y, null), i.renderBufferDirect(P, null, V, Y, R, null), R.onAfterShadow(i, R, C, P, V, Y, null);
       }
     }
-    const z = b.children;
-    for (let H = 0, Q = z.length; H < Q; H++)
-      _(z[H], C, D, x, E);
+    const z = R.children;
+    for (let V = 0, Q = z.length; V < Q; V++)
+      _(z[V], C, P, x, E);
   }
-  function y(b) {
-    b.target.removeEventListener("dispose", y);
-    for (const D in c) {
-      const x = c[D], E = b.target.uuid;
+  function y(R) {
+    R.target.removeEventListener("dispose", y);
+    for (const P in c) {
+      const x = c[P], E = R.target.uuid;
       E in x && (x[E].dispose(), delete x[E]);
     }
   }
@@ -17808,13 +17808,13 @@ function Fm(i, e) {
     };
   }
   const s = new t(), a = new n(), o = new r(), l = /* @__PURE__ */ new WeakMap(), c = /* @__PURE__ */ new WeakMap();
-  let u = {}, h = {}, f = /* @__PURE__ */ new WeakMap(), d = [], v = null, g = !1, m = null, p = null, T = null, S = null, _ = null, y = null, b = null, C = new Ve(0, 0, 0), D = 0, x = !1, E = null, L = null, z = null, H = null, Q = null;
+  let u = {}, h = {}, f = /* @__PURE__ */ new WeakMap(), d = [], v = null, g = !1, m = null, p = null, T = null, S = null, _ = null, y = null, R = null, C = new Ve(0, 0, 0), P = 0, x = !1, E = null, L = null, z = null, V = null, Q = null;
   const Y = i.getParameter(i.MAX_COMBINED_TEXTURE_IMAGE_UNITS);
-  let O = !1, R = 0;
-  const I = i.getParameter(i.VERSION);
-  I.indexOf("WebGL") !== -1 ? (R = parseFloat(/^WebGL (\d)/.exec(I)[1]), O = R >= 1) : I.indexOf("OpenGL ES") !== -1 && (R = parseFloat(/^OpenGL ES (\d)/.exec(I)[1]), O = R >= 2);
-  let k = null, V = {};
-  const ee = i.getParameter(i.SCISSOR_BOX), le = i.getParameter(i.VIEWPORT), Ee = new lt().fromArray(ee), we = new lt().fromArray(le);
+  let O = !1, w = 0;
+  const D = i.getParameter(i.VERSION);
+  D.indexOf("WebGL") !== -1 ? (w = parseFloat(/^WebGL (\d)/.exec(D)[1]), O = w >= 1) : D.indexOf("OpenGL ES") !== -1 && (w = parseFloat(/^OpenGL ES (\d)/.exec(D)[1]), O = w >= 2);
+  let k = null, G = {};
+  const $ = i.getParameter(i.SCISSOR_BOX), le = i.getParameter(i.VIEWPORT), Ee = new lt().fromArray($), we = new lt().fromArray(le);
   function pe(B, re, oe, ge) {
     const te = new Uint8Array(4), Z = i.createTexture();
     i.bindTexture(B, Z), i.texParameteri(B, i.TEXTURE_MIN_FILTER, i.NEAREST), i.texParameteri(B, i.TEXTURE_MAG_FILTER, i.NEAREST);
@@ -17856,7 +17856,7 @@ function Fm(i, e) {
     102: i.FUNC_REVERSE_SUBTRACT
   };
   Rt[103] = i.MIN, Rt[104] = i.MAX;
-  const P = {
+  const I = {
     200: i.ZERO,
     201: i.ONE,
     202: i.SRC_COLOR,
@@ -17916,11 +17916,11 @@ function Fm(i, e) {
               console.error("THREE.WebGLState: Invalid blending: ", B);
               break;
           }
-        T = null, S = null, y = null, b = null, C.set(0, 0, 0), D = 0, m = B, x = je;
+        T = null, S = null, y = null, R = null, C.set(0, 0, 0), P = 0, m = B, x = je;
       }
       return;
     }
-    te = te || re, Z = Z || oe, Ae = Ae || ge, (re !== p || te !== _) && (i.blendEquationSeparate(Rt[re], Rt[te]), p = re, _ = te), (oe !== T || ge !== S || Z !== y || Ae !== b) && (i.blendFuncSeparate(P[oe], P[ge], P[Z], P[Ae]), T = oe, S = ge, y = Z, b = Ae), (Oe.equals(C) === !1 || at !== D) && (i.blendColor(Oe.r, Oe.g, Oe.b, at), C.copy(Oe), D = at), m = B, x = !1;
+    te = te || re, Z = Z || oe, Ae = Ae || ge, (re !== p || te !== _) && (i.blendEquationSeparate(Rt[re], Rt[te]), p = re, _ = te), (oe !== T || ge !== S || Z !== y || Ae !== R) && (i.blendFuncSeparate(I[oe], I[ge], I[Z], I[Ae]), T = oe, S = ge, y = Z, R = Ae), (Oe.equals(C) === !1 || at !== P) && (i.blendColor(Oe.r, Oe.g, Oe.b, at), C.copy(Oe), P = at), m = B, x = !1;
   }
   function Fe(B, re) {
     B.side === 2 ? ae(i.CULL_FACE) : j(i.CULL_FACE);
@@ -17939,7 +17939,7 @@ function Fm(i, e) {
     B !== z && (O && i.lineWidth(B), z = B);
   }
   function Se(B, re, oe) {
-    B ? (j(i.POLYGON_OFFSET_FILL), (H !== re || Q !== oe) && (i.polygonOffset(re, oe), H = re, Q = oe)) : ae(i.POLYGON_OFFSET_FILL);
+    B ? (j(i.POLYGON_OFFSET_FILL), (V !== re || Q !== oe) && (i.polygonOffset(re, oe), V = re, Q = oe)) : ae(i.POLYGON_OFFSET_FILL);
   }
   function ke(B) {
     B ? j(i.SCISSOR_TEST) : ae(i.SCISSOR_TEST);
@@ -17949,11 +17949,11 @@ function Fm(i, e) {
   }
   function vt(B, re, oe) {
     oe === void 0 && (k === null ? oe = i.TEXTURE0 + Y - 1 : oe = k);
-    let ge = V[oe];
-    ge === void 0 && (ge = { type: void 0, texture: void 0 }, V[oe] = ge), (ge.type !== B || ge.texture !== re) && (k !== oe && (i.activeTexture(oe), k = oe), i.bindTexture(B, re || q[B]), ge.type = B, ge.texture = re);
+    let ge = G[oe];
+    ge === void 0 && (ge = { type: void 0, texture: void 0 }, G[oe] = ge), (ge.type !== B || ge.texture !== re) && (k !== oe && (i.activeTexture(oe), k = oe), i.bindTexture(B, re || q[B]), ge.type = B, ge.texture = re);
   }
-  function w() {
-    const B = V[k];
+  function b() {
+    const B = G[k];
     B !== void 0 && B.type !== void 0 && (i.bindTexture(B.type, null), B.type = void 0, B.texture = void 0);
   }
   function A() {
@@ -17963,7 +17963,7 @@ function Fm(i, e) {
       console.error("THREE.WebGLState:", B);
     }
   }
-  function G() {
+  function H() {
     try {
       i.compressedTexImage3D(...arguments);
     } catch (B) {
@@ -17977,7 +17977,7 @@ function Fm(i, e) {
       console.error("THREE.WebGLState:", B);
     }
   }
-  function $() {
+  function ee() {
     try {
       i.texSubImage3D(...arguments);
     } catch (B) {
@@ -18043,7 +18043,7 @@ function Fm(i, e) {
     l.get(re) !== ge && (i.uniformBlockBinding(re, ge, B.__bindingPointIndex), l.set(re, ge));
   }
   function ze() {
-    i.disable(i.BLEND), i.disable(i.CULL_FACE), i.disable(i.DEPTH_TEST), i.disable(i.POLYGON_OFFSET_FILL), i.disable(i.SCISSOR_TEST), i.disable(i.STENCIL_TEST), i.disable(i.SAMPLE_ALPHA_TO_COVERAGE), i.blendEquation(i.FUNC_ADD), i.blendFunc(i.ONE, i.ZERO), i.blendFuncSeparate(i.ONE, i.ZERO, i.ONE, i.ZERO), i.blendColor(0, 0, 0, 0), i.colorMask(!0, !0, !0, !0), i.clearColor(0, 0, 0, 0), i.depthMask(!0), i.depthFunc(i.LESS), a.setReversed(!1), i.clearDepth(1), i.stencilMask(4294967295), i.stencilFunc(i.ALWAYS, 0, 4294967295), i.stencilOp(i.KEEP, i.KEEP, i.KEEP), i.clearStencil(0), i.cullFace(i.BACK), i.frontFace(i.CCW), i.polygonOffset(0, 0), i.activeTexture(i.TEXTURE0), i.bindFramebuffer(i.FRAMEBUFFER, null), i.bindFramebuffer(i.DRAW_FRAMEBUFFER, null), i.bindFramebuffer(i.READ_FRAMEBUFFER, null), i.useProgram(null), i.lineWidth(1), i.scissor(0, 0, i.canvas.width, i.canvas.height), i.viewport(0, 0, i.canvas.width, i.canvas.height), u = {}, k = null, V = {}, h = {}, f = /* @__PURE__ */ new WeakMap(), d = [], v = null, g = !1, m = null, p = null, T = null, S = null, _ = null, y = null, b = null, C = new Ve(0, 0, 0), D = 0, x = !1, E = null, L = null, z = null, H = null, Q = null, Ee.set(0, 0, i.canvas.width, i.canvas.height), we.set(0, 0, i.canvas.width, i.canvas.height), s.reset(), a.reset(), o.reset();
+    i.disable(i.BLEND), i.disable(i.CULL_FACE), i.disable(i.DEPTH_TEST), i.disable(i.POLYGON_OFFSET_FILL), i.disable(i.SCISSOR_TEST), i.disable(i.STENCIL_TEST), i.disable(i.SAMPLE_ALPHA_TO_COVERAGE), i.blendEquation(i.FUNC_ADD), i.blendFunc(i.ONE, i.ZERO), i.blendFuncSeparate(i.ONE, i.ZERO, i.ONE, i.ZERO), i.blendColor(0, 0, 0, 0), i.colorMask(!0, !0, !0, !0), i.clearColor(0, 0, 0, 0), i.depthMask(!0), i.depthFunc(i.LESS), a.setReversed(!1), i.clearDepth(1), i.stencilMask(4294967295), i.stencilFunc(i.ALWAYS, 0, 4294967295), i.stencilOp(i.KEEP, i.KEEP, i.KEEP), i.clearStencil(0), i.cullFace(i.BACK), i.frontFace(i.CCW), i.polygonOffset(0, 0), i.activeTexture(i.TEXTURE0), i.bindFramebuffer(i.FRAMEBUFFER, null), i.bindFramebuffer(i.DRAW_FRAMEBUFFER, null), i.bindFramebuffer(i.READ_FRAMEBUFFER, null), i.useProgram(null), i.lineWidth(1), i.scissor(0, 0, i.canvas.width, i.canvas.height), i.viewport(0, 0, i.canvas.width, i.canvas.height), u = {}, k = null, G = {}, h = {}, f = /* @__PURE__ */ new WeakMap(), d = [], v = null, g = !1, m = null, p = null, T = null, S = null, _ = null, y = null, R = null, C = new Ve(0, 0, 0), P = 0, x = !1, E = null, L = null, z = null, V = null, Q = null, Ee.set(0, 0, i.canvas.width, i.canvas.height), we.set(0, 0, i.canvas.width, i.canvas.height), s.reset(), a.reset(), o.reset();
   }
   return {
     buffers: {
@@ -18065,9 +18065,9 @@ function Fm(i, e) {
     setScissorTest: ke,
     activeTexture: yt,
     bindTexture: vt,
-    unbindTexture: w,
+    unbindTexture: b,
     compressedTexImage2D: A,
-    compressedTexImage3D: G,
+    compressedTexImage3D: H,
     texImage2D: Te,
     texImage3D: ie,
     updateUBOMapping: ye,
@@ -18075,7 +18075,7 @@ function Fm(i, e) {
     texStorage2D: se,
     texStorage3D: Me,
     texSubImage2D: J,
-    texSubImage3D: $,
+    texSubImage3D: ee,
     compressedTexSubImage2D: K,
     compressedTexSubImage3D: Ce,
     scissor: de,
@@ -18092,83 +18092,83 @@ function Om(i, e, t, n, r, s, a) {
     d = typeof OffscreenCanvas < "u" && new OffscreenCanvas(1, 1).getContext("2d") !== null;
   } catch {
   }
-  function v(w, A) {
+  function v(b, A) {
     return d ? (
       // eslint-disable-next-line compat/compat
-      new OffscreenCanvas(w, A)
-    ) : vs("canvas");
+      new OffscreenCanvas(b, A)
+    ) : gs("canvas");
   }
-  function g(w, A, G) {
+  function g(b, A, H) {
     let J = 1;
-    const $ = vt(w);
-    if (($.width > G || $.height > G) && (J = G / Math.max($.width, $.height)), J < 1)
-      if (typeof HTMLImageElement < "u" && w instanceof HTMLImageElement || typeof HTMLCanvasElement < "u" && w instanceof HTMLCanvasElement || typeof ImageBitmap < "u" && w instanceof ImageBitmap || typeof VideoFrame < "u" && w instanceof VideoFrame) {
-        const K = Math.floor(J * $.width), Ce = Math.floor(J * $.height);
+    const ee = vt(b);
+    if ((ee.width > H || ee.height > H) && (J = H / Math.max(ee.width, ee.height)), J < 1)
+      if (typeof HTMLImageElement < "u" && b instanceof HTMLImageElement || typeof HTMLCanvasElement < "u" && b instanceof HTMLCanvasElement || typeof ImageBitmap < "u" && b instanceof ImageBitmap || typeof VideoFrame < "u" && b instanceof VideoFrame) {
+        const K = Math.floor(J * ee.width), Ce = Math.floor(J * ee.height);
         h === void 0 && (h = v(K, Ce));
         const se = A ? v(K, Ce) : h;
-        return se.width = K, se.height = Ce, se.getContext("2d").drawImage(w, 0, 0, K, Ce), console.warn("THREE.WebGLRenderer: Texture has been resized from (" + $.width + "x" + $.height + ") to (" + K + "x" + Ce + ")."), se;
+        return se.width = K, se.height = Ce, se.getContext("2d").drawImage(b, 0, 0, K, Ce), console.warn("THREE.WebGLRenderer: Texture has been resized from (" + ee.width + "x" + ee.height + ") to (" + K + "x" + Ce + ")."), se;
       } else
-        return "data" in w && console.warn("THREE.WebGLRenderer: Image in DataTexture is too big (" + $.width + "x" + $.height + ")."), w;
-    return w;
+        return "data" in b && console.warn("THREE.WebGLRenderer: Image in DataTexture is too big (" + ee.width + "x" + ee.height + ")."), b;
+    return b;
   }
-  function m(w) {
-    return w.generateMipmaps;
+  function m(b) {
+    return b.generateMipmaps;
   }
-  function p(w) {
-    i.generateMipmap(w);
+  function p(b) {
+    i.generateMipmap(b);
   }
-  function T(w) {
-    return w.isWebGLCubeRenderTarget ? i.TEXTURE_CUBE_MAP : w.isWebGL3DRenderTarget ? i.TEXTURE_3D : w.isWebGLArrayRenderTarget || w.isCompressedArrayTexture ? i.TEXTURE_2D_ARRAY : i.TEXTURE_2D;
+  function T(b) {
+    return b.isWebGLCubeRenderTarget ? i.TEXTURE_CUBE_MAP : b.isWebGL3DRenderTarget ? i.TEXTURE_3D : b.isWebGLArrayRenderTarget || b.isCompressedArrayTexture ? i.TEXTURE_2D_ARRAY : i.TEXTURE_2D;
   }
-  function S(w, A, G, J, $ = !1) {
-    if (w !== null) {
-      if (i[w] !== void 0) return i[w];
-      console.warn("THREE.WebGLRenderer: Attempt to use non-existing WebGL internal format '" + w + "'");
+  function S(b, A, H, J, ee = !1) {
+    if (b !== null) {
+      if (i[b] !== void 0) return i[b];
+      console.warn("THREE.WebGLRenderer: Attempt to use non-existing WebGL internal format '" + b + "'");
     }
     let K = A;
-    if (A === i.RED && (G === i.FLOAT && (K = i.R32F), G === i.HALF_FLOAT && (K = i.R16F), G === i.UNSIGNED_BYTE && (K = i.R8)), A === i.RED_INTEGER && (G === i.UNSIGNED_BYTE && (K = i.R8UI), G === i.UNSIGNED_SHORT && (K = i.R16UI), G === i.UNSIGNED_INT && (K = i.R32UI), G === i.BYTE && (K = i.R8I), G === i.SHORT && (K = i.R16I), G === i.INT && (K = i.R32I)), A === i.RG && (G === i.FLOAT && (K = i.RG32F), G === i.HALF_FLOAT && (K = i.RG16F), G === i.UNSIGNED_BYTE && (K = i.RG8)), A === i.RG_INTEGER && (G === i.UNSIGNED_BYTE && (K = i.RG8UI), G === i.UNSIGNED_SHORT && (K = i.RG16UI), G === i.UNSIGNED_INT && (K = i.RG32UI), G === i.BYTE && (K = i.RG8I), G === i.SHORT && (K = i.RG16I), G === i.INT && (K = i.RG32I)), A === i.RGB_INTEGER && (G === i.UNSIGNED_BYTE && (K = i.RGB8UI), G === i.UNSIGNED_SHORT && (K = i.RGB16UI), G === i.UNSIGNED_INT && (K = i.RGB32UI), G === i.BYTE && (K = i.RGB8I), G === i.SHORT && (K = i.RGB16I), G === i.INT && (K = i.RGB32I)), A === i.RGBA_INTEGER && (G === i.UNSIGNED_BYTE && (K = i.RGBA8UI), G === i.UNSIGNED_SHORT && (K = i.RGBA16UI), G === i.UNSIGNED_INT && (K = i.RGBA32UI), G === i.BYTE && (K = i.RGBA8I), G === i.SHORT && (K = i.RGBA16I), G === i.INT && (K = i.RGBA32I)), A === i.RGB && (G === i.UNSIGNED_INT_5_9_9_9_REV && (K = i.RGB9_E5), G === i.UNSIGNED_INT_10F_11F_11F_REV && (K = i.R11F_G11F_B10F)), A === i.RGBA) {
-      const Ce = $ ? gs : Ke.getTransfer(J);
-      G === i.FLOAT && (K = i.RGBA32F), G === i.HALF_FLOAT && (K = i.RGBA16F), G === i.UNSIGNED_BYTE && (K = Ce === et ? i.SRGB8_ALPHA8 : i.RGBA8), G === i.UNSIGNED_SHORT_4_4_4_4 && (K = i.RGBA4), G === i.UNSIGNED_SHORT_5_5_5_1 && (K = i.RGB5_A1);
+    if (A === i.RED && (H === i.FLOAT && (K = i.R32F), H === i.HALF_FLOAT && (K = i.R16F), H === i.UNSIGNED_BYTE && (K = i.R8)), A === i.RED_INTEGER && (H === i.UNSIGNED_BYTE && (K = i.R8UI), H === i.UNSIGNED_SHORT && (K = i.R16UI), H === i.UNSIGNED_INT && (K = i.R32UI), H === i.BYTE && (K = i.R8I), H === i.SHORT && (K = i.R16I), H === i.INT && (K = i.R32I)), A === i.RG && (H === i.FLOAT && (K = i.RG32F), H === i.HALF_FLOAT && (K = i.RG16F), H === i.UNSIGNED_BYTE && (K = i.RG8)), A === i.RG_INTEGER && (H === i.UNSIGNED_BYTE && (K = i.RG8UI), H === i.UNSIGNED_SHORT && (K = i.RG16UI), H === i.UNSIGNED_INT && (K = i.RG32UI), H === i.BYTE && (K = i.RG8I), H === i.SHORT && (K = i.RG16I), H === i.INT && (K = i.RG32I)), A === i.RGB_INTEGER && (H === i.UNSIGNED_BYTE && (K = i.RGB8UI), H === i.UNSIGNED_SHORT && (K = i.RGB16UI), H === i.UNSIGNED_INT && (K = i.RGB32UI), H === i.BYTE && (K = i.RGB8I), H === i.SHORT && (K = i.RGB16I), H === i.INT && (K = i.RGB32I)), A === i.RGBA_INTEGER && (H === i.UNSIGNED_BYTE && (K = i.RGBA8UI), H === i.UNSIGNED_SHORT && (K = i.RGBA16UI), H === i.UNSIGNED_INT && (K = i.RGBA32UI), H === i.BYTE && (K = i.RGBA8I), H === i.SHORT && (K = i.RGBA16I), H === i.INT && (K = i.RGBA32I)), A === i.RGB && (H === i.UNSIGNED_INT_5_9_9_9_REV && (K = i.RGB9_E5), H === i.UNSIGNED_INT_10F_11F_11F_REV && (K = i.R11F_G11F_B10F)), A === i.RGBA) {
+      const Ce = ee ? ms : Ke.getTransfer(J);
+      H === i.FLOAT && (K = i.RGBA32F), H === i.HALF_FLOAT && (K = i.RGBA16F), H === i.UNSIGNED_BYTE && (K = Ce === et ? i.SRGB8_ALPHA8 : i.RGBA8), H === i.UNSIGNED_SHORT_4_4_4_4 && (K = i.RGBA4), H === i.UNSIGNED_SHORT_5_5_5_1 && (K = i.RGB5_A1);
     }
     return (K === i.R16F || K === i.R32F || K === i.RG16F || K === i.RG32F || K === i.RGBA16F || K === i.RGBA32F) && e.get("EXT_color_buffer_float"), K;
   }
-  function _(w, A) {
-    let G;
-    return w ? A === null || A === 1014 || A === 1020 ? G = i.DEPTH24_STENCIL8 : A === 1015 ? G = i.DEPTH32F_STENCIL8 : A === 1012 && (G = i.DEPTH24_STENCIL8, console.warn("DepthTexture: 16 bit depth attachment is not supported with stencil. Using 24-bit attachment.")) : A === null || A === 1014 || A === 1020 ? G = i.DEPTH_COMPONENT24 : A === 1015 ? G = i.DEPTH_COMPONENT32F : A === 1012 && (G = i.DEPTH_COMPONENT16), G;
+  function _(b, A) {
+    let H;
+    return b ? A === null || A === 1014 || A === 1020 ? H = i.DEPTH24_STENCIL8 : A === 1015 ? H = i.DEPTH32F_STENCIL8 : A === 1012 && (H = i.DEPTH24_STENCIL8, console.warn("DepthTexture: 16 bit depth attachment is not supported with stencil. Using 24-bit attachment.")) : A === null || A === 1014 || A === 1020 ? H = i.DEPTH_COMPONENT24 : A === 1015 ? H = i.DEPTH_COMPONENT32F : A === 1012 && (H = i.DEPTH_COMPONENT16), H;
   }
-  function y(w, A) {
-    return m(w) === !0 || w.isFramebufferTexture && w.minFilter !== 1003 && w.minFilter !== 1006 ? Math.log2(Math.max(A.width, A.height)) + 1 : w.mipmaps !== void 0 && w.mipmaps.length > 0 ? w.mipmaps.length : w.isCompressedTexture && Array.isArray(w.image) ? A.mipmaps.length : 1;
+  function y(b, A) {
+    return m(b) === !0 || b.isFramebufferTexture && b.minFilter !== 1003 && b.minFilter !== 1006 ? Math.log2(Math.max(A.width, A.height)) + 1 : b.mipmaps !== void 0 && b.mipmaps.length > 0 ? b.mipmaps.length : b.isCompressedTexture && Array.isArray(b.image) ? A.mipmaps.length : 1;
   }
-  function b(w) {
-    const A = w.target;
-    A.removeEventListener("dispose", b), D(A), A.isVideoTexture && u.delete(A);
+  function R(b) {
+    const A = b.target;
+    A.removeEventListener("dispose", R), P(A), A.isVideoTexture && u.delete(A);
   }
-  function C(w) {
-    const A = w.target;
+  function C(b) {
+    const A = b.target;
     A.removeEventListener("dispose", C), E(A);
   }
-  function D(w) {
-    const A = n.get(w);
+  function P(b) {
+    const A = n.get(b);
     if (A.__webglInit === void 0) return;
-    const G = w.source, J = f.get(G);
+    const H = b.source, J = f.get(H);
     if (J) {
-      const $ = J[A.__cacheKey];
-      $.usedTimes--, $.usedTimes === 0 && x(w), Object.keys(J).length === 0 && f.delete(G);
+      const ee = J[A.__cacheKey];
+      ee.usedTimes--, ee.usedTimes === 0 && x(b), Object.keys(J).length === 0 && f.delete(H);
     }
-    n.remove(w);
+    n.remove(b);
   }
-  function x(w) {
-    const A = n.get(w);
+  function x(b) {
+    const A = n.get(b);
     i.deleteTexture(A.__webglTexture);
-    const G = w.source, J = f.get(G);
+    const H = b.source, J = f.get(H);
     delete J[A.__cacheKey], a.memory.textures--;
   }
-  function E(w) {
-    const A = n.get(w);
-    if (w.depthTexture && (w.depthTexture.dispose(), n.remove(w.depthTexture)), w.isWebGLCubeRenderTarget)
+  function E(b) {
+    const A = n.get(b);
+    if (b.depthTexture && (b.depthTexture.dispose(), n.remove(b.depthTexture)), b.isWebGLCubeRenderTarget)
       for (let J = 0; J < 6; J++) {
         if (Array.isArray(A.__webglFramebuffer[J]))
-          for (let $ = 0; $ < A.__webglFramebuffer[J].length; $++) i.deleteFramebuffer(A.__webglFramebuffer[J][$]);
+          for (let ee = 0; ee < A.__webglFramebuffer[J].length; ee++) i.deleteFramebuffer(A.__webglFramebuffer[J][ee]);
         else
           i.deleteFramebuffer(A.__webglFramebuffer[J]);
         A.__webglDepthbuffer && i.deleteRenderbuffer(A.__webglDepthbuffer[J]);
@@ -18183,76 +18183,76 @@ function Om(i, e, t, n, r, s, a) {
           A.__webglColorRenderbuffer[J] && i.deleteRenderbuffer(A.__webglColorRenderbuffer[J]);
       A.__webglDepthRenderbuffer && i.deleteRenderbuffer(A.__webglDepthRenderbuffer);
     }
-    const G = w.textures;
-    for (let J = 0, $ = G.length; J < $; J++) {
-      const K = n.get(G[J]);
-      K.__webglTexture && (i.deleteTexture(K.__webglTexture), a.memory.textures--), n.remove(G[J]);
+    const H = b.textures;
+    for (let J = 0, ee = H.length; J < ee; J++) {
+      const K = n.get(H[J]);
+      K.__webglTexture && (i.deleteTexture(K.__webglTexture), a.memory.textures--), n.remove(H[J]);
     }
-    n.remove(w);
+    n.remove(b);
   }
   let L = 0;
   function z() {
     L = 0;
   }
-  function H() {
-    const w = L;
-    return w >= r.maxTextures && console.warn("THREE.WebGLTextures: Trying to use " + w + " texture units while this GPU supports only " + r.maxTextures), L += 1, w;
+  function V() {
+    const b = L;
+    return b >= r.maxTextures && console.warn("THREE.WebGLTextures: Trying to use " + b + " texture units while this GPU supports only " + r.maxTextures), L += 1, b;
   }
-  function Q(w) {
+  function Q(b) {
     const A = [];
-    return A.push(w.wrapS), A.push(w.wrapT), A.push(w.wrapR || 0), A.push(w.magFilter), A.push(w.minFilter), A.push(w.anisotropy), A.push(w.internalFormat), A.push(w.format), A.push(w.type), A.push(w.generateMipmaps), A.push(w.premultiplyAlpha), A.push(w.flipY), A.push(w.unpackAlignment), A.push(w.colorSpace), A.join();
+    return A.push(b.wrapS), A.push(b.wrapT), A.push(b.wrapR || 0), A.push(b.magFilter), A.push(b.minFilter), A.push(b.anisotropy), A.push(b.internalFormat), A.push(b.format), A.push(b.type), A.push(b.generateMipmaps), A.push(b.premultiplyAlpha), A.push(b.flipY), A.push(b.unpackAlignment), A.push(b.colorSpace), A.join();
   }
-  function Y(w, A) {
-    const G = n.get(w);
-    if (w.isVideoTexture && ke(w), w.isRenderTargetTexture === !1 && w.isExternalTexture !== !0 && w.version > 0 && G.__version !== w.version) {
-      const J = w.image;
+  function Y(b, A) {
+    const H = n.get(b);
+    if (b.isVideoTexture && ke(b), b.isRenderTargetTexture === !1 && b.isExternalTexture !== !0 && b.version > 0 && H.__version !== b.version) {
+      const J = b.image;
       if (J === null)
         console.warn("THREE.WebGLRenderer: Texture marked for update but no image data found.");
       else if (J.complete === !1)
         console.warn("THREE.WebGLRenderer: Texture marked for update but image is incomplete");
       else {
-        q(G, w, A);
+        q(H, b, A);
         return;
       }
-    } else w.isExternalTexture && (G.__webglTexture = w.sourceTexture ? w.sourceTexture : null);
-    t.bindTexture(i.TEXTURE_2D, G.__webglTexture, i.TEXTURE0 + A);
+    } else b.isExternalTexture && (H.__webglTexture = b.sourceTexture ? b.sourceTexture : null);
+    t.bindTexture(i.TEXTURE_2D, H.__webglTexture, i.TEXTURE0 + A);
   }
-  function O(w, A) {
-    const G = n.get(w);
-    if (w.isRenderTargetTexture === !1 && w.version > 0 && G.__version !== w.version) {
-      q(G, w, A);
+  function O(b, A) {
+    const H = n.get(b);
+    if (b.isRenderTargetTexture === !1 && b.version > 0 && H.__version !== b.version) {
+      q(H, b, A);
       return;
     }
-    t.bindTexture(i.TEXTURE_2D_ARRAY, G.__webglTexture, i.TEXTURE0 + A);
+    t.bindTexture(i.TEXTURE_2D_ARRAY, H.__webglTexture, i.TEXTURE0 + A);
   }
-  function R(w, A) {
-    const G = n.get(w);
-    if (w.isRenderTargetTexture === !1 && w.version > 0 && G.__version !== w.version) {
-      q(G, w, A);
+  function w(b, A) {
+    const H = n.get(b);
+    if (b.isRenderTargetTexture === !1 && b.version > 0 && H.__version !== b.version) {
+      q(H, b, A);
       return;
     }
-    t.bindTexture(i.TEXTURE_3D, G.__webglTexture, i.TEXTURE0 + A);
+    t.bindTexture(i.TEXTURE_3D, H.__webglTexture, i.TEXTURE0 + A);
   }
-  function I(w, A) {
-    const G = n.get(w);
-    if (w.version > 0 && G.__version !== w.version) {
-      j(G, w, A);
+  function D(b, A) {
+    const H = n.get(b);
+    if (b.version > 0 && H.__version !== b.version) {
+      j(H, b, A);
       return;
     }
-    t.bindTexture(i.TEXTURE_CUBE_MAP, G.__webglTexture, i.TEXTURE0 + A);
+    t.bindTexture(i.TEXTURE_CUBE_MAP, H.__webglTexture, i.TEXTURE0 + A);
   }
   const k = {
     1e3: i.REPEAT,
     1001: i.CLAMP_TO_EDGE,
     1002: i.MIRRORED_REPEAT
-  }, V = {
+  }, G = {
     1003: i.NEAREST,
     1004: i.NEAREST_MIPMAP_NEAREST,
     1005: i.NEAREST_MIPMAP_LINEAR,
     1006: i.LINEAR,
     1007: i.LINEAR_MIPMAP_NEAREST,
     1008: i.LINEAR_MIPMAP_LINEAR
-  }, ee = {
+  }, $ = {
     512: i.NEVER,
     519: i.ALWAYS,
     513: i.LESS,
@@ -18262,39 +18262,39 @@ function Om(i, e, t, n, r, s, a) {
     516: i.GREATER,
     517: i.NOTEQUAL
   };
-  function le(w, A) {
-    if (A.type === 1015 && e.has("OES_texture_float_linear") === !1 && (A.magFilter === 1006 || A.magFilter === 1007 || A.magFilter === 1005 || A.magFilter === 1008 || A.minFilter === 1006 || A.minFilter === 1007 || A.minFilter === 1005 || A.minFilter === 1008) && console.warn("THREE.WebGLRenderer: Unable to use linear filtering with floating point textures. OES_texture_float_linear not supported on this device."), i.texParameteri(w, i.TEXTURE_WRAP_S, k[A.wrapS]), i.texParameteri(w, i.TEXTURE_WRAP_T, k[A.wrapT]), (w === i.TEXTURE_3D || w === i.TEXTURE_2D_ARRAY) && i.texParameteri(w, i.TEXTURE_WRAP_R, k[A.wrapR]), i.texParameteri(w, i.TEXTURE_MAG_FILTER, V[A.magFilter]), i.texParameteri(w, i.TEXTURE_MIN_FILTER, V[A.minFilter]), A.compareFunction && (i.texParameteri(w, i.TEXTURE_COMPARE_MODE, i.COMPARE_REF_TO_TEXTURE), i.texParameteri(w, i.TEXTURE_COMPARE_FUNC, ee[A.compareFunction])), e.has("EXT_texture_filter_anisotropic") === !0) {
+  function le(b, A) {
+    if (A.type === 1015 && e.has("OES_texture_float_linear") === !1 && (A.magFilter === 1006 || A.magFilter === 1007 || A.magFilter === 1005 || A.magFilter === 1008 || A.minFilter === 1006 || A.minFilter === 1007 || A.minFilter === 1005 || A.minFilter === 1008) && console.warn("THREE.WebGLRenderer: Unable to use linear filtering with floating point textures. OES_texture_float_linear not supported on this device."), i.texParameteri(b, i.TEXTURE_WRAP_S, k[A.wrapS]), i.texParameteri(b, i.TEXTURE_WRAP_T, k[A.wrapT]), (b === i.TEXTURE_3D || b === i.TEXTURE_2D_ARRAY) && i.texParameteri(b, i.TEXTURE_WRAP_R, k[A.wrapR]), i.texParameteri(b, i.TEXTURE_MAG_FILTER, G[A.magFilter]), i.texParameteri(b, i.TEXTURE_MIN_FILTER, G[A.minFilter]), A.compareFunction && (i.texParameteri(b, i.TEXTURE_COMPARE_MODE, i.COMPARE_REF_TO_TEXTURE), i.texParameteri(b, i.TEXTURE_COMPARE_FUNC, $[A.compareFunction])), e.has("EXT_texture_filter_anisotropic") === !0) {
       if (A.magFilter === 1003 || A.minFilter !== 1005 && A.minFilter !== 1008 || A.type === 1015 && e.has("OES_texture_float_linear") === !1) return;
       if (A.anisotropy > 1 || n.get(A).__currentAnisotropy) {
-        const G = e.get("EXT_texture_filter_anisotropic");
-        i.texParameterf(w, G.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(A.anisotropy, r.getMaxAnisotropy())), n.get(A).__currentAnisotropy = A.anisotropy;
+        const H = e.get("EXT_texture_filter_anisotropic");
+        i.texParameterf(b, H.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(A.anisotropy, r.getMaxAnisotropy())), n.get(A).__currentAnisotropy = A.anisotropy;
       }
     }
   }
-  function Ee(w, A) {
-    let G = !1;
-    w.__webglInit === void 0 && (w.__webglInit = !0, A.addEventListener("dispose", b));
+  function Ee(b, A) {
+    let H = !1;
+    b.__webglInit === void 0 && (b.__webglInit = !0, A.addEventListener("dispose", R));
     const J = A.source;
-    let $ = f.get(J);
-    $ === void 0 && ($ = {}, f.set(J, $));
+    let ee = f.get(J);
+    ee === void 0 && (ee = {}, f.set(J, ee));
     const K = Q(A);
-    if (K !== w.__cacheKey) {
-      $[K] === void 0 && ($[K] = {
+    if (K !== b.__cacheKey) {
+      ee[K] === void 0 && (ee[K] = {
         texture: i.createTexture(),
         usedTimes: 0
-      }, a.memory.textures++, G = !0), $[K].usedTimes++;
-      const Ce = $[w.__cacheKey];
-      Ce !== void 0 && ($[w.__cacheKey].usedTimes--, Ce.usedTimes === 0 && x(A)), w.__cacheKey = K, w.__webglTexture = $[K].texture;
+      }, a.memory.textures++, H = !0), ee[K].usedTimes++;
+      const Ce = ee[b.__cacheKey];
+      Ce !== void 0 && (ee[b.__cacheKey].usedTimes--, Ce.usedTimes === 0 && x(A)), b.__cacheKey = K, b.__webglTexture = ee[K].texture;
     }
-    return G;
+    return H;
   }
-  function we(w, A, G) {
-    return Math.floor(Math.floor(w / G) / A);
+  function we(b, A, H) {
+    return Math.floor(Math.floor(b / H) / A);
   }
-  function pe(w, A, G, J) {
-    const K = w.updateRanges;
+  function pe(b, A, H, J) {
+    const K = b.updateRanges;
     if (K.length === 0)
-      t.texSubImage2D(i.TEXTURE_2D, 0, 0, 0, A.width, A.height, G, J, A.data);
+      t.texSubImage2D(i.TEXTURE_2D, 0, 0, 0, A.width, A.height, H, J, A.data);
     else {
       K.sort((ie, de) => ie.start - de.start);
       let Ce = 0;
@@ -18310,19 +18310,19 @@ function Om(i, e, t, n, r, s, a) {
       i.pixelStorei(i.UNPACK_ROW_LENGTH, A.width);
       for (let ie = 0, de = K.length; ie < de; ie++) {
         const Be = K[ie], ye = Math.floor(Be.start / 4), he = Math.ceil(Be.count / 4), ze = ye % A.width, B = Math.floor(ye / A.width), re = he, oe = 1;
-        i.pixelStorei(i.UNPACK_SKIP_PIXELS, ze), i.pixelStorei(i.UNPACK_SKIP_ROWS, B), t.texSubImage2D(i.TEXTURE_2D, 0, ze, B, re, oe, G, J, A.data);
+        i.pixelStorei(i.UNPACK_SKIP_PIXELS, ze), i.pixelStorei(i.UNPACK_SKIP_ROWS, B), t.texSubImage2D(i.TEXTURE_2D, 0, ze, B, re, oe, H, J, A.data);
       }
-      w.clearUpdateRanges(), i.pixelStorei(i.UNPACK_ROW_LENGTH, se), i.pixelStorei(i.UNPACK_SKIP_PIXELS, Me), i.pixelStorei(i.UNPACK_SKIP_ROWS, Te);
+      b.clearUpdateRanges(), i.pixelStorei(i.UNPACK_ROW_LENGTH, se), i.pixelStorei(i.UNPACK_SKIP_PIXELS, Me), i.pixelStorei(i.UNPACK_SKIP_ROWS, Te);
     }
   }
-  function q(w, A, G) {
+  function q(b, A, H) {
     let J = i.TEXTURE_2D;
     (A.isDataArrayTexture || A.isCompressedArrayTexture) && (J = i.TEXTURE_2D_ARRAY), A.isData3DTexture && (J = i.TEXTURE_3D);
-    const $ = Ee(w, A), K = A.source;
-    t.bindTexture(J, w.__webglTexture, i.TEXTURE0 + G);
+    const ee = Ee(b, A), K = A.source;
+    t.bindTexture(J, b.__webglTexture, i.TEXTURE0 + H);
     const Ce = n.get(K);
-    if (K.version !== Ce.__version || $ === !0) {
-      t.activeTexture(i.TEXTURE0 + G);
+    if (K.version !== Ce.__version || ee === !0) {
+      t.activeTexture(i.TEXTURE0 + H);
       const se = Ke.getPrimaries(Ke.workingColorSpace), Me = A.colorSpace === "" ? null : Ke.getPrimaries(A.colorSpace), Te = A.colorSpace === "" || se === Me ? i.NONE : i.BROWSER_DEFAULT_WEBGL;
       i.pixelStorei(i.UNPACK_FLIP_Y_WEBGL, A.flipY), i.pixelStorei(i.UNPACK_PREMULTIPLY_ALPHA_WEBGL, A.premultiplyAlpha), i.pixelStorei(i.UNPACK_ALIGNMENT, A.unpackAlignment), i.pixelStorei(i.UNPACK_COLORSPACE_CONVERSION_WEBGL, Te);
       let ie = g(A.image, !1, r.maxTextureSize);
@@ -18331,7 +18331,7 @@ function Om(i, e, t, n, r, s, a) {
       let ye = S(A.internalFormat, de, Be, A.colorSpace, A.isVideoTexture);
       le(J, A);
       let he;
-      const ze = A.mipmaps, B = A.isVideoTexture !== !0, re = Ce.__version === void 0 || $ === !0, oe = K.dataReady, ge = y(A, ie);
+      const ze = A.mipmaps, B = A.isVideoTexture !== !0, re = Ce.__version === void 0 || ee === !0, oe = K.dataReady, ge = y(A, ie);
       if (A.isDepthTexture)
         ye = _(A.format === 1027, A.type), re && (B ? t.texStorage2D(i.TEXTURE_2D, 1, ye, ie.width, ie.height) : t.texImage2D(i.TEXTURE_2D, 0, ye, ie.width, ie.height, 0, de, Be, null));
       else if (A.isDataTexture)
@@ -18419,21 +18419,21 @@ function Om(i, e, t, n, r, s, a) {
         t.texImage2D(i.TEXTURE_2D, 0, ye, de, Be, ie);
       m(A) && p(J), Ce.__version = K.version, A.onUpdate && A.onUpdate(A);
     }
-    w.__version = A.version;
+    b.__version = A.version;
   }
-  function j(w, A, G) {
+  function j(b, A, H) {
     if (A.image.length !== 6) return;
-    const J = Ee(w, A), $ = A.source;
-    t.bindTexture(i.TEXTURE_CUBE_MAP, w.__webglTexture, i.TEXTURE0 + G);
-    const K = n.get($);
-    if ($.version !== K.__version || J === !0) {
-      t.activeTexture(i.TEXTURE0 + G);
+    const J = Ee(b, A), ee = A.source;
+    t.bindTexture(i.TEXTURE_CUBE_MAP, b.__webglTexture, i.TEXTURE0 + H);
+    const K = n.get(ee);
+    if (ee.version !== K.__version || J === !0) {
+      t.activeTexture(i.TEXTURE0 + H);
       const Ce = Ke.getPrimaries(Ke.workingColorSpace), se = A.colorSpace === "" ? null : Ke.getPrimaries(A.colorSpace), Me = A.colorSpace === "" || Ce === se ? i.NONE : i.BROWSER_DEFAULT_WEBGL;
       i.pixelStorei(i.UNPACK_FLIP_Y_WEBGL, A.flipY), i.pixelStorei(i.UNPACK_PREMULTIPLY_ALPHA_WEBGL, A.premultiplyAlpha), i.pixelStorei(i.UNPACK_ALIGNMENT, A.unpackAlignment), i.pixelStorei(i.UNPACK_COLORSPACE_CONVERSION_WEBGL, Me);
       const Te = A.isCompressedTexture || A.image[0].isCompressedTexture, ie = A.image[0] && A.image[0].isDataTexture, de = [];
       for (let Z = 0; Z < 6; Z++)
         !Te && !ie ? de[Z] = g(A.image[Z], !0, r.maxCubemapSize) : de[Z] = ie ? A.image[Z].image : A.image[Z], de[Z] = yt(A, de[Z]);
-      const Be = de[0], ye = s.convert(A.format, A.colorSpace), he = s.convert(A.type), ze = S(A.internalFormat, ye, he, A.colorSpace), B = A.isVideoTexture !== !0, re = K.__version === void 0 || J === !0, oe = $.dataReady;
+      const Be = de[0], ye = s.convert(A.format, A.colorSpace), he = s.convert(A.type), ze = S(A.internalFormat, ye, he, A.colorSpace), B = A.isVideoTexture !== !0, re = K.__version === void 0 || J === !0, oe = ee.dataReady;
       let ge = y(A, Be);
       le(i.TEXTURE_CUBE_MAP, A);
       let te;
@@ -18467,119 +18467,119 @@ function Om(i, e, t, n, r, s, a) {
             }
           }
       }
-      m(A) && p(i.TEXTURE_CUBE_MAP), K.__version = $.version, A.onUpdate && A.onUpdate(A);
+      m(A) && p(i.TEXTURE_CUBE_MAP), K.__version = ee.version, A.onUpdate && A.onUpdate(A);
     }
-    w.__version = A.version;
+    b.__version = A.version;
   }
-  function ae(w, A, G, J, $, K) {
-    const Ce = s.convert(G.format, G.colorSpace), se = s.convert(G.type), Me = S(G.internalFormat, Ce, se, G.colorSpace), Te = n.get(A), ie = n.get(G);
+  function ae(b, A, H, J, ee, K) {
+    const Ce = s.convert(H.format, H.colorSpace), se = s.convert(H.type), Me = S(H.internalFormat, Ce, se, H.colorSpace), Te = n.get(A), ie = n.get(H);
     if (ie.__renderTarget = A, !Te.__hasExternalTextures) {
       const de = Math.max(1, A.width >> K), Be = Math.max(1, A.height >> K);
-      $ === i.TEXTURE_3D || $ === i.TEXTURE_2D_ARRAY ? t.texImage3D($, K, Me, de, Be, A.depth, 0, Ce, se, null) : t.texImage2D($, K, Me, de, Be, 0, Ce, se, null);
+      ee === i.TEXTURE_3D || ee === i.TEXTURE_2D_ARRAY ? t.texImage3D(ee, K, Me, de, Be, A.depth, 0, Ce, se, null) : t.texImage2D(ee, K, Me, de, Be, 0, Ce, se, null);
     }
-    t.bindFramebuffer(i.FRAMEBUFFER, w), Se(A) ? o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER, J, $, ie.__webglTexture, 0, Ze(A)) : ($ === i.TEXTURE_2D || $ >= i.TEXTURE_CUBE_MAP_POSITIVE_X && $ <= i.TEXTURE_CUBE_MAP_NEGATIVE_Z) && i.framebufferTexture2D(i.FRAMEBUFFER, J, $, ie.__webglTexture, K), t.bindFramebuffer(i.FRAMEBUFFER, null);
+    t.bindFramebuffer(i.FRAMEBUFFER, b), Se(A) ? o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER, J, ee, ie.__webglTexture, 0, Ze(A)) : (ee === i.TEXTURE_2D || ee >= i.TEXTURE_CUBE_MAP_POSITIVE_X && ee <= i.TEXTURE_CUBE_MAP_NEGATIVE_Z) && i.framebufferTexture2D(i.FRAMEBUFFER, J, ee, ie.__webglTexture, K), t.bindFramebuffer(i.FRAMEBUFFER, null);
   }
-  function De(w, A, G) {
-    if (i.bindRenderbuffer(i.RENDERBUFFER, w), A.depthBuffer) {
-      const J = A.depthTexture, $ = J && J.isDepthTexture ? J.type : null, K = _(A.stencilBuffer, $), Ce = A.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT, se = Ze(A);
-      Se(A) ? o.renderbufferStorageMultisampleEXT(i.RENDERBUFFER, se, K, A.width, A.height) : G ? i.renderbufferStorageMultisample(i.RENDERBUFFER, se, K, A.width, A.height) : i.renderbufferStorage(i.RENDERBUFFER, K, A.width, A.height), i.framebufferRenderbuffer(i.FRAMEBUFFER, Ce, i.RENDERBUFFER, w);
+  function De(b, A, H) {
+    if (i.bindRenderbuffer(i.RENDERBUFFER, b), A.depthBuffer) {
+      const J = A.depthTexture, ee = J && J.isDepthTexture ? J.type : null, K = _(A.stencilBuffer, ee), Ce = A.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT, se = Ze(A);
+      Se(A) ? o.renderbufferStorageMultisampleEXT(i.RENDERBUFFER, se, K, A.width, A.height) : H ? i.renderbufferStorageMultisample(i.RENDERBUFFER, se, K, A.width, A.height) : i.renderbufferStorage(i.RENDERBUFFER, K, A.width, A.height), i.framebufferRenderbuffer(i.FRAMEBUFFER, Ce, i.RENDERBUFFER, b);
     } else {
       const J = A.textures;
-      for (let $ = 0; $ < J.length; $++) {
-        const K = J[$], Ce = s.convert(K.format, K.colorSpace), se = s.convert(K.type), Me = S(K.internalFormat, Ce, se, K.colorSpace), Te = Ze(A);
-        G && Se(A) === !1 ? i.renderbufferStorageMultisample(i.RENDERBUFFER, Te, Me, A.width, A.height) : Se(A) ? o.renderbufferStorageMultisampleEXT(i.RENDERBUFFER, Te, Me, A.width, A.height) : i.renderbufferStorage(i.RENDERBUFFER, Me, A.width, A.height);
+      for (let ee = 0; ee < J.length; ee++) {
+        const K = J[ee], Ce = s.convert(K.format, K.colorSpace), se = s.convert(K.type), Me = S(K.internalFormat, Ce, se, K.colorSpace), Te = Ze(A);
+        H && Se(A) === !1 ? i.renderbufferStorageMultisample(i.RENDERBUFFER, Te, Me, A.width, A.height) : Se(A) ? o.renderbufferStorageMultisampleEXT(i.RENDERBUFFER, Te, Me, A.width, A.height) : i.renderbufferStorage(i.RENDERBUFFER, Me, A.width, A.height);
       }
     }
     i.bindRenderbuffer(i.RENDERBUFFER, null);
   }
-  function xe(w, A) {
+  function xe(b, A) {
     if (A && A.isWebGLCubeRenderTarget) throw new Error("Depth Texture with cube render targets is not supported");
-    if (t.bindFramebuffer(i.FRAMEBUFFER, w), !(A.depthTexture && A.depthTexture.isDepthTexture))
+    if (t.bindFramebuffer(i.FRAMEBUFFER, b), !(A.depthTexture && A.depthTexture.isDepthTexture))
       throw new Error("renderTarget.depthTexture must be an instance of THREE.DepthTexture");
     const J = n.get(A.depthTexture);
     J.__renderTarget = A, (!J.__webglTexture || A.depthTexture.image.width !== A.width || A.depthTexture.image.height !== A.height) && (A.depthTexture.image.width = A.width, A.depthTexture.image.height = A.height, A.depthTexture.needsUpdate = !0), Y(A.depthTexture, 0);
-    const $ = J.__webglTexture, K = Ze(A);
+    const ee = J.__webglTexture, K = Ze(A);
     if (A.depthTexture.format === 1026)
-      Se(A) ? o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER, i.DEPTH_ATTACHMENT, i.TEXTURE_2D, $, 0, K) : i.framebufferTexture2D(i.FRAMEBUFFER, i.DEPTH_ATTACHMENT, i.TEXTURE_2D, $, 0);
+      Se(A) ? o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER, i.DEPTH_ATTACHMENT, i.TEXTURE_2D, ee, 0, K) : i.framebufferTexture2D(i.FRAMEBUFFER, i.DEPTH_ATTACHMENT, i.TEXTURE_2D, ee, 0);
     else if (A.depthTexture.format === 1027)
-      Se(A) ? o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER, i.DEPTH_STENCIL_ATTACHMENT, i.TEXTURE_2D, $, 0, K) : i.framebufferTexture2D(i.FRAMEBUFFER, i.DEPTH_STENCIL_ATTACHMENT, i.TEXTURE_2D, $, 0);
+      Se(A) ? o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER, i.DEPTH_STENCIL_ATTACHMENT, i.TEXTURE_2D, ee, 0, K) : i.framebufferTexture2D(i.FRAMEBUFFER, i.DEPTH_STENCIL_ATTACHMENT, i.TEXTURE_2D, ee, 0);
     else
       throw new Error("Unknown depthTexture format");
   }
-  function Ne(w) {
-    const A = n.get(w), G = w.isWebGLCubeRenderTarget === !0;
-    if (A.__boundDepthTexture !== w.depthTexture) {
-      const J = w.depthTexture;
+  function Ne(b) {
+    const A = n.get(b), H = b.isWebGLCubeRenderTarget === !0;
+    if (A.__boundDepthTexture !== b.depthTexture) {
+      const J = b.depthTexture;
       if (A.__depthDisposeCallback && A.__depthDisposeCallback(), J) {
-        const $ = () => {
-          delete A.__boundDepthTexture, delete A.__depthDisposeCallback, J.removeEventListener("dispose", $);
+        const ee = () => {
+          delete A.__boundDepthTexture, delete A.__depthDisposeCallback, J.removeEventListener("dispose", ee);
         };
-        J.addEventListener("dispose", $), A.__depthDisposeCallback = $;
+        J.addEventListener("dispose", ee), A.__depthDisposeCallback = ee;
       }
       A.__boundDepthTexture = J;
     }
-    if (w.depthTexture && !A.__autoAllocateDepthBuffer) {
-      if (G) throw new Error("target.depthTexture not supported in Cube render targets");
-      const J = w.texture.mipmaps;
-      J && J.length > 0 ? xe(A.__webglFramebuffer[0], w) : xe(A.__webglFramebuffer, w);
-    } else if (G) {
+    if (b.depthTexture && !A.__autoAllocateDepthBuffer) {
+      if (H) throw new Error("target.depthTexture not supported in Cube render targets");
+      const J = b.texture.mipmaps;
+      J && J.length > 0 ? xe(A.__webglFramebuffer[0], b) : xe(A.__webglFramebuffer, b);
+    } else if (H) {
       A.__webglDepthbuffer = [];
       for (let J = 0; J < 6; J++)
         if (t.bindFramebuffer(i.FRAMEBUFFER, A.__webglFramebuffer[J]), A.__webglDepthbuffer[J] === void 0)
-          A.__webglDepthbuffer[J] = i.createRenderbuffer(), De(A.__webglDepthbuffer[J], w, !1);
+          A.__webglDepthbuffer[J] = i.createRenderbuffer(), De(A.__webglDepthbuffer[J], b, !1);
         else {
-          const $ = w.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT, K = A.__webglDepthbuffer[J];
-          i.bindRenderbuffer(i.RENDERBUFFER, K), i.framebufferRenderbuffer(i.FRAMEBUFFER, $, i.RENDERBUFFER, K);
+          const ee = b.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT, K = A.__webglDepthbuffer[J];
+          i.bindRenderbuffer(i.RENDERBUFFER, K), i.framebufferRenderbuffer(i.FRAMEBUFFER, ee, i.RENDERBUFFER, K);
         }
     } else {
-      const J = w.texture.mipmaps;
+      const J = b.texture.mipmaps;
       if (J && J.length > 0 ? t.bindFramebuffer(i.FRAMEBUFFER, A.__webglFramebuffer[0]) : t.bindFramebuffer(i.FRAMEBUFFER, A.__webglFramebuffer), A.__webglDepthbuffer === void 0)
-        A.__webglDepthbuffer = i.createRenderbuffer(), De(A.__webglDepthbuffer, w, !1);
+        A.__webglDepthbuffer = i.createRenderbuffer(), De(A.__webglDepthbuffer, b, !1);
       else {
-        const $ = w.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT, K = A.__webglDepthbuffer;
-        i.bindRenderbuffer(i.RENDERBUFFER, K), i.framebufferRenderbuffer(i.FRAMEBUFFER, $, i.RENDERBUFFER, K);
+        const ee = b.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT, K = A.__webglDepthbuffer;
+        i.bindRenderbuffer(i.RENDERBUFFER, K), i.framebufferRenderbuffer(i.FRAMEBUFFER, ee, i.RENDERBUFFER, K);
       }
     }
     t.bindFramebuffer(i.FRAMEBUFFER, null);
   }
-  function Rt(w, A, G) {
-    const J = n.get(w);
-    A !== void 0 && ae(J.__webglFramebuffer, w, w.texture, i.COLOR_ATTACHMENT0, i.TEXTURE_2D, 0), G !== void 0 && Ne(w);
+  function Rt(b, A, H) {
+    const J = n.get(b);
+    A !== void 0 && ae(J.__webglFramebuffer, b, b.texture, i.COLOR_ATTACHMENT0, i.TEXTURE_2D, 0), H !== void 0 && Ne(b);
   }
-  function P(w) {
-    const A = w.texture, G = n.get(w), J = n.get(A);
-    w.addEventListener("dispose", C);
-    const $ = w.textures, K = w.isWebGLCubeRenderTarget === !0, Ce = $.length > 1;
+  function I(b) {
+    const A = b.texture, H = n.get(b), J = n.get(A);
+    b.addEventListener("dispose", C);
+    const ee = b.textures, K = b.isWebGLCubeRenderTarget === !0, Ce = ee.length > 1;
     if (Ce || (J.__webglTexture === void 0 && (J.__webglTexture = i.createTexture()), J.__version = A.version, a.memory.textures++), K) {
-      G.__webglFramebuffer = [];
+      H.__webglFramebuffer = [];
       for (let se = 0; se < 6; se++)
         if (A.mipmaps && A.mipmaps.length > 0) {
-          G.__webglFramebuffer[se] = [];
+          H.__webglFramebuffer[se] = [];
           for (let Me = 0; Me < A.mipmaps.length; Me++)
-            G.__webglFramebuffer[se][Me] = i.createFramebuffer();
+            H.__webglFramebuffer[se][Me] = i.createFramebuffer();
         } else
-          G.__webglFramebuffer[se] = i.createFramebuffer();
+          H.__webglFramebuffer[se] = i.createFramebuffer();
     } else {
       if (A.mipmaps && A.mipmaps.length > 0) {
-        G.__webglFramebuffer = [];
+        H.__webglFramebuffer = [];
         for (let se = 0; se < A.mipmaps.length; se++)
-          G.__webglFramebuffer[se] = i.createFramebuffer();
+          H.__webglFramebuffer[se] = i.createFramebuffer();
       } else
-        G.__webglFramebuffer = i.createFramebuffer();
+        H.__webglFramebuffer = i.createFramebuffer();
       if (Ce)
-        for (let se = 0, Me = $.length; se < Me; se++) {
-          const Te = n.get($[se]);
+        for (let se = 0, Me = ee.length; se < Me; se++) {
+          const Te = n.get(ee[se]);
           Te.__webglTexture === void 0 && (Te.__webglTexture = i.createTexture(), a.memory.textures++);
         }
-      if (w.samples > 0 && Se(w) === !1) {
-        G.__webglMultisampledFramebuffer = i.createFramebuffer(), G.__webglColorRenderbuffer = [], t.bindFramebuffer(i.FRAMEBUFFER, G.__webglMultisampledFramebuffer);
-        for (let se = 0; se < $.length; se++) {
-          const Me = $[se];
-          G.__webglColorRenderbuffer[se] = i.createRenderbuffer(), i.bindRenderbuffer(i.RENDERBUFFER, G.__webglColorRenderbuffer[se]);
-          const Te = s.convert(Me.format, Me.colorSpace), ie = s.convert(Me.type), de = S(Me.internalFormat, Te, ie, Me.colorSpace, w.isXRRenderTarget === !0), Be = Ze(w);
-          i.renderbufferStorageMultisample(i.RENDERBUFFER, Be, de, w.width, w.height), i.framebufferRenderbuffer(i.FRAMEBUFFER, i.COLOR_ATTACHMENT0 + se, i.RENDERBUFFER, G.__webglColorRenderbuffer[se]);
+      if (b.samples > 0 && Se(b) === !1) {
+        H.__webglMultisampledFramebuffer = i.createFramebuffer(), H.__webglColorRenderbuffer = [], t.bindFramebuffer(i.FRAMEBUFFER, H.__webglMultisampledFramebuffer);
+        for (let se = 0; se < ee.length; se++) {
+          const Me = ee[se];
+          H.__webglColorRenderbuffer[se] = i.createRenderbuffer(), i.bindRenderbuffer(i.RENDERBUFFER, H.__webglColorRenderbuffer[se]);
+          const Te = s.convert(Me.format, Me.colorSpace), ie = s.convert(Me.type), de = S(Me.internalFormat, Te, ie, Me.colorSpace, b.isXRRenderTarget === !0), Be = Ze(b);
+          i.renderbufferStorageMultisample(i.RENDERBUFFER, Be, de, b.width, b.height), i.framebufferRenderbuffer(i.FRAMEBUFFER, i.COLOR_ATTACHMENT0 + se, i.RENDERBUFFER, H.__webglColorRenderbuffer[se]);
         }
-        i.bindRenderbuffer(i.RENDERBUFFER, null), w.depthBuffer && (G.__webglDepthRenderbuffer = i.createRenderbuffer(), De(G.__webglDepthRenderbuffer, w, !0)), t.bindFramebuffer(i.FRAMEBUFFER, null);
+        i.bindRenderbuffer(i.RENDERBUFFER, null), b.depthBuffer && (H.__webglDepthRenderbuffer = i.createRenderbuffer(), De(H.__webglDepthRenderbuffer, b, !0)), t.bindFramebuffer(i.FRAMEBUFFER, null);
       }
     }
     if (K) {
@@ -18587,58 +18587,58 @@ function Om(i, e, t, n, r, s, a) {
       for (let se = 0; se < 6; se++)
         if (A.mipmaps && A.mipmaps.length > 0)
           for (let Me = 0; Me < A.mipmaps.length; Me++)
-            ae(G.__webglFramebuffer[se][Me], w, A, i.COLOR_ATTACHMENT0, i.TEXTURE_CUBE_MAP_POSITIVE_X + se, Me);
+            ae(H.__webglFramebuffer[se][Me], b, A, i.COLOR_ATTACHMENT0, i.TEXTURE_CUBE_MAP_POSITIVE_X + se, Me);
         else
-          ae(G.__webglFramebuffer[se], w, A, i.COLOR_ATTACHMENT0, i.TEXTURE_CUBE_MAP_POSITIVE_X + se, 0);
+          ae(H.__webglFramebuffer[se], b, A, i.COLOR_ATTACHMENT0, i.TEXTURE_CUBE_MAP_POSITIVE_X + se, 0);
       m(A) && p(i.TEXTURE_CUBE_MAP), t.unbindTexture();
     } else if (Ce) {
-      for (let se = 0, Me = $.length; se < Me; se++) {
-        const Te = $[se], ie = n.get(Te);
+      for (let se = 0, Me = ee.length; se < Me; se++) {
+        const Te = ee[se], ie = n.get(Te);
         let de = i.TEXTURE_2D;
-        (w.isWebGL3DRenderTarget || w.isWebGLArrayRenderTarget) && (de = w.isWebGL3DRenderTarget ? i.TEXTURE_3D : i.TEXTURE_2D_ARRAY), t.bindTexture(de, ie.__webglTexture), le(de, Te), ae(G.__webglFramebuffer, w, Te, i.COLOR_ATTACHMENT0 + se, de, 0), m(Te) && p(de);
+        (b.isWebGL3DRenderTarget || b.isWebGLArrayRenderTarget) && (de = b.isWebGL3DRenderTarget ? i.TEXTURE_3D : i.TEXTURE_2D_ARRAY), t.bindTexture(de, ie.__webglTexture), le(de, Te), ae(H.__webglFramebuffer, b, Te, i.COLOR_ATTACHMENT0 + se, de, 0), m(Te) && p(de);
       }
       t.unbindTexture();
     } else {
       let se = i.TEXTURE_2D;
-      if ((w.isWebGL3DRenderTarget || w.isWebGLArrayRenderTarget) && (se = w.isWebGL3DRenderTarget ? i.TEXTURE_3D : i.TEXTURE_2D_ARRAY), t.bindTexture(se, J.__webglTexture), le(se, A), A.mipmaps && A.mipmaps.length > 0)
+      if ((b.isWebGL3DRenderTarget || b.isWebGLArrayRenderTarget) && (se = b.isWebGL3DRenderTarget ? i.TEXTURE_3D : i.TEXTURE_2D_ARRAY), t.bindTexture(se, J.__webglTexture), le(se, A), A.mipmaps && A.mipmaps.length > 0)
         for (let Me = 0; Me < A.mipmaps.length; Me++)
-          ae(G.__webglFramebuffer[Me], w, A, i.COLOR_ATTACHMENT0, se, Me);
+          ae(H.__webglFramebuffer[Me], b, A, i.COLOR_ATTACHMENT0, se, Me);
       else
-        ae(G.__webglFramebuffer, w, A, i.COLOR_ATTACHMENT0, se, 0);
+        ae(H.__webglFramebuffer, b, A, i.COLOR_ATTACHMENT0, se, 0);
       m(A) && p(se), t.unbindTexture();
     }
-    w.depthBuffer && Ne(w);
+    b.depthBuffer && Ne(b);
   }
-  function nt(w) {
-    const A = w.textures;
-    for (let G = 0, J = A.length; G < J; G++) {
-      const $ = A[G];
-      if (m($)) {
-        const K = T(w), Ce = n.get($).__webglTexture;
+  function nt(b) {
+    const A = b.textures;
+    for (let H = 0, J = A.length; H < J; H++) {
+      const ee = A[H];
+      if (m(ee)) {
+        const K = T(b), Ce = n.get(ee).__webglTexture;
         t.bindTexture(K, Ce), p(K), t.unbindTexture();
       }
     }
   }
   const Fe = [], Ie = [];
-  function ve(w) {
-    if (w.samples > 0) {
-      if (Se(w) === !1) {
-        const A = w.textures, G = w.width, J = w.height;
-        let $ = i.COLOR_BUFFER_BIT;
-        const K = w.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT, Ce = n.get(w), se = A.length > 1;
+  function ve(b) {
+    if (b.samples > 0) {
+      if (Se(b) === !1) {
+        const A = b.textures, H = b.width, J = b.height;
+        let ee = i.COLOR_BUFFER_BIT;
+        const K = b.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT, Ce = n.get(b), se = A.length > 1;
         if (se)
           for (let Te = 0; Te < A.length; Te++)
             t.bindFramebuffer(i.FRAMEBUFFER, Ce.__webglMultisampledFramebuffer), i.framebufferRenderbuffer(i.FRAMEBUFFER, i.COLOR_ATTACHMENT0 + Te, i.RENDERBUFFER, null), t.bindFramebuffer(i.FRAMEBUFFER, Ce.__webglFramebuffer), i.framebufferTexture2D(i.DRAW_FRAMEBUFFER, i.COLOR_ATTACHMENT0 + Te, i.TEXTURE_2D, null, 0);
         t.bindFramebuffer(i.READ_FRAMEBUFFER, Ce.__webglMultisampledFramebuffer);
-        const Me = w.texture.mipmaps;
+        const Me = b.texture.mipmaps;
         Me && Me.length > 0 ? t.bindFramebuffer(i.DRAW_FRAMEBUFFER, Ce.__webglFramebuffer[0]) : t.bindFramebuffer(i.DRAW_FRAMEBUFFER, Ce.__webglFramebuffer);
         for (let Te = 0; Te < A.length; Te++) {
-          if (w.resolveDepthBuffer && (w.depthBuffer && ($ |= i.DEPTH_BUFFER_BIT), w.stencilBuffer && w.resolveStencilBuffer && ($ |= i.STENCIL_BUFFER_BIT)), se) {
+          if (b.resolveDepthBuffer && (b.depthBuffer && (ee |= i.DEPTH_BUFFER_BIT), b.stencilBuffer && b.resolveStencilBuffer && (ee |= i.STENCIL_BUFFER_BIT)), se) {
             i.framebufferRenderbuffer(i.READ_FRAMEBUFFER, i.COLOR_ATTACHMENT0, i.RENDERBUFFER, Ce.__webglColorRenderbuffer[Te]);
             const ie = n.get(A[Te]).__webglTexture;
             i.framebufferTexture2D(i.DRAW_FRAMEBUFFER, i.COLOR_ATTACHMENT0, i.TEXTURE_2D, ie, 0);
           }
-          i.blitFramebuffer(0, 0, G, J, 0, 0, G, J, $, i.NEAREST), l === !0 && (Fe.length = 0, Ie.length = 0, Fe.push(i.COLOR_ATTACHMENT0 + Te), w.depthBuffer && w.resolveDepthBuffer === !1 && (Fe.push(K), Ie.push(K), i.invalidateFramebuffer(i.DRAW_FRAMEBUFFER, Ie)), i.invalidateFramebuffer(i.READ_FRAMEBUFFER, Fe));
+          i.blitFramebuffer(0, 0, H, J, 0, 0, H, J, ee, i.NEAREST), l === !0 && (Fe.length = 0, Ie.length = 0, Fe.push(i.COLOR_ATTACHMENT0 + Te), b.depthBuffer && b.resolveDepthBuffer === !1 && (Fe.push(K), Ie.push(K), i.invalidateFramebuffer(i.DRAW_FRAMEBUFFER, Ie)), i.invalidateFramebuffer(i.READ_FRAMEBUFFER, Fe));
         }
         if (t.bindFramebuffer(i.READ_FRAMEBUFFER, null), t.bindFramebuffer(i.DRAW_FRAMEBUFFER, null), se)
           for (let Te = 0; Te < A.length; Te++) {
@@ -18647,31 +18647,31 @@ function Om(i, e, t, n, r, s, a) {
             t.bindFramebuffer(i.FRAMEBUFFER, Ce.__webglFramebuffer), i.framebufferTexture2D(i.DRAW_FRAMEBUFFER, i.COLOR_ATTACHMENT0 + Te, i.TEXTURE_2D, ie, 0);
           }
         t.bindFramebuffer(i.DRAW_FRAMEBUFFER, Ce.__webglMultisampledFramebuffer);
-      } else if (w.depthBuffer && w.resolveDepthBuffer === !1 && l) {
-        const A = w.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT;
+      } else if (b.depthBuffer && b.resolveDepthBuffer === !1 && l) {
+        const A = b.stencilBuffer ? i.DEPTH_STENCIL_ATTACHMENT : i.DEPTH_ATTACHMENT;
         i.invalidateFramebuffer(i.DRAW_FRAMEBUFFER, [A]);
       }
     }
   }
-  function Ze(w) {
-    return Math.min(r.maxSamples, w.samples);
+  function Ze(b) {
+    return Math.min(r.maxSamples, b.samples);
   }
-  function Se(w) {
-    const A = n.get(w);
-    return w.samples > 0 && e.has("WEBGL_multisampled_render_to_texture") === !0 && A.__useRenderToTexture !== !1;
+  function Se(b) {
+    const A = n.get(b);
+    return b.samples > 0 && e.has("WEBGL_multisampled_render_to_texture") === !0 && A.__useRenderToTexture !== !1;
   }
-  function ke(w) {
+  function ke(b) {
     const A = a.render.frame;
-    u.get(w) !== A && (u.set(w, A), w.update());
+    u.get(b) !== A && (u.set(b, A), b.update());
   }
-  function yt(w, A) {
-    const G = w.colorSpace, J = w.format, $ = w.type;
-    return w.isCompressedTexture === !0 || w.isVideoTexture === !0 || G !== ti && G !== "" && (Ke.getTransfer(G) === et ? (J !== 1023 || $ !== 1009) && console.warn("THREE.WebGLTextures: sRGB encoded textures have to use RGBAFormat and UnsignedByteType.") : console.error("THREE.WebGLTextures: Unsupported texture color space:", G)), A;
+  function yt(b, A) {
+    const H = b.colorSpace, J = b.format, ee = b.type;
+    return b.isCompressedTexture === !0 || b.isVideoTexture === !0 || H !== ti && H !== "" && (Ke.getTransfer(H) === et ? (J !== 1023 || ee !== 1009) && console.warn("THREE.WebGLTextures: sRGB encoded textures have to use RGBAFormat and UnsignedByteType.") : console.error("THREE.WebGLTextures: Unsupported texture color space:", H)), A;
   }
-  function vt(w) {
-    return typeof HTMLImageElement < "u" && w instanceof HTMLImageElement ? (c.width = w.naturalWidth || w.width, c.height = w.naturalHeight || w.height) : typeof VideoFrame < "u" && w instanceof VideoFrame ? (c.width = w.displayWidth, c.height = w.displayHeight) : (c.width = w.width, c.height = w.height), c;
+  function vt(b) {
+    return typeof HTMLImageElement < "u" && b instanceof HTMLImageElement ? (c.width = b.naturalWidth || b.width, c.height = b.naturalHeight || b.height) : typeof VideoFrame < "u" && b instanceof VideoFrame ? (c.width = b.displayWidth, c.height = b.displayHeight) : (c.width = b.width, c.height = b.height), c;
   }
-  this.allocateTextureUnit = H, this.resetTextureUnits = z, this.setTexture2D = Y, this.setTexture2DArray = O, this.setTexture3D = R, this.setTextureCube = I, this.rebindTextures = Rt, this.setupRenderTarget = P, this.updateRenderTargetMipmap = nt, this.updateMultisampleRenderTarget = ve, this.setupDepthRenderbuffer = Ne, this.setupFrameBufferTexture = ae, this.useMultisampledRTT = Se;
+  this.allocateTextureUnit = V, this.resetTextureUnits = z, this.setTexture2D = Y, this.setTexture2DArray = O, this.setTexture3D = w, this.setTextureCube = D, this.rebindTextures = Rt, this.setupRenderTarget = I, this.updateRenderTargetMipmap = nt, this.updateMultisampleRenderTarget = ve, this.setupDepthRenderbuffer = Ne, this.setupFrameBufferTexture = ae, this.useMultisampledRTT = Se;
 }
 function Nm(i, e) {
   function t(n, r = "") {
@@ -18806,7 +18806,7 @@ class Hm {
    */
   init(e, t) {
     if (this.texture === null) {
-      const n = new Jl(e.texture);
+      const n = new Kl(e.texture);
       (e.depthNear !== t.depthNear || e.depthFar !== t.depthFar) && (this.depthNear = e.depthNear, this.depthFar = e.depthFar), this.texture = n;
     }
   }
@@ -18859,14 +18859,14 @@ class km extends Hn {
     let r = null, s = 1, a = null, o = "local-floor", l = 1, c = null, u = null, h = null, f = null, d = null, v = null;
     const g = typeof XRWebGLBinding < "u", m = new Hm(), p = {}, T = t.getContextAttributes();
     let S = null, _ = null;
-    const y = [], b = [], C = new ue();
-    let D = null;
+    const y = [], R = [], C = new ue();
+    let P = null;
     const x = new Zt();
     x.viewport = new lt();
     const E = new Zt();
     E.viewport = new lt();
     const L = [x, E], z = new oh();
-    let H = null, Q = null;
+    let V = null, Q = null;
     this.cameraAutoUpdate = !0, this.enabled = !1, this.isPresenting = !1, this.getController = function(q) {
       let j = y[q];
       return j === void 0 && (j = new $s(), y[q] = j), j.getTargetRaySpace();
@@ -18878,22 +18878,22 @@ class km extends Hn {
       return j === void 0 && (j = new $s(), y[q] = j), j.getHandSpace();
     };
     function Y(q) {
-      const j = b.indexOf(q.inputSource);
+      const j = R.indexOf(q.inputSource);
       if (j === -1)
         return;
       const ae = y[j];
       ae !== void 0 && (ae.update(q.inputSource, q.frame, c || a), ae.dispatchEvent({ type: q.type, data: q.inputSource }));
     }
     function O() {
-      r.removeEventListener("select", Y), r.removeEventListener("selectstart", Y), r.removeEventListener("selectend", Y), r.removeEventListener("squeeze", Y), r.removeEventListener("squeezestart", Y), r.removeEventListener("squeezeend", Y), r.removeEventListener("end", O), r.removeEventListener("inputsourceschange", R);
+      r.removeEventListener("select", Y), r.removeEventListener("selectstart", Y), r.removeEventListener("selectend", Y), r.removeEventListener("squeeze", Y), r.removeEventListener("squeezestart", Y), r.removeEventListener("squeezeend", Y), r.removeEventListener("end", O), r.removeEventListener("inputsourceschange", w);
       for (let q = 0; q < y.length; q++) {
-        const j = b[q];
-        j !== null && (b[q] = null, y[q].disconnect(j));
+        const j = R[q];
+        j !== null && (R[q] = null, y[q].disconnect(j));
       }
-      H = null, Q = null, m.reset();
+      V = null, Q = null, m.reset();
       for (const q in p)
         delete p[q];
-      e.setRenderTarget(S), d = null, f = null, h = null, r = null, _ = null, pe.stop(), n.isPresenting = !1, e.setPixelRatio(D), e.setSize(C.width, C.height, !1), n.dispatchEvent({ type: "sessionend" });
+      e.setRenderTarget(S), d = null, f = null, h = null, r = null, _ = null, pe.stop(), n.isPresenting = !1, e.setPixelRatio(P), e.setSize(C.width, C.height, !1), n.dispatchEvent({ type: "sessionend" });
     }
     this.setFramebufferScaleFactor = function(q) {
       s = q, n.isPresenting === !0 && console.warn("THREE.WebXRManager: Cannot change framebuffer scale while presenting.");
@@ -18913,7 +18913,7 @@ class km extends Hn {
       return r;
     }, this.setSession = async function(q) {
       if (r = q, r !== null) {
-        if (S = e.getRenderTarget(), r.addEventListener("select", Y), r.addEventListener("selectstart", Y), r.addEventListener("selectend", Y), r.addEventListener("squeeze", Y), r.addEventListener("squeezestart", Y), r.addEventListener("squeezeend", Y), r.addEventListener("end", O), r.addEventListener("inputsourceschange", R), T.xrCompatible !== !0 && await t.makeXRCompatible(), D = e.getPixelRatio(), e.getSize(C), g && "createProjectionLayer" in XRWebGLBinding.prototype) {
+        if (S = e.getRenderTarget(), r.addEventListener("select", Y), r.addEventListener("selectstart", Y), r.addEventListener("selectend", Y), r.addEventListener("squeeze", Y), r.addEventListener("squeezestart", Y), r.addEventListener("squeezeend", Y), r.addEventListener("end", O), r.addEventListener("inputsourceschange", w), T.xrCompatible !== !0 && await t.makeXRCompatible(), P = e.getPixelRatio(), e.getSize(C), g && "createProjectionLayer" in XRWebGLBinding.prototype) {
           let ae = null, De = null, xe = null;
           T.depth && (xe = T.stencil ? t.DEPTH24_STENCIL8 : t.DEPTH_COMPONENT24, ae = T.stencil ? 1027 : 1026, De = T.stencil ? 1020 : 1014);
           const Ne = {
@@ -18964,21 +18964,21 @@ class km extends Hn {
     }, this.getDepthTexture = function() {
       return m.getDepthTexture();
     };
-    function R(q) {
+    function w(q) {
       for (let j = 0; j < q.removed.length; j++) {
-        const ae = q.removed[j], De = b.indexOf(ae);
-        De >= 0 && (b[De] = null, y[De].disconnect(ae));
+        const ae = q.removed[j], De = R.indexOf(ae);
+        De >= 0 && (R[De] = null, y[De].disconnect(ae));
       }
       for (let j = 0; j < q.added.length; j++) {
         const ae = q.added[j];
-        let De = b.indexOf(ae);
+        let De = R.indexOf(ae);
         if (De === -1) {
           for (let Ne = 0; Ne < y.length; Ne++)
-            if (Ne >= b.length) {
-              b.push(ae), De = Ne;
+            if (Ne >= R.length) {
+              R.push(ae), De = Ne;
               break;
-            } else if (b[Ne] === null) {
-              b[Ne] = ae, De = Ne;
+            } else if (R[Ne] === null) {
+              R[Ne] = ae, De = Ne;
               break;
             }
           if (De === -1) break;
@@ -18987,32 +18987,32 @@ class km extends Hn {
         xe && xe.connect(ae);
       }
     }
-    const I = new U(), k = new U();
-    function V(q, j, ae) {
-      I.setFromMatrixPosition(j.matrixWorld), k.setFromMatrixPosition(ae.matrixWorld);
-      const De = I.distanceTo(k), xe = j.projectionMatrix.elements, Ne = ae.projectionMatrix.elements, Rt = xe[14] / (xe[10] - 1), P = xe[14] / (xe[10] + 1), nt = (xe[9] + 1) / xe[5], Fe = (xe[9] - 1) / xe[5], Ie = (xe[8] - 1) / xe[0], ve = (Ne[8] + 1) / Ne[0], Ze = Rt * Ie, Se = Rt * ve, ke = De / (-Ie + ve), yt = ke * -Ie;
+    const D = new U(), k = new U();
+    function G(q, j, ae) {
+      D.setFromMatrixPosition(j.matrixWorld), k.setFromMatrixPosition(ae.matrixWorld);
+      const De = D.distanceTo(k), xe = j.projectionMatrix.elements, Ne = ae.projectionMatrix.elements, Rt = xe[14] / (xe[10] - 1), I = xe[14] / (xe[10] + 1), nt = (xe[9] + 1) / xe[5], Fe = (xe[9] - 1) / xe[5], Ie = (xe[8] - 1) / xe[0], ve = (Ne[8] + 1) / Ne[0], Ze = Rt * Ie, Se = Rt * ve, ke = De / (-Ie + ve), yt = ke * -Ie;
       if (j.matrixWorld.decompose(q.position, q.quaternion, q.scale), q.translateX(yt), q.translateZ(ke), q.matrixWorld.compose(q.position, q.quaternion, q.scale), q.matrixWorldInverse.copy(q.matrixWorld).invert(), xe[10] === -1)
         q.projectionMatrix.copy(j.projectionMatrix), q.projectionMatrixInverse.copy(j.projectionMatrixInverse);
       else {
-        const vt = Rt + ke, w = P + ke, A = Ze - yt, G = Se + (De - yt), J = nt * P / w * vt, $ = Fe * P / w * vt;
-        q.projectionMatrix.makePerspective(A, G, J, $, vt, w), q.projectionMatrixInverse.copy(q.projectionMatrix).invert();
+        const vt = Rt + ke, b = I + ke, A = Ze - yt, H = Se + (De - yt), J = nt * I / b * vt, ee = Fe * I / b * vt;
+        q.projectionMatrix.makePerspective(A, H, J, ee, vt, b), q.projectionMatrixInverse.copy(q.projectionMatrix).invert();
       }
     }
-    function ee(q, j) {
+    function $(q, j) {
       j === null ? q.matrixWorld.copy(q.matrix) : q.matrixWorld.multiplyMatrices(j.matrixWorld, q.matrix), q.matrixWorldInverse.copy(q.matrixWorld).invert();
     }
     this.updateCamera = function(q) {
       if (r === null) return;
       let j = q.near, ae = q.far;
-      m.texture !== null && (m.depthNear > 0 && (j = m.depthNear), m.depthFar > 0 && (ae = m.depthFar)), z.near = E.near = x.near = j, z.far = E.far = x.far = ae, (H !== z.near || Q !== z.far) && (r.updateRenderState({
+      m.texture !== null && (m.depthNear > 0 && (j = m.depthNear), m.depthFar > 0 && (ae = m.depthFar)), z.near = E.near = x.near = j, z.far = E.far = x.far = ae, (V !== z.near || Q !== z.far) && (r.updateRenderState({
         depthNear: z.near,
         depthFar: z.far
-      }), H = z.near, Q = z.far), z.layers.mask = q.layers.mask | 6, x.layers.mask = z.layers.mask & 3, E.layers.mask = z.layers.mask & 5;
+      }), V = z.near, Q = z.far), z.layers.mask = q.layers.mask | 6, x.layers.mask = z.layers.mask & 3, E.layers.mask = z.layers.mask & 5;
       const De = q.parent, xe = z.cameras;
-      ee(z, De);
+      $(z, De);
       for (let Ne = 0; Ne < xe.length; Ne++)
-        ee(xe[Ne], De);
-      xe.length === 2 ? V(z, x, E) : z.projectionMatrix.copy(x.projectionMatrix), le(q, z, De);
+        $(xe[Ne], De);
+      xe.length === 2 ? G(z, x, E) : z.projectionMatrix.copy(x.projectionMatrix), le(q, z, De);
     };
     function le(q, j, ae) {
       ae === null ? q.matrix.copy(j.matrixWorld) : (q.matrix.copy(ae.matrixWorld), q.matrix.invert(), q.matrix.multiply(j.matrixWorld)), q.matrix.decompose(q.position, q.quaternion, q.scale), q.updateMatrixWorld(!0), q.projectionMatrix.copy(j.projectionMatrix), q.projectionMatrixInverse.copy(j.projectionMatrixInverse), q.isPerspectiveCamera && (q.fov = Ma * 2 * Math.atan(1 / q.projectionMatrix.elements[5]), q.zoom = 1);
@@ -19038,35 +19038,35 @@ class km extends Hn {
         d !== null && (e.setRenderTargetFramebuffer(_, d.framebuffer), e.setRenderTarget(_));
         let De = !1;
         ae.length !== z.cameras.length && (z.cameras.length = 0, De = !0);
-        for (let P = 0; P < ae.length; P++) {
-          const nt = ae[P];
+        for (let I = 0; I < ae.length; I++) {
+          const nt = ae[I];
           let Fe = null;
           if (d !== null)
             Fe = d.getViewport(nt);
           else {
             const ve = h.getViewSubImage(f, nt);
-            Fe = ve.viewport, P === 0 && (e.setRenderTargetTextures(
+            Fe = ve.viewport, I === 0 && (e.setRenderTargetTextures(
               _,
               ve.colorTexture,
               ve.depthStencilTexture
             ), e.setRenderTarget(_));
           }
-          let Ie = L[P];
-          Ie === void 0 && (Ie = new Zt(), Ie.layers.enable(P), Ie.viewport = new lt(), L[P] = Ie), Ie.matrix.fromArray(nt.transform.matrix), Ie.matrix.decompose(Ie.position, Ie.quaternion, Ie.scale), Ie.projectionMatrix.fromArray(nt.projectionMatrix), Ie.projectionMatrixInverse.copy(Ie.projectionMatrix).invert(), Ie.viewport.set(Fe.x, Fe.y, Fe.width, Fe.height), P === 0 && (z.matrix.copy(Ie.matrix), z.matrix.decompose(z.position, z.quaternion, z.scale)), De === !0 && z.cameras.push(Ie);
+          let Ie = L[I];
+          Ie === void 0 && (Ie = new Zt(), Ie.layers.enable(I), Ie.viewport = new lt(), L[I] = Ie), Ie.matrix.fromArray(nt.transform.matrix), Ie.matrix.decompose(Ie.position, Ie.quaternion, Ie.scale), Ie.projectionMatrix.fromArray(nt.projectionMatrix), Ie.projectionMatrixInverse.copy(Ie.projectionMatrix).invert(), Ie.viewport.set(Fe.x, Fe.y, Fe.width, Fe.height), I === 0 && (z.matrix.copy(Ie.matrix), z.matrix.decompose(z.position, z.quaternion, z.scale)), De === !0 && z.cameras.push(Ie);
         }
         const xe = r.enabledFeatures;
         if (xe && xe.includes("depth-sensing") && r.depthUsage == "gpu-optimized" && g) {
           h = n.getBinding();
-          const P = h.getDepthInformation(ae[0]);
-          P && P.isValid && P.texture && m.init(P, r.renderState);
+          const I = h.getDepthInformation(ae[0]);
+          I && I.isValid && I.texture && m.init(I, r.renderState);
         }
         if (xe && xe.includes("camera-access") && g) {
           e.state.unbindTexture(), h = n.getBinding();
-          for (let P = 0; P < ae.length; P++) {
-            const nt = ae[P].camera;
+          for (let I = 0; I < ae.length; I++) {
+            const nt = ae[I].camera;
             if (nt) {
               let Fe = p[nt];
-              Fe || (Fe = new Jl(), p[nt] = Fe);
+              Fe || (Fe = new Kl(), p[nt] = Fe);
               const Ie = h.getCameraImage(nt);
               Fe.sourceTexture = Ie;
             }
@@ -19074,12 +19074,12 @@ class km extends Hn {
         }
       }
       for (let ae = 0; ae < y.length; ae++) {
-        const De = b[ae], xe = y[ae];
+        const De = R[ae], xe = y[ae];
         De !== null && xe !== void 0 && xe.update(De, j, c || a);
       }
       Ee && Ee(q, j), j.detectedPlanes && n.dispatchEvent({ type: "planesdetected", data: j }), v = null;
     }
-    const pe = new nc();
+    const pe = new tc();
     pe.setAnimationLoop(we), this.setAnimationLoop = function(q) {
       Ee = q;
     }, this.dispose = function() {
@@ -19092,7 +19092,7 @@ function Wm(i, e) {
     m.matrixAutoUpdate === !0 && m.updateMatrix(), p.value.copy(m.matrix);
   }
   function n(m, p) {
-    p.color.getRGB(m.fogColor.value, Yl(i)), p.isFog ? (m.fogNear.value = p.near, m.fogFar.value = p.far) : p.isFogExp2 && (m.fogDensity.value = p.density);
+    p.color.getRGB(m.fogColor.value, Xl(i)), p.isFog ? (m.fogNear.value = p.near, m.fogFar.value = p.far) : p.isFogExp2 && (m.fogDensity.value = p.density);
   }
   function r(m, p, T, S, _) {
     p.isMeshBasicMaterial || p.isMeshLambertMaterial ? s(m, p) : p.isMeshToonMaterial ? (s(m, p), h(m, p)) : p.isMeshPhongMaterial ? (s(m, p), u(m, p)) : p.isMeshStandardMaterial ? (s(m, p), f(m, p), p.isMeshPhysicalMaterial && d(m, p, _)) : p.isMeshMatcapMaterial ? (s(m, p), v(m, p)) : p.isMeshDepthMaterial ? s(m, p) : p.isMeshDistanceMaterial ? (s(m, p), g(m, p)) : p.isMeshNormalMaterial ? s(m, p) : p.isLineBasicMaterial ? (a(m, p), p.isLineDashedMaterial && o(m, p)) : p.isPointsMaterial ? l(m, p, T, S) : p.isSpriteMaterial ? c(m, p) : p.isShadowMaterial ? (m.color.value.copy(p.color), m.opacity.value = p.opacity) : p.isShaderMaterial && (p.uniformsNeedUpdate = !1);
@@ -19150,14 +19150,14 @@ function Xm(i, e, t, n) {
     _ === void 0 && (v(T), _ = u(T), r[T.id] = _, T.addEventListener("dispose", m));
     const y = S.program;
     n.updateUBOMapping(T, y);
-    const b = e.render.frame;
-    s[T.id] !== b && (f(T), s[T.id] = b);
+    const R = e.render.frame;
+    s[T.id] !== R && (f(T), s[T.id] = R);
   }
   function u(T) {
     const S = h();
     T.__bindingPointIndex = S;
-    const _ = i.createBuffer(), y = T.__size, b = T.usage;
-    return i.bindBuffer(i.UNIFORM_BUFFER, _), i.bufferData(i.UNIFORM_BUFFER, y, b), i.bindBuffer(i.UNIFORM_BUFFER, null), i.bindBufferBase(i.UNIFORM_BUFFER, S, _), _;
+    const _ = i.createBuffer(), y = T.__size, R = T.usage;
+    return i.bindBuffer(i.UNIFORM_BUFFER, _), i.bufferData(i.UNIFORM_BUFFER, y, R), i.bindBuffer(i.UNIFORM_BUFFER, null), i.bindBufferBase(i.UNIFORM_BUFFER, S, _), _;
   }
   function h() {
     for (let T = 0; T < o; T++)
@@ -19168,16 +19168,16 @@ function Xm(i, e, t, n) {
   function f(T) {
     const S = r[T.id], _ = T.uniforms, y = T.__cache;
     i.bindBuffer(i.UNIFORM_BUFFER, S);
-    for (let b = 0, C = _.length; b < C; b++) {
-      const D = Array.isArray(_[b]) ? _[b] : [_[b]];
-      for (let x = 0, E = D.length; x < E; x++) {
-        const L = D[x];
-        if (d(L, b, x, y) === !0) {
-          const z = L.__offset, H = Array.isArray(L.value) ? L.value : [L.value];
+    for (let R = 0, C = _.length; R < C; R++) {
+      const P = Array.isArray(_[R]) ? _[R] : [_[R]];
+      for (let x = 0, E = P.length; x < E; x++) {
+        const L = P[x];
+        if (d(L, R, x, y) === !0) {
+          const z = L.__offset, V = Array.isArray(L.value) ? L.value : [L.value];
           let Q = 0;
-          for (let Y = 0; Y < H.length; Y++) {
-            const O = H[Y], R = g(O);
-            typeof O == "number" || typeof O == "boolean" ? (L.__data[0] = O, i.bufferSubData(i.UNIFORM_BUFFER, z + Q, L.__data)) : O.isMatrix3 ? (L.__data[0] = O.elements[0], L.__data[1] = O.elements[1], L.__data[2] = O.elements[2], L.__data[3] = 0, L.__data[4] = O.elements[3], L.__data[5] = O.elements[4], L.__data[6] = O.elements[5], L.__data[7] = 0, L.__data[8] = O.elements[6], L.__data[9] = O.elements[7], L.__data[10] = O.elements[8], L.__data[11] = 0) : (O.toArray(L.__data, Q), Q += R.storage / Float32Array.BYTES_PER_ELEMENT);
+          for (let Y = 0; Y < V.length; Y++) {
+            const O = V[Y], w = g(O);
+            typeof O == "number" || typeof O == "boolean" ? (L.__data[0] = O, i.bufferSubData(i.UNIFORM_BUFFER, z + Q, L.__data)) : O.isMatrix3 ? (L.__data[0] = O.elements[0], L.__data[1] = O.elements[1], L.__data[2] = O.elements[2], L.__data[3] = 0, L.__data[4] = O.elements[3], L.__data[5] = O.elements[4], L.__data[6] = O.elements[5], L.__data[7] = 0, L.__data[8] = O.elements[6], L.__data[9] = O.elements[7], L.__data[10] = O.elements[8], L.__data[11] = 0) : (O.toArray(L.__data, Q), Q += w.storage / Float32Array.BYTES_PER_ELEMENT);
           }
           i.bufferSubData(i.UNIFORM_BUFFER, z, L.__data);
         }
@@ -19186,16 +19186,16 @@ function Xm(i, e, t, n) {
     i.bindBuffer(i.UNIFORM_BUFFER, null);
   }
   function d(T, S, _, y) {
-    const b = T.value, C = S + "_" + _;
+    const R = T.value, C = S + "_" + _;
     if (y[C] === void 0)
-      return typeof b == "number" || typeof b == "boolean" ? y[C] = b : y[C] = b.clone(), !0;
+      return typeof R == "number" || typeof R == "boolean" ? y[C] = R : y[C] = R.clone(), !0;
     {
-      const D = y[C];
-      if (typeof b == "number" || typeof b == "boolean") {
-        if (D !== b)
-          return y[C] = b, !0;
-      } else if (D.equals(b) === !1)
-        return D.copy(b), !0;
+      const P = y[C];
+      if (typeof R == "number" || typeof R == "boolean") {
+        if (P !== R)
+          return y[C] = R, !0;
+      } else if (P.equals(R) === !1)
+        return P.copy(R), !0;
     }
     return !1;
   }
@@ -19203,18 +19203,18 @@ function Xm(i, e, t, n) {
     const S = T.uniforms;
     let _ = 0;
     const y = 16;
-    for (let C = 0, D = S.length; C < D; C++) {
+    for (let C = 0, P = S.length; C < P; C++) {
       const x = Array.isArray(S[C]) ? S[C] : [S[C]];
       for (let E = 0, L = x.length; E < L; E++) {
-        const z = x[E], H = Array.isArray(z.value) ? z.value : [z.value];
-        for (let Q = 0, Y = H.length; Q < Y; Q++) {
-          const O = H[Q], R = g(O), I = _ % y, k = I % R.boundary, V = I + k;
-          _ += k, V !== 0 && y - V < R.storage && (_ += y - V), z.__data = new Float32Array(R.storage / Float32Array.BYTES_PER_ELEMENT), z.__offset = _, _ += R.storage;
+        const z = x[E], V = Array.isArray(z.value) ? z.value : [z.value];
+        for (let Q = 0, Y = V.length; Q < Y; Q++) {
+          const O = V[Q], w = g(O), D = _ % y, k = D % w.boundary, G = D + k;
+          _ += k, G !== 0 && y - G < w.storage && (_ += y - G), z.__data = new Float32Array(w.storage / Float32Array.BYTES_PER_ELEMENT), z.__offset = _, _ += w.storage;
         }
       }
     }
-    const b = _ % y;
-    return b > 0 && (_ += y - b), T.__size = _, T.__cache = {}, this;
+    const R = _ % y;
+    return R > 0 && (_ += y - R), T.__size = _, T.__cache = {}, this;
   }
   function g(T) {
     const S = {
@@ -19288,21 +19288,21 @@ class Ym {
     const _ = this;
     let y = !1;
     this._outputColorSpace = tt;
-    let b = 0, C = 0, D = null, x = -1, E = null;
+    let R = 0, C = 0, P = null, x = -1, E = null;
     const L = new lt(), z = new lt();
-    let H = null;
+    let V = null;
     const Q = new Ve(0);
-    let Y = 0, O = t.width, R = t.height, I = 1, k = null, V = null;
-    const ee = new lt(0, 0, O, R), le = new lt(0, 0, O, R);
+    let Y = 0, O = t.width, w = t.height, D = 1, k = null, G = null;
+    const $ = new lt(0, 0, O, w), le = new lt(0, 0, O, w);
     let Ee = !1;
-    const we = new Kl();
+    const we = new ql();
     let pe = !1, q = !1;
     const j = new St(), ae = new U(), De = new lt(), xe = { background: null, fog: null, environment: null, overrideMaterial: null, isScene: !0 };
     let Ne = !1;
     function Rt() {
-      return D === null ? I : 1;
+      return P === null ? D : 1;
     }
-    let P = n;
+    let I = n;
     function nt(M, F) {
       return t.getContext(M, F);
     }
@@ -19317,24 +19317,24 @@ class Ym {
         powerPreference: u,
         failIfMajorPerformanceCaveat: h
       };
-      if ("setAttribute" in t && t.setAttribute("data-engine", "three.js r180"), t.addEventListener("webglcontextlost", oe, !1), t.addEventListener("webglcontextrestored", ge, !1), t.addEventListener("webglcontextcreationerror", te, !1), P === null) {
+      if ("setAttribute" in t && t.setAttribute("data-engine", "three.js r180"), t.addEventListener("webglcontextlost", oe, !1), t.addEventListener("webglcontextrestored", ge, !1), t.addEventListener("webglcontextcreationerror", te, !1), I === null) {
         const F = "webgl2";
-        if (P = nt(F, M), P === null)
+        if (I = nt(F, M), I === null)
           throw nt(F) ? new Error("Error creating WebGL context with your selected attributes.") : new Error("Error creating WebGL context.");
       }
     } catch (M) {
       throw console.error("THREE.WebGLRenderer: " + M.message), M;
     }
-    let Fe, Ie, ve, Ze, Se, ke, yt, vt, w, A, G, J, $, K, Ce, se, Me, Te, ie, de, Be, ye, he, ze;
+    let Fe, Ie, ve, Ze, Se, ke, yt, vt, b, A, H, J, ee, K, Ce, se, Me, Te, ie, de, Be, ye, he, ze;
     function B() {
-      Fe = new np(P), Fe.init(), ye = new Nm(P, Fe), Ie = new Kd(P, Fe, e, ye), ve = new Fm(P, Fe), Ie.reversedDepthBuffer && f && ve.buffers.depth.setReversed(!0), Ze = new sp(P), Se = new Mm(), ke = new Om(P, Fe, ve, Se, Ie, ye, Ze), yt = new Zd(_), vt = new tp(_), w = new uh(P), he = new Qd(P, w), A = new ip(P, w, Ze, he), G = new op(P, A, w, Ze), ie = new ap(P, Ie, ke), se = new Jd(Se), J = new Em(_, yt, vt, Fe, Ie, he, se), $ = new Wm(_, Se), K = new ym(), Ce = new Pm(Fe), Te = new Yd(_, yt, vt, ve, G, d, l), Me = new Bm(_, G, Ie), ze = new Xm(P, Ze, Ie, ve), de = new qd(P, Fe, Ze), Be = new rp(P, Fe, Ze), Ze.programs = J.programs, _.capabilities = Ie, _.extensions = Fe, _.properties = Se, _.renderLists = K, _.shadowMap = Me, _.state = ve, _.info = Ze;
+      Fe = new np(I), Fe.init(), ye = new Nm(I, Fe), Ie = new Kd(I, Fe, e, ye), ve = new Fm(I, Fe), Ie.reversedDepthBuffer && f && ve.buffers.depth.setReversed(!0), Ze = new sp(I), Se = new Mm(), ke = new Om(I, Fe, ve, Se, Ie, ye, Ze), yt = new Zd(_), vt = new tp(_), b = new uh(I), he = new Qd(I, b), A = new ip(I, b, Ze, he), H = new op(I, A, b, Ze), ie = new ap(I, Ie, ke), se = new Jd(Se), J = new Em(_, yt, vt, Fe, Ie, he, se), ee = new Wm(_, Se), K = new ym(), Ce = new Pm(Fe), Te = new Yd(_, yt, vt, ve, H, d, l), Me = new Bm(_, H, Ie), ze = new Xm(I, Ze, Ie, ve), de = new qd(I, Fe, Ze), Be = new rp(I, Fe, Ze), Ze.programs = J.programs, _.capabilities = Ie, _.extensions = Fe, _.properties = Se, _.renderLists = K, _.shadowMap = Me, _.state = ve, _.info = Ze;
     }
     B();
-    const re = new km(_, P);
+    const re = new km(_, I);
     this.xr = re, this.getContext = function() {
-      return P;
+      return I;
     }, this.getContextAttributes = function() {
-      return P.getContextAttributes();
+      return I.getContextAttributes();
     }, this.forceContextLoss = function() {
       const M = Fe.get("WEBGL_lose_context");
       M && M.loseContext();
@@ -19342,31 +19342,31 @@ class Ym {
       const M = Fe.get("WEBGL_lose_context");
       M && M.restoreContext();
     }, this.getPixelRatio = function() {
-      return I;
+      return D;
     }, this.setPixelRatio = function(M) {
-      M !== void 0 && (I = M, this.setSize(O, R, !1));
+      M !== void 0 && (D = M, this.setSize(O, w, !1));
     }, this.getSize = function(M) {
-      return M.set(O, R);
+      return M.set(O, w);
     }, this.setSize = function(M, F, W = !0) {
       if (re.isPresenting) {
         console.warn("THREE.WebGLRenderer: Can't change size while VR device is presenting.");
         return;
       }
-      O = M, R = F, t.width = Math.floor(M * I), t.height = Math.floor(F * I), W === !0 && (t.style.width = M + "px", t.style.height = F + "px"), this.setViewport(0, 0, M, F);
+      O = M, w = F, t.width = Math.floor(M * D), t.height = Math.floor(F * D), W === !0 && (t.style.width = M + "px", t.style.height = F + "px"), this.setViewport(0, 0, M, F);
     }, this.getDrawingBufferSize = function(M) {
-      return M.set(O * I, R * I).floor();
+      return M.set(O * D, w * D).floor();
     }, this.setDrawingBufferSize = function(M, F, W) {
-      O = M, R = F, I = W, t.width = Math.floor(M * W), t.height = Math.floor(F * W), this.setViewport(0, 0, M, F);
+      O = M, w = F, D = W, t.width = Math.floor(M * W), t.height = Math.floor(F * W), this.setViewport(0, 0, M, F);
     }, this.getCurrentViewport = function(M) {
       return M.copy(L);
     }, this.getViewport = function(M) {
-      return M.copy(ee);
+      return M.copy($);
     }, this.setViewport = function(M, F, W, X) {
-      M.isVector4 ? ee.set(M.x, M.y, M.z, M.w) : ee.set(M, F, W, X), ve.viewport(L.copy(ee).multiplyScalar(I).round());
+      M.isVector4 ? $.set(M.x, M.y, M.z, M.w) : $.set(M, F, W, X), ve.viewport(L.copy($).multiplyScalar(D).round());
     }, this.getScissor = function(M) {
       return M.copy(le);
     }, this.setScissor = function(M, F, W, X) {
-      M.isVector4 ? le.set(M.x, M.y, M.z, M.w) : le.set(M, F, W, X), ve.scissor(z.copy(le).multiplyScalar(I).round());
+      M.isVector4 ? le.set(M.x, M.y, M.z, M.w) : le.set(M, F, W, X), ve.scissor(z.copy(le).multiplyScalar(D).round());
     }, this.getScissorTest = function() {
       return Ee;
     }, this.setScissorTest = function(M) {
@@ -19374,7 +19374,7 @@ class Ym {
     }, this.setOpaqueSort = function(M) {
       k = M;
     }, this.setTransparentSort = function(M) {
-      V = M;
+      G = M;
     }, this.getClearColor = function(M) {
       return M.copy(Te.getClearColor());
     }, this.setClearColor = function() {
@@ -19387,17 +19387,17 @@ class Ym {
       let X = 0;
       if (M) {
         let N = !1;
-        if (D !== null) {
-          const ne = D.texture.format;
+        if (P !== null) {
+          const ne = P.texture.format;
           N = ne === 1033 || ne === 1031 || ne === 1029;
         }
         if (N) {
-          const ne = D.texture.type, fe = ne === 1009 || ne === 1014 || ne === 1012 || ne === 1020 || ne === 1017 || ne === 1018, _e = Te.getClearColor(), me = Te.getClearAlpha(), Le = _e.r, Ue = _e.g, be = _e.b;
-          fe ? (v[0] = Le, v[1] = Ue, v[2] = be, v[3] = me, P.clearBufferuiv(P.COLOR, 0, v)) : (g[0] = Le, g[1] = Ue, g[2] = be, g[3] = me, P.clearBufferiv(P.COLOR, 0, g));
+          const ne = P.texture.type, fe = ne === 1009 || ne === 1014 || ne === 1012 || ne === 1020 || ne === 1017 || ne === 1018, _e = Te.getClearColor(), me = Te.getClearAlpha(), Le = _e.r, Ue = _e.g, be = _e.b;
+          fe ? (v[0] = Le, v[1] = Ue, v[2] = be, v[3] = me, I.clearBufferuiv(I.COLOR, 0, v)) : (g[0] = Le, g[1] = Ue, g[2] = be, g[3] = me, I.clearBufferiv(I.COLOR, 0, g));
         } else
-          X |= P.COLOR_BUFFER_BIT;
+          X |= I.COLOR_BUFFER_BIT;
       }
-      F && (X |= P.DEPTH_BUFFER_BIT), W && (X |= P.STENCIL_BUFFER_BIT, this.state.buffers.stencil.setMask(4294967295)), P.clear(X);
+      F && (X |= I.DEPTH_BUFFER_BIT), W && (X |= I.STENCIL_BUFFER_BIT, this.state.buffers.stencil.setMask(4294967295)), I.clear(X);
     }, this.clearColor = function() {
       this.clear(!0, !1, !1);
     }, this.clearDepth = function() {
@@ -19405,7 +19405,7 @@ class Ym {
     }, this.clearStencil = function() {
       this.clear(!1, !1, !0);
     }, this.dispose = function() {
-      t.removeEventListener("webglcontextlost", oe, !1), t.removeEventListener("webglcontextrestored", ge, !1), t.removeEventListener("webglcontextcreationerror", te, !1), Te.dispose(), K.dispose(), Ce.dispose(), Se.dispose(), yt.dispose(), vt.dispose(), G.dispose(), he.dispose(), ze.dispose(), J.dispose(), re.dispose(), re.removeEventListener("sessionstart", xn), re.removeEventListener("sessionend", mo), ai.stop();
+      t.removeEventListener("webglcontextlost", oe, !1), t.removeEventListener("webglcontextrestored", ge, !1), t.removeEventListener("webglcontextcreationerror", te, !1), Te.dispose(), K.dispose(), Ce.dispose(), Se.dispose(), yt.dispose(), vt.dispose(), H.dispose(), he.dispose(), ze.dispose(), J.dispose(), re.dispose(), re.removeEventListener("sessionstart", xn), re.removeEventListener("sessionend", mo), ai.stop();
     };
     function oe(M) {
       M.preventDefault(), console.log("THREE.WebGLRenderer: Context Lost."), y = !0;
@@ -19447,21 +19447,21 @@ class Ym {
       if (mt < 0 || mt === 1 / 0) return;
       he.setup(N, X, _e, W, me);
       let ot, it = de;
-      if (me !== null && (ot = w.get(me), it = Be, it.setIndex(ot)), N.isMesh)
-        X.wireframe === !0 ? (ve.setLineWidth(X.wireframeLinewidth * Rt()), it.setMode(P.LINES)) : it.setMode(P.TRIANGLES);
+      if (me !== null && (ot = b.get(me), it = Be, it.setIndex(ot)), N.isMesh)
+        X.wireframe === !0 ? (ve.setLineWidth(X.wireframeLinewidth * Rt()), it.setMode(I.LINES)) : it.setMode(I.TRIANGLES);
       else if (N.isLine) {
         let Pe = X.linewidth;
-        Pe === void 0 && (Pe = 1), ve.setLineWidth(Pe * Rt()), N.isLineSegments ? it.setMode(P.LINES) : N.isLineLoop ? it.setMode(P.LINE_LOOP) : it.setMode(P.LINE_STRIP);
-      } else N.isPoints ? it.setMode(P.POINTS) : N.isSprite && it.setMode(P.TRIANGLES);
+        Pe === void 0 && (Pe = 1), ve.setLineWidth(Pe * Rt()), N.isLineSegments ? it.setMode(I.LINES) : N.isLineLoop ? it.setMode(I.LINE_LOOP) : it.setMode(I.LINE_STRIP);
+      } else N.isPoints ? it.setMode(I.POINTS) : N.isSprite && it.setMode(I.TRIANGLES);
       if (N.isBatchedMesh)
         if (N._multiDrawInstances !== null)
-          yr("THREE.WebGLRenderer: renderMultiDrawInstances has been deprecated and will be removed in r184. Append to renderMultiDraw arguments and use indirection."), it.renderMultiDrawInstances(N._multiDrawStarts, N._multiDrawCounts, N._multiDrawCount, N._multiDrawInstances);
+          Tr("THREE.WebGLRenderer: renderMultiDrawInstances has been deprecated and will be removed in r184. Append to renderMultiDraw arguments and use indirection."), it.renderMultiDrawInstances(N._multiDrawStarts, N._multiDrawCounts, N._multiDrawCount, N._multiDrawInstances);
         else if (Fe.get("WEBGL_multi_draw"))
           it.renderMultiDraw(N._multiDrawStarts, N._multiDrawCounts, N._multiDrawCount);
         else {
-          const Pe = N._multiDrawStarts, ut = N._multiDrawCounts, qe = N._multiDrawCount, Yt = me ? w.get(me).bytesPerElement : 1, Ci = Se.get(X).currentProgram.getUniforms();
+          const Pe = N._multiDrawStarts, ut = N._multiDrawCounts, qe = N._multiDrawCount, Yt = me ? b.get(me).bytesPerElement : 1, Ci = Se.get(X).currentProgram.getUniforms();
           for (let Qt = 0; Qt < qe; Qt++)
-            Ci.setValue(P, "_gl_DrawID", Qt), it.render(Pe[Qt] / Yt, ut[Qt]);
+            Ci.setValue(I, "_gl_DrawID", Qt), it.render(Pe[Qt] / Yt, ut[Qt]);
         }
       else if (N.isInstancedMesh)
         it.renderInstances(Ye, mt, N.count);
@@ -19472,7 +19472,7 @@ class Ym {
         it.render(Ye, mt);
     };
     function at(M, F, W) {
-      M.transparent === !0 && M.side === 2 && M.forceSinglePass === !1 ? (M.side = 1, M.needsUpdate = !0, Gr(M, F, W), M.side = 0, M.needsUpdate = !0, Gr(M, F, W), M.side = 2) : Gr(M, F, W);
+      M.transparent === !0 && M.side === 2 && M.forceSinglePass === !1 ? (M.side = 1, M.needsUpdate = !0, zr(M, F, W), M.side = 0, M.needsUpdate = !0, zr(M, F, W), M.side = 2) : zr(M, F, W);
     }
     this.compile = function(M, F, W = null) {
       W === null && (W = M), p = Ce.get(W), p.init(F), S.push(p), W.traverseVisible(function(N) {
@@ -19519,7 +19519,7 @@ class Ym {
     function mo() {
       ai.start();
     }
-    const ai = new nc();
+    const ai = new tc();
     ai.setAnimationLoop(bn), typeof self < "u" && ai.setContext(self), this.setAnimationLoop = function(M) {
       je = M, re.setAnimationLoop(M), M === null ? ai.stop() : ai.start();
     }, re.addEventListener("sessionstart", xn), re.addEventListener("sessionend", mo), this.render = function(M, F) {
@@ -19528,11 +19528,11 @@ class Ym {
         return;
       }
       if (y === !0) return;
-      if (M.matrixWorldAutoUpdate === !0 && M.updateMatrixWorld(), F.parent === null && F.matrixWorldAutoUpdate === !0 && F.updateMatrixWorld(), re.enabled === !0 && re.isPresenting === !0 && (re.cameraAutoUpdate === !0 && re.updateCamera(F), F = re.getCamera()), M.isScene === !0 && M.onBeforeRender(_, M, F, D), p = Ce.get(M, S.length), p.init(F), S.push(p), j.multiplyMatrices(F.projectionMatrix, F.matrixWorldInverse), we.setFromProjectionMatrix(j, 2e3, F.reversedDepth), q = this.localClippingEnabled, pe = se.init(this.clippingPlanes, q), m = K.get(M, T.length), m.init(), T.push(m), re.enabled === !0 && re.isPresenting === !0) {
+      if (M.matrixWorldAutoUpdate === !0 && M.updateMatrixWorld(), F.parent === null && F.matrixWorldAutoUpdate === !0 && F.updateMatrixWorld(), re.enabled === !0 && re.isPresenting === !0 && (re.cameraAutoUpdate === !0 && re.updateCamera(F), F = re.getCamera()), M.isScene === !0 && M.onBeforeRender(_, M, F, P), p = Ce.get(M, S.length), p.init(F), S.push(p), j.multiplyMatrices(F.projectionMatrix, F.matrixWorldInverse), we.setFromProjectionMatrix(j, 2e3, F.reversedDepth), q = this.localClippingEnabled, pe = se.init(this.clippingPlanes, q), m = K.get(M, T.length), m.init(), T.push(m), re.enabled === !0 && re.isPresenting === !0) {
         const ne = _.xr.getDepthSensingMesh();
         ne !== null && Rs(ne, F, -1 / 0, _.sortObjects);
       }
-      Rs(M, F, 0, _.sortObjects), m.finish(), _.sortObjects === !0 && m.sort(k, V), Ne = re.enabled === !1 || re.isPresenting === !1 || re.hasDepthSensing() === !1, Ne && Te.addToRenderList(m, M), this.info.render.frame++, pe === !0 && se.beginShadows();
+      Rs(M, F, 0, _.sortObjects), m.finish(), _.sortObjects === !0 && m.sort(k, G), Ne = re.enabled === !1 || re.isPresenting === !1 || re.hasDepthSensing() === !1, Ne && Te.addToRenderList(m, M), this.info.render.frame++, pe === !0 && se.beginShadows();
       const W = p.state.shadowsArray;
       Me.render(W, M, F), pe === !0 && se.endShadows(), this.info.autoReset === !0 && this.info.reset();
       const X = m.opaque, N = m.transmissive;
@@ -19550,7 +19550,7 @@ class Ym {
         }
       } else
         N.length > 0 && vo(X, N, M, F), Ne && Te.render(M), go(m, M, F);
-      D !== null && C === 0 && (ke.updateMultisampleRenderTarget(D), ke.updateRenderTargetMipmap(D)), M.isScene === !0 && M.onAfterRender(_, M, F), he.resetDefaultState(), x = -1, E = null, S.pop(), S.length > 0 ? (p = S[S.length - 1], pe === !0 && se.setGlobalState(_.clippingPlanes, p.state.camera)) : p = null, T.pop(), T.length > 0 ? m = T[T.length - 1] : m = null;
+      P !== null && C === 0 && (ke.updateMultisampleRenderTarget(P), ke.updateRenderTargetMipmap(P)), M.isScene === !0 && M.onAfterRender(_, M, F), he.resetDefaultState(), x = -1, E = null, S.pop(), S.length > 0 ? (p = S[S.length - 1], pe === !0 && se.setGlobalState(_.clippingPlanes, p.state.camera)) : p = null, T.pop(), T.length > 0 ? m = T[T.length - 1] : m = null;
     };
     function Rs(M, F, W, X) {
       if (M.visible === !1) return;
@@ -19564,11 +19564,11 @@ class Ym {
         else if (M.isSprite) {
           if (!M.frustumCulled || we.intersectsSprite(M)) {
             X && De.setFromMatrixPosition(M.matrixWorld).applyMatrix4(j);
-            const fe = G.update(M), _e = M.material;
+            const fe = H.update(M), _e = M.material;
             _e.visible && m.push(M, fe, _e, W, De.z, null);
           }
         } else if ((M.isMesh || M.isLine || M.isPoints) && (!M.frustumCulled || we.intersectsObject(M))) {
-          const fe = G.update(M), _e = M.material;
+          const fe = H.update(M), _e = M.material;
           if (X && (M.boundingSphere !== void 0 ? (M.boundingSphere === null && M.computeBoundingSphere(), De.copy(M.boundingSphere.center)) : (fe.boundingSphere === null && fe.computeBoundingSphere(), De.copy(fe.boundingSphere.center)), De.applyMatrix4(M.matrixWorld).applyMatrix4(j)), Array.isArray(_e)) {
             const me = fe.groups;
             for (let Le = 0, Ue = me.length; Le < Ue; Le++) {
@@ -19584,7 +19584,7 @@ class Ym {
     }
     function go(M, F, W, X) {
       const N = M.opaque, ne = M.transmissive, fe = M.transparent;
-      p.setupLightsView(W), pe === !0 && se.setGlobalState(_.clippingPlanes, W), X && ve.viewport(L.copy(X)), N.length > 0 && zr(N, F, W), ne.length > 0 && zr(ne, F, W), fe.length > 0 && zr(fe, F, W), ve.buffers.depth.setTest(!0), ve.buffers.depth.setMask(!0), ve.buffers.color.setMask(!0), ve.setPolygonOffset(!1);
+      p.setupLightsView(W), pe === !0 && se.setGlobalState(_.clippingPlanes, W), X && ve.viewport(L.copy(X)), N.length > 0 && Nr(N, F, W), ne.length > 0 && Nr(ne, F, W), fe.length > 0 && Nr(fe, F, W), ve.buffers.depth.setTest(!0), ve.buffers.depth.setMask(!0), ve.buffers.color.setMask(!0), ve.setPolygonOffset(!1);
     }
     function vo(M, F, W, X) {
       if ((W.isScene === !0 ? W.overrideMaterial : null) !== null)
@@ -19606,7 +19606,7 @@ class Ym {
       const Ue = _.toneMapping;
       _.toneMapping = 0;
       const be = X.viewport;
-      if (X.viewport !== void 0 && (X.viewport = void 0), p.setupLightsView(X), pe === !0 && se.setGlobalState(_.clippingPlanes, X), zr(M, W, X), ke.updateMultisampleRenderTarget(ne), ke.updateRenderTargetMipmap(ne), Fe.has("WEBGL_multisampled_render_to_texture") === !1) {
+      if (X.viewport !== void 0 && (X.viewport = void 0), p.setupLightsView(X), pe === !0 && se.setGlobalState(_.clippingPlanes, X), Nr(M, W, X), ke.updateMultisampleRenderTarget(ne), ke.updateRenderTargetMipmap(ne), Fe.has("WEBGL_multisampled_render_to_texture") === !1) {
         let Ye = !1;
         for (let $e = 0, mt = F.length; $e < mt; $e++) {
           const ot = F[$e], it = ot.object, Pe = ot.geometry, ut = ot.material, qe = ot.group;
@@ -19619,7 +19619,7 @@ class Ym {
       }
       _.setRenderTarget(_e, me, Le), _.setClearColor(Q, Y), be !== void 0 && (X.viewport = be), _.toneMapping = Ue;
     }
-    function zr(M, F, W) {
+    function Nr(M, F, W) {
       const X = F.isScene === !0 ? F.overrideMaterial : null;
       for (let N = 0, ne = M.length; N < ne; N++) {
         const fe = M[N], _e = fe.object, me = fe.geometry, Le = fe.group;
@@ -19630,7 +19630,7 @@ class Ym {
     function _o(M, F, W, X, N, ne) {
       M.onBeforeRender(_, F, W, X, N, ne), M.modelViewMatrix.multiplyMatrices(W.matrixWorldInverse, M.matrixWorld), M.normalMatrix.getNormalMatrix(M.modelViewMatrix), N.onBeforeRender(_, F, W, X, M, ne), N.transparent === !0 && N.side === 2 && N.forceSinglePass === !1 ? (N.side = 1, N.needsUpdate = !0, _.renderBufferDirect(W, F, X, N, M, ne), N.side = 0, N.needsUpdate = !0, _.renderBufferDirect(W, F, X, N, M, ne), N.side = 2) : _.renderBufferDirect(W, F, X, N, M, ne), M.onAfterRender(_, F, W, X, N, ne);
     }
-    function Gr(M, F, W) {
+    function zr(M, F, W) {
       F.isScene !== !0 && (F = xe);
       const X = Se.get(M), N = p.state.lights, ne = p.state.shadowsArray, fe = N.state.version, _e = J.getParameters(M, N.state, ne, F, W), me = J.getProgramCacheKey(_e);
       let Le = X.programs;
@@ -19647,7 +19647,7 @@ class Ym {
     function xo(M) {
       if (M.uniformsList === null) {
         const F = M.currentProgram.getUniforms();
-        M.uniformsList = us.seqWithValue(F.seq, M.uniforms);
+        M.uniformsList = cs.seqWithValue(F.seq, M.uniforms);
       }
       return M.uniformsList;
     }
@@ -19657,9 +19657,9 @@ class Ym {
     }
     function ou(M, F, W, X, N) {
       F.isScene !== !0 && (F = xe), ke.resetTextureUnits();
-      const ne = F.fog, fe = X.isMeshStandardMaterial ? F.environment : null, _e = D === null ? _.outputColorSpace : D.isXRRenderTarget === !0 ? D.texture.colorSpace : ti, me = (X.isMeshStandardMaterial ? vt : yt).get(X.envMap || fe), Le = X.vertexColors === !0 && !!W.attributes.color && W.attributes.color.itemSize === 4, Ue = !!W.attributes.tangent && (!!X.normalMap || X.anisotropy > 0), be = !!W.morphAttributes.position, Ye = !!W.morphAttributes.normal, $e = !!W.morphAttributes.color;
+      const ne = F.fog, fe = X.isMeshStandardMaterial ? F.environment : null, _e = P === null ? _.outputColorSpace : P.isXRRenderTarget === !0 ? P.texture.colorSpace : ti, me = (X.isMeshStandardMaterial ? vt : yt).get(X.envMap || fe), Le = X.vertexColors === !0 && !!W.attributes.color && W.attributes.color.itemSize === 4, Ue = !!W.attributes.tangent && (!!X.normalMap || X.anisotropy > 0), be = !!W.morphAttributes.position, Ye = !!W.morphAttributes.normal, $e = !!W.morphAttributes.color;
       let mt = 0;
-      X.toneMapped && (D === null || D.isXRRenderTarget === !0) && (mt = _.toneMapping);
+      X.toneMapped && (P === null || P.isXRRenderTarget === !0) && (mt = _.toneMapping);
       const ot = W.morphAttributes.position || W.morphAttributes.normal || W.morphAttributes.color, it = ot !== void 0 ? ot.length : 0, Pe = Se.get(X), ut = p.state.lights;
       if (pe === !0 && (q === !0 || M !== E)) {
         const Ft = M === E && X.id === x;
@@ -19668,26 +19668,26 @@ class Ym {
       let qe = !1;
       X.version === Pe.__version ? (Pe.needsLights && Pe.lightsStateVersion !== ut.state.version || Pe.outputColorSpace !== _e || N.isBatchedMesh && Pe.batching === !1 || !N.isBatchedMesh && Pe.batching === !0 || N.isBatchedMesh && Pe.batchingColor === !0 && N.colorTexture === null || N.isBatchedMesh && Pe.batchingColor === !1 && N.colorTexture !== null || N.isInstancedMesh && Pe.instancing === !1 || !N.isInstancedMesh && Pe.instancing === !0 || N.isSkinnedMesh && Pe.skinning === !1 || !N.isSkinnedMesh && Pe.skinning === !0 || N.isInstancedMesh && Pe.instancingColor === !0 && N.instanceColor === null || N.isInstancedMesh && Pe.instancingColor === !1 && N.instanceColor !== null || N.isInstancedMesh && Pe.instancingMorph === !0 && N.morphTexture === null || N.isInstancedMesh && Pe.instancingMorph === !1 && N.morphTexture !== null || Pe.envMap !== me || X.fog === !0 && Pe.fog !== ne || Pe.numClippingPlanes !== void 0 && (Pe.numClippingPlanes !== se.numPlanes || Pe.numIntersection !== se.numIntersection) || Pe.vertexAlphas !== Le || Pe.vertexTangents !== Ue || Pe.morphTargets !== be || Pe.morphNormals !== Ye || Pe.morphColors !== $e || Pe.toneMapping !== mt || Pe.morphTargetsCount !== it) && (qe = !0) : (qe = !0, Pe.__version = X.version);
       let Yt = Pe.currentProgram;
-      qe === !0 && (Yt = Gr(X, F, N));
+      qe === !0 && (Yt = zr(X, F, N));
       let Ci = !1, Qt = !1, ar = !1;
       const ht = Yt.getUniforms(), ln = Pe.uniforms;
       if (ve.useProgram(Yt.program) && (Ci = !0, Qt = !0, ar = !0), X.id !== x && (x = X.id, Qt = !0), Ci || E !== M) {
-        ve.buffers.depth.getReversed() && M.reversedDepth !== !0 && (M._reversedDepth = !0, M.updateProjectionMatrix()), ht.setValue(P, "projectionMatrix", M.projectionMatrix), ht.setValue(P, "viewMatrix", M.matrixWorldInverse);
+        ve.buffers.depth.getReversed() && M.reversedDepth !== !0 && (M._reversedDepth = !0, M.updateProjectionMatrix()), ht.setValue(I, "projectionMatrix", M.projectionMatrix), ht.setValue(I, "viewMatrix", M.matrixWorldInverse);
         const Nt = ht.map.cameraPosition;
-        Nt !== void 0 && Nt.setValue(P, ae.setFromMatrixPosition(M.matrixWorld)), Ie.logarithmicDepthBuffer && ht.setValue(
-          P,
+        Nt !== void 0 && Nt.setValue(I, ae.setFromMatrixPosition(M.matrixWorld)), Ie.logarithmicDepthBuffer && ht.setValue(
+          I,
           "logDepthBufFC",
           2 / (Math.log(M.far + 1) / Math.LN2)
-        ), (X.isMeshPhongMaterial || X.isMeshToonMaterial || X.isMeshLambertMaterial || X.isMeshBasicMaterial || X.isMeshStandardMaterial || X.isShaderMaterial) && ht.setValue(P, "isOrthographic", M.isOrthographicCamera === !0), E !== M && (E = M, Qt = !0, ar = !0);
+        ), (X.isMeshPhongMaterial || X.isMeshToonMaterial || X.isMeshLambertMaterial || X.isMeshBasicMaterial || X.isMeshStandardMaterial || X.isShaderMaterial) && ht.setValue(I, "isOrthographic", M.isOrthographicCamera === !0), E !== M && (E = M, Qt = !0, ar = !0);
       }
       if (N.isSkinnedMesh) {
-        ht.setOptional(P, N, "bindMatrix"), ht.setOptional(P, N, "bindMatrixInverse");
+        ht.setOptional(I, N, "bindMatrix"), ht.setOptional(I, N, "bindMatrixInverse");
         const Ft = N.skeleton;
-        Ft && (Ft.boneTexture === null && Ft.computeBoneTexture(), ht.setValue(P, "boneTexture", Ft.boneTexture, ke));
+        Ft && (Ft.boneTexture === null && Ft.computeBoneTexture(), ht.setValue(I, "boneTexture", Ft.boneTexture, ke));
       }
-      N.isBatchedMesh && (ht.setOptional(P, N, "batchingTexture"), ht.setValue(P, "batchingTexture", N._matricesTexture, ke), ht.setOptional(P, N, "batchingIdTexture"), ht.setValue(P, "batchingIdTexture", N._indirectTexture, ke), ht.setOptional(P, N, "batchingColorTexture"), N._colorsTexture !== null && ht.setValue(P, "batchingColorTexture", N._colorsTexture, ke));
+      N.isBatchedMesh && (ht.setOptional(I, N, "batchingTexture"), ht.setValue(I, "batchingTexture", N._matricesTexture, ke), ht.setOptional(I, N, "batchingIdTexture"), ht.setValue(I, "batchingIdTexture", N._indirectTexture, ke), ht.setOptional(I, N, "batchingColorTexture"), N._colorsTexture !== null && ht.setValue(I, "batchingColorTexture", N._colorsTexture, ke));
       const cn = W.morphAttributes;
-      if ((cn.position !== void 0 || cn.normal !== void 0 || cn.color !== void 0) && ie.update(N, W, Yt), (Qt || Pe.receiveShadow !== N.receiveShadow) && (Pe.receiveShadow = N.receiveShadow, ht.setValue(P, "receiveShadow", N.receiveShadow)), X.isMeshGouraudMaterial && X.envMap !== null && (ln.envMap.value = me, ln.flipEnvMap.value = me.isCubeTexture && me.isRenderTargetTexture === !1 ? -1 : 1), X.isMeshStandardMaterial && X.envMap === null && F.environment !== null && (ln.envMapIntensity.value = F.environmentIntensity), Qt && (ht.setValue(P, "toneMappingExposure", _.toneMappingExposure), Pe.needsLights && lu(ln, ar), ne && X.fog === !0 && $.refreshFogUniforms(ln, ne), $.refreshMaterialUniforms(ln, X, I, R, p.state.transmissionRenderTarget[M.id]), us.upload(P, xo(Pe), ln, ke)), X.isShaderMaterial && X.uniformsNeedUpdate === !0 && (us.upload(P, xo(Pe), ln, ke), X.uniformsNeedUpdate = !1), X.isSpriteMaterial && ht.setValue(P, "center", N.center), ht.setValue(P, "modelViewMatrix", N.modelViewMatrix), ht.setValue(P, "normalMatrix", N.normalMatrix), ht.setValue(P, "modelMatrix", N.matrixWorld), X.isShaderMaterial || X.isRawShaderMaterial) {
+      if ((cn.position !== void 0 || cn.normal !== void 0 || cn.color !== void 0) && ie.update(N, W, Yt), (Qt || Pe.receiveShadow !== N.receiveShadow) && (Pe.receiveShadow = N.receiveShadow, ht.setValue(I, "receiveShadow", N.receiveShadow)), X.isMeshGouraudMaterial && X.envMap !== null && (ln.envMap.value = me, ln.flipEnvMap.value = me.isCubeTexture && me.isRenderTargetTexture === !1 ? -1 : 1), X.isMeshStandardMaterial && X.envMap === null && F.environment !== null && (ln.envMapIntensity.value = F.environmentIntensity), Qt && (ht.setValue(I, "toneMappingExposure", _.toneMappingExposure), Pe.needsLights && lu(ln, ar), ne && X.fog === !0 && ee.refreshFogUniforms(ln, ne), ee.refreshMaterialUniforms(ln, X, D, w, p.state.transmissionRenderTarget[M.id]), cs.upload(I, xo(Pe), ln, ke)), X.isShaderMaterial && X.uniformsNeedUpdate === !0 && (cs.upload(I, xo(Pe), ln, ke), X.uniformsNeedUpdate = !1), X.isSpriteMaterial && ht.setValue(I, "center", N.center), ht.setValue(I, "modelViewMatrix", N.modelViewMatrix), ht.setValue(I, "normalMatrix", N.normalMatrix), ht.setValue(I, "modelMatrix", N.matrixWorld), X.isShaderMaterial || X.isRawShaderMaterial) {
         const Ft = X.uniformsGroups;
         for (let Nt = 0, Ds = Ft.length; Nt < Ds; Nt++) {
           const oi = Ft[Nt];
@@ -19703,11 +19703,11 @@ class Ym {
       return M.isMeshLambertMaterial || M.isMeshToonMaterial || M.isMeshPhongMaterial || M.isMeshStandardMaterial || M.isShadowMaterial || M.isShaderMaterial && M.lights === !0;
     }
     this.getActiveCubeFace = function() {
-      return b;
+      return R;
     }, this.getActiveMipmapLevel = function() {
       return C;
     }, this.getRenderTarget = function() {
-      return D;
+      return P;
     }, this.setRenderTargetTextures = function(M, F, W) {
       const X = Se.get(M);
       X.__autoAllocateDepthBuffer = M.resolveDepthBuffer === !1, X.__autoAllocateDepthBuffer === !1 && (X.__useRenderToTexture = !1), Se.get(M.texture).__webglTexture = F, Se.get(M.depthTexture).__webglTexture = X.__autoAllocateDepthBuffer ? void 0 : W, X.__hasExternalTextures = !0;
@@ -19715,14 +19715,14 @@ class Ym {
       const W = Se.get(M);
       W.__webglFramebuffer = F, W.__useDefaultFramebuffer = F === void 0;
     };
-    const uu = P.createFramebuffer();
+    const uu = I.createFramebuffer();
     this.setRenderTarget = function(M, F = 0, W = 0) {
-      D = M, b = F, C = W;
+      P = M, R = F, C = W;
       let X = !0, N = null, ne = !1, fe = !1;
       if (M) {
         const me = Se.get(M);
         if (me.__useDefaultFramebuffer !== void 0)
-          ve.bindFramebuffer(P.FRAMEBUFFER, null), X = !1;
+          ve.bindFramebuffer(I.FRAMEBUFFER, null), X = !1;
         else if (me.__webglFramebuffer === void 0)
           ke.setupRenderTarget(M);
         else if (me.__hasExternalTextures)
@@ -19738,21 +19738,21 @@ class Ym {
         const Le = M.texture;
         (Le.isData3DTexture || Le.isDataArrayTexture || Le.isCompressedArrayTexture) && (fe = !0);
         const Ue = Se.get(M).__webglFramebuffer;
-        M.isWebGLCubeRenderTarget ? (Array.isArray(Ue[F]) ? N = Ue[F][W] : N = Ue[F], ne = !0) : M.samples > 0 && ke.useMultisampledRTT(M) === !1 ? N = Se.get(M).__webglMultisampledFramebuffer : Array.isArray(Ue) ? N = Ue[W] : N = Ue, L.copy(M.viewport), z.copy(M.scissor), H = M.scissorTest;
+        M.isWebGLCubeRenderTarget ? (Array.isArray(Ue[F]) ? N = Ue[F][W] : N = Ue[F], ne = !0) : M.samples > 0 && ke.useMultisampledRTT(M) === !1 ? N = Se.get(M).__webglMultisampledFramebuffer : Array.isArray(Ue) ? N = Ue[W] : N = Ue, L.copy(M.viewport), z.copy(M.scissor), V = M.scissorTest;
       } else
-        L.copy(ee).multiplyScalar(I).floor(), z.copy(le).multiplyScalar(I).floor(), H = Ee;
-      if (W !== 0 && (N = uu), ve.bindFramebuffer(P.FRAMEBUFFER, N) && X && ve.drawBuffers(M, N), ve.viewport(L), ve.scissor(z), ve.setScissorTest(H), ne) {
+        L.copy($).multiplyScalar(D).floor(), z.copy(le).multiplyScalar(D).floor(), V = Ee;
+      if (W !== 0 && (N = uu), ve.bindFramebuffer(I.FRAMEBUFFER, N) && X && ve.drawBuffers(M, N), ve.viewport(L), ve.scissor(z), ve.setScissorTest(V), ne) {
         const me = Se.get(M.texture);
-        P.framebufferTexture2D(P.FRAMEBUFFER, P.COLOR_ATTACHMENT0, P.TEXTURE_CUBE_MAP_POSITIVE_X + F, me.__webglTexture, W);
+        I.framebufferTexture2D(I.FRAMEBUFFER, I.COLOR_ATTACHMENT0, I.TEXTURE_CUBE_MAP_POSITIVE_X + F, me.__webglTexture, W);
       } else if (fe) {
         const me = F;
         for (let Le = 0; Le < M.textures.length; Le++) {
           const Ue = Se.get(M.textures[Le]);
-          P.framebufferTextureLayer(P.FRAMEBUFFER, P.COLOR_ATTACHMENT0 + Le, Ue.__webglTexture, W, me);
+          I.framebufferTextureLayer(I.FRAMEBUFFER, I.COLOR_ATTACHMENT0 + Le, Ue.__webglTexture, W, me);
         }
       } else if (M !== null && W !== 0) {
         const me = Se.get(M.texture);
-        P.framebufferTexture2D(P.FRAMEBUFFER, P.COLOR_ATTACHMENT0, P.TEXTURE_2D, me.__webglTexture, W);
+        I.framebufferTexture2D(I.FRAMEBUFFER, I.COLOR_ATTACHMENT0, I.TEXTURE_2D, me.__webglTexture, W);
       }
       x = -1;
     }, this.readRenderTargetPixels = function(M, F, W, X, N, ne, fe, _e = 0) {
@@ -19762,7 +19762,7 @@ class Ym {
       }
       let me = Se.get(M).__webglFramebuffer;
       if (M.isWebGLCubeRenderTarget && fe !== void 0 && (me = me[fe]), me) {
-        ve.bindFramebuffer(P.FRAMEBUFFER, me);
+        ve.bindFramebuffer(I.FRAMEBUFFER, me);
         try {
           const Le = M.textures[_e], Ue = Le.format, be = Le.type;
           if (!Ie.textureFormatReadable(Ue)) {
@@ -19773,10 +19773,10 @@ class Ym {
             console.error("THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not in UnsignedByteType or implementation defined type.");
             return;
           }
-          F >= 0 && F <= M.width - X && W >= 0 && W <= M.height - N && (M.textures.length > 1 && P.readBuffer(P.COLOR_ATTACHMENT0 + _e), P.readPixels(F, W, X, N, ye.convert(Ue), ye.convert(be), ne));
+          F >= 0 && F <= M.width - X && W >= 0 && W <= M.height - N && (M.textures.length > 1 && I.readBuffer(I.COLOR_ATTACHMENT0 + _e), I.readPixels(F, W, X, N, ye.convert(Ue), ye.convert(be), ne));
         } finally {
-          const Le = D !== null ? Se.get(D).__webglFramebuffer : null;
-          ve.bindFramebuffer(P.FRAMEBUFFER, Le);
+          const Le = P !== null ? Se.get(P).__webglFramebuffer : null;
+          ve.bindFramebuffer(I.FRAMEBUFFER, Le);
         }
       }
     }, this.readRenderTargetPixelsAsync = async function(M, F, W, X, N, ne, fe, _e = 0) {
@@ -19785,27 +19785,27 @@ class Ym {
       let me = Se.get(M).__webglFramebuffer;
       if (M.isWebGLCubeRenderTarget && fe !== void 0 && (me = me[fe]), me)
         if (F >= 0 && F <= M.width - X && W >= 0 && W <= M.height - N) {
-          ve.bindFramebuffer(P.FRAMEBUFFER, me);
+          ve.bindFramebuffer(I.FRAMEBUFFER, me);
           const Le = M.textures[_e], Ue = Le.format, be = Le.type;
           if (!Ie.textureFormatReadable(Ue))
             throw new Error("THREE.WebGLRenderer.readRenderTargetPixelsAsync: renderTarget is not in RGBA or implementation defined format.");
           if (!Ie.textureTypeReadable(be))
             throw new Error("THREE.WebGLRenderer.readRenderTargetPixelsAsync: renderTarget is not in UnsignedByteType or implementation defined type.");
-          const Ye = P.createBuffer();
-          P.bindBuffer(P.PIXEL_PACK_BUFFER, Ye), P.bufferData(P.PIXEL_PACK_BUFFER, ne.byteLength, P.STREAM_READ), M.textures.length > 1 && P.readBuffer(P.COLOR_ATTACHMENT0 + _e), P.readPixels(F, W, X, N, ye.convert(Ue), ye.convert(be), 0);
-          const $e = D !== null ? Se.get(D).__webglFramebuffer : null;
-          ve.bindFramebuffer(P.FRAMEBUFFER, $e);
-          const mt = P.fenceSync(P.SYNC_GPU_COMMANDS_COMPLETE, 0);
-          return P.flush(), await mu(P, mt, 4), P.bindBuffer(P.PIXEL_PACK_BUFFER, Ye), P.getBufferSubData(P.PIXEL_PACK_BUFFER, 0, ne), P.deleteBuffer(Ye), P.deleteSync(mt), ne;
+          const Ye = I.createBuffer();
+          I.bindBuffer(I.PIXEL_PACK_BUFFER, Ye), I.bufferData(I.PIXEL_PACK_BUFFER, ne.byteLength, I.STREAM_READ), M.textures.length > 1 && I.readBuffer(I.COLOR_ATTACHMENT0 + _e), I.readPixels(F, W, X, N, ye.convert(Ue), ye.convert(be), 0);
+          const $e = P !== null ? Se.get(P).__webglFramebuffer : null;
+          ve.bindFramebuffer(I.FRAMEBUFFER, $e);
+          const mt = I.fenceSync(I.SYNC_GPU_COMMANDS_COMPLETE, 0);
+          return I.flush(), await mu(I, mt, 4), I.bindBuffer(I.PIXEL_PACK_BUFFER, Ye), I.getBufferSubData(I.PIXEL_PACK_BUFFER, 0, ne), I.deleteBuffer(Ye), I.deleteSync(mt), ne;
         } else
           throw new Error("THREE.WebGLRenderer.readRenderTargetPixelsAsync: requested read bounds are out of range.");
     }, this.copyFramebufferToTexture = function(M, F = null, W = 0) {
       const X = Math.pow(2, -W), N = Math.floor(M.image.width * X), ne = Math.floor(M.image.height * X), fe = F !== null ? F.x : 0, _e = F !== null ? F.y : 0;
-      ke.setTexture2D(M, 0), P.copyTexSubImage2D(P.TEXTURE_2D, W, 0, 0, fe, _e, N, ne), ve.unbindTexture();
+      ke.setTexture2D(M, 0), I.copyTexSubImage2D(I.TEXTURE_2D, W, 0, 0, fe, _e, N, ne), ve.unbindTexture();
     };
-    const hu = P.createFramebuffer(), fu = P.createFramebuffer();
+    const hu = I.createFramebuffer(), fu = I.createFramebuffer();
     this.copyTextureToTexture = function(M, F, W = null, X = null, N = 0, ne = null) {
-      ne === null && (N !== 0 ? (yr("WebGLRenderer: copyTextureToTexture function signature has changed to support src and dst mipmap levels."), ne = N, N = 0) : ne = 0);
+      ne === null && (N !== 0 ? (Tr("WebGLRenderer: copyTextureToTexture function signature has changed to support src and dst mipmap levels."), ne = N, N = 0) : ne = 0);
       let fe, _e, me, Le, Ue, be, Ye, $e, mt;
       const ot = M.isCompressedTexture ? M.mipmaps[ne] : M.image;
       if (W !== null)
@@ -19817,31 +19817,31 @@ class Ym {
       X !== null ? (Ye = X.x, $e = X.y, mt = X.z) : (Ye = 0, $e = 0, mt = 0);
       const it = ye.convert(F.format), Pe = ye.convert(F.type);
       let ut;
-      F.isData3DTexture ? (ke.setTexture3D(F, 0), ut = P.TEXTURE_3D) : F.isDataArrayTexture || F.isCompressedArrayTexture ? (ke.setTexture2DArray(F, 0), ut = P.TEXTURE_2D_ARRAY) : (ke.setTexture2D(F, 0), ut = P.TEXTURE_2D), P.pixelStorei(P.UNPACK_FLIP_Y_WEBGL, F.flipY), P.pixelStorei(P.UNPACK_PREMULTIPLY_ALPHA_WEBGL, F.premultiplyAlpha), P.pixelStorei(P.UNPACK_ALIGNMENT, F.unpackAlignment);
-      const qe = P.getParameter(P.UNPACK_ROW_LENGTH), Yt = P.getParameter(P.UNPACK_IMAGE_HEIGHT), Ci = P.getParameter(P.UNPACK_SKIP_PIXELS), Qt = P.getParameter(P.UNPACK_SKIP_ROWS), ar = P.getParameter(P.UNPACK_SKIP_IMAGES);
-      P.pixelStorei(P.UNPACK_ROW_LENGTH, ot.width), P.pixelStorei(P.UNPACK_IMAGE_HEIGHT, ot.height), P.pixelStorei(P.UNPACK_SKIP_PIXELS, Le), P.pixelStorei(P.UNPACK_SKIP_ROWS, Ue), P.pixelStorei(P.UNPACK_SKIP_IMAGES, be);
+      F.isData3DTexture ? (ke.setTexture3D(F, 0), ut = I.TEXTURE_3D) : F.isDataArrayTexture || F.isCompressedArrayTexture ? (ke.setTexture2DArray(F, 0), ut = I.TEXTURE_2D_ARRAY) : (ke.setTexture2D(F, 0), ut = I.TEXTURE_2D), I.pixelStorei(I.UNPACK_FLIP_Y_WEBGL, F.flipY), I.pixelStorei(I.UNPACK_PREMULTIPLY_ALPHA_WEBGL, F.premultiplyAlpha), I.pixelStorei(I.UNPACK_ALIGNMENT, F.unpackAlignment);
+      const qe = I.getParameter(I.UNPACK_ROW_LENGTH), Yt = I.getParameter(I.UNPACK_IMAGE_HEIGHT), Ci = I.getParameter(I.UNPACK_SKIP_PIXELS), Qt = I.getParameter(I.UNPACK_SKIP_ROWS), ar = I.getParameter(I.UNPACK_SKIP_IMAGES);
+      I.pixelStorei(I.UNPACK_ROW_LENGTH, ot.width), I.pixelStorei(I.UNPACK_IMAGE_HEIGHT, ot.height), I.pixelStorei(I.UNPACK_SKIP_PIXELS, Le), I.pixelStorei(I.UNPACK_SKIP_ROWS, Ue), I.pixelStorei(I.UNPACK_SKIP_IMAGES, be);
       const ht = M.isDataArrayTexture || M.isData3DTexture, ln = F.isDataArrayTexture || F.isData3DTexture;
       if (M.isDepthTexture) {
         const cn = Se.get(M), Ft = Se.get(F), Nt = Se.get(cn.__renderTarget), Ds = Se.get(Ft.__renderTarget);
-        ve.bindFramebuffer(P.READ_FRAMEBUFFER, Nt.__webglFramebuffer), ve.bindFramebuffer(P.DRAW_FRAMEBUFFER, Ds.__webglFramebuffer);
+        ve.bindFramebuffer(I.READ_FRAMEBUFFER, Nt.__webglFramebuffer), ve.bindFramebuffer(I.DRAW_FRAMEBUFFER, Ds.__webglFramebuffer);
         for (let oi = 0; oi < me; oi++)
-          ht && (P.framebufferTextureLayer(P.READ_FRAMEBUFFER, P.COLOR_ATTACHMENT0, Se.get(M).__webglTexture, N, be + oi), P.framebufferTextureLayer(P.DRAW_FRAMEBUFFER, P.COLOR_ATTACHMENT0, Se.get(F).__webglTexture, ne, mt + oi)), P.blitFramebuffer(Le, Ue, fe, _e, Ye, $e, fe, _e, P.DEPTH_BUFFER_BIT, P.NEAREST);
-        ve.bindFramebuffer(P.READ_FRAMEBUFFER, null), ve.bindFramebuffer(P.DRAW_FRAMEBUFFER, null);
+          ht && (I.framebufferTextureLayer(I.READ_FRAMEBUFFER, I.COLOR_ATTACHMENT0, Se.get(M).__webglTexture, N, be + oi), I.framebufferTextureLayer(I.DRAW_FRAMEBUFFER, I.COLOR_ATTACHMENT0, Se.get(F).__webglTexture, ne, mt + oi)), I.blitFramebuffer(Le, Ue, fe, _e, Ye, $e, fe, _e, I.DEPTH_BUFFER_BIT, I.NEAREST);
+        ve.bindFramebuffer(I.READ_FRAMEBUFFER, null), ve.bindFramebuffer(I.DRAW_FRAMEBUFFER, null);
       } else if (N !== 0 || M.isRenderTargetTexture || Se.has(M)) {
         const cn = Se.get(M), Ft = Se.get(F);
-        ve.bindFramebuffer(P.READ_FRAMEBUFFER, hu), ve.bindFramebuffer(P.DRAW_FRAMEBUFFER, fu);
+        ve.bindFramebuffer(I.READ_FRAMEBUFFER, hu), ve.bindFramebuffer(I.DRAW_FRAMEBUFFER, fu);
         for (let Nt = 0; Nt < me; Nt++)
-          ht ? P.framebufferTextureLayer(P.READ_FRAMEBUFFER, P.COLOR_ATTACHMENT0, cn.__webglTexture, N, be + Nt) : P.framebufferTexture2D(P.READ_FRAMEBUFFER, P.COLOR_ATTACHMENT0, P.TEXTURE_2D, cn.__webglTexture, N), ln ? P.framebufferTextureLayer(P.DRAW_FRAMEBUFFER, P.COLOR_ATTACHMENT0, Ft.__webglTexture, ne, mt + Nt) : P.framebufferTexture2D(P.DRAW_FRAMEBUFFER, P.COLOR_ATTACHMENT0, P.TEXTURE_2D, Ft.__webglTexture, ne), N !== 0 ? P.blitFramebuffer(Le, Ue, fe, _e, Ye, $e, fe, _e, P.COLOR_BUFFER_BIT, P.NEAREST) : ln ? P.copyTexSubImage3D(ut, ne, Ye, $e, mt + Nt, Le, Ue, fe, _e) : P.copyTexSubImage2D(ut, ne, Ye, $e, Le, Ue, fe, _e);
-        ve.bindFramebuffer(P.READ_FRAMEBUFFER, null), ve.bindFramebuffer(P.DRAW_FRAMEBUFFER, null);
+          ht ? I.framebufferTextureLayer(I.READ_FRAMEBUFFER, I.COLOR_ATTACHMENT0, cn.__webglTexture, N, be + Nt) : I.framebufferTexture2D(I.READ_FRAMEBUFFER, I.COLOR_ATTACHMENT0, I.TEXTURE_2D, cn.__webglTexture, N), ln ? I.framebufferTextureLayer(I.DRAW_FRAMEBUFFER, I.COLOR_ATTACHMENT0, Ft.__webglTexture, ne, mt + Nt) : I.framebufferTexture2D(I.DRAW_FRAMEBUFFER, I.COLOR_ATTACHMENT0, I.TEXTURE_2D, Ft.__webglTexture, ne), N !== 0 ? I.blitFramebuffer(Le, Ue, fe, _e, Ye, $e, fe, _e, I.COLOR_BUFFER_BIT, I.NEAREST) : ln ? I.copyTexSubImage3D(ut, ne, Ye, $e, mt + Nt, Le, Ue, fe, _e) : I.copyTexSubImage2D(ut, ne, Ye, $e, Le, Ue, fe, _e);
+        ve.bindFramebuffer(I.READ_FRAMEBUFFER, null), ve.bindFramebuffer(I.DRAW_FRAMEBUFFER, null);
       } else
-        ln ? M.isDataTexture || M.isData3DTexture ? P.texSubImage3D(ut, ne, Ye, $e, mt, fe, _e, me, it, Pe, ot.data) : F.isCompressedArrayTexture ? P.compressedTexSubImage3D(ut, ne, Ye, $e, mt, fe, _e, me, it, ot.data) : P.texSubImage3D(ut, ne, Ye, $e, mt, fe, _e, me, it, Pe, ot) : M.isDataTexture ? P.texSubImage2D(P.TEXTURE_2D, ne, Ye, $e, fe, _e, it, Pe, ot.data) : M.isCompressedTexture ? P.compressedTexSubImage2D(P.TEXTURE_2D, ne, Ye, $e, ot.width, ot.height, it, ot.data) : P.texSubImage2D(P.TEXTURE_2D, ne, Ye, $e, fe, _e, it, Pe, ot);
-      P.pixelStorei(P.UNPACK_ROW_LENGTH, qe), P.pixelStorei(P.UNPACK_IMAGE_HEIGHT, Yt), P.pixelStorei(P.UNPACK_SKIP_PIXELS, Ci), P.pixelStorei(P.UNPACK_SKIP_ROWS, Qt), P.pixelStorei(P.UNPACK_SKIP_IMAGES, ar), ne === 0 && F.generateMipmaps && P.generateMipmap(ut), ve.unbindTexture();
+        ln ? M.isDataTexture || M.isData3DTexture ? I.texSubImage3D(ut, ne, Ye, $e, mt, fe, _e, me, it, Pe, ot.data) : F.isCompressedArrayTexture ? I.compressedTexSubImage3D(ut, ne, Ye, $e, mt, fe, _e, me, it, ot.data) : I.texSubImage3D(ut, ne, Ye, $e, mt, fe, _e, me, it, Pe, ot) : M.isDataTexture ? I.texSubImage2D(I.TEXTURE_2D, ne, Ye, $e, fe, _e, it, Pe, ot.data) : M.isCompressedTexture ? I.compressedTexSubImage2D(I.TEXTURE_2D, ne, Ye, $e, ot.width, ot.height, it, ot.data) : I.texSubImage2D(I.TEXTURE_2D, ne, Ye, $e, fe, _e, it, Pe, ot);
+      I.pixelStorei(I.UNPACK_ROW_LENGTH, qe), I.pixelStorei(I.UNPACK_IMAGE_HEIGHT, Yt), I.pixelStorei(I.UNPACK_SKIP_PIXELS, Ci), I.pixelStorei(I.UNPACK_SKIP_ROWS, Qt), I.pixelStorei(I.UNPACK_SKIP_IMAGES, ar), ne === 0 && F.generateMipmaps && I.generateMipmap(ut), ve.unbindTexture();
     }, this.initRenderTarget = function(M) {
       Se.get(M).__webglFramebuffer === void 0 && ke.setupRenderTarget(M);
     }, this.initTexture = function(M) {
       M.isCubeTexture ? ke.setTextureCube(M, 0) : M.isData3DTexture ? ke.setTexture3D(M, 0) : M.isDataArrayTexture || M.isCompressedArrayTexture ? ke.setTexture2DArray(M, 0) : ke.setTexture2D(M, 0), ve.unbindTexture();
     }, this.resetState = function() {
-      b = 0, C = 0, D = null, ve.reset(), he.reset();
+      R = 0, C = 0, P = null, ve.reset(), he.reset();
     }, typeof __THREE_DEVTOOLS__ < "u" && __THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("observe", { detail: this }));
   }
   /**
@@ -19893,7 +19893,7 @@ var Qm = /* @__PURE__ */ (() => {
    * @param {Scene} [scene] - The scene to render. The default scene contains a single mesh that fills the screen.
    * @param {Camera} [camera] - A camera. Fullscreen effect passes don't require a camera.
    */
-  constructor(e = "Pass", t = new Ta(), n = new tc()) {
+  constructor(e = "Pass", t = new Ta(), n = new ec()) {
     this.name = e, this.renderer = null, this.scene = t, this.camera = n, this.screen = null, this.rtt = !0, this.needsSwap = !0, this.needsDepthBlit = !1, this.needsDepthTexture = !1, this.enabled = !0;
   }
   /**
@@ -20118,7 +20118,7 @@ gl_FragColor=vec4(0.0);
 #ifdef DEPTH_WRITE
 gl_FragDepth=readDepth(vUv);
 #endif
-}`, oc = "varying vec2 vUv;void main(){vUv=position.xy*0.5+0.5;gl_Position=vec4(position.xy,1.0,1.0);}", lc = class extends Et {
+}`, ac = "varying vec2 vUv;void main(){vUv=position.xy*0.5+0.5;gl_Position=vec4(position.xy,1.0,1.0);}", oc = class extends Et {
   /**
    * Constructs a new copy material.
    */
@@ -20141,7 +20141,7 @@ gl_FragDepth=readDepth(vUv);
       depthWrite: !1,
       depthTest: !1,
       fragmentShader: Km,
-      vertexShader: oc
+      vertexShader: ac
     }), this.depthFunc = 1;
   }
   /**
@@ -20235,7 +20235,7 @@ gl_FragDepth=readDepth(vUv);
    * @param {Boolean} [autoResize=true] - Whether the render target size should be updated automatically.
    */
   constructor(i, e = !0) {
-    super("CopyPass"), this.fullscreenMaterial = new lc(), this.needsSwap = !1, this.renderTarget = i, i === void 0 && (this.renderTarget = new Pt(1, 1, {
+    super("CopyPass"), this.fullscreenMaterial = new oc(), this.needsSwap = !1, this.renderTarget = i, i === void 0 && (this.renderTarget = new Pt(1, 1, {
       minFilter: 1006,
       magFilter: 1006,
       stencilBuffer: !1,
@@ -21360,7 +21360,7 @@ gl_FragDepth=readDepth(vUv);
   getShaderCode() {
     return Bg.get(this.blendFunction);
   }
-}, cc = class extends Hn {
+}, lc = class extends Hn {
   /**
    * Constructs a new effect.
    *
@@ -21779,7 +21779,7 @@ varying vec2 vUv0;varying vec2 vUv1;varying vec2 vUv2;varying vec2 vUv3;void mai
   } = {}) {
     super("KawaseBlurPass"), this.renderTargetA = new Pt(1, 1, { depthBuffer: !1 }), this.renderTargetA.texture.name = "Blur.Target.A", this.renderTargetB = this.renderTargetA.clone(), this.renderTargetB.texture.name = "Blur.Target.B";
     const a = this.resolution = new Mn(this, r, s, e);
-    a.addEventListener("change", (o) => this.setSize(a.baseWidth, a.baseHeight)), this._blurMaterial = new zg(), this._blurMaterial.kernelSize = i, this.copyMaterial = new lc();
+    a.addEventListener("change", (o) => this.setSize(a.baseWidth, a.baseHeight)), this._blurMaterial = new zg(), this._blurMaterial.kernelSize = i, this.copyMaterial = new oc();
   }
   /**
    * Returns the resolution settings.
@@ -22031,7 +22031,7 @@ gl_FragColor=vec4(l*mask);
       depthWrite: !1,
       depthTest: !1,
       fragmentShader: Hg,
-      vertexShader: oc
+      vertexShader: ac
     }), this.colorOutput = i, this.luminanceRange = e;
   }
   /**
@@ -22504,7 +22504,7 @@ uniform mediump sampler2D map;
 #else
 uniform lowp sampler2D map;
 #endif
-uniform float intensity;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){outputColor=texture2D(map,uv)*intensity;}`, jg = class extends cc {
+uniform float intensity;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){outputColor=texture2D(map,uv)*intensity;}`, jg = class extends lc {
   /**
    * Constructs a new bloom effect.
    *
@@ -22929,7 +22929,7 @@ uniform float intensity;void mainImage(const in vec4 inputColor,const in vec2 uv
     const s = this.scene, a = this.camera, o = this.selection, l = a.layers.mask, c = s.background, u = i.shadowMap.autoUpdate, h = this.renderToScreen ? null : e;
     o !== null && a.layers.set(o.getLayer()), this.skipShadowMapUpdate && (i.shadowMap.autoUpdate = !1), (this.ignoreBackground || this.clearPass.overrideClearColor !== null) && (s.background = null), this.clearPass.enabled && this.clearPass.render(i, e), i.setRenderTarget(h), this.overrideMaterialManager !== null ? this.overrideMaterialManager.render(i, s, a) : i.render(s, a), a.layers.mask = l, s.background = c, i.shadowMap.autoUpdate = u;
   }
-}, uc = {
+}, cc = {
   COLOR: 2
 }, ev = {
   DISABLED: 0
@@ -22998,7 +22998,7 @@ gl_Position=vec4(position.xy,1.0,1.0);}`, iv = class extends Et {
    * @param {Vector2} [texelSize] - The screen texel size.
    * @param {EdgeDetectionMode} [mode=EdgeDetectionMode.COLOR] - The edge detection mode.
    */
-  constructor(i = new ue(), e = uc.COLOR) {
+  constructor(i = new ue(), e = cc.COLOR) {
     super({
       name: "EdgeDetectionMaterial",
       defines: {
@@ -23554,7 +23554,7 @@ vec2 d;vec3 coords;coords.x=searchXLeft(vOffset[0].xy,vOffset[2].x);coords.y=vOf
     const t = this.uniforms;
     t.texelSize.value.set(1 / i, 1 / e), t.resolution.value.set(i, e);
   }
-}, ml = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQCAYAAACm53kpAAAAeElEQVRYR+2XSwqAMAxEJ168ePEqwRSKhIIiuHjJqiU0gWE+1CQdApcVAMUAuARaMGCX1MIL/Ow13++9lW2s3mW9MWvsnWc/2fvGygwPAN4E8QzAA4CXAB6AHjG4JTHYI1ey3pcx6FHnEfhLDOIBKAmUBK6/ANUDTlROXAHd9EC1AAAAAElFTkSuQmCC", gl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAIwCAYAAAABNmBHAAAgAElEQVR4Xuy9CbhlV1ktOvbpq09DkiIkUBI6kxASIH0DlAQiIK1wRfSJTx+i4JX7vKIigs8HXpXvqVcvrcC9agQ7IDTSSWgqCQQliDRBJKkkhDSkqVPNqVOnP+8b//rH3P+eZ+199tlznVTlvVrft7+1T7OaueZY42/m37QALKNk2wHg1pITlB17mC+Pp11W3X/LHyT32vhg48/5SOv+PnwpsHA70JoGlueB1iKApeqzvOzn44GatTB76Xzhd7suBR7+WWADgDEAwwCG/L54b/poDLrHuvvm70Z2Avhsc+PVcxscBU8F8C8ADg5+ipIjD/PlGwfgju8B924E5seARUfLsiNmqQW0IjL8+7L2NYD/7COBzfcCm+aB8SVgdAkYIRCXKyDax4EdAanL5PuNPllNvXDlAHwFgP8AcC2AhRIoDXbsYb48dl5WkVFTE3LGDcC9m4CZCWBuFFgeAZaGAYJQQCRqDHT+McJrVb8zwATUXH02MHYfMHEIGFsAxgjApQqACYQORjtd/B7Axt/z79sC0+cMPgjjlwPwVwHcA+DfAHzTxcVgWBroqMN8+cYBeM71wH0TwKExYHYUWCIAHYRLTlkCYgcIBcAgU/n3qy8GRu4HRgnAOWBkERhddPAJhGJDBxkvw7cqimr+zFM/ZLnZF64cgL8BYD+AWwB8x/dlWuWagHiYL984AJ/0RWBy1AE4AizyM1yxYAcTigW55xMbAkxEiwEdkJ/ZCQxPAiOHgBECcKEC4TBZcKkSv+mTieNcNPNC26mLNsj45QD8LQDTAO4GcJt/7iw2bfoG4WG+vAGwm9ExiEg69zpg/wgwPQLMjgALzn4E4aIzoJjQ9g4024uygkj+pyuAoX0VAIfngOH5NgCHMhAm8Sv2y3XDZeBhNIp8OzJE8OsBzAKYBHAXgDt8/4O+MVT0j4f58o0D8Pxrgf3DwMwIMEPQEYRkNwfgsuuDZLskip0No0gWMD/9HGDoADAkAC4Aw/wsAgZAgs2Z0ABI0GU6IVmKv+f28KDnHxkA/G0A8y6G73N9kOCjXnh/Ebb6OvgwX75xAF5wLTA1VIHPADgMLDj4yIA5AAm6aCUnv4oz46eeDwxNAUMzwJAz4BABSNDFTwSfg7DDKHE23MG5PqIY8A1u/dINs9dBdy8AgnGPM2NfUBrsnw7z5RsH4IXXAAcJviFgluAbygBINnSLWOAjGxJ4pgOKDV0v/OSLKp8iGXBovhLBBOCQM2ACoTOhnYrAdItYbCij5JFzRyIAqRccAnDAQUjg6UNQ7hsMXP0cRQAexss3DsCLCECCLwCQzMcPwUi2MwAScAKbfnY/YRLFQ8DHX+IAJAMSfDkAF13kLvleIjhjQQHxUVS3jjgGpKeeNzYVQEjgUS8k+PghONdhIwAP4+XXBYCHKIJbwJyDTgaIAdCBJx3Q2M8tYAHP9m4df/ylQOsQ0JqtRLCx30K1wtLBggScQOgsKBGcWHAJeOwRC0BSM1mQIKRbhh+Bj98JQP6t4U0APEyXXxcAEnxkQAFwoVUxID9kvQg+c1C7vidRbIDkc24B//hTQGumDcCWA5DgMxASdNIFBUI5pCML8v8API5zfEQx4BudgqiczviSnJhQwCP4BMCGl+wO8+U7AJi/W4O4YS6+pmK/2ciADsAOBhTIIiAJnPB7AvNjP+0AnANaYkAHX2JBAc+tYaJXOqBZv24Vc386XW5dtkHGW+4HFAJonpOe+YYQZAShgKjv3PNvPQaxVoI8zJdfFwASfPzMUwS3Kt1v0UFIlos6oDFdAGFcliMAP/ryAEAGNwQRnDOgLbdlIEwrIs6AZ/QgkMMHQF6ZAKQcJAsSYPwIeAIk9wJgoPK1gi7+PwF4GC/fOAAvIQPSs0URTPBJ/Pp3GSEGRHfBCIQ0xowBtUbcAj7ys5X4Jfu1HIAGQrIgQRXEsAFQIORDFhiDY/rMHmrU4QUgR08AkgUjCAW6CD6CkwBsAIQC4GG6fPMA3OXiNzCg2I9gNCMksmAAoemDzoimFwL48M85AKkiuQVMAAp8CYRRDAt8GQiJ67N6GJODAXAHlsGguscA2AJg1IPGYmxOpBxFWkRN9LsATgIwXnNs/v/5z/9XCf8BO3YAtxbc/46/KDt+5+ea1Yku2VUxHz/z0v24FwMGK1gWsK2OUUxHHdCBeRUB6OxHABr4ZICIBd0QWSF+XRdMTAjgCdTrG9cBNwE4F8CpDkICyYLGsuhFt6zs+gISwUen8zEAjgMw4cfx2H6O/90yAFo84Cbg4ID3/9TfLTt+5+ebnRABkODjx0SwPi5ec/FrYpmqSAxM8Dn60CsqAFI6GfhqAMiDE/gokmvEr0C4PgDkBQm40wE8zMFEUDKEVoxIMLl/KS73mE7H9d+vcKHQQcjwW0Yu9nP8m8sAmOIBuWY6wP2/4s0ezjjg8TuvaR6ABJ70vxUApGrm7EbGE+i472BAB+WHfqHS/eoAaEwY2E9+wLSXTqhI7CXgnB6LCoOJ4BiST+hTnG0HcCwAglCx3ARoZEVFXnBPp/O/A/hXACc7CPs9/i1lAOyIB+RDX+P9/+pbQjjjAMfv/PL6AFDs1wFAgs/9fgKfgdE/ZEpuiQlbwAde6QAMBgiRmsSwA9BY0JfjovGRDBMH4TlcXGhcBOc6HkF0gjPhZgchxTLZMAci/04W/B6Ab3t09EPXcPyflgFwRTwgJ2MN9/8bf5qFM67x+B/aW4XQz42FeL0YrRyikztUFw0704mf9kXgxhOAqc3AAsPyRxxQCs/PdXOFY0W1KHy3QIUGtx+6vdnx1vsB+dsTncm2AogglFgVEAlUWrOMB2RyEmMCGQ/Y7/HvKns6tfGAnJQ+r/9b76oJZ1zD8WdyQjYBh8aBhVEHjELouQ8ukQ7VRSCJAALwkr+sALhnGzDD3JAJYJHg9uhoi4bx8ytkWUtvHT/7+Zc4dw1uZ3612fH2dkQf7yxIEEockwkJQn4IQoq8unhAhmPRKKFx0uv4K8ueTs94wD7u//VX9ghn7OP4c+4G7h8HpseB+dF2AKlFLwuAIZ8jD6NPrOhAffmfA9/ZBuzZCkyRWSeqBCWyoYGQ5yQrBpDbum/ME1HoPo0XEkSD2zlfbna8q6+EUJcTCxKEtHL5EQjP6BEPyIgYAZBvYt3xHyx7OqvGA65y/7/9wVXCGVc5/sl7qxD66dEqiYgRzAqhN1A4CBNAAlDyAFI+iZ9/N3DLJuC+jcDUBmCWyUnOrmTYCMIOkNclLg0B8/RsNLg9+UvNjnd1APLmmQpFHyEBROuWACQT8nN+H/GAvY7/VNnT6SsesMf13/CpahGnZzhjj+PPmwX2MYdDIfQexWyBAwEUOQDrRDN/98p3A7dvAO6fAA5sqHJDBEAyoUVGkwEd6HR12XU4kwzfl6fCXTZzjy57vvnR513X7Hj7AyDvggAUi9EyFgiZqNxPQF6345nOWbD1HQ/Y5fpvuLa/2+82/vNHgAPDFQDnhoF5j2C2qBWCI8bw1eRw5CL5l94L3DEOTI4DB8Y9OWmsEu/zBJ3rgsaybqBob/7A4C7jtWcooRrczr+u2fH2D0AOQgAUCxKEP7aGgLy64+m6KdjWFA9Yc/03/Osa4glrjr+AupqHz1sEs0cxG0BC9HIePLoit9eNkVf9L+DuUWByDJgaq4ybGYLPAWgiXmLedUE7dwC7saL7CqfPKXi4NYdaykCD410bAHlDEsNiwZ9wAPYbkJcfz6T2gm3N8YDZ9d/wHxUA+739fPwXPrSKYGb+BuP3jAFDElFH9HIWwbzCIGkBr/or4J4RYO8oMOW6ZVcAuvi1Cgoha04BCwT5gfMKHm7NoRde2+x41w5A3hQZkADk5+cGiAeMx3+/7AENFA8Yrv/G71cAXFM4Yzj+otOAaQLQA0gZxaIIZtMDFTigKJV8H9Iq6aZ59ZXAvSPAvpEKgBTtBODcSCWCZeRYtpzrmLyeGNCAyFl1v+Hei8qeb370Rdc2O97BAMi7EgB/2QG41nhAHU9LuWAbOB7Qr//GPRUA13r7Gv9FZwIMoVcEswEwfDoimEP0shKKtIphaZQAXv1+YM+wA3DEdcvRKkGJADQQEsQuhi1Tjt95vBsh5nx2IO59SsHDrTmUOStNjndwAAqEry0IyCMICkOyiuIBNwBvPFQQT7gBuPjc9oRYAIHyOEL4vIFEYVNaOou5vCGE/tV/A0wOVcnpzI47NOri3QFIBpSeaSDUdYLOSWvYImSGgftpJDa4MWJbAGxivGUA5MAOc0Be6eVLj7/4Mk+hzCOYPYpZDBiNkLh+G/M3yFyv/ltgL3W3YQfgcFUhgRY2PwY+Z7/EhAR1SFyXCOb57r28QfQBsJQBMn5D4y0HYLPje9Cd7RIC0PM3EiMofF4gVCBp1P840ix/gyz56r+vAMjk9Gl375iB4+CzveuZdLkkEPJ8ZEfX/6R73vOjzT5Si9hucLxHAVg4PwJgRwh9CKOXK8YA4ZEqKZXSQWh5P+5AftXfA/uGKvYjCKn72cctbFrZNECka5L5CPwIPtMH3TVz17MLB5gdLgA2Nd6jACycHwLQxFEUSR5ASvARDB0h9AQb9bXIgCGk6lUfAPYTgEPAITKgg1BObk58srTJgG58WMkWMaAbQQT1nc8rHGANAJsc71EAFs4PAagQestgC1lsBJ4BMCSOK6dDUcwqqaFiQr/0QeAAAdjy+jBiQQeeMSBZT3nCPUDIa9z+/MIB1gCwyfEeBWDh/BCAeQSzgkjFfGLBBD5nxQ4DxN0wv3hVxX5TBGDwL5obxvVA5YqYL5BeMLd66YYxJpRB0gK+96LCAdYAsMnxHgVg4fwIgMrhUPKQ2C+Bz0PmBTqBMQehAbDlIjj4F80KJguSVZ0FuXpjoCOgXawLjALhbT9eOMAuAGxqvEcBWDg/l1IE05Ed0ygZnyHdz0VwCqEPIfNyx0QQvvLDFQCp+8nfZk5und8tXwIgWcHSNX0N2CJmnAl3v6RwgNnhl17T7HiPArBwfghAS7mV/hey2JS9FvM3BLpUUi1YwDRMXvkRYJoAlAh2l0dcZ04s6JUTDIjyBcrl4yDc/dLCAdYAsMnxHgVg4fxwKVwJgGEJNmWtxpQMpX9on2eRhVA+O56AjMfnP+e3Xvf3NwG4xIPTleiY55bpGh6UbafNU0l0z0p+5Jh5HqYJ6b51nP6XP8cx12XNHQVgIQB/bFPVg2OC7Q+WgVFWng/FvtWLI06uWh5oguKEcXVS/9sEAF//VGD7t4ETDgJbF4CNi8CGZWBs2fPL/H6Vwp2KEtVk4fJ+v/EIYPN9wKa5qu+IncfPwXHVZe/aOL3EbwS7xv8A1rQvnO0j8PArTgTGZ4BxFv9mIxhOCGsv+0OPYDRghcLfkWkEuq0+G00x4OtfDGz+d2DbHmDLjL8si8AYP/7CGIAiEEMTG92zXqSbH+d9R2aA0XnvO+JjthiIrOVDHHPOkBrzUQAWAPsZp3oPDpa/Xag6EVkLBK+5rAnJC3/nYk/APD704WiEAV8OTHwX2LQH2DgFbJgFNrBhjd8r79deGoEwsllgNBOzy8CdjweG9wBj08AIAci2D6HafmyAk4/Z7SJ72hGYRwFYAMDLTwOGp4FRFgD3HhzqRGQiyeurqOdG6r0Rm8IEZjzRlkiqCWoEgK8Axm4BJu4HJhyAbFhDxmbDGnZO4j0SgLGDkpibgEq66TJw/1nA0F5gdLpq+zDqFfd5LMeWqu5HNST0uJOIllg+qgMWgI+HPv0xwLA3gWHpW2sC441gCECbmKziaGrnUdMO4aHeh6MxAP4SMHI7ML4HGD8AjHvHJGNAgpDgY/ck3stipRemvVhc+uASMPUEYGh/9dIRgGx8Y+MNbR/00uVtH0wEx94j/v0oAxaA8Ed+GBieAYZZg5kADC0QWGOFzGJlcGPzl1BxNLXD8sk4xftwNAbA/wwM3wGMUmxOOQBnHXzetIYvibonmSiuYTNjriVg7glAiwBk0fNZH6+PmX9P6kfNmCXGpftJ7TgKwBIAnln14BAAYxMYm5C6RjCyCoOyr0qkD/c+HI0B8DXA8N3AyCQwesD1VQKH7EcASm1Q+y4CkN9pUKiVF5nLvy+fBbTUd8QBaH1HvNBROiZvfsNnrF4kcvPwpdsBLBeU18Nf7AB23Dp4ecHC8oBgUlJJecLS+7+WOpE3gbE+HKw+yoevCYkMGKqPJrdEKARutaFYRs1fiEZ0wP8CDN8LDO8FRqYq3W10pgKgfYLaYCzootgA6KXaTA90y374TKB1sBozy77xHFZ536utRgAmEaw6g5kUSFZwSXnA330qsOlfgHMPDlZesLA8IOjoLypPWHj/11EnCiVwkz7kAExtsGraYUWdSDX5TmsagL8KDBGA7Bd30JsW0oWivnEOQNP7yGTSBR101AlZSUtGyfgZDkCWY1HnJdcBVe6325hTvelg2CQjZNDygG/2An0j1wKnL6y9vGBheUC8prQ8YeH9X39OVQSc7Mc6fCaKvAeHdCIVf4yMYCynTpX+nb97NJmlSQb8r8DQHm9YOFUZTKOzoXGhs6AxF0HIexcLBvWBuiHN8s2ne98R3qc6L4Vyb2oBVjfm9MIFHbjDCh6kPOBbQoG+oW8CO5bWVl6wsDwgfr20PGHh/X/1iaEIuDcCTIW/1Q4rFv8OnYiW3c+W2iKwUjKbyjQNwL1uuR6sAEgDgq1brXOmV81PxhNB6DUDBSYzQJwFtz623XcktX1Q1VWKaTF/zZhVazBVYA1tX5MazsGvobwe/jQr0Ne6BTh5uf/ygoXlAfG60vKEhff/rSe1i4DnTWDUACY1guFTDqLYdCBvf6DJYSMYATBfOx1kLfj1v1axH10nQ3Sd0GUkBnTfpemtBJgseIKQAHLQcVxa2TnuMW0Aqui5es8xBIegVdVVE8VhzHnLh65WMB9An+X18K6aAn2tO4ETl6vqbKuVFywsDwhevqg8YeH93/Rk70JE90nowxZbIJjvS3WYNSGUwGHJTpPxwwcbBuBrgRYBeKACn7VtpdUu/c0NJxO9BIxcKu4TTODzbkonPLoaL0vyUQRb2y8HsL1ckfWzMeuFi40Qezqi+yiPhyt7FOjr6/gCFwgP7Xb5vssTFt7/nQRg6MGRWmDRoeyTlpgw68GRTwgZgo1gGmXAX6/8dtaylSKY/koyID9BhzML3q1gAos2AcOrZYSoq/pJp1VtODRm9Z3LS/7WjVkvXOzEtOpKyGrlAT+4SoG+VY8vBGCvy/dVnrDw/vee65NBJiAjBIVcAJQjOm+DkCZEeiGAMw6sAwDZsJrAdhFM9rPGhd4904Co5oVuCZPV6kD40Ec6+9W8dBTBsfdc3nkpvnB82fp2RPcs79dHgb51LA9ofsDV6vut5/3PnxcAmLVBiDqgevDaJLkYrpuQxzcNwN8AWgIgRbB8loEBzXDwl4cGiDGft58SCOWGedgjvOJ+bPvgRkiuA+ZjzhnQQOiFNVbloa7l/fos0LdO5QENgEXlCfs8Qbf7HyMA3QVjYihYhLENgjX9y/qwxQmRU/asfd0ZcLU2CHVGyusJQLKfVi98CS12T5f7iECkHpsMkAhCF8+nshWH2I/jXsOYO144GV/9ApAIrS3vt4YCfetQHtAA2G+/4PW4/2PPbzMgmUMi2NoeSCRxIt2/FvuxWURIWCXg357gfTjEDNIHnTRXRCpH5ugKwGl3HpMBXQc0v6WLYVm/5limj04rG762K2uYY9jBkr9+rI03NL5ZbczS/dJ+LQyoga4o77fGAn0NlwdMAOy3vl/T938KAcj121z8Bn+Y9eWQJRz8Y6kNagDh2ey5EvxjxQD8TWdAuneCCO4An1vw5vdzQMmdktwq7pLZQR+dM34+ZumAxvY1Y04uqOAJ6FsExzeto7zfAAX6GiwPaLWR1lrfr8n7f/Rl3QGzmsis+/uO71V9OFgP2gpPhgr7TGRqRUT6dyvr4aIs/pm/2zVUNbBSv6G8e5pEv0Cvec7Po7+bTtjlBRlkvAMBkDeQyvsNWKCvofKACYBrre/X1P0/oWEAnnFD1YdjhtXxR73mX10FfCHHE9pVWcGAI/S0gKsfA2y+twrFZw6Hxf/F0Pk8Ri/kpGSnMuDx5T0iACgQHioo0NdAecBUHW6QdsV2/cL7v/Cyqr5gnc42CCOcfX1VIZ/V8We9IDmTzVXwPDJiXuKXPxtDBma8+lzP4WAgKkPxCUAPE4v5GzEuMX0PYJPLhB6FJsc7MAMmkVxaYC/K9gG+F1++8AQ7Gwbgk78I7GFpXgIwFiRXOwaJZPUbiR0yCUDRk+cHf+YpwMj9HgfI8ClGPyvsSiH0WSKRuYlitLb/zHM/JOSs5C/YIC9cMQDZr/dwxgOW9gtGYUBi0wA8l304vDQvAchilFbpIBQhZ7Ejq6ZQ0/Yhil8y4j89Axie9DAsD6FX9HOK3QtROTFkviN83kG4felIY8DCeLrSeMDSfsEovAECUFsTjHD+tcB+tkFgcXKvBRir7qtFl9owmO4Xy/1G3bAFfPrZHorFNWBFwHjQAFctIghj2kBarw06If/+MM9ZqTN6DgsDojCerjQesLRfMApvoGkAWh8Ob/tgAPSKWCp8ngNQtadjmTdltvNvn3peFYhgQQgh+iUmEaUAUoXM1yRLmWuFLaE9Z+XIAWBhPF1pPGBpv2AU3kDTALzwmqo6qtVh9kJErAudABia38TC5wJgS2xIhAwBn3yhByL4EhzXfRXxYsDTJ4IvrNN2JFMxZcBzVo4cABbG05XGA5b2C0bhDTQNQLZBYH1AVsQSAAU+imI1obHyblnjG/kJk3U8BHz8xVUQAhnQIl5CyNgKAGp5LKSSCoAySh5Jj79vTagcxUaIBeRNe79g9gq+DXig4wGzy+PONfT7RWFA4noAkGXZVAhcBckJQgNgrLiaNb3paIDo1vHHX+oA9LQBi4DxJcOUPJUnTgU2NJUyROs8irGARxQAC+PpCtsFd40H/AEf0gMQkLgeACT41PiGoLOKqyrJq3K/Ya9mNyr5FusN/uPLPIeDa8Bc+w3rtyl4VFHaMZc3i9RWBM9jjzgAFsbTFbYLRmm/YBTeQNMAtD4cBKDXBTQGdAB2MGBo8SCLmEuS1AFVAJ3A/NhPt0PoCcA8bSDG76XI7aySg6JYuGfKwJHFgH0E5B3ueMCe/Y4L+xVHAOZ+9EHcEgQgwbeiEYx6jwTdz4qfu7EhEJqxGqruf/RnHIAEnxgwBM0aC8aUAYWNBRCmoIll4HTqO122QcZbrgMWxtMVtgvuOx6wa7/jwhtoGoDWh4MBJ16WN4lfr8AqI0TVV1O1fa9BbQzovkAy4Ed+NgCQUSxZCFWvCOaOFREXyUwZOPIA2GdA3uGOB6wPaOz+QPv5S+MA3OXiN9aclghW+d3IgupBF2pPqxcxGenDPxfSRh2ASiKKiVP2PaZScvAKoA0VDc6cOlIB2GdA3uGOB1zR77iwX/F6AFB9ONSOQW0frA50sILVcckWJyIDSgwPAVcJgFbYuZ3FJvAlEHbJ3IsgJLGedeBIA+AAAXmHOx6wo99xYb/i9QKg2iAIfDJEJHqj4SExbEty0gkdhB/6P9oZbBZIGiKYVb9GKaN50lRHBLOvhDxh/5EKwDUG5B3ueMB2QGM/grb7/6wHAPNGMAY+GSGUjC52VX2f2CD4+HO0gqkZfegXKgBaHkcWtS0AWii9xG1ImrLlN5XR8L8fmQD05BVrmEENmpYSP9QX+KHiqj2/82+HqqDWwnbBRfGATdzAegGwru2DpRq7Mzq2fpAf0Nq0Rl2wBXzglZ4yUAPAmDSVWDBPHQjLcgTqOZ6zUvdKHh4ruDCerox/Dnu7YqwXAC1NI/QcEQuK6WK/kdgCTGC0PYAP/KIDMBgglq+hIkrOfsaCviLSofcJgJ5AdM7kkSaCj/HqQKVIGvD4swF8bcBjmzjsaQ2H5D/6acBd9wALB4DFWWB5AVherMp4GKIYEOp7+26UF0aSfT/xYuDG7wDjrIpAERytXf2vajj7ueryQXSFl10K/ON3gIWDwCLvjfGB8Z54O+Ee4ve6513uB2R1yzsqC+twbC8HcNVhfAeaBuDP/TvwtS3A/ePAIfYFVlPq2HHTuyulZCTlhbjhETF5yxTQGgPGhoHhIWC4VSXGD3n0tLkMHXHxu+YyB+MlPwDuZs5K6FlsbCzdVO9DuKfkHM8AEkP7B8fOkwDcD+B7np42+JkGOvKdAL4E4K8P0zvQdET0b14D3DgB3D0B7B8HZka9WzrD88N6sFm+YcUjrn7E1ZDvMtF9DBgeAYaHgSGB0PNHCD4BLwLRsByAyX/ij0/dDUxuqlIG5hix7eFhvLcOVUAtyPSydAFmOQNe6EYGV/9ZESiKgIEgtbaD/gHALQC4ovY5r5KwtjOU/XfTAHzzLuCmIeDuMWDvKHBwpMoN0WQzNtAaYSs0K4ZlOSAjGG9kPjCBRwZ0ABKEBJexYAZEAU3A7Oi1BeDym4EDnjQ1TwCGWMW8MXcKks0YOyZNlQOQjcgYIUHllEzYQ0ktm+r6oz8G4F4AXwXwRd8/kO9A0wB8y65KmPxgGJgcqYJTKYpTv2CCzyddQJRDOjKivn+Deh8BF8BnwBtaCUA+YYEyAU8h+c6Az9gNHHRmrgOgmDA3jHQ+iWupCeUAvNSrA9HNwqx+muk9nJVNg/CTfrmbAPwbgK8D+PcHkIibjob5o13A3XypWsAkG1cPA9PDFQDZM1id0i1KxsWfOrKnAFXlifCFFMMRcASigOcs2MGAIfE9iWXplS6On7UbmPaUUTXQrgsVMzcRj5Folg2V5ayUA5BWYKwOxKUafnosWjcJwk+7W5F2EKvlE3xcXaNYfiCYsGkA/smuqug6hcleAnAImPbO6YwRpMgjCAVAm/yQmKTv5hNsAf/i7SyNBSl2a8Qv/4/M1yF+BZSYlNQCnnVrpbC+mToAACAASURBVJcaI7sOSEY2NpaDXLqpR+vE/OVksDgImgGgghHoYJbTWc7oJtFWc65/cg2AYvh2ALsB3AzgVv95nS/f4QdsIkT9T3cBrGtITWZfC5hqtQHInsEGQn3UDDvEDEY/ICf7SxMOrAg8T+c00JGkvHGd2DABUYZIAONzCUDppCFhSukCBsLQrFtZe/IixYQpSyEoJoqnuPWrVRAubQh83HNlZB23z7j1ywmj6CIIqUPxw2Xeu9bx2jx10wz4Z7sqTYZaDD8EIDuoE3hMVEphWg66JIp90k0sBxBcy+iPIIaT1RtEsHS/yIAqw+VSNPWQfe5tlVEk8auXgVa5BUsEJuT5uoliAbE5AGotmIAjCPnR9xDG3TQernYAUupTdBGEFMf83OkApHG+XlvTAPwfuyrgSZOhas3u6cwTsUBVn2gTwyFMi8wjHZAA1M9fYGHDULJD1m8Cpa8fRxDad+l+Ykf/3XNvd11U+qiL39SxXevSsshdDFvgbI1O2AwAtRZMZzTBRuDFjxe1Xg8QEIB8yyj5yYIUxfQIkfkIRnmHCM712JoG4FsdgHHp3ACoMH2G6jM4lWzoQarSvwQ6MSB/vporVaFkh+mCLlpVR8Z+dqDZLoDOpHSiQeAFDkBjPrlgCHgCUaFifg67H/9uYjn4Ai1vpTERTAASBaoQJBAKeNqHlL6mwPDZYAOROag/EYRkPX34MwHIvzW9rQcA+TLpI22G7EcQKlJGsYIJhC6ClUMiXfBTbFUQAej6nPS/OuAl9pOOqIc2BLzg++3VmWgIEUz82cRuCAtLIHQQm0gO52uOAb22sC3JEWgRfPpZf2sQBQIgLydPEIFGwPEj8MlF2bSbsulghLftqsCXq9HGgHysznrGgi5qzTUTFH8FLhAUn3hIJwCN0HLncw37qaF2zoYvuKNivmQIuUNc7GvWt6sHNs26twA6vhyq8NEMAHlyntFrDCcQehyaPTl+FwAbXDcmAKMRThakEk8Q8kPg8SPL0qzLBl+A9QCgR6uZGs3vfHz8TtBZvkgGQrEPBVAUg2Sij50QAOjiVKI3saADJRm7dSLYWfSFDkCem/dhZeMy9pPY5QvSDYQyUJoDIK8qMezh3wY6fSL49PcGgCAA8pScJLIgAUYQEmz8RPA17StvGoBv39W24eREiBoNQSgWNI1HBkdgxJSw1AI+dFIbgOYmkjimQ1r6XXC3rAbCHycAgytohf8vsB/r2KRaRq7zpZ+D37HMX0s3DDcCUGLYaw53MJ4YUODzusqlGCQAOQCejuxA8UULUkxIwAmMAp8Wa3qkN/R9W+sBwOhIEPjk5SLr8HeKFbTQfb77csPIMHGl/4MPbReslPhNe4+MiTpi9AFGV4nI7MfvagNQLh/pfrYnDAS8aJQ42A2w4em2cAyWQUuJVQTGWLs1uL7DG9J1RjhA+jvYk4t3KXeMqijpzrud4At9z3XtP16yGfjKZmCGooYh1tZzvv8xXPFl4PoJYC97k9FlwZWD+Azi/deMZWeP13eQCGEyoERudChIjbb3mJYwH7V0QIKuCwj/gfMj0asn2I0FXRSHXfL/iRkNgLyeVj8ccMY//J1fyxzTAXT2+xoQViKYD/1hDqLxPiYxTgSvQrphphG97tz4Slqafnj7uk1kIQDZrvWTw8B3jwEW+RLxPgSiCERdPwPR7+wCPg/gulFgfruDkOMQkFc5x84e708JAMmCuRNBXi4TIg5CGRzGiBGE/D4E/C2r2vcAYJoify62i0aJSMhB+2IHoNwu0fkcjQ85pu3ack5nIBREqneYFyWLkAXIJHESe00Cyx5QyeL6F/tyEcDcrOW2n7fX8df0mME+/vQ/PQjhoy3gzo3AISYf80MQaQx1peH9wb7v2mrtmCBkIMMejp3jIJD1MsaxaMZ8v5N/67INAsB3BAYU4JL4DSo1J15AFPAEwuQHZJzkKfUAtOHLJSOQRWndBYQvCQA01cfnNopfsaCJaD2baBn79QjSTiOEP1EcawIpkq2kegBTNgHWEpOKF8Uwq2NRFPM4AqCf46/rA2U9/uVDvurB01zvAJpiiwOl3fEeciCGF+Ij11f+QkbSfMPfIzqw57mEFZ9Dl3Ps5HXWAYByHJAJKV7N+s0cCQQhwSlfm4lGZ0KB8C/rABgZUS6ZHITBSEhCowUYAAksF7cStWREyxRwtuPpOlgw+5s9sq6OaIJIIlUgEhA1edoTgHxa9HVw5jibZNF+j/9yGQA/7pbujZ4bwv2+cWB6tFo0NzYnkxFA+cvEAo43VBoEo2e+48EMXEOmD9F6xhCE8RwZEJ80VblKvDlmzwicfqy93/o+8K8TwB2jVSgW138FrJQTXBNlnJgmrjZwanow9CBP/rL9wF0jwAGWDtFyoN9PHutnIHT05mPXz93dMGQAPniJsjiBXiTbxDZFMF9NLUPQxKR5qezz1Y6/YZDH0D6GkdAkYJIvRalAdHAMmPZoYhb6NhDWvEyf/ma737CXN7R1ZC7hUbPgcFgqt/ZZjADnM1xqEVhYBpb4CUk5UsL7jQvj///5buDrLeCOEeD+YQchYwG9VIfyg1NaZszFiCH6DkRGLze5/dgk8IMWcMCjdCiCzR8od1B8OTwvJM8JEShFut1fzMhi+eRJr6LI7hYP2M/xVLwKNoZjUTwRMAQQmYyhWGQxsSADOflZ4kukj7PhZ75bETjBpkAGahMkcrGgwhsXeCyBHBj1wmOBQwvAwqKzoFeRV8ZaerjKYAuirmPY/o9X7q5Cyr7fAvYMAftCPGAEoYlBiVtFwLjtp2U4irj7yOANbi+crHyrfCbTquJV44O0F1FrwQGIMZFqdQDyP/gGSZ8TC0ZRRsOlVzzgasd/u+zpMByLehAfCgMQCDyGZJHFCCgLZ2f8mgI5qauEcVx9e5vACTgCTwEMWr5TdIpWKJb5MvrnoocDswvAPAG4VLGg6UKeqmi4iuDz4er30oX0FP7u5moMvIf7W8B+jwlUNAzFnlZCIhvGFRCeWzrgXSSIBreXTFZSgVLHAp4UHOFuociEEsn2PJwl/XEk0dzfSojeerFg1IOo5BKAveIBex1P67lgUzgWQaJwLAKRH04i14ItgDKEtGsRnWx49b2Vkk9wUefTGrKCF7R0JxZMqxN8cmPAxWcAcxGABKEAKPA5u9lEaAbCmKMI+sDN1X3z+ro24wEZFc0VEE64ABgT180PF9ZdBcDb6JpqcPtPk+1ACbmKjJnllwyuILunEAWjZHkBsrsRUnfD0qEiC5IJfyisgMhzWhcP2O14Ro4WbASgAMQJ48SJwchmBCDFa8qpyBbSP7OvU4PQ0p2W7+LSnSJUFOrI4V7w5IoBTQQTfJ6oTSYk2mQcpGRyH2syGjIF6EM3V/fM++C1CfwUExhCsmzCaQT43lZC3e1hBpEHh36XEqrB7Scmq5dV0XZxmV8WuDFzAF9iwhow9seAGoBcGtKjqAc+1l9rLb/1igesO55ysmCrC8ei6IxRMAKTWNBi6Xw98xNTFUi0jEcmpYgRAPhddpVi9OIEPP5cYD4CcLkCooHPwaW9kV+iwWrQHT8uA1fd3F7DFvgUHUP2k8jTiogAqLoxFpDgbMj9jXSuN7i9dLIdaxzBp5XVBMIMgFEnFAPKT9qPd6A9BIGI7MfPmf4U+40HzI8nWgq2PBxL4FEkjKJixGRRFyQQPzzd1iAUzCAQas1YOmAEoFjwkecDC/PAwhKw6CxIkCXwOdVJLxTobMjBdyIgfvimNvNJ7Evf4jWtdnRYD1YNGVuG93VWuWs4Jf+mlZCCZxwP/cnJ6mXVKk2+tK8lQQVHRTGc64SDAZB3Ey3JcxyACkToJx4wHl+YwqloGDICmYmTFgMQFBET8yyYzyAG/AfWX8mCGQg0BTRoHwt9KVaPE/HQ890AIfgWK+CRAaMRYnVdxHbhdY8Wslw1V93UDsmPIj9GxgiAioRRMIJNvoti+SW/Ikd0gwAU8+XxJcbGITJPDvI6XdCFREFSknTB83xka40H1PGF9dnycCxFwygkK0bASJQSVAbAYeD98xUAe5U3jKIwBosSgNsuABYogl3/IwgFPrOIg1Xc4ZrpAsSrvruykl2ucykapkMMh4CExD5DwJfWAYAxwk4MKPAJgOIjGSEGwuCakRhemw6Yv0UUwRf7L00L9pnsNx6Qx4feY4O8pDEcixOjsoTKKpMYjSFYYjOC8Eq3Wnnr0YYS+0Tmi2HysrPGLqwASNYzBnT2Mz2QD91laxLB0gs12GAh81cf/o/OcHyJ+qj0S/zxnhUZbSyYWaL8+Rq2S29wowiWkJPan4MvgrDDGAlRe7KIywDIgR3meEDWg9HbJgApNTkXo8o0i7oVgxnEgFr8F7jEdnU5GvqfJQKQKyEOPlsNIQvyvupAGHS/Okv4qv9oh+PHxMLk8ggBCRxvAmEN+AiEzz2iQfQBeNmkh4K52hJBKOaNe/FSLobLRXCz43rQnu2yi9oMSMDxs2jo8303ERz1wsCGZECF4kd3DwEYYwJjhoNlQrgIjlYodbBPrwMAZfEmyzcIv27gs6XDzC/IR1DOgA9a6DRz4wZAsZ+LYXvQYsHoD4ziOFklna6YD3+nnU6dZ7bGDAcBUImIAmEUw/zbJ1i/scGNDJiLXmle3RhQ+l/aq57gUQCWzwwBKPeLsZ/LFrGg/ShRXAe64Ajkv30kALAjF8R11Dy3K7KRwJcsUTaqWScARou3w/INVnCH+A36n8RvM3nB5XP4oD6DATBYwGb5ajlOLOh6X8JaBKRG77+7ygGYp1bn+V25/01AzBnwQ1ypanD7KWfA1QDYC3zJIj7KgOUzc9nFbetX/r+O5biwNhyX5uSEDr5o0xsJwLp8/m4A7GaJUv/j3/5+HQFYJ3oFPPkho/hNeqBcMkcB2BAA6XrxmMBkfFAci/m0JpwzXw0TXvXtzrz+PKc/Ml/ugzM9MDqCAbz/keVjjGcQA/YLvjoguo1mRslRI6RwfsiA5nqhL5D6nscF8gfTdfxpS+/hLzvWfzMQCoB1Fq/8b3VWaPIDZqsRV64DALsZHVHs1gEvsqFAeBSApQC8pHK90Oql4UEAyvCwNeGcBXNLOPMLftgZsI75ouUr9ousp2TEyIJ/sU4AzC1e+WIFshyAHPZREVwItrrD3wGAhibTYBhxVpe/xePyrNBuWaoNp3DgFwC81O+RAepK/a5Lfe51jxr7JwA83nPXYgq1asl0yX5N48+f4VEGLATlK1vAo5YB1gBSRmsM+NFE57lcfPD5pPFWCJImtyvGgGfOAacBYO59zFglgHgPefZsXV6/gPXBYeC0RVgyJNOGYuJjPka9eHWgjL9bWzhWk0/n/wPn+k8bgFNmgYcsVflZnBRmIShtJM/m7JGibGBoOIIez9wKPP4AcNpylfbNlGfdI+9NjBjz8JVzppckZuJ+dBw4aQ44drk6j1LIY9JkPD7P4s2lwVEGLHwJnncscNIh4Nh5YMsSsHm5ndOu1BGFThJ8/K6JrZtoslST2+XHA6ftB05ZAE5crgAups5TfaL6EF+UyIif3gAcOwtsXep82eIYY9JkXpMgMp/AeZQBC2b8OduBYw8C2+aALQvARgJwGZhY7swEzbNa88IRvAVO1qkF91J36DNOBE7eD2yfB45fqphLnevzdGeBKBfL8UX5/CZgyyyweRHYsFwxYHzRNK6oetSBMDLjUQAWTPqPngpsnQK2zgKbCMAlYMMSME4ALrcnR6JYQIwsoUnjpDRstOLy7cBJB4CHUGwuAtuW2nUDVH1EFUhycSwWjGD64mZg0xywcaECoI0z5P3X5P6nWlHdgHgUgAUAfOYOYMtBYNMssHEe2LgITBCADkIzSJZXpCOnIg25uPrhgnupO/TyhwLHHwSOmwW2LVSik2pCrDsQskzNIBGIpBdGI+VfNgMb5oENCxX4yPRjPj4xaJ0+WGeEHRXBDUz2Mx4FbDoIbJypADixUAFwzAFI8KUJChMV2SUaAGc1cE/xFJef3FYRti64nkqWDrqqEhbrsm5zvZCdPCd8nHzJOLZuABRz9hTHZwPL7LnLnoNMIY2VyaKcjtZLHOAbNgNPngKe4BacfGF1pnydD+hphQ/8XV5UiEueLGnDN1tWXj/3/4cTwAUzwGPcRcFJiDpPt3FLmf5vjwE2HAQ2zPrEzDv7OQg5OSM+ScYQy5Xbo8465u/ZfLTJ7fKHAdumKxVh8wKwealSE6inEoSy2MWCdbUHIghv3AqMzwHji9VLZuDzD8cXxxWZs5c7apmW0fMBnIHKn5X7d6I5npvRz94O7LgXuGIReJSb+Xl1tzqflybwRwqf9i97BQRWomWJQ7oZVFtJoqDX/b/oGODsvcBTATB9gsfGqmzdjtVz+G+PAyamgYmZCoDjFE2anCVg1CeJwOMnTRB/DmUINVkkgia3y08BtkwDW+YqAFJFMD1VAAw6XG61R31O9/fdrcDYPDDmY0zjc1UjivBuAMx1QdMB+WAYXU8dhEU16dOSkppbcHFSrng8MHwnsGMPcN5ypURHp2xMIa7zDz2z8Gn/kVe0YomO0wEwBYKujL7v/zHA6C3AxfOVh58g5AsZxx4fZM7sf3h6BcDxWWeGBZ+cMEFiwGEHHRnDzun7ONHs/djkRgBunql0VDOSHIDU3cxSD4aEajhFXS4H4S1bgVGN0V8we7E0Fh9jVDG6Obr1LJMRwn+kOCaTEYT0dsfqZHXl/p7PrLi9wIY7gO0H2yAgCAWCWCowKrYE8nMLn/a7PQn9X7zIJPPkCcK+758y7x7guNsB6l98gZjLLYet3Ay5n0sv4R+fCYxPA2MOwLEAQLIDPyP8uBg2cRYmzFweAYilKkn+OC8/Fdh0CNhEA4nGA40kd6FES13WLO8v1qHKAfh9B+DoYjU2Ak/js/8NAIwg7OUb7LCC+WAfB4CpBJoIiTRNRmS1l13kqWh3Adv2A8cdqqp1MB+aIOSxWv6pq5D2kkIAvt8rF7BLJksN/jMqfa7v+7/Ak4B3A6ceqpasKMq5akAmlLWY37t8ZW97PDB2qALg2BxgAFwANEGcnI5JcrDZRPlkaXL4u1KJUAfAjbTQ59x6dSvdLPXAgGYshZWR6JIRaXB/NwFI8C1WwLMXzMeSwLfcXuKrA2G+wrLCDcN/IIg4ERRn0qvyySAQX6mG1XuA4fuAbTOVwktRRr2MLCoQyvEZ/UY/WwjAj3jtFJZkU79g1ghkgEBf98+0Umb/3A2M3lkBl/fOcdMok2EjkZyv8773LAfgHDDKjwNwxEUw9yailpwdxBAEYhBbAuGzG3aKkQEJwAkCkOCjlb7Y6SYyf2UwlAS+vKYnAXjfNmDEX7DEfA5CjUcsnzvbu1nDtUMmCDkRZEEyGdlAk6G6lQTSa6m0MP6HuY73AxNTlcJLZ6WOJYC5/CNxLpHMgdKIKNl69Qvu6/75AjHOiTU87gKOOViJb748BKCWrnK/maTA+58AjM0Ao7PA6Lx/xBAupoYDC9okBRAmPdBZ47lNA/DhwMRsxX7mPgl+SrmK5EaRNRslXFQ9CKB9DkADn79cZtkHFkysJ103eBbqlh97DpmTQTYgk9VNxu+xYbXKU3lhFoJPOgdFGY+lPkgQxokkgF9Xgj4AvfoFs84eX4Ke9x9fIC+tRfDxvvniif358sSir2LCj5wNjBKAc8CIi2AxxLCzIAGY9L7AhGIKgpATw4l8wToB0JjPrfTkp+SLQbHrOqm5jNyajS6VCMIpApDAWwQ4LrGgXqzIfnq5cv0vN0ZXHTInME5GBNLb1DGdOYQsI7AfGKFjlgqve8wJwG4T+fuFAFytXzCLb+VgWnH/fIGYfc46Hs7iHC8ZkPcdXx4VfVXJw8+cA4wIgM6AHSLKWZCTESfLfg7WsIyRF3ckiRQ+HACXkwHptyP4KHrpJvKVGnOhRF9eBF9wE0mUEogz2wC+WGI/vVxiQQIxAs9+rmHA6E1YFYB8DJwQMZl0OrLZ++i7sfT8zroYHLS9df4RACWKxSZvLXzG/fQLZqk2gqn2/vUCUQ9UZaM9wDaPeSPrC4A5C1KV+NITKwCS/SiCR/jRBDlLmP7nHynsxno1IPwJSyRpbiMADXzuPDYfZfBTEoAmcuVQdiaW0zwXwQsCYDYmMaDA1wG8TBSvaoR0G77EcGSET6hjOvVApfRPAUN0zjr45JzVcSqiTxD+VeGzXku/4Nr7JwDJOkxFIwt6j6+RqUrlkO4bXzp1gCAAv04AzgLDDsBhKugLFUvQUhTwCEKbnKCw14HwJ9cDgGQ9WegRgDI8XEcVEDvAl7lVlglAgi+I4CR+Zf1mLGgMmDFhBGFfDCicRJFERviSABjLS7FC0MFKMU+07wOPE0kGvaoQgGvtF9z1/iODkwn3VWoEXxres5ib9xx1wZufBAwLgAQexbAD0JiQwJOuJBA68/H3Zhk6+3CifqqwWNMKN8wjKgbk6gWJgC+FMaBb5vJVmsUbV2vCqo3cRWZcCIACoax53+ulkqNd7iqOcU1WcC9cxEm5kQBUdZ+sTnSL/jEtTWngi21jhJNJBivZBukXvOL+yYBkcOqxKjJ4AGgxzMrBVwdAMmHrZOAYF2l6y/mwV6xD17zmWo6MbRyeWtOHwxJ91IIhr6rqZS70DPPLXDVUrfBwzHKr1EUp6/h0T/6L/GcCqslt4IhoTcwdAqDSs7I60WQH6R329pHuFyuXDJmEjuOSbdB+wSvuP5bGUjmsA5XoUvcvBXKKAQnApUdXwah0b8jXR2YzJTsC0ZHB33FL+2yiX3h/1YeD1fFZGT81g/H6yqkVa9YEpqMhTADle8erHA6t7Mh6j4ZBXdBGjFyO4CSIm9wGBiBvgqxwIAJQlXIyEJLyI/i0SkAG/FbhaEr6BXfcv+5dLKhCg4z1C1HEBJ8+BODQGZXfk/quAZC6ketAZEQCTWAU8PIJt0fgwHzZvVWNaKqi7JLOmtDWFy42g1FxH/XfqGkII0C+a0tnDkfsGxQjn3VPsk7tXmuy+Xp0JhtoJosAaFcUAJUYKiYJxcqHqKAH9rPlG2cMrmCUbMX9guMLpGTcCMKDlZGhMK8IPnPIn1X5PA2AwegwEEYmDGBMjOI5whGQP3NPBT7VJlRNaKvF4t2IWHbDErtDlSk1p4lJ7/zd246tglGZryIfrFhQ7pU8WCAX0ZENG+57U14Z4YrCeLrSxXdev6TfLwrbxT7znMrfKQXfHLQCnyvmRIv0Q3430ezMmL98P393G3wqz6am1NYzzoGn+svqRmTAU2citctqAX/2EI8F9ACEmLHXLZGoFxtSl2xyK2bAYwrj6Xr12+1noL/jUTCD9vvFrn6u0v1/nvGkaoVBAQi0eummMAuXQHMWJAA7gCixG8U0gFfcXdlBKk4Z6zELgAJfZEKrxpC1xOIl/+Sk7jkcdYlSco90y9+gK6vJrRiADD0piad7RuFo3udNCgft94vCdrGXn+tujgV3QAcHLcFnroelivHkchEL8ue0uQ74S3eubAITS3IQhKkMRjBMokgWG3L//2z3VSnP4VDgQWxUEEUxAZFHL0eR3HDfm3IRbDHkBfF0zy4EIKNhSvr9goGEBdvTz/MIYQLQdVsTwRTFDj5jQmdArRDYJQNDSs961R3tPhx5NXoVgoxleHnarjohgLec3D2HI492yQNvIwvqO9fJm9zKGbAwnu6FhaP5pFuMg/b7tTbpBdvTz68cz/zI8azVj8iAHTqgmFHXDUB89R2dtaC7tUGw4kDOgFb0R2wYRDGZ8g9O8aU4XwPOczhiwGlMjqqLWiFYGu570wADFsbTvaxg8nkow7E8nM/atfKzln6/1mS4YHv6BQ4+Z0BbqHcd0NwwYbVD3+1yWhXJxPBrbq8AqE/XApSqAxiBV2MZ/54DMOZwKE00rnDUWcR5KiV/brjtSAMALIyn+/mCyeehjIYp6fdrvVELth8RAClyHXxmhPi6r1m8FM0ucgk8+y4RHC1kAK/5XgW+2hZYofafWcPq1B5AqDqEYsQ3nepR2gqhV2yiol1COkD0C+aOaoGx4aL7DQCwMJ7uVwomn4fm7VrX2u/XAlELth+5sHPtN+l/Ap6sX2dCsZ/phZkIJgv9l++1wbcq+2WFv2NXIjNKAPzuw7MUAV8DTuynFIEsQy83RgTAhiv+NgBABaQOGE/3mwWTLwAqHnaQfr9GnwUbARgDNBUlkpzQboyYCyYDYdILdf0l4NduW9kGoa4geNdazLElKoA3Prx7DofiETtC6XvE7hGEzJlpcis3Qgrj6d5UOJoYDcMglrX2+y0NPtl5UZUjkfx/Hqbecoe0OZzdF1gHQrln9Bhee4s3f3Zxm4MvAk9VSFdUIw0i+Q2PaBtISiBSSFgCYMjMW00MP7pwvvLDmwFgQTzdHxcOSGvBg/b7ZRZByWYAlOERluKM3Ra9CKWc0q73dTBhMFT4ZwIw9l5Lrpes+HjeBiGCUOKXeuBvPcKTiEIOR0f+RhDBMYi0Lhea4GTaa5NbOQAVDzhgPB1La5RssV3rIP1+7yy5OAADoAchEHBkFbKfGRpiweAPtMs5IFNokyOGk/7rAYC9OhBFwNXVY1at5tftCBHaWVS2AJdEcEinrDNC+Lumiyc1B8AB4+muLARAXTDCWvr93lR4/Z0Xt6ODFQkj8WtumEwHTKDLQejAfN3uds/dfjoQdatGLxb8jQBAYz6/boxiFgAVudzNIc2/s3xLk1szAORoB4yn+2DhaATAGJCtbpkCYq9+v4V+aBgAQ4i66XtaC85YkDog/zdZvzUgfN1N7a633Xqv6fe9msDIHfNaB6Ay2JRE1AHAEDIfI5nzZCLeN4Nbm9yaA+CA8XSsul6yqV0rJ2WQfr+splCyCYBR/HJyKX4phs0PKBZ0lqOYTpvniAiUAmAd+HKjo1cvDjHgr+3wPJQsVCymUZrPMuRsRBDG4AQCsunyJtFGHwAAIABJREFUcc0BUJlxQoH62q8ST8cggpKNAFRGwCD9fkuvbwAkyGgJE3C+Nz1P1q9/T3F1EZBxvZh50s6AEYC5yyUHXt5/Q8zI5/KrAmAIkkipkyGPYwXz1aRT8v5ZO6jJrRyAvKOvNXlLazsXs9bo/ztc29Pohgotp5J49Rcj/pzfIwGS//3OM4CNd1dpntQpFUmjEH4LYIgnyn/OLjL8FeDGhwJbNgFjI8DIEDA8BAy1PFK7FSKf43cNKrvHx+8C/vmxwMgmYHgEaA35J0StpvvzL/nP8RbLAfhyT207TChgDRiu/ZL9DsfWNABvYzbhCDBKoBAk/pEobGWTqp819hzQ1/0k0PoaMDEJbJjxVZFgDad0SaUO5LksWVj+XScDmw5UEUDJ6U4d0nVbC91S3ovfVHp5al64cgC+k7mZAP768KCA0WD3A/ieLz090CDceVmlAuhBljLgrfcAw6PAyDAwPFwBkCAbItM4a/FiNtERjBl76W9ffD2AbwJDdwFj+6syImRXrd5Y2FjIYcnzWPLEqnsfC0zsr6qBMQmfIDR/pyJ6xMhKyMrSDiKD2xja6TADTt0/AGAs1KcAUCFrOLF6tbtiRVFavT/wuMCa7MfVTlH098YBeBcwNAIMEYAUlS4uBULOmK3LCnwOPANlEIOSoF9+C4DvVoWXhvdWZVOYqWgi3vOXDUQhgieB0EElViMYJ08HxqeqnG8D4IIDkAzo51DKQQJvBKUmKACzbM4+5hUivwrgiwC4LzvjmgCh6nBcgiMTcv9Abo0D8E6g5eCjfpUA6AxoQIzgi8ALmWwC4z//DxcPPwBak8DQFDB8yJPpPZHeGCyC0KN5DFCByfh9/+OAsekKgEzCTwD047X0SCPM1IYQjCv2E/MJoGVwUUQoPboq0MdqkWVn7RtDDMahB4g+P6qhXFpjVtkDtRGA2nKjos7IyOyHFUbIrXe0FXsTuzIYfNb4O2M3ATGIYQOmPn6hG6gi3eUkQQAeAIYOAUOzALMVh2pAlESqGFBAXAYOMQVjxll03iO/yYKRAT0FQXkwZkjp1pz51LO2XAT3KtD3AIAwj4Wg05kfiuUHYlsXAJLVnP0INLM0OYFx78AzcRySeTsw2AJueI+Dj2Fne4EWKz5MA0MzDkCCkAByUWqsJzarEanzj2zXwjEGFHuGY+pYsMojzZL1G9EBexXou339IRBrC3lJGmNDuSHX+w7WC4Cm6wWxm8DngLTImgC8pBcGBuTXf/1fXnyTugnFwxTQOgi0CECyIFlsvvJfEnh0mhsYI/s5uxFYi1xZof7oOqSAawwYjRGBzYGXbtWXaCIrlvHUagX6SP/ruMVYCEbEqECXAMjfree2HgA0ESur1/0vtnNwGSsG0RsZME20/+/XWH6Mugk/yngPAGy5GDYALjiIHIgRUIrsZjM7Ax+BSx1S4pfffQVIep8dL7dMDsTGjJB+CvQxTHmdtrw4l0CovFruC2NOe975egDQsCXRK/eK634JhBK90q2C7I1i+Gt0jxF40k1cPJAB7UP2m3MGJAAFQrGei9iUTH9yBUDTHfU3B5+BOIKQ43BWtNtPcWIOzEZE8FoK9K0DCGNxLi3FqaKA9gTgeoFwPQAoI0OulWT11oEwiFz7cwbErzNxWtEYBB+VY76Vh4DWrH8IOoGQ7Ocg1CqMRLPltmxvs1/SHaP4dcAJePYyyUCRIzrTB8tE8FoL9DUMwl61kQQ87Rmy2PS2rgB0a1ci18RudEJH57OsY02y/+83/sZdBKr4FXQTApBvprGgQCg9UEAM+h9F6ugJDkC3gJPBEvRGrYoYCBX9IxEcS5K4i6cZAHIw8oXQ4mLBb35YH5d7OekadtTV1UZSjaEIPH4nQzYNwgjAHNwDuWGYpZc7lzPfX1cQur5oBorfzDf+zi0yVTuSkuxBI2Q+PhQDIUEnMLo1TBCZLufGw/ixbQa0KB8CTODjPohdY78IQmfDjmW7Yo/doAX6GqIiAtDHaYswSmeMubV81kp11L6hy2PdAcgblfslOKC1IiKRmyRxZgV/8++DS8BFrxXi5Hd/U6MeSKdqEsEKhpBRsgRMbAtuG4KU/+9ry5brzP/lPVMv1EPOQegharrVcgZUhVHFxNPcp9VFtlOWkL437C0WABWypFRGsV0sb5Hn2zYBwvUGoKl10v1knDgo0y7XA8Pfv0UACnjaK33Co9gJQAOe64FkNvtZAHQdjz9v2Nz2GSa3jYej2W3KGuZ9ixGdIVSoKT13B2s5AHkGheST6qn0erHv5AIgAAU+LVfw/wq3CEAV7clBKDDGZG9/5oVXx/oyYARczcqH5GyH8eFplTawFvAtrtXLGpNrQDGbejupB3omlIHQGc/ErzOcGSRs8zrhAbbuL1Tco/JfbLlNwHOmi2kIcs3owbdwNpYtynDQhsFcgvuG9/YapGFvYX22zZcAU0/GwA2LJ/4AmGF9mwEbBu98Y3cMF+uAGQCj2HVp3BbPuo3IlqxAy5wHAq4OfARmEBXGfNIBa0BIsG0ecwC67merHgRpZLwocrWaovuTxew/V0txJQ2DWeae3WAGbdhb2DB4+wRw7w5g8Qpv88liyGtoWHzMi4C9fAEHbBi8kwUKu2xNAdBxaGBLbJdZux1LwAGECYAEm6wyfpelJrEgFnRDxESwgyUxIUsVMwjVy5AYO0bG89Auu1/5BF38KqjBHlUAYXsteNCGwTeWNuwtk4JMkrlzGNizA1hm69g1Nix+zDOBW0aBeRZZGqBh8M4emfWNADDT+zqMjQyESdQFHfDbZECCLRgdHeCTe8CBaKJY1rDnBRCIAuGW4TYAZeFG8ZuMkGiQ1IEwGCJtHZBmy1obBsvVMnDD3jIAerti3LEBOMjGcOpa3WfD4ic9t6oveDtLfw7QMHjnH6wPAybW6yaG4+8D4HIQfvtDIVtLejpBFsVvUI7NIBHw3DUjRzL3rDVtsYPOkAScuX3coNDynT2VYJCkn+PjqvUD8hVbS8NgjphGxcANe8sAGNoVY/824BCBtIaGxRe8pLKZdpMkTvXiJ2toGHzSNHDPScAyq3er4qPyGaNc7JCRXWLT2TjwGmCOeQashq6+qSpZmp8vojQpheF58ncdZVjLnjWPHr4VWKTKxrHGUqq97qXu3jp0wPy+eEC/DYNZsZAO6IEb9pY9lNCuGPcNV830ZmkM9dmw+OKfbdcXvJMPdY0Ng0/7GnDXKcDMccBS7MwdKz8KCAKQIgY0MWGCtr4TOHAasMwOkTqf6unyuLykfd254nkb7qsw/iVg7jhgmSX31Vpd9yRHeLx+zRhjEGRbB6wDYT8NdymyubzDzCCGfpMJWfSRYfr9HP/aMgBm7YoxNQHMbQHm+ID6aFh8yS93tAvGQb7da2gYfPoXgbtPAqaPA+a3AEubgGU1RM6B060fgkRoCzj+TcD+04CFE4BldZdRc4/YxlxgjJMewSiwN1zWfsOngdljq3EmY08vm5i/7j5yIMqpvupKyGoNg9lngYosl9wY/0dZdrMzYl8Ne8sAWNOu2MA3zw/F2CoNiy99XbvftrcLriz6PhsGn3U9cM9xMODObQYWCMANwPJ49UliuW6SaqqBn/gGYP8pwPyJwNIxwDK76ahDeN6uXYCuYyABkEza4LbpY5WEWdSLxjF26/dQB0SJ6r4ByAN6NQxmkWcqrnQ00x1DEDJFjR8CcNWGvWVPp6ZdMQ6OVOCb3wAscPJ6NCy+7PerkP5Q3tBY1PrT9tEw+JwbgPu2AlNbgVkCcCOwtAFYcgAuiwWlM/XqDjMEbP9t4MB2YO54YJFMo/5gHIcALV1TRZ17FXOhPtvgtvkqf9H4kvHDlyKK4l6VzvVSBF22uwjOb7pbw+CfcwBSkyeFEHAUx/yw9JTyEbo27C17Ol3aFWNuAlgIn9QxO2tYfNlbK6MvaxeMRYquvL9rTcPgJ30TuH8LcHAzMOugX3QALo21WXBZLEHwRF1OgHS2eOgbgIPHA7PHAezNu7QFWFZ7JnXJ5rnqxHEulvlzwyVNN3+wern5Yovl7SXLGwvn4riLWO4fgMRJXcPd/+pmOymELEhRzBxJAo9gVL4kwVnbsLccgHEpWi3epocCAMeBRU5eTcPiy/6qtl0wpvhA+2gYfO7NwOQm4OBGYGaDs+5ExYDGgqP+ccAkINaVpB8GTv4d4OBxwNw2YGFrxYCmV0YxLNYheCXau7EhV3ga3Lb8g4+R45uoGLADgHWqhsBXA8K1AZADyRvuvtkBSArh+i9DsQhCOtf0UUgW/7aiYW/Z0+nRrhizoxXwFhyAi5y4rGHxU66qAFhT3rDSIVdpGHzencDejcDBDcDsBDBP1uX1CMJRwFiQIBzxieL3KIY1YW5MPOxNwLRb8gs0aghAss1GZ1O+SFHsdRPt0i/PLHu++dFb/x4mXfhcbWxhfCtYMFr/uWvKxfDaAcg7ipPCvFOVpuo3HrCjYW/ZA+rRrti6TS6MVQ+L4NPH2nx698GnXF0BsKa8Iab4dFZpGHz+JLBvApieqAA4J8CPOQuOBBAOV0CUYbIskRkAecrvAdNbXc/aDCxSpyT4CEIyTgRgneiLIp3nP6fs+a4A4N8B8/48CUC+ZGJA29fpuLmxJW+5h5kNFg2jiWHSi0r0Uv4pCoZsxw8DUfnhd4Vk0XGdGvaWPaBV2hVjdjgA0BlpkQ/K9bmn/HOVqtClvKEBqlfD4AtmgP3jDsBxB6DA7tdbcvYzJvQJkii2n4NOeMpbgJktbYPGACiF3wFoEx1ZMNe/4jnPLXu+KwD4t/5SO/iMBcXuesHylyACMBPDgzGg7opM8mEHIGdwrfGA1rC37AH10a64Yr4APvvOSdwEPOVbKxu+K2pdKRTmdI3dqkPPVgbSTBGAY8AsATjWniBdx0QxJylOFCcr6HBiw1P/CDgU3EgEIMW52M8YkLolQRddIN1AyKWiBretf9MJQN6HsaCPxe4rvgDdHOcOxDIAcmDFDXvLnk4f7Yqt63gEIB/Yoj+4p9xaAbBHeUPM8qF2aRh84QQwNQYcGgdmx4C50WqCFngNsgSvQ+Dxu4MuiawhwIAXVk1O+e/A7CZgThY1dcno1nHL2oDIyZULpBsAFTBZ9pjT0QQgn2V6ufRicS8QRgbs5ZYpEsENDejBfpoLrwAOjgIzZMBRZ0AHoUC+SOA56xJwNlEyTFw5FxBPeWvlzpnbANCdQ1eSGTRybMuydgMggVBsKmtYoC6Mt8znZxsZMLzAxoAOvsh+ydDqtXx4FIDl8L/omQ7A0QqA82S/ERdTI22mNfaTuBIIxR4BhKe+y61punQC+MytI/Zz/c9EuvyBeetLAfGZ5WOMZ9j2/gqABB1fMLsHAVBqhfTcyH5d9MByEdzs+B50Z7voGZX+NzNSsd8cwUcG5ASRKYbdHRNYwhhDIHRgGmO0gFP+HJh15jOXjnyKblVT5Cbfoq+yJOszF8P8+VnNPlICkMAzds/YLxlYznrJwIpO6egTPMqA5ZNDAB6iCCYAyYBcBqTRQ0e4630SxZyQJQIvMJ8mSeLrYe+p/GzGfnTpEIBy6US/out+K1wg+brs88rHmDOgAVCMnrEfxxMte1Mt6j7u9zzKgIXzczEBOJIB0BnCJoqgIfDEhM58SWzJEPGJe9hfVH42un/Mfxl9bgSiBySIBWnAJBDGEDAB8QWFA8wO3/a+wH4+rg4RLPYLul8tCI8CsJmJMQAOuwFC9qMI9g9Z0CxhZz65K0wfFBPqu7PEyVdWAOTHVlTcpxhXHZLz1w0ZA6EDLhkCskRf0sw4dRYC0PQ/vVSRAYPo7QCdj7GqVOSMeBSAzUzMxZcDMwLgcKX/zbv45SQlHXDIgagJc+bjZBqAWhUoH/Y+B2D0J7rFa6LYDRmzomsAaOeKqxEvbWacHQB08JkRIteSXiSBLYJOLB+X4xrzAzY7vgfd2S4RAKkDDgPzNEAIxMASSWF38WsgkuXLyXTRSRCe/DduSZMBMwe6ObTd8JBj24Aot07uDObPP9XsIzUGFPs5+JJ/M6oT4buxHv9X7BeY8KgOWDg/Z58GTC9Xq5FxTXOw9c3Cm6k5fPcjgbHbgAlvVG2tH1T3Oavoq6BlniZ+12n5u/2sDbOvasqoFg8x2Lnbcd1GdhSAhXN+7qMrAC4sA8sORJ6yHwD28z+Ft4fdv8UyqUDrDmCEBcpZ39kLS6aq9l4D2rLb/KYsFTPWdfbvh86vQu2s1K/K+zIjTsXIVQ9a59Egs4Y6sZfIA/EcSp/jEXv8BWcAhxaA+SVgSQAkGAMICcwVlNLlqTc9Gbv/HAA7MrL4+f1VlXwrUq7SvCoyGcrrWpGhuur2fNGYwM8YT67hT3s1LaZvqn5MLM0bzmHMmIFSgdFNj/mIBct63NhFZwEzDsBFgpDPeanNgATfCtGsX9TIKwNrg9tuVkhlng7TI/YArX1VkXKrEe1l2SynN1RCsFJsqnQv3UIMxhwIRjU5AGN9QUteVz3BUAvahuNgjC3HxLAND7nBp/cgONXF5wCz8xUDGgCjKPbvevlzcKUHH2ag6cnYzepYBB9Zi2FxDJdjoXJv1WDFiLJ6MKqKZUzoQFTfj2HmwTKcTpVWvcxHKm6kKgoORAEvVclPD6NdzLXpMT8IYNPcLV7yJGB2AVhYrAC4SNA5AxKM9ryDPE5fs6eeVKWGZ2M3S3MQfEyJUKV8L1ZpJXpVJ9pLilmlAxWkVJHKwIhjjD9TtVXVm1HdOy/pJiaMFRWM+bo0rWl4yM1N7oPhTJecC8wRgAttBjQWdBBGESwgSiV0Pb9DRgu0TY19N+M1mRKh8niqFx3rRDsLqjgl9yaGXT80vcL1wnE252PAZCzAHQCoiqoW3yYWFIt664fUpKaREr1NPakH6XkuOQ+YDwy4FMSwgU8GSRSz0UJx3Vx/5vFNbrs/EiLRY+v4ACITww6iJEodQKwBIyBRv9vwhKzUW6z66TUGEwhDS3ezqusAyNxnJn8xa1KRPSFts9YfFB/QDZcAm78CnDBT5U8rCqjfc3yh8Gn/hGd/MsKf1+QzYJ4891Jye13iy1cAE9cDJ+6FpYrEkidxDN3OtXR+FwBGMezoMmxJLOumAuD4J4rxJrfdH/XCoLGFVKiUbw+LAPQqWWaMMLrd6/+JycSIm85w9lOpt1j1MwAwFTiqAWEUxeYH5ENn/jInUVHeMXQ/f/jRePvCa4DhTwLHfBc4frGqqaNJzLPw6iZxV+HTplFGvZrXZT45N39+HW3TujlZv8D6fp8HRq8Dts9XIOR5YtakgBgdrrrt5Qsq8Ssd0BhQ4HMwmVitAWHAY/LbLDQNQDaTVJ8Q6W4qVB51OOqDZDPVB3TLOBepW5jmqaLbec3jGgBGMSxvvemDYkQ9GoKF1ShUCSKCqBeQrvmfVZPC1keBjXcCmw911tTJ8q5XgOLaQgA+x/OdWA2EGZ98gbjleTHdQHQN+2iwls3nK3/Zhj3VeQhovYzdxmArSwQgDRA3QiSCJUrTnjfl4KozRCSCCeYmt90EoJJbVCk/1+FiCwFZxLk4dRfLFia6x8LbYkD9v9cXtLG6+O4AYQRfrgPygVIcqyhTXcWFOJH8fh3rz7EKwnUArq8mcGwK2MCC1i7WY7Zenh56feHT/jE3yliE4TZncd636gPFCKWavGhcRx2J+cvs9MlSw0Ty3cCm+c7n0G0MExdW4BMIbTXE9UCynvyCCX+Ovm4gbByA/xisVgJPpXrzLj4EoRJjJIZrWHArS9iprK+KcefgiyB0XVKGjOmCmW9xhRVMUSyRFnNeFGEdI2q+/HFXclkp9WsAbgTG9wGj08CI64WxRk/OTDcUAvBHXSLQxcVCDMQSWbzv+1e7WVbz+k5w2tJtsbcCYV6WJY7hmAsDA7r1Sz3OgOgoM+KTOJbcjSI5yGIaNE1uuwlAAU/MF+tF5/0sIghVLdVdM2S0bSzHx2Mi+FTxXf8X925NC4BycK8QwfmgVX1LlcFiykEMcL2BndJJ7aQfijKfxLGDwAhByM7aC5U4qwPzNwufNnNuOH4VZaCPlPo2AahqFqoPVFc14ga2m+WEEL0cAz9kdPrOmMu8r1o/rTsXz7f9oswFs+jO6LAqkvC3Ggg5Fg6mwW03CUI6X12h8lyfcz3QHqr3DIl64DbqaQKc9mI87QXACD6vpJqY0EVxz2CEyCI5eMSGX2e7VtI5J4yTRyZhscrvt1nQuivOAaNLlYESwcySgiVbr37Bfd0/u31yEgg2FVaiPCeVOguqAfGov0iR0R9JABJ0bnwk9nMxw+fOh55EbgRhzozrBUA1polN9CLwok5HEEUQBjFMQB7D+j656PW+IrJ8O/bBCo4sGFdGejqiyYCx3mKe9/JtTiBvmI5OFiTisg9LtJFF7gZGDrUbHKs79+hyu5hSaUvh1foFr3r/6vZJCiXgCDwVVFJ7MVmRLsrGltuFCc68yFdACMDAflwR4QM3HPoKgIExt4gz42SuaQb8hBOE2oZmlu+KFlKR3QSssMJxDPWbbjpfLoJrxG8CYT8MKGZSVTCxYFTIb84nkCxCIPLDiby30gXFghaF4c2ReR466Uu2fvoFr3r/fKAEFxvpqMcd9yonIrkuK5LLV7MVCM+/uDJCyIC2J8a0z1iwqyESgMl15Sa33QKgmtPEBnp11mwuXgO70Ud4DHWzfgDYC3zBEOk7HlA6XKyHQzb8HgGoCSQLqsxorIy1Bxie7Wx0rFaf+wr9Xv32C+56/7HbJ5VHtRYT+GJrsehHcya57PyKAQk6+vBkBZPpjPEExlwU59awg3C24W6KBsC6tqHR+MidyVG3i3rdAnAsH2T093XT+zLr197MTA80h3SfsZP2UqpCrPQ46oF317VrpeiKXTJ9MhMLkgGdCacKG/mupV9w1/vnwyGgCDCKWzJe3lqsyzLWZWe6/kc/oKzgKH4jC7oolhdC4jiuzM0WPo+cPQ2AsX1obFCTO5Jzn566PwbReiwnfTWjI4KvDoh1juh+aT+WKSYD3i8Aql2rJk+VsVQly5kkddv2FvHT61icqO7Fr71/IkLNXOi0FQjV0046oBy6wZ922Q95ICqDEaL4XWw3COcf9Mw73DFB9AqE6wZAAS8XuzGQIDKf+oVkqxt00ttAc+YT0PJ9qRFSB8xoye5Xu1ZVeCSgCLbYLVNswoncHxoeLwCzBGjBNki/4BX3z9lXgUCyIIGmhova83cRgO5Te9yLgP3MfmsBS8xs8/U67ePQOqy9umBUruDchqo8sHSd3PMfT5ifo+ack8eFHI6QEcnT5GvdOnVdXof+ptJ+BVPWceiaRHA8Us/nkACo8mzqlqmWrbFDppT5A5UIZm7CPA2Vgm3QfsEd909kKIqB1qJAKCBG8ZstZz3xHOAAiwmpDIdng1maZQAkZzsHZ537YfQrwNyxoQ+HakrnS0h1mUA1C96TdJTmORyhC3oeqdwROi+GDhkFI6bYNrcNDEDeAkXwQizPRpmnIs3OdqZPSaRFUcbchHlgie6agq2kX7Dd/+d8lUJVXuUzk8ERmS+2vfd4uvN2VOV5rSwb0y3JhgIh9wJeN3YMQCIgR78Q+nDEVYBYZUrUpbXFnM7COSdf7N4IPvtDnT2BY/h8Chh10MXQeYGS+7GGjaQiABpuNIFiECnzdWJMIUHcazLptC7YivsF8/7FgLFMqpiQL5TuNbKfA/DC46rqqAbAwIKWK+timRUBEiNGsOQsyQm+Gpjd4n046hbT84KPuYjOmHHyp92gcgDS2OoIuVIeh/xyUkaVwyEWdLrewHE3uBUDcKIwnq40HpDXL+n3CzbaKdguel5VnFJl2awaghLQBTzteZ0cjLq2A2n0M6EPh2pC57Wg41poLzZsAZNso0Hw6eVR/J8bF9YjWGmVCpGKwQLBRCcrbiSxNLgVAxCF8XSl8YDHHFPW7xeFBRwv/rGqOKUBkODzqgdWPYAM53vTASMQu4Bx9J+69OHIF+N71F1O1gUB+AsBfFqKC+4Wi4BWX+CYgOTAU36wdMVNVKka3MoBWBhPxyiuko3xkSX9fvGMkqsDlzzHC1N6SQ4DoINOe7KelWWTheziObeKCdARApD1AdVnRH048gKUAmAEYi6Oh4DJV4VoGDWqjq4XLbO5o1jBoimEPhPJmwu9FvnTLgdgYTwd2wyXbMyRKen3i2eXXB245FlVYUpVxUpGiLtmGBlrTEhVUwV8dEkVKAq3MHJ1uzRbRx+OOgDWFX6MsXJU/36lJoEoA2AKvw8+uwTEDIBbStdOs8ddDsDCeDom7ZdszBIs6fcL9ror2C75US9IxJJsEsHdGFBil4yYuUwknofJgF4XcEUfjrz+X7fKo4EJJ//PkMORO6FrVjQMeL5kJhZMMXzLwNZCt1nzDFgYT8cQwpLt4hDON0i/X7ys5OrAJVe0S/ISgFY7j9ZvnQ7I3+lyqpYaL98CWp/N+nDkZdhi6bW8An1kP3fRTLKVWlwF6RZCH2L4zDDR0k1IqeTNb2OQSYNbOQMWxtMxeqtkY6I+ny9VEz6btfb7xc+XXB249AoXv85+tIBVgJJ6n4lf6oV+mfjdDJNMH0wAVFX90GMk1f5TxlS3Fggh92DyN0IORy5665KIfCktsl+K3VsGtpVOWOMiuDCerlSnjQ2rB+n3C+pIBdulz8wqonrNPLKgwKaC5B3s53qhXVq6oDNg6sOhqvqhEr3V2VNLBjmnSSNdrOLJ1zkAu6VPRjFcFz4fXDJ8i45hG94Gt3IGjOFYA8TTlQZ/qGH1oP1+8ZtlT1MAtHK8mQg25zOZUSCLIliWcbw8wfW5Ln04ssqnHX04euiCk6/3de66MPpuAQVZAEFkw2MKFw6a1wEL4+lSBvmAOMhD8vkOkFX77feLNw14YT/ssmc4A6oOdHBEkwXlgjH2k4Nal6wB4fIuX9LzZjAmorNeHMo5Tc0OewHwDTUh9HXxfGJsYkAbAAAgAElEQVS/uvCpoAcew6zBBrdyBlQwwoDxdLZWXLDFkHyF8xGE/fb7xR8XXByAAVC1oB18HQYIT+8uGfP75SCUs1o64he8v4j6cIQ+IqkPhxrBCHjdjBH6AblQkAeY1ondukSiELmsUPpjbyp7XuvDgAXxdNZVvWCLIfmKg6Bbhrjup98v3lVwcQLw8gqA5v9zC9jErutltg8gMxDWWMBaMVkmANWFyEV6R0uH2I1IzW7ypbkQOTP5f2ch9KsFkwp0kQlDAOmxzHpscGuGAQvi6VD4RgmAg/b7xZVlT5MATNXwqQc6KGwf2U2uGV2uzg3D4ua7fDnPwZcKgIdq9GaIBPZb0YdD7hgyIFWMXiH0eQ5vXS5HcMkc++9lz2t9GLAgns7KxxZsCkgdtN8vWD+vYDMAUpcja7lOR9eLVcIP4tcuob/3AOHCdW02VTX62ApB4Mv1v24gnPy9HiH03fJ366KYHYTHsgBBg1s5AxbG0+HLZaOp65i+ln6/YM5EwdYBwGj1cmUkE7+8THLNdAHhwrUOXtcrO/pwhF4cct2oN68BMDCfmsJM/n6PEPoYPp8bH3kCkbtjji2tJJA962YAWBBPZ0WBCrbYsFoOf9pDAiENk179fkuvf9nTXewKcBSjsn7ldonWbgQpx+26otaLIwAlfi2QQSJY3Yjy5i9dmsFM/oEDMM/Z7Uf0RiYUA7J+ToNbOQC3e0WBBm9qLad6HICG1ZK1XB5PoxnuOOIcxSXe/Of8xHV/P+FpwN47gKUpYHmuSve0pKZgCKSq5wqniWE1WZz/xouBm74KTMwBI17lVBXwtWSs+8/vL45Ff3vhpcAnvwos8d48DZX3M2hx9XIAnu0IIO0chu35AOgLL0yuG/jOmwbg028G/mNz1YWdETbm4I5BrFlov+EtD2wIo7l+Atg8D2xY7iw3V5diEqO54mnj6XdMAYcU+6gon7A3NSO2qFjlyZYDkAX6uD5Iam44YaUfVNDNxaJcLIPXcGGpfi6PnZdVD1wPspQBX/wl4OaNwN6Jqg+xwrxslcVFuYJblehkcYYZGPS3L20BxueBcS8nwg5H5kZkx6TQSbXFZcCQKadx5Cz5mPurAFxrRaa17pAR2PFC+ElSHKQ/0QjQcgCyGyM9v3SnsDBRJgL6msWCf6IfWeUJac8UFlpY8500DcCfvgb43hiwZwyYVhd2D/VSrKGAmIDnBkiafEcN9cprHgKMzgNjS1V7rRjRlceyrqif6KAkMgXIM+6tAnDl+zSL36O9+U8p9jGHQo285/2XA/AnXeNnKAorDXH/AILwbSvLEz6Ql2+cAf/3XcCdw8DkKHBwpOpFbE2wadzIdyh3jjNQirYWEwYq+/zJwMh8pf+xKNSwM6DZMmzNRRbM2K+2Ii6TlFrAWfd5V3i/F7IgT2LBF5LbIdkqxLPWvtzlAGQ3RpU3Y7AiixMxLOUB2t7pKQ8M0qCTnp8HkojJgNqaMEJesQv4AR3Iw8DB4QqAs+6SWRiqgJgY0HVDAdBA4Ba4xN7ndlSFAAjAYX4IPO5dBDMAdS2i+Jx7XTf1eEdTDfgAQnR34p/wQkRmjNAoByDT/ugFphXAmjAEn8qaPQAgZCs0lSckCNmVigEbFMsPBBE3DcBX7gLuawH7hoAD7EM8DMw48AhATrjtQwiXoqkTEwWd7LOneXNCbz6Tiq/TInb2M8ZzIFrTQbGiy92oGz7pXl/7jvdAJnb2470IbB3T77Sai+hyAP5voTqW6sKwFAc/TAdc5+3dvcsTrvPVYSK4SQb8xV3+6IaAqSHg0FDVh3iOIFTIFxtit9orL5Z/LD1Q4s+B8OnHVuXwhhdd5DoLGsgCCJ04q66X/Ju/vSaeAxDPvbdtmdtKDV90gVEPIl/xySkviOhmAEjrlzSkwj40SlQZYZ39I+8JBMx8mZryhOsKwqYB+KpdVSDFvhYwPVR9BD7uyX4SwRS59nNI+bRck/DzJ05v12M0nY8fAk8iWL5BB5qASPGRCi8EVjzv3mqpkC9ACrrwhKukB67GhpqRRowQMqCiYbj8oOoHeUWpdYIBAUj8c8WjrjyhNIJ1unzjDPjqXdUjJAAP8TMEzLYq9uOHICQALe/EwWe+QgddAqCzzD8+vgIgg0qp+5nYjaDzCgjmnCYone0klqP4JSgvvK+6LoFPoFMlkPGh+0rPWta4RHTNJJQz4M8EAGoNTPVU8opS64CC9zoAWTFChcq7lCdch6s3L4J/2QFIEBKA1P9mHIBmhPh3Ai354RyAAmWsR/PRs6vOR8Z8FMPS97yxtIlYgVB/I7jC0rIKSfLXF1EEB+BFFjQ3jCLA49OWsRTTEPzvzQEwry7VrZ5KwzAQAPssT9jw1dcHgCrORQCS/bgn+1HsCYQSveaHkzvGv1scgU/6R55Y1YIxhvOm1EZekQWl8wVDxJgwc88QiJc6AKX/meHDawX9z16M/Em7bO8Q08GBP/jEkAEVjMBoAFWXUjRA3KtNwOBXW3EkAZhrALktpC6lKtTV4OU7RHB+3kHWgv/zrnYZl2kCkF4uF8MGQGc+MqEYUCA0n1tkwxbw4ScHAHr71Q7W4++c8czwcBAmHVB/c7Bcek9b3FuwbdD/kjGWgzJjQ3thGmVA3jhfOyU+RxB6FamOFp8NrhsTgLy8Cpzm5QlVptAU+6CiNgXCaIQ0BcDYV8b0P4pi30vfIxD5+w72C9aliegW8MHzqrmh/meuFhYi0pKbs6D9fsh/n1XFMrYMbPgUByCZz6J+uEknDA9AornWFRb01WZEsACoHhOqyC7wdetT0QAK2KqOb5MCUvPyhLE0oQxzqaYNXL5xBvyVXe12vByLADjXAvgxBvSPGFGMIjCmJbEW8HfntxtQmxT0cmxp9UPAdKAZ1upA6EB7qgDo6oCUxXRtPVSpAwJpnUhuxAqWCCYK1MBExZljY5S8SYr+pxAFAuBayhNG26jw8usCQLX0SAAkwwcAEngyQizaXoziIli+Oe7/9kJvNk1LmBMe9ECO3XRB7aPeF0EYHNVPdT8gj016YBcWtBfBVYJuz7mF7VgGY/pO8f5WdQ1/7U67nIKNS7j0wIbDPFZsyNHHY7od/xdlEHj8CcC3TgCWHgGAPSxiSdt4312u/8SPAl8/Dlh4pDeZW2PD4J1c9+uyDaIDkgEJQKnTfG/N8nUAmu5HUnMW5ARbPfEuIHy/ACjRK7FL5pOR4RaxgTHofKl8r/S1ZWBnAGDKefbn3AFIPRPXB7sFiVQimKVgGdl5ooNwLQ1/1U+DQGSXQ9r5Evy1q9rZbP1lGQDZsPpzI8APHgXgod7qUx11YtBbFzC+/C+BL7SAWwhgdoLkONSLqy5oLogYft3ZI1F7EAC+phsAnekokhP4HIzml/PvthQWmPB9LJ7jxkcSr14jWj4/0wFlgJD5eoDw6fe4DzAYPHokWhHJZ3TFSkn4h7YOSOBwEtiMTv1aY0uktFYTmI2/43EMQmCuAJmUE0gmVD8EFdPpdnxhVhqzDr8F4NMtYM9Jfg98EVTeNu9Q2OFZBX7vr9vtgm/lcezczZ61ZNN8DCvilYCdPXqNDQpAlfGTKm0M6AA0PTAyoMSx64cRfPQHXsniOTI+fEWDFGp+Qb9BeySRBV2kpl0QxxGAlHDmkI56X6z+EP7UDYSdRgh/IouwIZ36lHabBE0GJ0r10Rgb/xA/tt/j/6aMAf+7R4CxzuBXWRGULwBfIrY6UNfpvLae7n0I+LO/reoLMqiVMbW38oUhkNkQIzZO7tIweGePcmWlAFTjAYHPVGwXxWoLYblEDkLuTT8MDPhXLJ4jALpaJB+ggU6xfgJknT7IKXIQXh4Y0FZCog+wxiUTwSkXUbSMV1rB/A31OXWuFpPUda/mRHKi1e6U+hA7Zq7l+A+UAfDtHg/LrptkQpZ727cRWOL9542Pa3rOvuOqagUltgtmJM08j4/PILbIDKz6w5PAHsbraTnMGdZWIwIzxIfeK0rn578J3LAVuH8CODRahV/FFQ/1IumIvXP1QudNfyNT8oVqcHviPcBd48A0g2RDuoDqHdb2SalZAdG9dnfDkAE0gXnH5ijWCDbKCq5/MRiV0QD8HgHQ63jG0hdsLGxA3x9Bw1Asli7hO3BwApgng/Gjvq01IHrXJ7q3Cz7E++YziF2rs1ZLZ+8H9jJsSoECWXj6igmR87aLgfbGq4GvbgLu2gjsHwdmCEIPSI1h+SkCRjpfUC3iNWcpoRrcnrYbuGsUOMBo7QBCxSTG/igxVcBIVGPWM1h1JYQPnyKNExGZMDIJ9b66eEBGxPDY1Y5nv+GCjfGAxD+DDpiawphABWZPjwNzNLAEIH4XCH0M7/5c93bBfI8Yk2cgVAdvdT10ifDkBWC/r9lGH51NhIsnsWHOfPmEUKT94WeAG8eAO8aAfWPAwVEHISNQlKQUglJjJExqC+H6Nq93kOpUg9szbwLuHa66QzFWkaFieXxi6hgVHOMCYGRuJ+5V4jYJIDKI9KlsAvFDq8QDrnb8NWVPh9EwdFkQ79TlSMIsN0Mi5s9MoOGno4U6f3YAvefL7Y7rvdoFLxOANSA8f7xSgWmd0kCQbmZ6mTLEnJ0UqWLhUkxlrBn6n3wWuGkYuGukCsufGq2iojnRFpafsU7MDxErJuZhYCsJosHtWTcBe1oeq+hxigJgXBrMmTBPnJKLrr+VED54ibHYvZos8sO+DNcrHrDX8YVVyglAKud0LtMjFPtNMz6QLDY7VomLJd671AEH4Xu+3g7nWq28ISvX58/hguOBg8vtFQvV/hEzxfqOevuTfpjri8vAWz8L3NYCfjBc6ZYHmBcitnFd06pxyb8W4gPlgonBqffTtdTg9pybqiVNBssyUsdUD7eGO9amnf3sXtxQipl7Wg/sD4A8AwHIyZMYky50Tp/xgN2OL8y051qw2hXzwRCEdT2nmck1RxHG+w5jeO9NFQBpR6ldMIMXlFWgVndqF2dVFsJzuOgRwMElB6DcI6rznemD0RnbwQiSRS3g7Z+tVIl7PC9kahiYZm6IizuLigliT/VoUog+p8P9l3wJ7qGEanB77k3VczroUToWLCsABud4ypaLCUoxf9i/9w9ADiICULrQRWuIB6w7nuZrwaZwLBGwClSqSyz3AhHbaRGEFGOmC44D72UVgjW2C2Z4lIF4ArjodODQcqUGqAxfcpG4mJVuVqcL5tbs2z/veV0tYK/nhTAqesYNHdO5PCJZos+WuzxHJIViuXFyJxupNLg976ZK2lizUKodilGUgzyGhokF8yw5Mf+qRkjdjfuDtwkkm7DTkNaBaQ2ox1q3eMD8+B6O3H6em8Kx1Ccx9ptWl9iYIUAAWrI3I3nHgPdOtsO5eOuxXXBdj0V1vOL/so3Cxef60tlSpYwveKf0pAu6ohfdJ8k4CUqgvr5jV6VGTBKALeCAh+VbZLTnh5gu6D44A6H8cVlkNK95O1WkBrfn31R5HSy+JCwPplAxRegE/2T+AloGncNmbQyogUQx/KwB4gHj8YWNTwRAOW0FIIIndoqNkTAxz/bd09XDGLBdMM6/pLKi5whAX60gCK2ujxzEAqGL2pQ1Jis5AJEAFHvTujYAKjRf+SEugm1d2COQLU/DAwQ44caEw8AtZzSIPgAvuKkdrWMM6M7xCMBoiBn4YpCE2NCfxWAA5MEuwvCCEICwlnhAHV+YORfDsWJGgPpMKwg1b9QpFnzHbD2BK2JGul9s8KkYW17vLALQRTCBpzXZpS4gtCXXMAkduuAy8E7PijPWprXJ5CR38ygw1fJDohh2BlRAgq2OeN7uTWc1D0AFNtmL54ESBsCaJcLkDajxj5ZXRiCIGA0waDwgjy8sk5+HY+X9ppUbJSCp6TnFCMXwny1WAFQ8rUAc2wUrRL6mXTAefWnFfnz3FpbagQKLAqAzoZjAKkkpXkNO5GCEvOMLFXOnnC4xIKOjnQGNdWSM+GqHQGd7JSsxUf+JzQLwhTdV4je1nQvr1MkPGtlf9yP2Dy+gAqZ6rQytfvdHSDxgLwBF8AmAYjHWluEDiKGMiqOVvtejXTBOuRSYJwDJAARgZAGWL9Nk+IM3SzgTydE4eec1nZHbtDaNAf1Dpd/SMx2END6kD0oXtFhBXmcY+OY6AFChnKnzl7NfdMR3qCAae2B+VVMYXASvDs3/X/zHJZcB84vuiqABEo0QPnhnwqQLyRURmZBPytnwHde0M1vN2lR6picoKULaxHDIEdHkW2iWg4/7b5zb7DSQAVd0/griV2JYojfpwRGEYsGBrOBmx/OgP5sAKANkcbFzNWTRnX/GSGImMYH/LYlk+gGvdT+bW+SWH+Ig1GqL5QeTtR2EYj5LVHfjw/ZDwL8yJ6TB7UU3VVoTjTYxYDK+Ivv7dzNAZIxpZSiU8jjKgIWTcykZkBawDBBnQdMr5QeTKI5iWCB09AmEb7+ucnOQ/aTPWn6wuzyS4u+R0Ob6CUGqJpIDA97AdqINbgRgBJ69CG4Jp6q/ckjXqB/RKla4WpkO2ODgHoynigA0JiLwaNiEt95YQKJ4FRC+7brKzRH9jZbN6iJYuSHm9I5iOAOhHNJfZkh+gxsBKPbLu3+JgaWDdojhMO5kkDWSlNTg4B6MpyIAjf3IggJgMD4MCARjFMU9QCgAykhSKnUCYHB9JB0wy5aTRUxmup4h+Q1uAmDs+hpXgFLnB6ULONOn5xACNJqxghsc3IPxVBGAiQG9aLeilWUJW1FvVXEN0TKp1C6At19TMSCBpz1dHtT/JH7N9yaxp6QkF73KBxYIr10nAMproB44qQGTj6sjUrtOFPtLeFQHLES9AdDFrq1E6M13MaxVCTNAXNFThIylLcor40zxtgDAPKuVwDMrOKw+SBTbtR2MND7sZwC7Qvm4wqHa4T/uIrhb+7n0EgbQdTijoyg+agWXT8llDsAFWr/B8qP1K7bT0pvtVwHhW6+t2C/m8svvZlawi2CKe37nhFtapkDnILRqBQA+v04AjMyn79EIkXO/DnzyCBwVweX4wxs9B4rRZgyPVFqykgDd+5JSpBU5r0vHyHz+jsc3ub0KABsZMCyQgeExKyFPVIz3lmcM6OfPAGCADYPE67Jfs6h7G0o+xvi7oyK4cLZfOgpsXwC2Lq9MwuuVERonKn4nSJrcXnQKcM7dwMMXgYcsVxkSebJgzOWPqdB1ad2f3gpsnwK2LXWeR9m3danUIV1lBSCPArBwtp+7DThuBti6UDWDmWA/DvXk8LRptfPtNUlihYZTOPCi04GH3wFsnwGOW6iAs5n3GeJJ+KLoE+9VDClQ8R6vOQHYegDYwuY3S6H/iJ8jb11ck0q9Qhoc9QMWgPBZJwFbpoFN88DGRWBiqQIgWyJY3lPozaGJ1KTEPh36zpTkJrcXPRE44S7g+Cng2DlgyyKwaclfFoIwvCwx9Zn3Q1DmIPx/2/sSaMuusszvjfXq1ZRUElJkKsBEGQyYhJCBSkUqAW1tsBdpuxEVaBzowXZqe1g90G2LotjQdmMjKqtBxQERdAWUAkUlZNBGkQRNyIAEMAkxpFKpqjfUG3t9//m/c/+737njPq9uVeqcte66b7jnnn32/s6///3v//++Tz0dmD0KzC4DM6vAFpd/0L3Gh6yTDgnvLwKzAWDGiH/ThcC2OWDrErB1pRgQisIQhAa+AED+HEEY6uNLyrRnZLSl6tSbrgLOeBQ44yiw8ziwfaV4UGbdegmA5QMTLFlqsfn7XecDW+eAmePAltXiXnkuZSBkRcm4UGXtU2uo3xsAZgz6y54JzMwDWzkgBOAqMMVBCSAUObh8QuN/CiTgcWAuyWhL1amvvBbY+VgxbW477paa7gIBqCnUrbUBiQuhAKDUot13IbBlDtiyBEyvtO5VDxvvVfxW/JkWNFrCeK8NAGsY7BsvKQC4hQCkJNaKy2LRIsg6SJ3IQSe1onKKC2CsOYMeN+0Dtj0ObDsGbFsEZmWp5S74g2Ir2uA22BScAJGA+dJFwPQ8ML0ETAUAkgDTPq9zdK/+sMWpPF19NxYwA4g3PtsHxAE4SQC6FdSgmGWRRIJLZJll8EGKjHiX1jwaN10HzD4BbD0GzC4WrsKMW2pNobZoCu6CLCDfCTqzgg6sr+wFphaAKQfgZHKvpRSYg7HN5XCL2AbAZwPrZGaj6ippXhgn0kqmU1woxnHedg5AATuWHig2FE1uVRwoxoX+Wcbg89S3AqCKPONcCi8oPtVP+9++G3j+oSK2xRBFDElUxbTS+3nvc4FpDsjxllXQoJg8FgdCQoGJJTTicLcQ6vPL6wbg9cDM4cJv27oAzFA5ky9/UOSvmg8oP86n0dICBn25JwjARWDSAUgBHN6vfdbv10AbARh8X91vDM2ss+NvAECKPVLCsHoyUgRqrlbnRwB933OBc+4DXrIC0IEmiLnE75di8HsyAcjzWUVGUi6uICMpVwwJVMXdeOk3XAxc+Hng+vV2esAYw+sWoP31r3eLcLwQBeQUrEHh4Jo2h4vDmJPuAyMLGAeEn7uqbgB+I7DlSWBGCwe31Gb9aL20kGDb/EGRxY6WTz8f2wtM8l4pgL1SgM8esHCvsuylME4nn9cfQLtldg6TZ0kUKorAfij23vAPCmqp3fcCl60XFINid1PlZrf41/dnApB6wSQjutUfIDJR8CGIQOwWEH7DywpKrWc8CFzqRLHkVYrB2jS2FQH5vkuBycXCAlIUUAAkCM2iRBA6+ARCe7DjYmQduLYTleiQ/XTTS4DpI+6nLhZW2nzVCEBaMLd+soIGqjD1ampdugiYWCpeBKA9bBJC9ActAk8LES26SqsftInLZ44dQif4Igdhym5WLrPDyuYH/7HTCNwDnPko8LXrBccjQaioe6BiKad3+QY/MGTH6rS3OBvCnQDuAIyqhiDkQ9RX+29yE3on8IwjxQPI8zkTiApGU3oVkD/4fGDieAuAdMw5MFQjEgg1DYsUku+a3uI0TGBfV7PotwHwaOEmbHEATvuDIutni6UAQoFRIFRYhfe/dhEw7tbe9Of0Si1g8HkrwRcevDajz07gIJ7n05rYyWIpb4ya/7vv8PRdFpj/LXDmkQLAnA4jCCOlTBRN/rFMAJKgkkVHpGUjySSBSFeg7/azqk8EgbSEq8UDRACLKDXSyaQ7Br//DcA4LSCtwnKhTEkQcmAIQhtM+Uaajl0uS9NatITXWzpzfcdNB4DpY+6nBgDaCtanYLN6fCj4u1ay0QIqtML/EYC61wSA9tAJeP6eWsAoDysFpg1eB0HIQRCIIkVeCqQf/05P3WCB+UPA+CPAzvmCaFWDKEuYcl1yMN+Y2dckqGTeHPEvvWDSNhOAfbefX0A6rS8CUw8X9066bFIfdqMHJID++DJgLACQumyc3gyAEYRRKFCLD1eu5ODLF6QvXedx0w3A1BwwxdAJLTXjd8seQnGrZ9bPFxLyA7WIKON63tYtCQBN/sv9QPm6BkLp0vl9t/m6ietR6fbyBA4gnXtORwRRpNnTtPpW6gWLH83lKqcOFTEnDiKtoHwy8RNFhrefyeztbnrBfbWfgttsP+kIyO32ELD1cHHvInrlvWs6TsnB7qAUlg/suFtAWkE55zYQ0QpqcALoNCXTEt7A3KoaDwGQfqoAOEUBa7fUbKctltwCajVbxvSiyvoasM0BaBKwwdKb9fN7NfcqBWGiSWykWXER0umeacUEonQgCKRfIgDFjya5yq8Wfsfs8dYgiuMxgpAg/vnMzu6mF0z6Zj5APdvPQec0TEosnvQosGOhaLuIYvnwEYSithE52F1XFAA0p5yigD4otCqygFKnpHUpLYP0OcKURYv6Mj4MNR433QhM0gL6QongawOg+6rl9CswKoSkEIxPyTsuAPigCYBmAXVfYcVf+n0SRYw6dP1YwNgHsgSajiJP429RrpWOM6cxDiJB6NINM4w7LbUGMQUwB/M9mZ3dSy+YVG0EoBiDBST5ddZ+PkCsAiIlQZDa3LVatJ0WXG2PbL98AB+4omB3oP/HgTUhmGgBfRqWf2TTrUSjExDSP/qWzQDgfAFAWyzR8rkFtDAKX75jo6nUguZxZ8NByHbvvqBQ36T1swcsBaBAGGRg40Ir+rt9WUDhQ5ZAU7Es2e9LLzglqHRxNkbeuW+oQRRls5jaMjnK0a9ecNf2R4LAwO829kQB3LTtEYQPUwzQAWgW0AGo8AQH0ljp/V17pm0KRcEifGuNOnocO1rACQbKPXhs8TtNwVr5uh+n6Zf3wDgu29g2FdMtOc8B6PdpFj08ZFrplw+ZA5FTvAQQ0/BT36FPDkRqBT9Jag7xYlQItY0f88j78sZzCcKPZlrAQfSCK9uvB4h577SCotUiEJ8opq8IQFl/PUBPEoBLxbRE62LSqG4dFB8r5bHcOtiOQSqT5T7RKzYDgJx+BUCCTxZQCwhaQc9oKcEnEBKknj5FsJ1LAPo9xoWWPWDy+6IIoqbeaO0VA+zHB0zxIQDKkn1GgtXiRxMIAx0Vn0Db+lkuFjLRCt5WEwD71Qvu2H5OfekD5FaciQay/GIbFgBXriwAyGmJADR1ck3DwTE3TQ4B0LetzBJErTYAr2BBSI3HTS8tLKBZPo/fWQDZp197Z3scjGb5BDp/L3+njMweB6B83Gj9wj3atOsPWin9WgXCFlVO/3ctf4iD8XkBkH5USlAZlNPZAQqARr5vxu1yjmH0givbX0UQKI63o0Wun/xHuR8E4VnPK5JQLd4VNttTBvK2uoiKOUf/f+GjwMNBh0NMV6J0c0NpcRv7mrYv3kh8/uHxYp+bVpwLp3R7sts2YzouSq3KGa+q7+x7Co4nazAerRKsVlV1QitF59dyyFZaYY0HMu9mWL3gtvZXMbymBIFMZ1ov2h0B+LTLisxgW+Eq5uU92iZ72ud9vvR+4JFp4NjkRh2ONi0OB1/UBCkvEYRhfuNs4OmhhiPKnFQlx6aAjMnSXJUAACAASURBVPjmz1w41nnwO4cCIBvBwZgTAOUHRq3gyDExD4zRGVYEnpm5LqmQc0M5esFt7acFl0SlHiBxuTkYxxdaihUC4QVXFu5FCUD5QtJl85sjGA0ziQxqeu/fem+hw0F2fLLQGxFlYMRvo7v1WmIVtpt1DFkXvOR7LwJ2HSkyoZmEypoVVe8p7b6qEMnidGG/Vl/L2aPOIwuA1pAIQE3DAmFa4j9f7CPaFpCHKujr5xzZesGdHqAqKz5X+FLRAl58le+jui+kTBALMcgZ73CDBkpN2/7+bfcWOhwUyCEAjQTcAVhKdjkPc2RajewKyu/n1//qJcA2uhBMRGXQOcn9U6JIOjXHQqSYOsVoQp1HNgAvz8yny80H5PVz9H6RqVd849WtXQ/zA0Ow2ayGLJ474L0G79vvbulwkJi8BGCg4S01SKqofoNvSIC+5zkhFUupV8rUTpJN06KpaBkFQm5M1HlkA3AyM5/u9Zl38zrk6f0iU6/4hmscgK5ISUtCTowyDqb7UxwsqFJW3fo/vbuIBJEZ1YRgyHwQKNi0KEl1OKTCZJdxtPDn//v8ooaDaVgqFyiTD2IKfcjZS4Fo+7g+HXOPv84jG4DIzKfLzQf8KVfI/FNKrQ6h94tfz+vOA9cGAAbrpylY2SDlVTTt+uCnV3/V3a7DQQAysJAwobZJgUXi78Qayhd812WeiOAZzEyUiAkHMeu5BF5FwZQAWLPwknkLQy9CrPMy8+lIHZFzvN3T+YbV+8X7c64OHHix74V6zIxB+RJ0wQ+UU992tYoFy3fcXcTDxQkoPsCUhFIczKVCegSg5B8A/PILN9ZwxBSxtiKiUAOi7JW0dLTustF8AGbm0/1o3vjjnSGdj+lYlGwdRO8XN+c1wABIoHk6k61yuSCJITq3jDY9Vx0BqK++uwAfX6JkI/hME0SC1EGguiQ+isqcQRLrF6/0jO2w+6FMnZhyZYsQ1W50qOHgPX1NXndtODsfgMwHzMin+0+ZN0S9YOllMzWfLwKQSS396P3iY3kNOLDPM1y065H4gOW3p4uTDkB8zWdb7FgbdDhEgJkCUDRvogTmd/vPv3BVAUBuvylNzAAYi4hisVQnEHoIqWblrxqm4Mx8ujfljT+YjsWBYgIOc0oJPsq1slCpH71fKybJOEoAuuVTRSCnYlmU6P/Z4iSJEcbLv+Yu9/1EAh7JKEXDKxq4ChUiKymRbwjgHdcUWTARgLYXHSr2LOU+BV7MVwzxwOfkOWybYAGZD5iRT0edjpxD6VhcOQ6j94tP51wdOHBdMeXa9OqWRcmWXA1XLUIUH6zyCwlAs3z+YBkfs1u+VIejJEF3ckrjI9T0y/aMA2+/tgAg08VURKT8vbKMUgAMIGzzAcOi5HknHQAz8+l+MW/829KxhtH7tTz+jIMAJPCYMULAWd6fvi+EY9ouoZBM/Kx/4LUBgFLgNC5o16FrE8JJVJgkiFhaQQBv3+dVbMrWVsC8UxFRkjjaVsW2DtRdOJ/vAyohVYK7A+bTvTdj8HlqTMcaRu/XxHkzjgNkIOWuDr8jnYYDKDutgpUhra0uAlAyCCUAK8BXcjBXgLCk/h0D/hcByDxFAdAzoFUqUBYRJTUcMWdPP7ONL6i5bLQeALJRQ+bT/W7G4AuAOXq/lsGdcRgAY+glLkYclJVTsa6ptCX3uQjAKINQstFrAZKIwWxQIhIJuovB/Nx+r2LzFCwlj8Y0evl/MYk0kieVtcvrwGUnHQCVjjVkPl3mItQsIPuElx9G79dOzDgMgGkAWlNyBJn8xKprBRC+zgEo4LWRgcdVcOCjjlNvmx84DrzNAahaFZWLygKWxUNibIhTcPD9BMLLa65bzreAMSGVoXvJ/Cgh1WUfO+XTZS5CDYDs9GH1fnOrIDcAkABTTDCCLYK0Cwi/586WcKJUiEpC8CCBYDsiiSplqUIUmOjf+o2tIiKVUJbgU5uSWl4DWwX4+PcXnrQATBNS+8yny1yEopdcay+930y5YhgAg+9n2OoUeI5TdQer+32fdhmGoOBZanBo+g1yEKU4dYgFSvqB//vZBIBt9RshkTbW8ZZZ2hUgvDL3iU3uux4LSBM0ZD7dPRnTH08VAIfV+2XAOucQAMuVcKfFSD/+IAABsEoGwYAoHZIKEEYxRIHwLS8pUuhjFVs6/ZZhIVWyxVKBBIRXnbQATBNS+8ynI4tBzkEACv+chlUVIKE/5cRGsWmlKfIzudc3APLQSlg3E2OCyVRc1kpU3DgBmKoQsWtlBcswjPu+nfTYtBL+GQdgOf16GCZW6pXlBCqWSgqJypoOAFfXXDifbwFJLvi5HAjlnUsiIe6AjOp4iQNQHRlT2PlgJCUbbc2s+v/hFwFb/q7gm6HlYpBbmTV2sscQyy/qFBj2v0/cAdz/HGD7NDA1AUyOOU+1CwWOewNjKj6/O03F1/WuugW4/XJgfBoYmwDGdH7IxB5kLPIB+I8AfNwZgga5ck2fJbEm8V9zNWPfrasbgMuPAcuseJ8Exsb9FdBhA+7gaQNKB6TfcgCYug+YJT+g89aoBDMmIMScP12uTKj13uDv8zsKig/uJ1uQOsnojm3qB5P5ACRBH3OhPuzzRN9DV88HqQLEWPJnvTy5nm/t/1s4BcuSpRZtGAu4fi+wtBVYEyccrYwn6hF8/FkJp9bKxAKVFsn/d8urgbHPA9NPOEOWl4+2cfoFHhfVrJTZPKHSj5daOtup6JyCpPx8rHWRVQ7WOlrYCMx8AHIzlxkALPD9c0VB+x/A3E/+E2fUYHXdF7KTGwdvTd0AHP9r4PgWYG0KWBdfsBdsMPfPrKKsoL9XAVLAvO2fFylCE4cKliyrDVZNcGS1CqEYhWFiAZV+XntaURdTLmpCEbpchTYLqi6NrkMCzLzt5Xc4HwyJmmkJ+Z73jQOh4NWeDUZiK1K08f0EXt7CMHVawIk7gaVpYJUA9LI1Ao8bzKX1cytoFtFfpdCIWz7rgzHgth8u0oPGDwETc8CEMySUzFaikgtlpW1Ta8JqNba7lVljSRgW+Q6ZP/57WQvj6fydBjXfAjKbgEvMLwWCvhNoipgNpnQshlS4IGFWzIk6ylWwAz93ETLxGWB5ClidLABoIOS7pmGfG+33YAG5mND0G8F4678vkiPJczNOAC4UyQm2N8w94kirFlfIAl7i402d6dbPWWAtrsjOFiuCvAJZOQE0pHTFsckHYDeCvhNgipQNxoAz8/8IPr5nbvH2jd+6AThJAE4AqwTdZKEBLDoDgU4+YVkPHIBoPwareOt/BkDexsMFAFnbzNJYm0IDnVwbt4uyur1kwL7Tp+iZM/08WT9Rc7DHUmuYTr/x+6o4ovvu9fjBbgR9JyA+omwwxvZI5ULg6ZW7y9FPf9QNwKm/CgCcKABovh8ByVy/UCtJq2f+X1yYJPGU27lIZLbuEWDsWBHesZeDz4iURLUWa1TE47LqK12fZmd3OXidFctqm92KatVs1jAEsNv6sdymaa2g8+xUL4I+Pn2beCgbLGWHI/h8G3oTr45iK86POlbBU9yKI/AcfLR+ouQwH9BfmmbLlTHboOnZ/T9+5vaf8FUaAThXsFOQ45mUcgZCWTAxe0UQ+urYMO1/37GtxQmoLCBtRSp30LrDp2SFdzYMgk/R+VNwvwR9mwQDsaspGSfJgYDYNTbp8psCQFJxEIBkQjDrxt8dXCUIY+COH5MVFPi8SOn2n/QYLZ9Gp0cxANIP5IvAkzVzxivRydnKNzBa8fddM84b6AFyAriMF2pajk9kYIeoClXmA3AQgr5NQEHMBqMVFMNaIOayNRL/vhlH3RZwmhbQQUcAasrVVGz4EtjCu/3dfb/ID3PbT7uKAZ/MhcIC0vqRTo4W0IBIEAmEtFwCYqjW03bcmdwBYeoWgetUbrR8snrloiR2drpACf+rD4D9EvTVjIJu7HBV+781X752Czj9lwUZkTEgcPoNPp5Nv4oBRhCG6dd+1DkMz1JIhR1BAHJ7zwqO3fIRRM5tmDK5CoQKsSgOeBYBKFZULTqcB9r6Ni5KYmd3WKDUA0BlhNLM8EbT1QBXBU72aI5ZjUcVOxz7WLkQ8d37vsart/uA6RcPsxNSAtAXHDYNC1AEpf9s01kKwuBwGU7HgVt/1jtD1e60fgQigSe/j5bQp+KYpGB+H62jT7P8/ZypBIC8Dhcx8eY9wF015abhmnoAyJ5WSrKeNgKO9SHxnT/LSasJBim5lRjWBEIVeROInKL1qunybRawLgASdEy74qjaNNzJCgqEEYzBGvK0297mAFSHEIB6ebKDgc8J1ksmV8t29f1en6L5v6cxIK5iK6Xne/5jCTiFcTqVn/r/tWDPWwXnEPTVgIKUHU7ljASawKefIwDpMdRxRB+wFgD+RREDJABpwSzz2c0LfxczVjkVKwaYgtBBezu3SvX08d39P5uO3QKahXMQciourZRAGKZWar/YZ1xXRPe8wQr2AUK7TvbOVTZBXx4MBECRnConUBSFEXT6mf/TK+/qmzAF/0UBOPqBZYF52HrTFCw2LH5G8UCzJEko5nZqmRnPh/uCXmpnVpDTsIPPwKApOaSA2QLDLSHf97iPx0tpISLfz7bl4iFfsUsnj+HZWEeOYDCDnDmCvZkEgedcCjxGseIhBYt3vx049HwMLRh8gA9gh2MoH9ABqKJzxf0McO7XlSAU4HzhYYFq+5D7hwBu/98OQLlIBCKnW39SlXNY+nqeiq2dkQg+gnGPb9/ZpT0lq6MV5D96gLCwgDmCwbdnCvZmCgY/dxy47xxg5SWuUjigYPHFbwA+fyGwfr2rXrMvPB+vp3L3GHCgi9JOHQCkRVPppeUBigXLFymyejYTB4YsgfA20ofRAlYB0FfAlvQqP0/TsX5PLOB5DNu471cmIwiBaRww/F01J+mz2pqChxUMZvpJlmBv3iTocsW4dzewfhkGFix+2febXDAeJO/YEILBB7pU1g8LQFo98QASVGYNQ6DZfEG3fnEqrgLhbf/HV15anbkFNCvohWSl9XPQ2XTM/2s3I4DwPIZwBEDfgitH0Ek6N6x+u/iD7T4g/YdBBYPpWHEaHlqwNw+AQa4Yj54JrJO+aQDB4pt+oCAyYvOPEIQDCgYfeF/9U3AbAMX7ItAlVtAspKZdz5SOlvA2pstxjES3wJ+92NgAGK2gwi78QoVfEhBeQACqNNP1RdoA18kKdgDhxkUI/zKIYDCnqyzB3jwAJnLFOEIW7QEEi1/1Y21ywVglCAcQDD5/Efj7M4CVrZ5AKlkhxeQUaxBI4nvFzxf8IfCVC4HV7cC6ZEX5nen3VX1vAGLZq8ysrvHY+QBwbGfI2E6JpLvdX+ksthpUvQrmX/sVDGZVUJZgb17vJHLFeGQcmCdVb5+Cxd/5xjZ6QzzMLOQBBIOfTV2Ps4HFHQ7CLQUQmUrV0rgKJMsCjsxGAqTn/hzw0EXA4tnAyg5gbTYBorKkUyLnkB9YVhTxu+kT13iccwtwdBewPAus+b2ar9xJAafqfgMQO4dh+J9+BHe5gqZZZzYok1JJUcpaR6bp93P+W/N6p0KuGIemgEWKgPQhWPxdP7NBLhiHKYHUp2DwpZ8rLOD8tmJQVplOLxAqmbRKC6EDYC7/CeCRPcCx3cDSrsISrs04CPm9ArZk55UvKAspYLqPaPdR4/H0g8DRHcDyVr/X6VabLHk2PhjpPVZY7d5xwF6CwS9y/4LbbVyQsEKIufGiKe0p2JvXOx3kinF0GjhOQY+oNRtljji9TQPf/fOV9IZY4Gq4D8Hgy/4W+Oo2YG5bUUy04vUcLCqSJVRWszJbNgxSmMau+q/Ao2cBR88EjtOqbgNWWaTkIFz3YiWrF4nAjtN0nBZrJnU+/8PA3CxwfMYB6LUra3oglL0tps6wlVha5rLiqd9AdDfB4Je6U0s/0BXTDYh80Sr2FOzNA2AXuWIszABL1JaKWq1R+nwGeM17OsoFY5XTVw/B4Cv+Djg0C8xvLYqJCECzgsxmZlq9T8e0XGUyaUizavPtxoFr/zvw2BnA0Z3A8e2FVV3x6c4sqwObckeyhiXAowUSADhD1XhceDMwx37lvU4XxVN2n3rJIocygkr/Vbs7fe+EdBLcfaXXQ3IPWIrpBB6XlnwpR76jYG9e7/SQKzarxM7qJFj8mg8UarMV9IZ4gvNDD8HgKx8HDs8A8zMFAFnPYQPDl0Co2g4fpDZLqKCxT0/7fhJ4fCdwbFvhRiwRgJruCOwUgCpeCvUjZmEFxhfk9W969kW/B8xvKQqnVgg+B6CB0MsI7P70AHgmd2n1NQ0rv7FvALIlVYK73MnQCDLThSGZoDpuP7uCeuX5n8zroB5yxThGnQ0CgyBMxY63Aq/5aBHG6EBviDlOLV0Eg1+0AByZLgbl+HRxnZXJoqqttA4ODovlJZVuSjTQFtq+NwNPbHMAzramdVpVs6wEoPtdNg37wJfvsYiJP9NFqvHY+7vAwjSwxAeNxVO8T6aNVRRRlT6hHrJ0Ovaw0WDJCKng7g86APvNB9wg2JvXO33IFWOBgn8EIf2nRLD4tbe1+AU7yAWbZeskGHwVdd2mgAUCcNKnJgLQrZ/V9/Jnn5JUYmnAE3hCmv3+t8AWQfSzyPK/POOgJgDdsgqA5nfJAvLdLV+bz0kK4RqPZ3wQWJxyAPqDVhZQyQr7gyaXI9axWCFVAGLvRUhV46PgLnUWBs0HbBPszeudPuWKsTRZAJDTo8l8ui/42juL5veQC7ZpsEow+OrZQlqVVuH4FLA8WVyDAOTAmHUQCAWQkOlsQAwDt/9/AE8SgPQpNa07+AhAA6HLXbb5Xr4IaAMfv/eGvP5NzyYA7UGjBWTWjh40v9fSyscHLtaxhJWxFVsNNAXH1khw983+DYPmA5aCvXkdNIBccemfceooAfhAAcA+6A2xLuAGucxrzgKOMexDfV9OwbS2BB/BEoqLSrBoYGgJ3E8qLcIEsP/ngCPuUy7S13L3wb6PU56/m/Xj4Ps0TKCXQA6AXuNeZY3HMz5QANAeND1kwcKXlj6wOZQ+b7R+Pi0PD0DeFAfk590CKg8qncfoFzIRVWVqfFfBhgn25vXOAHLFWCDbvPstBsJZ4LUPt+jdesgFg+qVptWq11bg2gtgfuLiRAAgQeg+oEmsOujsXb5SsAoCIN/3vx04OlNM6Yv0tdx1MKvK7/TFjVmeCD4HQQQhf159eV7/pmc/kwCcKABoeYvR0oept7SEoZQ0Tr1lPuPQFlAtO0nyAcWhpzw/FSjFzGjLx+RGvxzoSeC1hwsA9klvaFN5FAy+9mJgnhaQ0qqagglADo4c9AhCDpJPl5ZommQ8738HcGw6AJBW1VecZv0cePwOY0/wl1lAD/WUCx0mMlDLr8bjmb+Dwp3x4nkDYbD0thIO5aNtfmDi/xGEeRawxhs7Vb/q2huABQJwAlhyy2cC0xoggjAAUCWWAkksOiIY978TmOOqeqqwqAx3WGhHK06n7TDwOcAV/iipPAKjwgrZm2o8nkUA0gKmAHTrp+o9MTrEYvq44o9pZIOtgmu8mafCV72YAKT/RwAy5OPOuVlAAk9Oule6xQRTWUKlWtkU/IvAHAHti5oIwDK841ZPFtCmdr0U8PaC9hVultd4CIC8P2Ztt/m5/qC11TJXlJDGGpfGAmYODgFoCxACkLpuWh3KCgqE8gNVZK4KtxgjJAB/2X1Krao1rfN7CWZf3LSBT4uAEIyWBVpipL7GgwA0AW25GbGENBTRx3rm1M2w39mmrFVwjTd1Kn+VAZALEE5LtIDyMWUBvbLNLGHgd5H/V07BDp7r3uU+Jadgn3ptxekA5MBri0/Wp4wzBjDbCnkMWMqVpE8GJwLQqvfc0pqbkVj5aNk7gbCxgJno30cAjntowtXNaZ1suvSKNhsYTcVKmw9F5xGE+94dfEoP+JYhD/8OC8eIPUsUHokVVKB78XszbzAF4Pvd//PCKVGIpOAr78mn4DZOm8YC1jco+w6EFTDDPJqeCEBZBa5GffVbhmQ8DtZW5TYOvPhXip0GTuu22lTMLSw+aAVl9QhEWjurI/aQiLJkTMLsX9R3r/ymZ73fp1+37OU9hunXSkdl7T3QrhKCtlCM59k2i5CMMSIAGdqxEIwrmptzTsCEut5yilKoJLAcxCq3fe8tLCDBFwO+tKjyuxSCMdYEXoeDrHcHvu0tTwLzmwHA4N/Gh6zNCqqeOSxC2lb8tQSiMwbuqXIqAcjFh2JjBKGJyShQG6ygVbfJegULWBYcMR3rvb6oCRaQwFPgl1M5rR7/JtBZOIZWx/0+s4QeY5z/1/X2tFnAxPpFELaVkdLN8MWGVr4pCBsfMHN8bmTKfCjZ0Ncp456/x58zLzfw6Qf3ABd8pUgEYmqk5bGyek06IQl1bkXScnlN/u8L24Gdx1qVq91KQvrpgwaAAw9p+wnXPw1YjyWMGtDo2ASOFGMU7SIEUzdYD34vMPmXwLbHgdkFYAtlGiim6DpxJtvq9LtlVr/aWKEB8pUXAOOPAFPzwBTZ9r04vdQ9Ts4pAZ3cd+yHxgfMAOH+vcA69/9Uxijmz/AerYpdar1lNSMYzV+vWY/34I8DY58Gph8Bpo8A04vAFEFIknIHohGVR62QhFRSYjQE6qFri2z3iaPAhHNNlxKwArI0Q1IAxwfReacbC5gBPp66/5ICgLKCtqnsrKKlrFZUFPKOr7osMTtdsxzqQRZ93Q1MPARMPllohUxRqkEK6gShOP0S+dY2hlRv99y+ovRi7IiTnTvLqmg6xDPYpqAUgRgsoR7MxgJmgHD/c4E1FXu7FRRbvEgd7evXWlbPpp9EgUjiJpwe6zwOMlvpAWCMVusJYPIYMOlSDZRpoGiNxKzbdIQlXONMWJbGtw4svdgz3El47nzTRvPrrKptAJT6ZrzfintvAJgx4vsvdQvIXK5VYF3sUZxmJUvgA1FOvwF8spKyBtM1y6EepI4LqVMedbEaTp0EIKdPKh5FqYYqSxgo2jgFr13j6XXHnOiSZOeBVSvyC8qC2r05FVvVw9cAMAOA178AWPMp2LJaaekiCPXExwHw660n1oB/niGQazwOkkSepbJ/72I1x4CJ+cJ6lYI1riccrVicUuVSmIW82pkwnHHVOKbFsOozQGkFkwewnBES37ABYMaAX39ZAUCCb82nIlo+40p2gNnvsoKunxH1xGwA/LOzdQOQJPIuHzV2GBg7Cow7AI0l33XfjOsv6oVodes6ISbBsAZMX+kJxU56KY7pkmFVhOciuvTzSt05v0+ryuT/9gDrZNe4wPMsI7VJP3GcP7gUOOdvgL1rRYJ0ZI5IV3hV4/wrGYPPU3/AiRhYusy2K7mU999P+z90ObD7LuBZK0Xdkeq9NSX2+o4HLwfWlopFCC0fgciBMtAFC8CGrYXVoVjnU2G7rTXrzh4kfRzLY1kyGwBoeiGcPiXb5eAzdXWnazPCSScb4j3xfmav8Cx2p50lAMW0VXINitCogl2r9H2dcctWwQxQsn6ZTBbMNtcgdKIbiZj51VcBk38CXPxoQcfCUg8pjcYgZScw/momACnXyr4leBhs5QaBTHpf7X8dMPYJYO8XgAv9e8QJlAZZq8D4xSuANYKPJQn0AR2AHKy1MACKe9nfFI6IEqduEWoHIJ9wlsVKLekoMCa9EAegSTYQeM4TXco2SEMkAHEbBZoj4bbYtdyCVrFqGXgTSxgXYTZeHLi9AMjEQRCVUXP/n4KUaaT8vVTi+Rtg7GPAuYcAWlMCgUVkQfJ2Q12yBvPXMwHImhDWwf81imsTiLSEvHZkr+jY/p9CQRD4p8DOBwteItai05qn31FFdfLlFxYWgCDUIkRkj/TxbCEi/89jfPZ3X2VqYSJQbmUNQY3HQT7hbv2sLoerVwKQHNEEoCsm8R4MhPRjXUGzVEIKIoY7yaEYuY4dgGb5RXruoSgtSCLLarkICQ9f6QNykGjFdjsIBaI4kGlt8W+Rg5g0HJ8qAp47nihAzFpuWtPIMBZJlASILvR6fQ0DCVbJCkJOJCqnk4pGpb99tZ8MopyiKDX7WWDiwYKXiEQOehCrgKh+eJQ+EQHo1Lby/zRlyf8TIbf9XS5ftIb8I92YugH4ay2pLusorl7dAoonWtMwQSTdOFuQSLTGHyIC8kxSIQuA4hwU2WUAoO4/grBcDbsfWElSzg+JCoYDoEGM1ixSkHzgF/wG7y8sIa3J7JPAGWuFJSQIaU01iJHUiYP4e33BrPOHmG/JMaOfTZVYRhwGav87vWKPJ9/rSH4IOGO5sITqg/ggxXs4TOaBAECbeoOsgfl+DrQShFqcEIhyyt0MbMusEkx76iAZXKM8BvXiZAGlF+KaIbaadYpem4aDgpJZQz6YJABV5VcHAJZ0v4FxX6KG5UpYs0KnqjhRuagEVgPglYAl9ciHf8mdUrJh0Qx9vkDBzBywfbkYQIGwahA/kglATsHsDzKA0BATiPyZ4NEDwIeoa/uFYKKXL2f24nQoIgd9R3yQCMTFqwIAfdBWI7+yB5ZLECYLETd85YJl+2YAUNosLIel/xYlu4Jsl6bhNhD6it4WJCvA2Zc4Gxo73RcgJeOqFmGR6rcChLYACyGojmEYdj59KnZ+tIQRhH9IvWA2hiREjDeRI9Cly7fMF3EtWRFawhQIf5IJwE56wdTIYdt7tp9ys1K8JnoJvod9Wn682PNkP4hUy1ndWgstAtBDMLYN5/6PAc5DGNoF4SrZfN+4+IhT8jqwg2Cp8ThIJ5vfSWBXAVCrWN9SMxDK+skaOvhoAc8me654pmUB3f0wyt+E8FyRAGmPlOEoiSD2qgvmAKoOm52fAuiTDHSyIRxx+lI0QxxADubfF5vffMmSajrWlP7nmZ3dSy+4r/ZzAUEHnQ8R70HsXlK+PgJsW68G4XYGZj0EY2EYATCAT6tAhmE0DXcC4faapcwMgAIfLb0kuzT9Qmw5uwAAIABJREFUSi+EfeALkSrpBovbrQDnkm8wAo8/E3i+CCsZ98NCpAp8cUekZyBavI4ET/TnaAk/RQCyAXy6uNSPA0i+wMeB6ePA5HFgZq2wpNGK3FUDAHmv3fSCe7afX8CB4UNEEOolVi/3obastNwJ9cO5BOBKEQMsAcifHWzRAigWWAlCn5K2bQYAOe1KMjTIR2kRUhKVS7IrLia0v+3xwHMZMCbYNP0KfG79zAqK5DxOvyEuWu6VD5KSHy2YAEQAfpaRdl5UkuUctIpBnCIIl4psD03FtIIP1ADAlBuJM47EqqUX3LX9kSBQcuuyftK78xUkHyQ+RLqHZ3Fv1KcgLj5kAQ1s0Qo6IA1nHhNLQzA8ZxvBXuNx8DcS5UYpNnoYxsCnUIqvZo0F3wPTMa7Hv53HOJVbS/l+5bumX7d+5WLE44hxIRJB2NMCqj9ixwuE90svWCaIA6bAp959EKeWChAyA0PTOV2unGMQveCO7bfqHbcS4rJR7Ewqnw5AWhLuImg2uFQAXAVs8RGmntW4+g2hB3P79L/EJ9zGvqrxOPibiVihAOgrWQOf/EBfBcsPNBBqW9Hv6zzGqFzmoXz3B9AePgXiq6bgiv4YOB9QHS8AfpkAFMMjrWAcQA0iO9XJiQyAnos2vV7ESHOOQfWCO7Zf7F40mZFQScRKAYBaSU6vAVcTgN7xXHiUFpDTMK2dFh56912BTiDcvpkATIXzCL4g3WXTZ4jpGfjoF/oihL+fx+0yWUABLwIwtYKKIabgCzHQvi2ggBKn0McEQDaKT5cGkIOo6SuyYzEfjQB0EM5nZgAPoxe8of3sgSqCQM3jkdFLvpRvR13+7UVRuhUFSavNO6otwp88ZZ3+t4M6HLtch6OT9AG/q9cmtf//gV1JDYcnQ2zY6/YakfSrU+Pg1M45NqPt3IEtoM7WFHokyrWKkooglCMWLYjiUXMtK3g8Uzd1WL3gDe3vRRCoUEYCwGtYFxxqgA2E/jI20F5hhmQod98BHNnlxOTig1aGiDanO21yV4DygWuB8YeB6fnC9WEtiKVVKeE0ZGiXWczeJoWMIig5a9V5DA1ANoKDeDylZ9NSXxyAsiKawrQqmCv2HVf5e8aRoxfc1n7xs+khItAUvojvyWryxVcWJZksVSyZoQRA3dcAoHzax4Gj2wtu6FVKM7gMgti02jbV476oUJJs1j/AbA1mQ3Pm8eTRsoZDtR+xZKCiEKmMXTIeXHPGdhYArX8FwG4DGMEnAHIK4yvT58nWC2b73cexaZgWWaEKgU1gjNbPP7PvOYGsUSBkv3hBtmRWNzxjTk9RWktvxp6POj0vARjY9sWkFel8RWxegjIF4RjwAOnZWMPBTGjqvHmszxJOBUD3xyznL2bqROvoP3N3q84jG4C7M/PpcvMBef0cvV9k6hXv+2Yno5QfGArRbaCC0mWv2YtF3ecerNDhkNZIIsXQRv5dlTtGADJSz2gEE1EJQM//026HdIEZLC8B6A0tk0g1Ja8DuzJdphS82QBEZj5dbj7gxZN5er/IZI+67pscgE7QaDOUMyC0Wb8+gXjuR4F5J6YsaXnFhBoAGEVvUhb60jISgCQnoh/OLBgvIrL8v7DdFkEYM5dtNg97tvz5zJqzdfIBmJlPl5sP+DJP5xtW7xffnzeh7H+Z+3+RpkyWT1YxuURJYVtx6T0fCTocouQV85VkHRIGegEuEv/YKpkA/JceVmL8kv6t5/9pu62tfiPWcFQVEa0DZ9WcLJEPwMx8uvfnjT9IgZyj94t/ldeA/S9tMaGa9SNdmsIxbvVscVJ1GScoMt4UPwhAsmMZ0aXzQBsvdGRBjQz0FUpEJRAJQOq4KAnBdz+sfiPJ3bOYn8fsykyVWMfiN3BOzckS+QDMzKe7OW/88aqQzsfE5kH1fvGjeQ0wADodmVGwOeiMsUqHrGOnS4UFy9P/wAEojkEnI+IqOIJQNLgpCXhcmLAtD/D+kgQE235L93tj+YBqgTX9BiCeW/NedT4AmQ+YkU/3sbzxBymQuZhm8g1T+QbV+wWFdjKO/Te2mEFNlCb6gPF708VJ1TXHgKd91GnZpDfi1k/gM2vqU3DUnCuBmNQe3P9vw6pe229KOvB0K1k+ZS+rnrfM2AlA3JMZtah/EZKZT3drxuDz1O/yxAwu9JgJxr3lQfR+8aa8Buy/wdWQZAVl+ZzCrG3q9c/YrkmHy3IRYryAAqAkEBIlopJxNNUbER+fA/H+/+AAdP9PmS9dazicJybm7mlB8nR2dI1HvgVkOlZGPt2nM29GCamcGZjAwlQ+vvrV+8X/zGsAAUiLVPp/wd+zaTMFWw+/kAA0GQQnpCw5mDsAMIrcRB5mC/+MAffTwgfwKY2KfmCZ6ZIkUShrxXxBX4yYaV8Hzmcn13jUA8CMfDqWYeQcSkhVOl8U6uxH7xekrsg49h8oiCENgC5TUG5vKxxT8f2aRtOtcAKQ1s8soPuOVUIwpchNlEEIOyNSIrrvv3hwnckWIZPZsnbcDyzTpvg3lU8mpZQqozyfK74aj3wAKh1LgrsD5tMxiz/nkGD1sHq/YNFOxkEAcuW7oqmXlisuQOT7VV2jwi/kTgj1RkoZhBje8Z83SCAEEJZW0C3gff8tADCt4VASaWIBK0HI9q8BF5yUAMzIp8tNx5Jg9bB6v/jdDPSRns0BWIZeUitIo9IhHmhXTvzCPQddccnZ76U1V/IvC4SBCFyg26DFNg7c++Mhhb6qiCikT7WVUmr6lYn2nRKyrdZ51GMBlZIc07GUBdMjny6XCiUmpA6j94vMZbgBMFo552pu27PXAqXTyAUQcitOQjAm9xX0N9pIwIPmSCmH5QuPqER0L4kDYgp9zOUL6fYxkbZcFceyAreAF3GlV+NRDwAz8uksnT3jiILVSmpWNlhMze+k94vMZfgGAPJeHDjpCrgM01Tdry9OzvmYAzAqLVWIwEShwzbRwwSEn+MqP6bQK5tZlWyhjCCCsC19Xv7gOnBRbgp7cu/5AOyVjqVMmA75dJZ9nHF0yohWNlhMxKnS+0XmMtwAmFq4imnYbrEqNJPc+9kfd62RKh0On8qV9hXZ9askEPgAfI56ziocUgVbzGT28lEtRMoKtg7lBHtznfZNA+CQ+XQWM8k4uglWK/NLYKzS+8U9GReXD0g/Tyvh4Ne17Yb4Zbr6g6y7/aNWcoPpjKRTsJIags5IJwkEAv6en05S6GUBfRWsUExZyVZVQCQwrgN7Wfdd41GPBczIp8ODeXfTSbBa6YYxlY8/p3q/udc3C+jTbtvqt2oadnB2m4oNgMn0W0p+hYWHWbwg9yU/0Kb9EIy+5y2hiCit4UgKyTeAkN8Valk4Le/ldlONRz4AWWBRM6fdIPfHstw/G+SE5rMnVQ/kA5AkLHS0ak7V7reXfhgACaBqDtD3e/nmc5k9kA/A80JReq+U38zGVp3ObJo/BvAOD3dtwiWar9zEHsgHIGlFubqSx7+Jja36anLLcDvvgwA+NDpDfILv+qlzuXwAXuSjrkKemlO2e3U1uWUYnL8dwB/5e2apca9LNv+vsQfyAUheX4VguB+mzIsaG9ntqxhF4Xbe3QD+n7/uHLAW9wQ1tblMRQ/UA0CaHC7plXEh+q4T0OWcfhleYTSHBK0EH/mi+fcRuKQn4I6fWpeoB4AevCz3HOOm9yb3F5mBlZBNclYCj1aRfyfrbgPCTR6AzK+vD4CyglX7jpmN7HY66d1E0ctdIrEEE4wEIMlam+Pk7YF6AMj7EwAVbU82vTerCwhAXopJN9zVI+AYrOeULLZgErY2x8nZA/kAJGWr0naUWdFpy2cT+oCWjpdjLFxE5UzYIBBpEUX5nLnlvAktb76SPVAfAOUHpiAMm96bsVtCAMaKALICMyxDq6cXfycA+b/mOLl6oF4AiqBRIEzBp7/X2Af0+fi1XIioMIlAI+AIPIGPmeROWV3j1Zuvyu2B+gHoFfZiDS2lC0LiY52WUADkQoTTMH1BFSYRdHoRfKSu5v9qrizMHYPT+vx6ARhSuDcAzzmDo5ZGHT1PAKYMwQxME2jiSo/gEwBrrq+u41ZOy++oD4BaCcsXTPiSI3ey8s4KGoG8QwCMFM+0ggQhLR0BF19SXuD/ayakz7uR0/TsMcxg3SjfqWNA0hsrga/ojaq/8WPcC+YIk4Ke4CMSuB2XVht1Oj8zIfXlU8BtU8DhmYRXWdfrdF1fgr3+S8At48CD04DVjXQSDO70PTUnaJ5uOCwsIIFHSSFy1pKPWCDsZxCpw8UVgKSPxLXM937OzxxAljzcPAbcswU4Qh4V3UN8mKoeKm/bu78IfKJQa8VD48CylHQiL3O3/qg5Rf30BKACMtJXjXKQcfBSK8Dfqc3KVCwuN2VFGRnm/yKZtq4Re5ifyQQgM2A+BeB3GHaZBo5MAIue0l7Kt3cC4xhw+5eL7TuCkJk1jBtyerbUfYG5ExjZ/pqrxE5fAOrOq5SmowVIrRp1IyT2R6+fg0bgVYG4CsyZe2UsaiOGKXr4Sfp9k8CxCYAFSKyvXeY1o1BxQux91yMtfsHPutgnnyUuUvhc0ZsgUXib+nVkq6+ZKaABIHsgVZnuwD9sVo66rrR4ImdhLGSQ8zPL/JgBQxeU1ouWkO9PTgDzbgmXxrzMkatl3keivfG5x4r4IRcz5BfkO5vEZ0kgpIfBZ8yKjlL17syy0tMNcOn9dl4Fy6dLFabj1Mpvow9Ify+I4Nlo9Xt+ZqU9VdJpqZh4QDDyxUyYOYJwHDg+DhgI/WUVZl7aSEt93+GO9Ia2iuZKOfA7lhp9JpvAVy61w2mOwO5hmCgMHC1H9O24gu6UD9jP+ZmbtLRaSsei9SL4XDPbAEh/kGQ/pSUcc0lbApFWb67lQUhpVnLBsoKqqZclFMmUtrxPcwxl3X7vOCAtYLSCcugFQmqhdssH7HU+RznjiOlYXA8wqkOfkItTAom+oKygca4ES8jY+N3z7fSG4hfUtp3ihUHruVSsFy1iRvNP+1N7A5BdJACmVpAgZPhGOyCigEjlPLudn7kvFtOxuB4g6OjD8UWLRkCZFRwrLCEXJQQhp2K+37lQeBCRX1A7KPQto1prFEmSYn2mB9EAsO+kYfk8KQhZF8yjVz5gp/MztyOUjiW9bCUhEBhKRCCgSis45uQ/PhX/xfFWMgOnWu2gxB0TF/o0kEZ/kCDM1Ts+3RHYnwVUL6XhDFrAswfIB6w6P1MrTulY0sum1VICglKwCEACqvQFCUK3gHcsFQCM/ILayqP1k9JshVqrncMalOYYvgcGAyCvIwuod8YBJQmZpmGJeyRwkGw4n8jJOJQNw3idLFhMRNB0SgASTJyKoy/4ieXCeFfJBUeV2SoAclFyR0bbm1OHTUiN0/DTAwD7zQeM52dqj8VsGEkVE2jKetG7AEhQ0frJAv6RC0trC1skl+IWlNinGLbSaZg7Mc0xfA8MbgF1LQV1z08A2G8+oM7PVF9Ms2GUE0gQyp+Lwu2yagLgR9ZaYpkSypQ6a6Q2DCqzpkvietXIFdoZfuieGmcOD0DeP0HEbBhNwYPmA/L8zJQsATAKnguEqS+XTqkE4YfWWwCUFZTksYAYwZfIBeN9Tw0cjOwu8gDIZqsoSSvhEeQDiiGYFoyWiSDRypWgi69UP5sc5fIcquSCNeXqe2X9ZAHfM7Khe2pcOB+AT41+aO5iRD3QAHBEHd9ctuiBBoANEkbaAw0AR9r9zcUbADYYGGkPNAAcafc3F28A2GBgpD3QAHCk3d9cvAFgg4GR9kADwJF2f3PxBoANBkbaAw0AR9r9zcUbADYYGGkPNAAcafc3F28A2GBgpD3QAHCk3d9cfOxqYJ2au9RdPtdp/khoEOlglDYT39V1PzQFXLsMXAlgt9PCxJKPbufyf8/KHIPfBPAZABf79Xc5XQ0ZQ1Q7360NbxoHrlsDvs5ZRsgo0une06by6X1mZvtP99PNAp4F4LsBXA5gjw8EGTeqaGF4QhzQF80CX7cAvGIdeDYAfhdZ2sTKUcVrpE7nd31N5gj8e2dIo2osk7NZpMdK0Z19tv+bJ4F9K8D1ACj8yfNSikHeg+5Z969m57Y/8/ZP+dPLKZhP/rcA+AYAF7g1oRUhEMUzFMt6eSJfX78b2DkPfM0i8GIAX+uWlAMppreUUErn8p2gzTl+2flg/sDbTkvIOik+CP20//mzwAXzwDcCuNTPJeFXpEpM6QEjIHm/zTF8D7T5gATYNQCe69aAloRTGulfBESBSYNyxR5g/Bhw7hKwZwl4vk9LnM5JmsBzUyDGAX3B8G23Mz/g9BuUa/0IiutfMkj7zwKmngAuXSvOpUvAWYBtF4BTnspIj/O8zPaf7qdvWITw6eZA0JLQEhKEGgxZhUj/dz3NzSKwbR44exnYvVKcy+mM5Km0JhxInUtrGkmzCPicg3W5LMGkQiZZTm9xS9Z3+4m2o8C5c4X15pTKW2Lb+fCx7WLtjYxzqiql29Icw/dA5SqYf6RTTilg+lYCIXmICKQ4IK9wxfSJY8AZK8CuFWDnanEua9ZTAMsaCog3Dt92O/MvnRGBtGwkqKRmMEkqCaa+2k+0LQDTh4rP88UHj74kF1WaATo9QHQ7mmP4HugYhtEKj4PB6ZQ+FS0hQahpldPya1kXTOqNY8DscgG+HavAttUCvBxInitrkgL4lcO33c7spBdM3kAuSnq2nx9gQfAh4JyVwvrxwel2z3p4aMlzH6DM2z/lT+8aB+Q/OT4EEqckWQSBkGD6EQKQnDCLwBSnYgcf32fXioGUFawC4esyu7CXXnDP9tOCsyD4KLB1rmgvX7zfbu2WG/Jtme0/3U/vKxBNAMoi0KcjkATCN3HOEr3UAjDrwOP71rXixYEkeKMFlSX8ocwR6KUXTJ7AaNE2tF8WfA4Ye7Kw1mwvX/yZn+eKnvcrfzC6IK/ObP/pfnpfAGQnySoISBqUXyAASS1AK0JfagWYcRDOrAF66TxZQU7jBOEbM0egH71gcgXSFZAV54NQtj9YcNIpbONCyh8Ygi8CVospApDuB63g92W2/3Q/vW8AsqM4gLIKBBIH8bcJwMCNMX68BTqBb8s6sGWtsIA6jwDk662ZI9CvXjA5A6NVa2t/IAicnC/aGV+8T74IQPm/AmGuBc+8/VP+9IEAyLslAKMV/LgAyIUInfnjwPQqMOOgI/DstQ5Mr7UAqMF8V2YXDqoXXNl+EQQ6N9v29aKdesUpWJZbAPyPme0/3U8fGIDssDid/pUASCvCaXgJmFguAEfgEXT27gDkuwaUg/nbmSMwjF7whvbLhSDL5TwwvdRqo9oqHzACkCB8U2b7T/fThwIgO01T1IMCoAZxGRhbKoAXQUcQTjkI+a4B5e5FzjGsXvCG9gdqrLGFYrpVG/UuHzBOw2/LaXxzbh43DKeoJwlAHqLndSs4udoCoIBHQE45EPk3DuitmYOQoxdctp8+rFwIWsGFYiFFoLGNchcEQC6e+OJC5J2Z7T/dTx/aApYdJ37AyJK/DIwvFxYvWr0IwEn/H1Opco5sveDUhSAAF4HJpQJkWixp6k2n4IYfMGf0amDHev2I8+l4/UbvNw8Eozw72wJePOJ8und7EkKj9ztKGA1/7WwATo44n45pWI3e7/AAGPWZ2QBkYHCU+XTMfGGQmYIxjd7vqOE0+PXzATjifDrKtTZ6v4MP/MlyRj4AR5xPF+VaqZLJF1UzKdPV6P2eLDDr3I58AI44n07ZMARbo/d78gMubWE+AEecT8e9YOn2Uheu0fs9tUCYD8AR59MpG6bR+z21gKfW1gNAz4geRT5dTEZo9H5PPRDmAzBmRM8BJzqfLiYjSKKr0fs9dYBYDwBHmE9XtRfMsIz04aQZ1+j9npygrA+Akqs8wfl0BCCTWRq935MTYL1aVQ8Ao1zlAnAi8+kEQGZTNXq/vYb75Pt/fQAcUT5dBGCj93vyAaxXi+oDoFLyT3A+3Rcavd9eY3xS/z8fgCQX/LPR3SOzkon55jg1eyAfgD8M4NcAPD6aDmBtB1e4NMDNcer1QD4AbwbwxwDe4UvRE9wHZG1gNSXDLlwLNcep1QP5APxzzwj9IIAPnXhT5ORc5EYCA9HNcWr1QD4AmRH6FQBMTSZZH98ZmD5Bh5g1FopiNns1x6nTA/kAvAfAEwDudnI+EvQxPfkEzYfaCXRSBluQMB7YHKdGD+QDsBNBH/9+AkAobqTADGK7Inw1x8nfA/kA7EXQt8kgrGAGMfBxZ5Cv5ji5eyAfgL0I+r68uR0QmUFoBQU8vfNvzXHy9kA9AORoMw7CdGQCjoUZDwL4kv/+8OZ1gJhBIjGDgMh3vTavBc035/RAPgD7JegjODfhiMwgoqeJwNPPTaB6Ezq/hq+sB4AcXeXEP+ZhGVo9vRimIQD5v5oPAZCupgDI9wg8/qz/1Xz55usyeyAfgMMQ9GU2Op4eAchpOIJQQEz/VuPlm6/K7IH6AMjgGzdl6QtyX5jWjpQFevF3lq3xf6yhrOlIAUgQCojR8gmE+l9Nl2++JrMH6gEgR5UA5KYsc+AZmCbQCDi+IvgEQMob1XBEAHIajgBMLV+0kCdws6aGu3zqfkV9AGTwjftg3JRVVRAtHQEXX/wbAcoXP5d5CID8GoJKvqDAloKOoIz/y7x8c3pmD4zhaqwjRzCYyQg5gr2ZgsFTLweWr8XQgsXjbwLWrnNtMlKgNoLBmZAa7PTCAuYIBlMvlWQswwr2UlUw45jdDSx8HbD+Ctd+HVCwePKbgJV9aASDM8Yg59TWFDysYPBtmYK91IbNOHaPA/M7gUXKXA4hWDz79cA8+W0aweCMURj+1HYfcBjBYO54MMY3tGDv8I3nmWSHOzYOLJ0LLPGXAQWLz3oB8MQUsEa16kYwOG8whjh74yJkUMFgbsNlCfYO0epwissVY34bsHw2sEIRkAEEi/dcU0SP5qhF1ggG5w3GEGdXr4L5134Fg4kAjuDQgr1DtDqcUmZETwArZwAru4BVqsv0KVh8/o3F4v0QXZBGMDhvMIY4u3MYhv95Zh+Cu1xBcxuOU/HfeDIq5cv7FuwdotXhlCBXjOXZAnyrO4BV6in0IVh8wStLuWCsUAyvEQzOG5ABz+4eB+R/ewnu/kOP/3G/l4kJTERlljQtIot2e53/IwO2OPl4FLtcnCqAp9cahT56CBZf+LpSLhhz1N5qBIPzBmTAs/sLRHcTDKbiNHdBGGymOC/3hglEvgjAnoK9A7Y4+XgiV4zVWYDAs/etxaubYPFFP1QkLtCIP8neaASD8wZkwLP7AyC/tJNg8L/xLNBu+YBdBXsHbHEFAINcMVamgdWZAoRrfPdXm8KitLdmgYveWAq+2y7iMqfuRjA4b1AGOLt/APJLqwSD3+y5T1yI0AoSbAxMMzGV1o8/My2ro2DvAK2t+GgiV4zj4+3AIwDXtwBrVJeuECze+9aW4Dut4PxkIhYsdetGMDhvoDqcPRgA+SWp4O4veQ5Uv/mAGwR78+6rQq4Yq9PAOi2fA4/vBkKudKVU7VZw77uKvWFuZbtcMNb5v0YwOG9g+jx7cADyi6Pg7gccgIxlcA5TKhaD01yYKBmVFpBZMfx/m2Bvny3t8LGqoqTliZbVI+gMgHwnMAnCIFi897cLAAZ6QyzFzzSCwXkD1OPs4QDIL5XgLmk5JHk/SD5gKdibd38VcsVYGmuBTaAzEHLHgyCcaokB7/1IkUET5IKxwF5pBIPzBqbPs4cHIC/AaeqvPL9pmHxAE+zts6VdLCD/lcgVY3UyWD0Bj1ZwqgCggXA7sPfWAoAJvaEtZBrB4Lyx6efsPADyCtmCvf00s/NnOsgVY3m8BTRZPZuGBUACdArY+5lWDqGmYbIrLHEx0ggG5w1OH2fnA7CPizQfaXqgUw80AGywMdIeaAA40u5vLt4AsMHASHugAeBIu7+5eAPABgMj7YEGgCPt/ubiDQAbDIy0BxoAjrT7m4s3AGwwMNIeaAA40u5vLt4AsMHASHugAeBIu7+5eAPABgMj7YEGgCPt/ubiDQAbDIy0B8ZYNMbkX+ZekpuIiOQrPar+xs889HJg6jZg5jAwvVZ8B+ll9PlO5/Fc/o+ECjnHfi8zYfkvM5ulmp4qJXVqx5deD4zfAkw/CGxdAZgoHfuh131QkaI5hu8Bs4Ds8B0AWLnIRGCBsFfn87JffDMwdjOw5R5g8giwZa34jnQQUwDo99wBfJ4TM7COiNdlaj2rA/jeV/vfDeATAP4UGH8I2Lrc6gc+SHqY4oMZ74VSKM0xfA+UUzB/oBUUCKMl6zSQ/PsXqZD5KQC/A0w/DEwcAcYXgYnVwppwADuBkefnCim90FmBWXwnK87Uen53BI8sbuwqaz9p5UgnQhBS+ZN1zE8Ak0utviCwq8DI8/nx5hi+Bzb4gJzKZE1SEFZZgS9/2pWR/gTAJ4HJQ8DEMWB8ARhfBsaWCwDquwQKvvNgHXvOcYVbPFJPkw+dDxC/W1Y4tWDpw/Rlgo4lo1T4/KxTihDNpJwj3/UiMLXemprjffC7eWpzDN8DlYsQDiKtVxzEqoHkyX9HRizW+nIgaQnvAiaeBCbmC0s4tgSMu2rMePAR9X252jXklaTFU108K0MHav/nvJ6ZxVVk9OI7GR2IZoGQNc/HgbHgIwqILIVujuF7oOMqWFawCoRxkfEIB5CWgkREBCNf9wMTc8A4QciBWyoGz16rwNgaML5eWKpctYZL3N+TWLX0gvtuP0HHk2n16JDyxXmVhfU0qywbJbr5GSuXKxA/sV5Y9UYWdnjwyS3qKKgarWA69Wg6fjQOIK0HadnIjPVFB+AiME4AuiUkCFnESyCSkmAuU7Cjm15wX+2X2ifBRn9A8mKcW2UFjULVQcgVDl80u40SYh763FfvquhLCxitoBYUsoJfjXKttByMq9CKcHn4sPuCbgXNJwyWkECcz5Q376UX3LNncZyQAAADEklEQVT9fFgIJs6lBBwtn3Tt6FpIz4RWnuQxPh2XIGzm4CwQ9hWIFgBTK0gQHiIAJddKq0ELQh+KL1qUR4MvSEsoENIKrgALHNiMox+94K7tl9qnnMio8MSf6SNwGpYVjCDk/Ju7isq496fCqX0BkDeqlWwKwic1gAQSpzGREnFgREz01eALLvvq2Kfi45m6cf3qBXdsfxRbJMho8dimqOhEK8cXQRr9QVpvPoDNMXQP9A3ACELFxPh+jACkP0fLIKFCCRRqKuPUdqjlC9o07JZwKVNHeBC94DQcZO0XAAkmgotAk9QYrR9f/BvByYfMSATDVMzwTXMM3QMDAVAgVHCZ7/MaQK4QZUHiNCbBQlqUw74YCb7gcmYkelC9YFlwvVv7RRAorTuBkECU9asCID9/x9B935zYzyKkqpfiNHxcA0gLQgvBAaPVkCqm3h2AtC5m/RyEqzw/4xhGL3hD++MmslgqCbgUfLKAcRrmTlBzDN0DA1tAXUlWcDm1IOIIJAjlT/Fd05lbFQFwjdtgGcewesFt7Rc/Gx8iWjUCjGCT1YvWT1MwgUqrf3NG45tTbcu0aximWx9xENcEQHGbcYAEwtSXSqY0gnCdgeuMI0cvuGx/FUGgFhwEYrR80QckWN+X0fjm1DwAWv8RgJFilJZBznz0pQg+AZAAlVWh1GvGka0XzB0cCQi30aSGVa9AF62fLOB7MhrfnJoPwPER59Px+o3e76mL5Kwp2G57xPl0kxc3er+nLvyKtLmhfUC78RHn081ONnq/pzcAR5xPR9mRRu/31IVgvgUccT4dNaobvd/TGYAjzqejumqj93s6A3DE+XRUg2VSCjdaGr3fUw+I+VPwiPPpqJjO8J1Nw43e7ymHwHoAKMFd7QErAeEE5NNJMb3R+z3lsGcNzgfgiPPpomJ6o/d76oGwPgCOKJ8uKqY3er+nKwBHmE+noqRG7/fUA199U/AI8+kEwEbv93QHoEhZTnA+nYqSGr3fBoAtaiqBUImdm5hPJwA2er+nKwBHnE+X1gUzSbnR+z11wPj/AeCpPDD3t7rvAAAAAElFTkSuQmCC", ov = "uniform sampler2D weightMap;varying vec2 vOffset0;varying vec2 vOffset1;void movec(const in bvec2 c,inout vec2 variable,const in vec2 value){if(c.x){variable.x=value.x;}if(c.y){variable.y=value.y;}}void movec(const in bvec4 c,inout vec4 variable,const in vec4 value){movec(c.xy,variable.xy,value.xy);movec(c.zw,variable.zw,value.zw);}void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec4 a;a.x=texture2D(weightMap,vOffset0).a;a.y=texture2D(weightMap,vOffset1).g;a.wz=texture2D(weightMap,uv).rb;vec4 color=inputColor;if(dot(a,vec4(1.0))>=1e-5){bool h=max(a.x,a.z)>max(a.y,a.w);vec4 blendingOffset=vec4(0.0,a.y,0.0,a.w);vec2 blendingWeight=a.yw;movec(bvec4(h),blendingOffset,vec4(a.x,0.0,a.z,0.0));movec(bvec2(h),blendingWeight,a.xz);blendingWeight/=dot(blendingWeight,vec2(1.0));vec4 blendingCoord=blendingOffset*vec4(texelSize,-texelSize)+uv.xyxy;color=blendingWeight.x*texture2D(inputBuffer,blendingCoord.xy);color+=blendingWeight.y*texture2D(inputBuffer,blendingCoord.zw);}outputColor=color;}", lv = "varying vec2 vOffset0;varying vec2 vOffset1;void mainSupport(const in vec2 uv){vOffset0=uv+texelSize*vec2(1.0,0.0);vOffset1=uv+texelSize*vec2(0.0,1.0);}", fr = class extends cc {
+}, ml = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQCAYAAACm53kpAAAAeElEQVRYR+2XSwqAMAxEJ168ePEqwRSKhIIiuHjJqiU0gWE+1CQdApcVAMUAuARaMGCX1MIL/Ow13++9lW2s3mW9MWvsnWc/2fvGygwPAN4E8QzAA4CXAB6AHjG4JTHYI1ey3pcx6FHnEfhLDOIBKAmUBK6/ANUDTlROXAHd9EC1AAAAAElFTkSuQmCC", gl = "data:image/png;base64,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", ov = "uniform sampler2D weightMap;varying vec2 vOffset0;varying vec2 vOffset1;void movec(const in bvec2 c,inout vec2 variable,const in vec2 value){if(c.x){variable.x=value.x;}if(c.y){variable.y=value.y;}}void movec(const in bvec4 c,inout vec4 variable,const in vec4 value){movec(c.xy,variable.xy,value.xy);movec(c.zw,variable.zw,value.zw);}void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec4 a;a.x=texture2D(weightMap,vOffset0).a;a.y=texture2D(weightMap,vOffset1).g;a.wz=texture2D(weightMap,uv).rb;vec4 color=inputColor;if(dot(a,vec4(1.0))>=1e-5){bool h=max(a.x,a.z)>max(a.y,a.w);vec4 blendingOffset=vec4(0.0,a.y,0.0,a.w);vec2 blendingWeight=a.yw;movec(bvec4(h),blendingOffset,vec4(a.x,0.0,a.z,0.0));movec(bvec2(h),blendingWeight,a.xz);blendingWeight/=dot(blendingWeight,vec2(1.0));vec4 blendingCoord=blendingOffset*vec4(texelSize,-texelSize)+uv.xyxy;color=blendingWeight.x*texture2D(inputBuffer,blendingCoord.xy);color+=blendingWeight.y*texture2D(inputBuffer,blendingCoord.zw);}outputColor=color;}", lv = "varying vec2 vOffset0;varying vec2 vOffset1;void mainSupport(const in vec2 uv){vOffset0=uv+texelSize*vec2(1.0,0.0);vOffset1=uv+texelSize*vec2(0.0,1.0);}", fr = class extends lc {
   /**
    * Constructs a new SMAA effect.
    *
@@ -23567,7 +23567,7 @@ vec2 d;vec3 coords;coords.x=searchXLeft(vOffset[0].xy,vOffset[2].x);coords.y=vOf
   constructor({
     blendFunction: i = We.SRC,
     preset: e = ki.MEDIUM,
-    edgeDetectionMode: t = uc.COLOR,
+    edgeDetectionMode: t = cc.COLOR,
     predicationMode: n = ev.DISABLED
   } = {}) {
     super("SMAAEffect", ov, {
@@ -23580,7 +23580,7 @@ vec2 d;vec3 coords;coords.x=searchXLeft(vOffset[0].xy,vOffset[2].x);coords.y=vOf
     });
     let r, s;
     arguments.length > 1 && (r = arguments[0], s = arguments[1], arguments.length > 2 && (e = arguments[2]), arguments.length > 3 && (t = arguments[3])), this.renderTargetEdges = new Pt(1, 1, { depthBuffer: !1 }), this.renderTargetEdges.texture.name = "SMAA.Edges", this.renderTargetWeights = this.renderTargetEdges.clone(), this.renderTargetWeights.texture.name = "SMAA.Weights", this.uniforms.get("weightMap").value = this.renderTargetWeights.texture, this.clearPass = new qa(!0, !1, !1), this.clearPass.overrideClearColor = new Ve(0), this.clearPass.overrideClearAlpha = 1, this.edgeDetectionPass = new pl(new iv()), this.edgeDetectionMaterial.edgeDetectionMode = t, this.edgeDetectionMaterial.predicationMode = n, this.weightsPass = new pl(new av());
-    const a = new ec();
+    const a = new $l();
     a.onLoad = () => {
       const o = new wt(r);
       o.name = "SMAA.Search", o.magFilter = 1003, o.minFilter = 1003, o.generateMipmaps = !1, o.needsUpdate = !0, o.flipY = !0, this.weightsMaterial.searchTexture = o;
@@ -24301,7 +24301,8 @@ const fa = {
 };
 function dv(i, e = fa) {
   let t = null;
-  if (!i) return { dispose() {
+  if (!i) return { setColors() {
+  }, dispose() {
   } };
   i.replaceChildren();
   const n = {
@@ -24341,13 +24342,13 @@ function dv(i, e = fa) {
             );
           }
         `,
-      getJS: (O, R) => {
-        let I = 0.02, k = n.uFreq.value, V = n.uAmp.value, ee = new U(
-          Math.cos(O * Math.PI * k.x + R) * V.x - Math.cos(I * Math.PI * k.x + R) * V.x,
-          l(O * Math.PI * k.y + R) * V.y - l(I * Math.PI * k.y + R) * V.y,
-          l(O * Math.PI * k.z + R) * V.z - l(I * Math.PI * k.z + R) * V.z
+      getJS: (O, w) => {
+        let D = 0.02, k = n.uFreq.value, G = n.uAmp.value, $ = new U(
+          Math.cos(O * Math.PI * k.x + w) * G.x - Math.cos(D * Math.PI * k.x + w) * G.x,
+          l(O * Math.PI * k.y + w) * G.y - l(D * Math.PI * k.y + w) * G.y,
+          l(O * Math.PI * k.z + w) * G.z - l(D * Math.PI * k.z + w) * G.z
         ), le = new U(2, 2, 2), Ee = new U(0, 0, -5);
-        return ee.multiply(le).add(Ee);
+        return $.multiply(le).add(Ee);
       }
     },
     xyDistortion: {
@@ -24365,13 +24366,13 @@ function dv(i, e = fa) {
             );
           }
         `,
-      getJS: (O, R) => {
-        let I = 0.02, k = r.uFreq.value, V = r.uAmp.value, ee = new U(
-          Math.cos(O * Math.PI * k.x + R) * V.x - Math.cos(I * Math.PI * k.x + R) * V.x,
-          Math.sin(O * Math.PI * k.y + R + Math.PI / 2) * V.y - Math.sin(I * Math.PI * k.y + R + Math.PI / 2) * V.y,
+      getJS: (O, w) => {
+        let D = 0.02, k = r.uFreq.value, G = r.uAmp.value, $ = new U(
+          Math.cos(O * Math.PI * k.x + w) * G.x - Math.cos(D * Math.PI * k.x + w) * G.x,
+          Math.sin(O * Math.PI * k.y + w + Math.PI / 2) * G.y - Math.sin(D * Math.PI * k.y + w + Math.PI / 2) * G.y,
           0
         ), le = new U(2, 0.4, 1), Ee = new U(0, 0, -3);
-        return ee.multiply(le).add(Ee);
+        return $.multiply(le).add(Ee);
       }
     },
     LongRaceDistortion: {
@@ -24389,13 +24390,13 @@ function dv(i, e = fa) {
             );
           }
         `,
-      getJS: (O, R) => {
-        let I = 0.0125, k = s.uFreq.value, V = s.uAmp.value, ee = new U(
-          Math.sin(O * Math.PI * k.x + R) * V.x - Math.sin(I * Math.PI * k.x + R) * V.x,
-          Math.sin(O * Math.PI * k.y + R) * V.y - Math.sin(I * Math.PI * k.y + R) * V.y,
+      getJS: (O, w) => {
+        let D = 0.0125, k = s.uFreq.value, G = s.uAmp.value, $ = new U(
+          Math.sin(O * Math.PI * k.x + w) * G.x - Math.sin(D * Math.PI * k.x + w) * G.x,
+          Math.sin(O * Math.PI * k.y + w) * G.y - Math.sin(D * Math.PI * k.y + w) * G.y,
           0
         ), le = new U(1, 1, 0), Ee = new U(0, 0, -5);
-        return ee.multiply(le).add(Ee);
+        return $.multiply(le).add(Ee);
       }
     },
     turbulentDistortion: {
@@ -24427,11 +24428,11 @@ function dv(i, e = fa) {
             );
           }
         `,
-      getJS: (O, R) => {
-        const I = a.uFreq.value, k = a.uAmp.value, V = (pe) => Math.cos(Math.PI * pe * I.x + R) * k.x + Math.pow(Math.cos(Math.PI * pe * I.y + R * (I.y / I.x)), 2) * k.y, ee = (pe) => -l(Math.PI * pe * I.z + R) * k.z - Math.pow(l(Math.PI * pe * I.w + R / (I.z / I.w)), 5) * k.w;
+      getJS: (O, w) => {
+        const D = a.uFreq.value, k = a.uAmp.value, G = (pe) => Math.cos(Math.PI * pe * D.x + w) * k.x + Math.pow(Math.cos(Math.PI * pe * D.y + w * (D.y / D.x)), 2) * k.y, $ = (pe) => -l(Math.PI * pe * D.z + w) * k.z - Math.pow(l(Math.PI * pe * D.w + w / (D.z / D.w)), 5) * k.w;
         let le = new U(
-          V(O) - V(O + 7e-3),
-          ee(O) - ee(O + 7e-3),
+          G(O) - G(O + 7e-3),
+          $(O) - $(O + 7e-3),
           0
         ), Ee = new U(-2, -5, 0), we = new U(0, 0, -10);
         return le.multiply(Ee).add(we);
@@ -24524,10 +24525,10 @@ function dv(i, e = fa) {
             );
           }
         `,
-      getJS: (O, R) => {
-        const I = o.uFreq.value, k = o.uAmp.value, V = o.uPowY.value, ee = (q) => Math.sin(q * Math.PI * I.x + R) * k.x, le = (q) => Math.pow(q * V.x, V.y) + Math.sin(q * Math.PI * I.y + R) * k.y;
+      getJS: (O, w) => {
+        const D = o.uFreq.value, k = o.uAmp.value, G = o.uPowY.value, $ = (q) => Math.sin(q * Math.PI * D.x + w) * k.x, le = (q) => Math.pow(q * G.x, G.y) + Math.sin(q * Math.PI * D.y + w) * k.y;
         let Ee = new U(
-          ee(O) - ee(O + 0.01),
+          $(O) - $(O + 0.01),
           le(O) - le(O + 0.01),
           0
         ), we = new U(-2, -4, 0), pe = new U(0, 0, -10);
@@ -24536,51 +24537,59 @@ function dv(i, e = fa) {
     }
   };
   class u {
-    constructor(R, I = {}) {
-      this.options = I, this.options.distortion == null && (this.options.distortion = {
+    constructor(w, D = {}) {
+      this.options = D, this.options.distortion == null && (this.options.distortion = {
         uniforms: h,
         getDistortion: f
-      }), this.container = R, this.hasValidSize = !1;
-      const k = Math.max(1, R.offsetWidth), V = Math.max(1, R.offsetHeight);
+      }), this.container = w, this.hasValidSize = !1;
+      const k = Math.max(1, w.offsetWidth), G = Math.max(1, w.offsetHeight);
       this.renderer = new Ym({
         antialias: !1,
         alpha: !0
-      }), this.renderer.setSize(k, V, !1);
-      const ee = window.innerWidth < 700 ? 1 : 1.5;
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, ee)), this.composer = new eg(this.renderer), R.append(this.renderer.domElement), this.camera = new Zt(I.fov, k / V, 0.1, 1e4), this.camera.position.z = -5, this.camera.position.y = 8, this.camera.position.x = 0, this.scene = new Ta(), this.scene.background = null;
-      let le = new Va(I.colors.background, I.length * 0.2, I.length * 500);
+      }), this.renderer.setSize(k, G, !1);
+      const $ = window.innerWidth < 700 ? 1 : 1.5;
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, $)), this.composer = new eg(this.renderer), w.append(this.renderer.domElement), this.camera = new Zt(D.fov, k / G, 0.1, 1e4), this.camera.position.z = -5, this.camera.position.y = 8, this.camera.position.x = 0, this.scene = new Ta(), this.scene.background = null;
+      let le = new Va(D.colors.background, D.length * 0.2, D.length * 500);
       this.scene.fog = le, this.fogUniforms = {
         fogColor: { value: le.color },
         fogNear: { value: le.near },
         fogFar: { value: le.far }
-      }, this.clock = new lh(), this.assets = {}, this.disposed = !1, this.isPageVisible = !document.hidden, this.isOnScreen = !0, this.road = new b(this, I), this.leftCarLights = new m(
+      }, this.clock = new lh(), this.assets = {}, this.disposed = !1, this.isPageVisible = !document.hidden, this.isOnScreen = !0, this.road = new R(this, D), this.leftCarLights = new m(
         this,
-        I,
-        I.colors.leftCars,
-        I.movingAwaySpeed,
-        new ue(0, 1 - I.carLightsFade)
+        D,
+        D.colors.leftCars,
+        D.movingAwaySpeed,
+        new ue(0, 1 - D.carLightsFade)
       ), this.rightCarLights = new m(
         this,
-        I,
-        I.colors.rightCars,
-        I.movingCloserSpeed,
-        new ue(1, 0 + I.carLightsFade)
-      ), this.leftSticks = new S(this, I), this.fovTarget = I.fov, this.speedUpTarget = 0, this.speedUp = 0, this.timeOffset = 0, this.tick = this.tick.bind(this), this.init = this.init.bind(this), this.setSize = this.setSize.bind(this), this.onMouseDown = this.onMouseDown.bind(this), this.onMouseUp = this.onMouseUp.bind(this), this.onTouchStart = this.onTouchStart.bind(this), this.onTouchEnd = this.onTouchEnd.bind(this), this.onContextMenu = this.onContextMenu.bind(this), this.onWindowResize = this.onWindowResize.bind(this), window.addEventListener("resize", this.onWindowResize), this.onVisibilityChange = () => {
+        D,
+        D.colors.rightCars,
+        D.movingCloserSpeed,
+        new ue(1, 0 + D.carLightsFade)
+      ), this.leftSticks = new S(this, D), this.fovTarget = D.fov, this.speedUpTarget = 0, this.speedUp = 0, this.timeOffset = 0, this.tick = this.tick.bind(this), this.init = this.init.bind(this), this.setSize = this.setSize.bind(this), this.onMouseDown = this.onMouseDown.bind(this), this.onMouseUp = this.onMouseUp.bind(this), this.onTouchStart = this.onTouchStart.bind(this), this.onTouchEnd = this.onTouchEnd.bind(this), this.onContextMenu = this.onContextMenu.bind(this), this.onWindowResize = this.onWindowResize.bind(this), window.addEventListener("resize", this.onWindowResize), this.onVisibilityChange = () => {
         this.isPageVisible = !document.hidden, this.isPageVisible && this.clock.getDelta();
       }, document.addEventListener("visibilitychange", this.onVisibilityChange), "IntersectionObserver" in window && (this.visibilityObserver = new IntersectionObserver(
         (Ee) => {
           this.isOnScreen = Ee[0]?.isIntersecting ?? !0, this.isOnScreen && this.clock.getDelta();
         },
         { rootMargin: "160px 0px" }
-      ), this.visibilityObserver.observe(R)), R.offsetWidth > 0 && R.offsetHeight > 0 && (this.hasValidSize = !0);
+      ), this.visibilityObserver.observe(w)), w.offsetWidth > 0 && w.offsetHeight > 0 && (this.hasValidSize = !0);
     }
     onWindowResize() {
-      const R = this.container.offsetWidth, I = this.container.offsetHeight;
-      if (R <= 0 || I <= 0) {
+      const w = this.container.offsetWidth, D = this.container.offsetHeight;
+      if (w <= 0 || D <= 0) {
         this.hasValidSize = !1;
         return;
       }
-      this.renderer.setSize(R, I), this.camera.aspect = R / I, this.camera.updateProjectionMatrix(), this.composer.setSize(R, I), this.hasValidSize = !0;
+      this.renderer.setSize(w, D), this.camera.aspect = w / D, this.camera.updateProjectionMatrix(), this.composer.setSize(w, D), this.hasValidSize = !0;
+    }
+    setColors(w = {}) {
+      Object.assign(this.options.colors, w);
+      const D = this.options.colors;
+      this.scene?.fog && this.scene.fog.color.set(D.background), this.fogUniforms?.fogColor?.value?.set(D.background), [this.road?.leftRoadWay, this.road?.rightRoadWay].forEach((k) => {
+        const G = k?.material?.uniforms;
+        G?.uColor?.value?.set(D.roadColor), G?.uBrokenLinesColor?.value?.set(D.brokenLines), G?.uShoulderLinesColor?.value?.set(D.shoulderLines);
+      }), this.road?.island?.material?.uniforms?.uColor?.value?.set(D.islandColor), this.leftCarLights?.setColors(D.leftCars), this.rightCarLights?.setColors(D.rightCars), this.leftSticks?.setColors(D.sticks);
     }
     initPasses() {
       this.renderPass = new $g(this.scene, this.camera), this.bloomPass = new _l(
@@ -24591,7 +24600,7 @@ function dv(i, e = fa) {
           resolutionScale: window.innerWidth < 700 ? 0.6 : 0.85
         })
       );
-      const R = new _l(
+      const w = new _l(
         this.camera,
         new fr({
           preset: ki.MEDIUM,
@@ -24599,46 +24608,46 @@ function dv(i, e = fa) {
           areaImage: fr.areaImageDataURL
         })
       );
-      this.renderPass.renderToScreen = !1, this.bloomPass.renderToScreen = !1, R.renderToScreen = !0, this.composer.addPass(this.renderPass), this.composer.addPass(this.bloomPass), this.composer.addPass(R);
+      this.renderPass.renderToScreen = !1, this.bloomPass.renderToScreen = !1, w.renderToScreen = !0, this.composer.addPass(this.renderPass), this.composer.addPass(this.bloomPass), this.composer.addPass(w);
     }
     loadAssets() {
-      const R = this.assets;
-      return new Promise((I) => {
-        const k = new ec(I), V = new Image(), ee = new Image();
-        R.smaa = {}, V.addEventListener("load", function() {
-          R.smaa.search = this, k.itemEnd("smaa-search");
-        }), ee.addEventListener("load", function() {
-          R.smaa.area = this, k.itemEnd("smaa-area");
-        }), k.itemStart("smaa-search"), k.itemStart("smaa-area"), V.src = fr.searchImageDataURL, ee.src = fr.areaImageDataURL;
+      const w = this.assets;
+      return new Promise((D) => {
+        const k = new $l(D), G = new Image(), $ = new Image();
+        w.smaa = {}, G.addEventListener("load", function() {
+          w.smaa.search = this, k.itemEnd("smaa-search");
+        }), $.addEventListener("load", function() {
+          w.smaa.area = this, k.itemEnd("smaa-area");
+        }), k.itemStart("smaa-search"), k.itemStart("smaa-area"), G.src = fr.searchImageDataURL, $.src = fr.areaImageDataURL;
       });
     }
     init() {
       this.initPasses();
-      const R = this.options;
-      this.road.init(), this.leftCarLights.init(), this.leftCarLights.mesh.position.setX(-R.roadWidth / 2 - R.islandWidth / 2), this.rightCarLights.init(), this.rightCarLights.mesh.position.setX(R.roadWidth / 2 + R.islandWidth / 2), this.leftSticks.init(), this.leftSticks.mesh.position.setX(-(R.roadWidth + R.islandWidth / 2)), this.container.addEventListener("mousedown", this.onMouseDown), this.container.addEventListener("mouseup", this.onMouseUp), this.container.addEventListener("mouseout", this.onMouseUp), this.container.addEventListener("touchstart", this.onTouchStart, { passive: !0 }), this.container.addEventListener("touchend", this.onTouchEnd, { passive: !0 }), this.container.addEventListener("touchcancel", this.onTouchEnd, { passive: !0 }), this.container.addEventListener("contextmenu", this.onContextMenu), this.tick();
+      const w = this.options;
+      this.road.init(), this.leftCarLights.init(), this.leftCarLights.mesh.position.setX(-w.roadWidth / 2 - w.islandWidth / 2), this.rightCarLights.init(), this.rightCarLights.mesh.position.setX(w.roadWidth / 2 + w.islandWidth / 2), this.leftSticks.init(), this.leftSticks.mesh.position.setX(-(w.roadWidth + w.islandWidth / 2)), this.container.addEventListener("mousedown", this.onMouseDown), this.container.addEventListener("mouseup", this.onMouseUp), this.container.addEventListener("mouseout", this.onMouseUp), this.container.addEventListener("touchstart", this.onTouchStart, { passive: !0 }), this.container.addEventListener("touchend", this.onTouchEnd, { passive: !0 }), this.container.addEventListener("touchcancel", this.onTouchEnd, { passive: !0 }), this.container.addEventListener("contextmenu", this.onContextMenu), this.tick();
     }
-    onMouseDown(R) {
-      this.options.onSpeedUp && this.options.onSpeedUp(R), this.fovTarget = this.options.fovSpeedUp, this.speedUpTarget = this.options.speedUp;
+    onMouseDown(w) {
+      this.options.onSpeedUp && this.options.onSpeedUp(w), this.fovTarget = this.options.fovSpeedUp, this.speedUpTarget = this.options.speedUp;
     }
-    onMouseUp(R) {
-      this.options.onSlowDown && this.options.onSlowDown(R), this.fovTarget = this.options.fov, this.speedUpTarget = 0;
+    onMouseUp(w) {
+      this.options.onSlowDown && this.options.onSlowDown(w), this.fovTarget = this.options.fov, this.speedUpTarget = 0;
     }
-    onTouchStart(R) {
-      this.options.onSpeedUp && this.options.onSpeedUp(R), this.fovTarget = this.options.fovSpeedUp, this.speedUpTarget = this.options.speedUp;
+    onTouchStart(w) {
+      this.options.onSpeedUp && this.options.onSpeedUp(w), this.fovTarget = this.options.fovSpeedUp, this.speedUpTarget = this.options.speedUp;
     }
-    onTouchEnd(R) {
-      this.options.onSlowDown && this.options.onSlowDown(R), this.fovTarget = this.options.fov, this.speedUpTarget = 0;
+    onTouchEnd(w) {
+      this.options.onSlowDown && this.options.onSlowDown(w), this.fovTarget = this.options.fov, this.speedUpTarget = 0;
     }
-    onContextMenu(R) {
-      R.preventDefault();
+    onContextMenu(w) {
+      w.preventDefault();
     }
-    update(R) {
-      let I = Math.exp(-(-60 * Math.log2(0.9)) * R);
-      this.speedUp += g(this.speedUp, this.speedUpTarget, I, 1e-5), this.timeOffset += this.speedUp * R;
+    update(w) {
+      let D = Math.exp(-(-60 * Math.log2(0.9)) * w);
+      this.speedUp += g(this.speedUp, this.speedUpTarget, D, 1e-5), this.timeOffset += this.speedUp * w;
       let k = this.clock.elapsedTime + this.timeOffset;
       this.rightCarLights.update(k), this.leftCarLights.update(k), this.leftSticks.update(k), this.road.update(k);
-      let V = !1, ee = g(this.camera.fov, this.fovTarget, I);
-      if (ee !== 0 && (this.camera.fov += ee * R * 6, V = !0), this.options.distortion.getJS) {
+      let G = !1, $ = g(this.camera.fov, this.fovTarget, D);
+      if ($ !== 0 && (this.camera.fov += $ * w * 6, G = !0), this.options.distortion.getJS) {
         const le = this.options.distortion.getJS(0.025, k);
         this.camera.lookAt(
           new U(
@@ -24646,25 +24655,25 @@ function dv(i, e = fa) {
             this.camera.position.y + le.y,
             this.camera.position.z + le.z
           )
-        ), V = !0;
+        ), G = !0;
       }
-      V && this.camera.updateProjectionMatrix();
+      G && this.camera.updateProjectionMatrix();
     }
-    render(R) {
-      this.composer.render(R);
+    render(w) {
+      this.composer.render(w);
     }
     dispose() {
-      this.disposed = !0, this.scene && (this.scene.traverse((R) => {
-        const I = R;
-        I.isMesh && (I.geometry && I.geometry.dispose(), I.material && (Array.isArray(I.material) ? I.material.forEach((k) => k.dispose()) : I.material.dispose()));
+      this.disposed = !0, this.scene && (this.scene.traverse((w) => {
+        const D = w;
+        D.isMesh && (D.geometry && D.geometry.dispose(), D.material && (Array.isArray(D.material) ? D.material.forEach((k) => k.dispose()) : D.material.dispose()));
       }), this.scene.clear()), this.renderer && (this.renderer.dispose(), this.renderer.forceContextLoss(), this.renderer.domElement && this.renderer.domElement.parentNode && this.renderer.domElement.parentNode.removeChild(this.renderer.domElement)), this.composer && this.composer.dispose(), window.removeEventListener("resize", this.onWindowResize), document.removeEventListener("visibilitychange", this.onVisibilityChange), this.visibilityObserver?.disconnect(), this.container && (this.container.removeEventListener("mousedown", this.onMouseDown), this.container.removeEventListener("mouseup", this.onMouseUp), this.container.removeEventListener("mouseout", this.onMouseUp), this.container.removeEventListener("touchstart", this.onTouchStart), this.container.removeEventListener("touchend", this.onTouchEnd), this.container.removeEventListener("touchcancel", this.onTouchEnd), this.container.removeEventListener("contextmenu", this.onContextMenu));
     }
-    setSize(R, I, k) {
-      if (R <= 0 || I <= 0) {
+    setSize(w, D, k) {
+      if (w <= 0 || D <= 0) {
         this.hasValidSize = !1;
         return;
       }
-      this.composer.setSize(R, I, k), this.hasValidSize = !0;
+      this.composer.setSize(w, D, k), this.hasValidSize = !0;
     }
     tick() {
       if (!this.disposed) {
@@ -24673,21 +24682,21 @@ function dv(i, e = fa) {
           return;
         }
         if (!this.hasValidSize) {
-          const R = this.container.offsetWidth, I = this.container.offsetHeight;
-          if (R > 0 && I > 0)
-            this.renderer.setSize(R, I, !1), this.camera.aspect = R / I, this.camera.updateProjectionMatrix(), this.composer.setSize(R, I), this.hasValidSize = !0;
+          const w = this.container.offsetWidth, D = this.container.offsetHeight;
+          if (w > 0 && D > 0)
+            this.renderer.setSize(w, D, !1), this.camera.aspect = w / D, this.camera.updateProjectionMatrix(), this.composer.setSize(w, D), this.hasValidSize = !0;
           else {
             requestAnimationFrame(this.tick);
             return;
           }
         }
-        if (H(this.renderer, this.setSize)) {
-          const R = this.renderer.domElement;
-          this.hasValidSize && (this.camera.aspect = R.clientWidth / R.clientHeight, this.camera.updateProjectionMatrix());
+        if (V(this.renderer, this.setSize)) {
+          const w = this.renderer.domElement;
+          this.hasValidSize && (this.camera.aspect = w.clientWidth / w.clientHeight, this.camera.updateProjectionMatrix());
         }
         if (this.hasValidSize) {
-          const R = this.clock.getDelta();
-          this.render(R), this.update(R);
+          const w = this.clock.getDelta();
+          this.render(w), this.update(w);
         }
         requestAnimationFrame(this.tick);
       }
@@ -24716,29 +24725,29 @@ function dv(i, e = fa) {
         );
       }
     `, d = (O) => Array.isArray(O) ? Math.random() * (O[1] - O[0]) + O[0] : Math.random() * O, v = (O) => Array.isArray(O) ? O[Math.floor(Math.random() * O.length)] : O;
-  function g(O, R, I = 0.1, k = 1e-3) {
-    let V = (R - O) * I;
-    return Math.abs(V) < k && (V = R - O), V;
+  function g(O, w, D = 0.1, k = 1e-3) {
+    let G = (w - O) * D;
+    return Math.abs(G) < k && (G = w - O), G;
   }
   class m {
-    constructor(R, I, k, V, ee) {
-      this.webgl = R, this.options = I, this.colors = k, this.speed = V, this.fade = ee;
+    constructor(w, D, k, G, $) {
+      this.webgl = w, this.options = D, this.colors = k, this.speed = G, this.fade = $;
     }
     init() {
-      const R = this.options;
-      let I = new jl(new U(0, 0, 0), new U(0, 0, -1)), k = new Ya(I, 40, 1, 8, !1), V = new Go().copy(k);
-      V.instanceCount = R.lightPairsPerRoadWay * 2;
-      let ee = R.roadWidth / R.lanesPerRoad, le = [], Ee = [], we = [], pe = this.colors;
+      const w = this.options;
+      let D = new Zl(new U(0, 0, 0), new U(0, 0, -1)), k = new Ya(D, 40, 1, 8, !1), G = new Go().copy(k);
+      G.instanceCount = w.lightPairsPerRoadWay * 2;
+      let $ = w.roadWidth / w.lanesPerRoad, le = [], Ee = [], we = [], pe = this.colors;
       Array.isArray(pe) ? pe = pe.map((ae) => new Ve(ae)) : pe = new Ve(pe);
-      for (let ae = 0; ae < R.lightPairsPerRoadWay; ae++) {
-        let De = d(R.carLightsRadius), xe = d(R.carLightsLength), Ne = d(this.speed), P = ae % R.lanesPerRoad * ee - R.roadWidth / 2 + ee / 2, nt = d(R.carWidthPercentage) * ee, Fe = d(R.carShiftX) * ee;
-        P += Fe;
-        let Ie = d(R.carFloorSeparation) + De * 1.3, ve = -d(R.length);
-        le.push(P - nt / 2), le.push(Ie), le.push(ve), le.push(P + nt / 2), le.push(Ie), le.push(ve), Ee.push(De), Ee.push(xe), Ee.push(Ne), Ee.push(De), Ee.push(xe), Ee.push(Ne);
+      for (let ae = 0; ae < w.lightPairsPerRoadWay; ae++) {
+        let De = d(w.carLightsRadius), xe = d(w.carLightsLength), Ne = d(this.speed), I = ae % w.lanesPerRoad * $ - w.roadWidth / 2 + $ / 2, nt = d(w.carWidthPercentage) * $, Fe = d(w.carShiftX) * $;
+        I += Fe;
+        let Ie = d(w.carFloorSeparation) + De * 1.3, ve = -d(w.length);
+        le.push(I - nt / 2), le.push(Ie), le.push(ve), le.push(I + nt / 2), le.push(Ie), le.push(ve), Ee.push(De), Ee.push(xe), Ee.push(Ne), Ee.push(De), Ee.push(xe), Ee.push(Ne);
         let Ze = v(pe);
         we.push(Ze.r), we.push(Ze.g), we.push(Ze.b), we.push(Ze.r), we.push(Ze.g), we.push(Ze.b);
       }
-      V.setAttribute("aOffset", new zi(new Float32Array(le), 3, !1)), V.setAttribute("aMetrics", new zi(new Float32Array(Ee), 3, !1)), V.setAttribute("aColor", new zi(new Float32Array(we), 3, !1));
+      G.setAttribute("aOffset", new zi(new Float32Array(le), 3, !1)), G.setAttribute("aMetrics", new zi(new Float32Array(Ee), 3, !1)), G.setAttribute("aColor", new zi(new Float32Array(we), 3, !1));
       let q = new Et({
         fragmentShader: p,
         vertexShader: T,
@@ -24746,24 +24755,35 @@ function dv(i, e = fa) {
         uniforms: Object.assign(
           {
             uTime: { value: 0 },
-            uTravelLength: { value: R.length },
+            uTravelLength: { value: w.length },
             uFade: { value: this.fade }
           },
           this.webgl.fogUniforms,
-          R.distortion.uniforms
+          w.distortion.uniforms
         )
       });
       q.onBeforeCompile = (ae) => {
         ae.vertexShader = ae.vertexShader.replace(
           "#include <getDistortion_vertex>",
-          R.distortion.getDistortion
+          w.distortion.getDistortion
         );
       };
-      let j = new $t(V, q);
+      let j = new $t(G, q);
       j.frustumCulled = !1, this.webgl.scene.add(j), this.mesh = j;
     }
-    update(R) {
-      this.mesh.material.uniforms.uTime.value = R;
+    update(w) {
+      this.mesh.material.uniforms.uTime.value = w;
+    }
+    setColors(w) {
+      this.colors = w;
+      const D = this.mesh?.geometry?.attributes?.aColor;
+      if (!D) return;
+      const k = (Array.isArray(w) ? w : [w]).map((G) => new Ve(G));
+      for (let G = 0; G < D.count; G += 1) {
+        const $ = k[Math.floor(G / 2) % k.length];
+        D.setXYZ(G, $.r, $.g, $.b);
+      }
+      D.needsUpdate = !0;
     }
   }
   const p = `
@@ -24813,20 +24833,20 @@ function dv(i, e = fa) {
       }
     `;
   class S {
-    constructor(R, I) {
-      this.webgl = R, this.options = I;
+    constructor(w, D) {
+      this.webgl = w, this.options = D;
     }
     init() {
-      const R = this.options, I = new ji(1, 1);
-      let k = new Go().copy(I), V = R.totalSideLightSticks;
-      k.instanceCount = V;
-      let ee = R.length / (V - 1);
+      const w = this.options, D = new ji(1, 1);
+      let k = new Go().copy(D), G = w.totalSideLightSticks;
+      k.instanceCount = G;
+      let $ = w.length / (G - 1);
       const le = [], Ee = [], we = [];
-      let pe = R.colors.sticks;
+      let pe = w.colors.sticks;
       Array.isArray(pe) ? pe = pe.map((ae) => new Ve(ae)) : pe = new Ve(pe);
-      for (let ae = 0; ae < V; ae++) {
-        let De = d(R.lightStickWidth), xe = d(R.lightStickHeight);
-        le.push((ae - 1) * ee * 2 + ee * Math.random());
+      for (let ae = 0; ae < G; ae++) {
+        let De = d(w.lightStickWidth), xe = d(w.lightStickHeight);
+        le.push((ae - 1) * $ * 2 + $ * Math.random());
         let Ne = v(pe);
         Ee.push(Ne.r), Ee.push(Ne.g), Ee.push(Ne.b), we.push(De), we.push(xe);
       }
@@ -24837,24 +24857,35 @@ function dv(i, e = fa) {
         side: 2,
         uniforms: Object.assign(
           {
-            uTravelLength: { value: R.length },
+            uTravelLength: { value: w.length },
             uTime: { value: 0 }
           },
           this.webgl.fogUniforms,
-          R.distortion.uniforms
+          w.distortion.uniforms
         )
       });
       q.onBeforeCompile = (ae) => {
         ae.vertexShader = ae.vertexShader.replace(
           "#include <getDistortion_vertex>",
-          R.distortion.getDistortion
+          w.distortion.getDistortion
         );
       };
       const j = new $t(k, q);
       j.frustumCulled = !1, this.webgl.scene.add(j), this.mesh = j;
     }
-    update(R) {
-      this.mesh.material.uniforms.uTime.value = R;
+    update(w) {
+      this.mesh.material.uniforms.uTime.value = w;
+    }
+    setColors(w) {
+      this.options.colors.sticks = w;
+      const D = this.mesh?.geometry?.attributes?.aColor;
+      if (!D) return;
+      const k = (Array.isArray(w) ? w : [w]).map((G) => new Ve(G));
+      for (let G = 0; G < D.count; G += 1) {
+        const $ = k[G % k.length];
+        D.setXYZ(G, $.r, $.g, $.b);
+      }
+      D.needsUpdate = !0;
     }
   }
   const _ = `
@@ -24905,52 +24936,52 @@ function dv(i, e = fa) {
         ${Re.fog_fragment}
       }
     `;
-  class b {
-    constructor(R, I) {
-      this.webgl = R, this.options = I, this.uTime = { value: 0 };
+  class R {
+    constructor(w, D) {
+      this.webgl = w, this.options = D, this.uTime = { value: 0 };
     }
-    createPlane(R, I, k) {
-      const V = this.options;
-      let ee = 100;
+    createPlane(w, D, k) {
+      const G = this.options;
+      let $ = 100;
       const le = new ji(
-        k ? V.roadWidth : V.islandWidth,
-        V.length,
+        k ? G.roadWidth : G.islandWidth,
+        G.length,
         20,
-        ee
+        $
       );
       let Ee = {
-        uTravelLength: { value: V.length },
-        uColor: { value: new Ve(k ? V.colors.roadColor : V.colors.islandColor) },
+        uTravelLength: { value: G.length },
+        uColor: { value: new Ve(k ? G.colors.roadColor : G.colors.islandColor) },
         uTime: this.uTime
       };
       k && (Ee = Object.assign(Ee, {
-        uLanes: { value: V.lanesPerRoad },
-        uBrokenLinesColor: { value: new Ve(V.colors.brokenLines) },
-        uShoulderLinesColor: { value: new Ve(V.colors.shoulderLines) },
-        uShoulderLinesWidthPercentage: { value: V.shoulderLinesWidthPercentage },
-        uBrokenLinesLengthPercentage: { value: V.brokenLinesLengthPercentage },
-        uBrokenLinesWidthPercentage: { value: V.brokenLinesWidthPercentage }
+        uLanes: { value: G.lanesPerRoad },
+        uBrokenLinesColor: { value: new Ve(G.colors.brokenLines) },
+        uShoulderLinesColor: { value: new Ve(G.colors.shoulderLines) },
+        uShoulderLinesWidthPercentage: { value: G.shoulderLinesWidthPercentage },
+        uBrokenLinesLengthPercentage: { value: G.brokenLinesLengthPercentage },
+        uBrokenLinesWidthPercentage: { value: G.brokenLinesWidthPercentage }
       }));
       const we = new Et({
-        fragmentShader: k ? L : D,
+        fragmentShader: k ? L : P,
         vertexShader: z,
         side: 2,
-        uniforms: Object.assign(Ee, this.webgl.fogUniforms, V.distortion.uniforms)
+        uniforms: Object.assign(Ee, this.webgl.fogUniforms, G.distortion.uniforms)
       });
       we.onBeforeCompile = (q) => {
         q.vertexShader = q.vertexShader.replace(
           "#include <getDistortion_vertex>",
-          V.distortion.getDistortion
+          G.distortion.getDistortion
         );
       };
       const pe = new $t(le, we);
-      return pe.rotation.x = -Math.PI / 2, pe.position.z = -V.length / 2, pe.position.x += (this.options.islandWidth / 2 + V.roadWidth / 2) * R, this.webgl.scene.add(pe), pe;
+      return pe.rotation.x = -Math.PI / 2, pe.position.z = -G.length / 2, pe.position.x += (this.options.islandWidth / 2 + G.roadWidth / 2) * w, this.webgl.scene.add(pe), pe;
     }
     init() {
       this.leftRoadWay = this.createPlane(-1, this.options.roadWidth, !0), this.rightRoadWay = this.createPlane(1, this.options.roadWidth, !0), this.island = this.createPlane(0, this.options.islandWidth, !1);
     }
-    update(R) {
-      this.uTime.value = R;
+    update(w) {
+      this.uTime.value = w;
     }
   }
   const C = `
@@ -24967,7 +24998,7 @@ function dv(i, e = fa) {
         gl_FragColor = vec4(color, 1.);
         ${Re.fog_fragment}
       }
-    `, D = C.replace("#include <roadMarkings_fragment>", "").replace("#include <roadMarkings_vars>", ""), L = C.replace("#include <roadMarkings_fragment>", `
+    `, P = C.replace("#include <roadMarkings_fragment>", "").replace("#include <roadMarkings_vars>", ""), L = C.replace("#include <roadMarkings_fragment>", `
       uv.y = mod(uv.y + uTime * 0.05, 1.);
       float laneWidth = 1.0 / uLanes;
       float brokenLineWidth = laneWidth * uBrokenLinesWidthPercentage;
@@ -25012,11 +25043,11 @@ function dv(i, e = fa) {
         ${Re.fog_vertex}
       }
     `;
-  function H(O, R) {
-    const I = O.domElement, k = I.clientWidth, V = I.clientHeight;
-    if (k <= 0 || V <= 0) return !1;
-    const ee = I.width !== k || I.height !== V;
-    return ee && R(k, V, !1), ee;
+  function V(O, w) {
+    const D = O.domElement, k = D.clientWidth, G = D.clientHeight;
+    if (k <= 0 || G <= 0) return !1;
+    const $ = D.width !== k || D.height !== G;
+    return $ && w(k, G, !1), $;
   }
   const Q = {
     ...fa,
@@ -25026,6 +25057,9 @@ function dv(i, e = fa) {
   Q.distortion = c[Q.distortion];
   const Y = new u(i, Q);
   return t = Y, Y.loadAssets().then(Y.init), {
+    setColors(O) {
+      t?.setColors(O);
+    },
     dispose() {
       t && (t.dispose(), t = null), i.replaceChildren();
     }
@@ -25036,7 +25070,7 @@ function Bn(i) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   return i;
 }
-function hc(i, e) {
+function uc(i, e) {
   i.prototype = Object.create(e.prototype), i.prototype.constructor = i, i.__proto__ = e;
 }
 var sn = {
@@ -25046,11 +25080,11 @@ var sn = {
   units: {
     lineHeight: ""
   }
-}, Cr = {
+}, yr = {
   duration: 0.5,
   overwrite: !1,
   delay: 0
-}, Ja, Dt, ct, fn = 1e8, st = 1 / fn, wa = Math.PI * 2, pv = wa / 4, mv = 0, fc = Math.sqrt, gv = Math.cos, vv = Math.sin, bt = function(e) {
+}, Ja, Dt, ct, fn = 1e8, st = 1 / fn, wa = Math.PI * 2, pv = wa / 4, mv = 0, hc = Math.sqrt, gv = Math.cos, vv = Math.sin, bt = function(e) {
   return typeof e == "string";
 }, gt = function(e) {
   return typeof e == "function";
@@ -25064,41 +25098,41 @@ var sn = {
   return e !== !1;
 }, ja = function() {
   return typeof window < "u";
-}, cs = function(e) {
+}, ls = function(e) {
   return gt(e) || bt(e);
-}, dc = typeof ArrayBuffer == "function" && ArrayBuffer.isView || function() {
-}, Ut = Array.isArray, _v = /random\([^)]+\)/g, xv = /,\s*/g, xl = /(?:-?\.?\d|\.)+/gi, pc = /[-+=.]*\d+[.e\-+]*\d*[e\-+]*\d*/g, Xi = /[-+=.]*\d+[.e-]*\d*[a-z%]*/g, da = /[-+=.]*\d+\.?\d*(?:e-|e\+)?\d*/gi, mc = /[+-]=-?[.\d]+/, Av = /[^,'"\[\]\s]+/gi, Sv = /^[+\-=e\s\d]*\d+[.\d]*([a-z]*|%)\s*$/i, dt, An, ba, $a, an = {}, _s = {}, gc, vc = function(e) {
-  return (_s = $i(e, an)) && Xt;
+}, fc = typeof ArrayBuffer == "function" && ArrayBuffer.isView || function() {
+}, Ut = Array.isArray, _v = /random\([^)]+\)/g, xv = /,\s*/g, xl = /(?:-?\.?\d|\.)+/gi, dc = /[-+=.]*\d+[.e\-+]*\d*[e\-+]*\d*/g, Xi = /[-+=.]*\d+[.e-]*\d*[a-z%]*/g, da = /[-+=.]*\d+\.?\d*(?:e-|e\+)?\d*/gi, pc = /[+-]=-?[.\d]+/, Av = /[^,'"\[\]\s]+/gi, Sv = /^[+\-=e\s\d]*\d+[.\d]*([a-z]*|%)\s*$/i, dt, An, ba, $a, an = {}, vs = {}, mc, gc = function(e) {
+  return (vs = $i(e, an)) && Xt;
 }, eo = function(e, t) {
   return console.warn("Invalid property", e, "set to", t, "Missing plugin? gsap.registerPlugin()");
-}, wr = function(e, t) {
+}, Cr = function(e, t) {
   return !t && console.warn(e);
-}, _c = function(e, t) {
-  return e && (an[e] = t) && _s && (_s[e] = t) || an;
-}, br = function() {
+}, vc = function(e, t) {
+  return e && (an[e] = t) && vs && (vs[e] = t) || an;
+}, wr = function() {
   return 0;
 }, Ev = {
   suppressEvents: !0,
   isStart: !0,
   kill: !1
-}, hs = {
+}, us = {
   suppressEvents: !0,
   kill: !1
 }, Mv = {
   suppressEvents: !0
-}, to = {}, $n = [], Ra = {}, xc, Jt = {}, pa = {}, Al = 30, fs = [], no = "", io = function(e) {
+}, to = {}, $n = [], Ra = {}, _c, Jt = {}, pa = {}, Al = 30, hs = [], no = "", io = function(e) {
   var t = e[0], n, r;
   if (Cn(t) || gt(t) || (e = [e]), !(n = (t._gsap || {}).harness)) {
-    for (r = fs.length; r-- && !fs[r].targetTest(t); )
+    for (r = hs.length; r-- && !hs[r].targetTest(t); )
       ;
-    n = fs[r];
+    n = hs[r];
   }
   for (r = e.length; r--; )
-    e[r] && (e[r]._gsap || (e[r]._gsap = new Hc(e[r], n))) || e.splice(r, 1);
+    e[r] && (e[r]._gsap || (e[r]._gsap = new Gc(e[r], n))) || e.splice(r, 1);
   return e;
 }, Si = function(e) {
   return e._gsap || io(dn(e))[0]._gsap;
-}, Ac = function(e, t, n) {
+}, xc = function(e, t, n) {
   return (n = e[t]) && gt(n) ? e[t]() : Za(n) && e.getAttribute && e.getAttribute(t) || n;
 }, kt = function(e, t) {
   return (e = e.split(",")).forEach(t) || e;
@@ -25113,18 +25147,18 @@ var sn = {
   for (var n = t.length, r = 0; e.indexOf(t[r]) < 0 && ++r < n; )
     ;
   return r < n;
-}, xs = function() {
+}, _s = function() {
   var e = $n.length, t = $n.slice(0), n, r;
   for (Ra = {}, $n.length = 0, n = 0; n < e; n++)
     r = t[n], r && r._lazy && (r.render(r._lazy[0], r._lazy[1], !0)._lazy = 0);
 }, ro = function(e) {
   return !!(e._initted || e._startAt || e.add);
-}, Sc = function(e, t, n, r) {
-  $n.length && !Dt && xs(), e.render(t, n, !!(Dt && t < 0 && ro(e))), $n.length && !Dt && xs();
-}, Ec = function(e) {
+}, Ac = function(e, t, n, r) {
+  $n.length && !Dt && _s(), e.render(t, n, !!(Dt && t < 0 && ro(e))), $n.length && !Dt && _s();
+}, Sc = function(e) {
   var t = parseFloat(e);
   return (t || t === 0) && (e + "").match(Av).length < 2 ? t : bt(e) ? e.trim() : e;
-}, Mc = function(e) {
+}, Ec = function(e) {
   return e;
 }, on = function(e, t) {
   for (var n in t)
@@ -25143,7 +25177,7 @@ var sn = {
   for (var n in t)
     n !== "__proto__" && n !== "constructor" && n !== "prototype" && (e[n] = Cn(t[n]) ? i(e[n] || (e[n] = {}), t[n]) : t[n]);
   return e;
-}, As = function(e, t) {
+}, xs = function(e, t) {
   var n = {}, r;
   for (r in e)
     r in t || (n[r] = e[r]);
@@ -25158,7 +25192,7 @@ var sn = {
   for (var n = e.length, r = n === t.length; r && n-- && e[n] === t[n]; )
     ;
   return n < 0;
-}, Tc = function(e, t, n, r, s) {
+}, Mc = function(e, t, n, r, s) {
   var a = e[r], o;
   if (s)
     for (o = t[s]; a && a[s] > o; )
@@ -25180,7 +25214,7 @@ var sn = {
     t._dirty = 1, t.totalDuration(), t = t.parent;
   return e;
 }, Da = function(e, t, n, r) {
-  return e._startAt && (Dt ? e._startAt.revert(hs) : e.vars.immediateRender && !e.vars.autoRevert || e._startAt.render(t, !0, r));
+  return e._startAt && (Dt ? e._startAt.revert(us) : e.vars.immediateRender && !e.vars.autoRevert || e._startAt.render(t, !0, r));
 }, bv = function i(e) {
   return !e || e._ts && i(e.parent);
 }, El = function(e) {
@@ -25188,29 +25222,29 @@ var sn = {
 }, er = function(e, t) {
   var n = Math.floor(e = ft(e / t));
   return e && n === e ? n - 1 : n;
-}, Ss = function(e, t) {
+}, As = function(e, t) {
   return (e - t._start) * t._ts + (t._ts >= 0 ? 0 : t._dirty ? t.totalDuration() : t._tDur);
 }, ws = function(e) {
   return e._end = ft(e._start + (e._tDur / Math.abs(e._ts || e._rts || st) || 0));
 }, bs = function(e, t) {
   var n = e._dp;
   return n && n.smoothChildTiming && e._ts && (e._start = ft(n._time - (e._ts > 0 ? t / e._ts : ((e._dirty ? e.totalDuration() : e._tDur) - t) / -e._ts)), ws(e), n._dirty || Ei(n, e)), e;
-}, yc = function(e, t) {
+}, Tc = function(e, t) {
   var n;
-  if ((t._time || !t._dur && t._initted || t._start < e._time && (t._dur || !t.add)) && (n = Ss(e.rawTime(), t), (!t._dur || Nr(0, t.totalDuration(), n) - t._tTime > st) && t.render(n, !0)), Ei(e, t)._dp && e._initted && e._time >= e._dur && e._ts) {
+  if ((t._time || !t._dur && t._initted || t._start < e._time && (t._dur || !t.add)) && (n = As(e.rawTime(), t), (!t._dur || Or(0, t.totalDuration(), n) - t._tTime > st) && t.render(n, !0)), Ei(e, t)._dp && e._initted && e._time >= e._dur && e._ts) {
     if (e._dur < e.duration())
       for (n = e; n._dp; )
         n.rawTime() >= 0 && n.totalTime(n._tTime), n = n._dp;
     e._zTime = -st;
   }
 }, En = function(e, t, n, r) {
-  return t.parent && ni(t), t._start = ft((zn(n) ? n : n || e !== dt ? hn(e, n, t) : e._time) + t._delay), t._end = ft(t._start + (t.totalDuration() / Math.abs(t.timeScale()) || 0)), Tc(e, t, "_first", "_last", e._sort ? "_start" : 0), Pa(t) || (e._recent = t), r || yc(e, t), e._ts < 0 && bs(e, e._tTime), e;
-}, Cc = function(e, t) {
+  return t.parent && ni(t), t._start = ft((zn(n) ? n : n || e !== dt ? hn(e, n, t) : e._time) + t._delay), t._end = ft(t._start + (t.totalDuration() / Math.abs(t.timeScale()) || 0)), Mc(e, t, "_first", "_last", e._sort ? "_start" : 0), Pa(t) || (e._recent = t), r || Tc(e, t), e._ts < 0 && bs(e, e._tTime), e;
+}, yc = function(e, t) {
   return (an.ScrollTrigger || eo("scrollTrigger", t)) && an.ScrollTrigger.create(t, e);
-}, wc = function(e, t, n, r, s) {
+}, Cc = function(e, t, n, r, s) {
   if (ao(e, t, s), !e._initted)
     return 1;
-  if (!n && e._pt && !Dt && (e._dur && e.vars.lazy !== !1 || !e._dur && e.vars.lazy) && xc !== jt.frame)
+  if (!n && e._pt && !Dt && (e._dur && e.vars.lazy !== !1 || !e._dur && e.vars.lazy) && _c !== jt.frame)
     return $n.push(e), e._lazy = [s, r], 1;
 }, Rv = function i(e) {
   var t = e.parent;
@@ -25220,8 +25254,8 @@ var sn = {
   return t === "isFromStart" || t === "isStart";
 }, Dv = function(e, t, n, r) {
   var s = e.ratio, a = t < 0 || !t && (!e._start && Rv(e) && !(!e._initted && Pa(e)) || (e._ts < 0 || e._dp._ts < 0) && !Pa(e)) ? 0 : 1, o = e._rDelay, l = 0, c, u, h;
-  if (o && e._repeat && (l = Nr(0, e._tDur, t), u = er(l, o), e._yoyo && u & 1 && (a = 1 - a), u !== er(e._tTime, o) && (s = 1 - a, e.vars.repeatRefresh && e._initted && e.invalidate())), a !== s || Dt || r || e._zTime === st || !t && e._zTime) {
-    if (!e._initted && wc(e, t, r, n, l))
+  if (o && e._repeat && (l = Or(0, e._tDur, t), u = er(l, o), e._yoyo && u & 1 && (a = 1 - a), u !== er(e._tTime, o) && (s = 1 - a, e.vars.repeatRefresh && e._initted && e.invalidate())), a !== s || Dt || r || e._zTime === st || !t && e._zTime) {
+    if (!e._initted && Cc(e, t, r, n, l))
       return;
     for (h = e._zTime, e._zTime = t || (n ? st : 0), n || (n = t && !h), e.ratio = a, e._from && (a = 1 - a), e._time = 0, e._tTime = l, c = e._pt; c; )
       c.r(a, c.d), c = c._next;
@@ -25248,8 +25282,8 @@ var sn = {
   return e instanceof Gt ? Ei(e) : tr(e, e._dur);
 }, Iv = {
   _start: 0,
-  endTime: br,
-  totalDuration: br
+  endTime: wr,
+  totalDuration: wr
 }, hn = function i(e, t, n) {
   var r = e.labels, s = e._recent || Iv, a = e.duration() >= fn ? s.endTime(!1) : e._dur, o, l, c;
   return bt(t) && (isNaN(t) || t in r) ? (l = t.charAt(0), c = t.substr(-1) === "%", o = t.indexOf("="), l === "<" || l === ">" ? (o >= 0 && (t = t.replace(/=/, "")), (l === "<" ? s._start : s.endTime(s._repeat >= 0)) + (parseFloat(t.substr(1)) || 0) * (c ? (o < 0 ? s : n).totalDuration() / 100 : 1)) : o < 0 ? (t in r || (r[t] = a), r[t]) : (l = parseFloat(t.charAt(o - 1) + t.substr(o + 1)), c && n && (l = l / 100 * (Ut(n) ? n[0] : n).totalDuration()), o > 1 ? i(e, t.substr(0, o - 1), n) + l : a + l)) : t == null ? a : +t;
@@ -25263,33 +25297,33 @@ var sn = {
   return new At(t[0], a, t[s + 1]);
 }, si = function(e, t) {
   return e || e === 0 ? t(e) : t;
-}, Nr = function(e, t, n) {
+}, Or = function(e, t, n) {
   return n < e ? e : n > t ? t : n;
 }, Bt = function(e, t) {
   return !bt(e) || !(t = Sv.exec(e)) ? "" : t[1];
 }, Lv = function(e, t, n) {
   return si(n, function(r) {
-    return Nr(e, t, r);
+    return Or(e, t, r);
   });
-}, Ia = [].slice, bc = function(e, t) {
+}, Ia = [].slice, wc = function(e, t) {
   return e && Cn(e) && "length" in e && (!t && !e.length || e.length - 1 in e && Cn(e[0])) && !e.nodeType && e !== An;
 }, Bv = function(e, t, n) {
   return n === void 0 && (n = []), e.forEach(function(r) {
     var s;
-    return bt(r) && !t || bc(r, 1) ? (s = n).push.apply(s, dn(r)) : n.push(r);
+    return bt(r) && !t || wc(r, 1) ? (s = n).push.apply(s, dn(r)) : n.push(r);
   }) || n;
 }, dn = function(e, t, n) {
-  return ct && !t && ct.selector ? ct.selector(e) : bt(e) && !n && (ba || !nr()) ? Ia.call((t || $a).querySelectorAll(e), 0) : Ut(e) ? Bv(e, n) : bc(e) ? Ia.call(e, 0) : e ? [e] : [];
+  return ct && !t && ct.selector ? ct.selector(e) : bt(e) && !n && (ba || !nr()) ? Ia.call((t || $a).querySelectorAll(e), 0) : Ut(e) ? Bv(e, n) : wc(e) ? Ia.call(e, 0) : e ? [e] : [];
 }, La = function(e) {
-  return e = dn(e)[0] || wr("Invalid scope") || {}, function(t) {
+  return e = dn(e)[0] || Cr("Invalid scope") || {}, function(t) {
     var n = e.current || e.nativeElement || e;
-    return dn(t, n.querySelectorAll ? n : n === e ? wr("Invalid scope") || $a.createElement("div") : e);
+    return dn(t, n.querySelectorAll ? n : n === e ? Cr("Invalid scope") || $a.createElement("div") : e);
   };
-}, Rc = function(e) {
+}, bc = function(e) {
   return e.sort(function() {
     return 0.5 - Math.random();
   });
-}, Dc = function(e) {
+}, Rc = function(e) {
   if (gt(e))
     return e;
   var t = Cn(e) ? e : {
@@ -25300,16 +25334,16 @@ var sn = {
     edges: 0.5,
     end: 1
   }[r] || 0 : !o && l && (u = r[0], h = r[1]), function(f, d, v) {
-    var g = (v || t).length, m = a[g], p, T, S, _, y, b, C, D, x;
+    var g = (v || t).length, m = a[g], p, T, S, _, y, R, C, P, x;
     if (!m) {
       if (x = t.grid === "auto" ? 0 : (t.grid || [1, fn])[1], !x) {
         for (C = -fn; C < (C = v[x++].getBoundingClientRect().left) && x < g; )
           ;
         x < g && x--;
       }
-      for (m = a[g] = [], p = l ? Math.min(x, g) * u - 0.5 : r % x, T = x === fn ? 0 : l ? g * h / x - 0.5 : r / x | 0, C = 0, D = fn, b = 0; b < g; b++)
-        S = b % x - p, _ = T - (b / x | 0), m[b] = y = c ? Math.abs(c === "y" ? _ : S) : fc(S * S + _ * _), y > C && (C = y), y < D && (D = y);
-      r === "random" && Rc(m), m.max = C - D, m.min = D, m.v = g = (parseFloat(t.amount) || parseFloat(t.each) * (x > g ? g - 1 : c ? c === "y" ? g / x : x : Math.max(x, g / x)) || 0) * (r === "edges" ? -1 : 1), m.b = g < 0 ? s - g : s, m.u = Bt(t.amount || t.each) || 0, n = n && g < 0 ? Qv(n) : n;
+      for (m = a[g] = [], p = l ? Math.min(x, g) * u - 0.5 : r % x, T = x === fn ? 0 : l ? g * h / x - 0.5 : r / x | 0, C = 0, P = fn, R = 0; R < g; R++)
+        S = R % x - p, _ = T - (R / x | 0), m[R] = y = c ? Math.abs(c === "y" ? _ : S) : hc(S * S + _ * _), y > C && (C = y), y < P && (P = y);
+      r === "random" && bc(m), m.max = C - P, m.min = P, m.v = g = (parseFloat(t.amount) || parseFloat(t.each) * (x > g ? g - 1 : c ? c === "y" ? g / x : x : Math.max(x, g / x)) || 0) * (r === "edges" ? -1 : 1), m.b = g < 0 ? s - g : s, m.u = Bt(t.amount || t.each) || 0, n = n && g < 0 ? Qv(n) : n;
     }
     return g = (m[f] - m.min) / m.max || 0, ft(m.b + (n ? n(g) : g) * m.v) + m.u;
   };
@@ -25319,7 +25353,7 @@ var sn = {
     var r = ft(Math.round(parseFloat(n) / e) * e * t);
     return (r - r % 1) / t + (zn(n) ? 0 : Bt(n));
   };
-}, Pc = function(e, t) {
+}, Dc = function(e, t) {
   var n = Ut(e), r, s;
   return !n && Cn(e) && (r = n = e.radius || fn, e.values ? (e = dn(e.values), (s = !zn(e[0])) && (r *= r)) : e = Ba(e.increment)), si(t, n ? gt(e) ? function(a) {
     return s = e(a), Math.abs(s - a) <= r ? s : a;
@@ -25328,7 +25362,7 @@ var sn = {
       s ? (f = e[h].x - o, d = e[h].y - l, f = f * f + d * d) : f = Math.abs(e[h] - o), f < c && (c = f, u = h);
     return u = !r || c <= r ? e[u] : a, s || u === a || zn(a) ? u : u + Bt(a);
   } : Ba(e));
-}, Ic = function(e, t, n, r) {
+}, Pc = function(e, t, n, r) {
   return si(Ut(e) ? !t : n === !0 ? !!(n = 0) : !r, function() {
     return Ut(e) ? e[~~(Math.random() * e.length)] : (n = n || 1e-5) && (r = n < 1 ? Math.pow(10, (n + "").length - 2) : 1) && Math.floor(Math.round((e - n / 2 + Math.random() * (t - e + n * 0.99)) / n) * n * r) / r;
   });
@@ -25345,27 +25379,27 @@ var sn = {
     return e(parseFloat(n)) + (t || Bt(n));
   };
 }, Ov = function(e, t, n) {
-  return Bc(e, t, 0, 1, n);
-}, Lc = function(e, t, n) {
+  return Lc(e, t, 0, 1, n);
+}, Ic = function(e, t, n) {
   return si(n, function(r) {
     return e[~~t(r)];
   });
 }, Nv = function i(e, t, n) {
   var r = t - e;
-  return Ut(e) ? Lc(e, i(0, e.length), t) : si(n, function(s) {
+  return Ut(e) ? Ic(e, i(0, e.length), t) : si(n, function(s) {
     return (r + (s - e) % r) % r + e;
   });
 }, zv = function i(e, t, n) {
   var r = t - e, s = r * 2;
-  return Ut(e) ? Lc(e, i(0, e.length - 1), t) : si(n, function(a) {
+  return Ut(e) ? Ic(e, i(0, e.length - 1), t) : si(n, function(a) {
     return a = (s + (a - e) % s) % s || 0, e + (a > r ? s - a : a);
   });
-}, Rr = function(e) {
+}, br = function(e) {
   return e.replace(_v, function(t) {
     var n = t.indexOf("[") + 1, r = t.substring(n || 7, n ? t.indexOf("]") : t.length - 1).split(xv);
-    return Ic(n ? r : +r[0], n ? 0 : +r[1], +r[2] || 1e-5);
+    return Pc(n ? r : +r[0], n ? 0 : +r[1], +r[2] || 1e-5);
   });
-}, Bc = function(e, t, n, r, s) {
+}, Lc = function(e, t, n, r, s) {
   var a = t - e, o = r - n;
   return si(s, function(l) {
     return n + ((l - e) / a * o || 0);
@@ -25408,16 +25442,16 @@ var sn = {
 }, en = function(e, t, n) {
   var r = e.vars, s = r[t], a = ct, o = e._ctx, l, c, u;
   if (s)
-    return l = r[t + "Params"], c = r.callbackScope || e, n && $n.length && xs(), o && (ct = o), u = l ? s.apply(c, l) : s.call(c), ct = a, u;
+    return l = r[t + "Params"], c = r.callbackScope || e, n && $n.length && _s(), o && (ct = o), u = l ? s.apply(c, l) : s.call(c), ct = a, u;
 }, gr = function(e) {
   return ni(e), e.scrollTrigger && e.scrollTrigger.kill(!!Dt), e.progress() < 1 && en(e, "onInterrupt"), e;
-}, Yi, Uc = [], Fc = function(e) {
+}, Yi, Bc = [], Uc = function(e) {
   if (e)
     if (e = !e.name && e.default || e, ja() || e.headless) {
       var t = e.name, n = gt(e), r = t && !n && e.init ? function() {
         this._props = [];
       } : e, s = {
-        init: br,
+        init: wr,
         render: co,
         add: so,
         kill: i_,
@@ -25433,11 +25467,11 @@ var sn = {
       if (nr(), e !== r) {
         if (Jt[t])
           return;
-        on(r, on(As(e, s), a)), $i(r.prototype, $i(s, As(e, a))), Jt[r.prop = t] = r, e.targetTest && (fs.push(r), to[t] = 1), t = (t === "css" ? "CSS" : t.charAt(0).toUpperCase() + t.substr(1)) + "Plugin";
+        on(r, on(xs(e, s), a)), $i(r.prototype, $i(s, xs(e, a))), Jt[r.prop = t] = r, e.targetTest && (hs.push(r), to[t] = 1), t = (t === "css" ? "CSS" : t.charAt(0).toUpperCase() + t.substr(1)) + "Plugin";
       }
-      _c(t, r), e.register && e.register(Xt, r, Vt);
+      vc(t, r), e.register && e.register(Xt, r, Vt);
     } else
-      Uc.push(e);
+      Bc.push(e);
 }, rt = 255, vr = {
   aqua: [0, rt, rt],
   lime: [0, rt, 0],
@@ -25460,7 +25494,7 @@ var sn = {
   transparent: [rt, rt, rt, 0]
 }, ma = function(e, t, n) {
   return e += e < 0 ? 1 : e > 1 ? -1 : 0, (e * 6 < 1 ? t + (n - t) * e * 6 : e < 0.5 ? n : e * 3 < 2 ? t + (n - t) * (2 / 3 - e) * 6 : t) * rt + 0.5 | 0;
-}, Oc = function(e, t, n) {
+}, Fc = function(e, t, n) {
   var r = e ? zn(e) ? [e >> 16, e >> 8 & rt, e & rt] : 0 : vr.black, s, a, o, l, c, u, h, f, d, v;
   if (!r) {
     if (e.substr(-1) === "," && (e = e.substr(0, e.length - 1)), vr[e])
@@ -25473,13 +25507,13 @@ var sn = {
       if (r = v = e.match(xl), !t)
         l = +r[0] % 360 / 360, c = +r[1] / 100, u = +r[2] / 100, a = u <= 0.5 ? u * (c + 1) : u + c - u * c, s = u * 2 - a, r.length > 3 && (r[3] *= 1), r[0] = ma(l + 1 / 3, s, a), r[1] = ma(l, s, a), r[2] = ma(l - 1 / 3, s, a);
       else if (~e.indexOf("="))
-        return r = e.match(pc), n && r.length < 4 && (r[3] = 1), r;
+        return r = e.match(dc), n && r.length < 4 && (r[3] = 1), r;
     } else
       r = e.match(xl) || vr.transparent;
     r = r.map(Number);
   }
   return t && !v && (s = r[0] / rt, a = r[1] / rt, o = r[2] / rt, h = Math.max(s, a, o), f = Math.min(s, a, o), u = (h + f) / 2, h === f ? l = c = 0 : (d = h - f, c = u > 0.5 ? d / (2 - h - f) : d / (h + f), l = h === s ? (a - o) / d + (a < o ? 6 : 0) : h === a ? (o - s) / d + 2 : (s - a) / d + 4, l *= 60), r[0] = ~~(l + 0.5), r[1] = ~~(c * 100 + 0.5), r[2] = ~~(u * 100 + 0.5)), n && r.length < 4 && (r[3] = 1), r;
-}, Nc = function(e) {
+}, Oc = function(e) {
   var t = [], n = [], r = -1;
   return e.split(ei).forEach(function(s) {
     var a = s.match(Xi) || [];
@@ -25490,8 +25524,8 @@ var sn = {
   if (!s)
     return e;
   if (s = s.map(function(f) {
-    return (f = Oc(f, t, 1)) && a + (t ? f[0] + "," + f[1] + "%," + f[2] + "%," + f[3] : f.join(",")) + ")";
-  }), n && (u = Nc(e), l = n.c, l.join(r) !== u.c.join(r)))
+    return (f = Fc(f, t, 1)) && a + (t ? f[0] + "," + f[1] + "%," + f[2] + "%," + f[3] : f.join(",")) + ")";
+  }), n && (u = Oc(e), l = n.c, l.join(r) !== u.c.join(r)))
     for (c = e.replace(ei, "1").split(Xi), h = c.length - 1; o < h; o++)
       r += c[o] + (~l.indexOf(o) ? s.shift() || a + "0,0,0,0)" : (u.length ? u : s.length ? s : n).shift());
   if (!c)
@@ -25503,16 +25537,16 @@ var sn = {
   for (e in vr)
     i += "|" + e + "\\b";
   return new RegExp(i + ")", "gi");
-})(), Hv = /hsl[a]?\(/, zc = function(e) {
+})(), Hv = /hsl[a]?\(/, Nc = function(e) {
   var t = e.join(" "), n;
   if (ei.lastIndex = 0, ei.test(t))
-    return n = Hv.test(t), e[1] = yl(e[1], n), e[0] = yl(e[0], n, Nc(e[1])), !0;
-}, Dr, jt = (function() {
+    return n = Hv.test(t), e[1] = yl(e[1], n), e[0] = yl(e[0], n, Oc(e[1])), !0;
+}, Rr, jt = (function() {
   var i = Date.now, e = 500, t = 33, n = i(), r = n, s = 1e3 / 240, a = s, o = [], l, c, u, h, f, d, v = function g(m) {
-    var p = i() - r, T = m === !0, S, _, y, b;
-    if ((p > e || p < 0) && (n += p - t), r += p, y = r - n, S = y - a, (S > 0 || T) && (b = ++h.frame, f = y - h.time * 1e3, h.time = y = y / 1e3, a += S + (S >= s ? 4 : s - S), _ = 1), T || (l = c(g)), _)
+    var p = i() - r, T = m === !0, S, _, y, R;
+    if ((p > e || p < 0) && (n += p - t), r += p, y = r - n, S = y - a, (S > 0 || T) && (R = ++h.frame, f = y - h.time * 1e3, h.time = y = y / 1e3, a += S + (S >= s ? 4 : s - S), _ = 1), T || (l = c(g)), _)
       for (d = 0; d < o.length; d++)
-        o[d](y, f, b, m);
+        o[d](y, f, R, m);
   };
   return h = {
     time: 0,
@@ -25524,12 +25558,12 @@ var sn = {
       return f / (1e3 / (m || 60));
     },
     wake: function() {
-      gc && (!ba && ja() && (An = ba = window, $a = An.document || {}, an.gsap = Xt, (An.gsapVersions || (An.gsapVersions = [])).push(Xt.version), vc(_s || An.GreenSockGlobals || !An.gsap && An || {}), Uc.forEach(Fc)), u = typeof requestAnimationFrame < "u" && requestAnimationFrame, l && h.sleep(), c = u || function(m) {
+      mc && (!ba && ja() && (An = ba = window, $a = An.document || {}, an.gsap = Xt, (An.gsapVersions || (An.gsapVersions = [])).push(Xt.version), gc(vs || An.GreenSockGlobals || !An.gsap && An || {}), Bc.forEach(Uc)), u = typeof requestAnimationFrame < "u" && requestAnimationFrame, l && h.sleep(), c = u || function(m) {
         return setTimeout(m, a - h.time * 1e3 + 1 | 0);
-      }, Dr = 1, v(2));
+      }, Rr = 1, v(2));
     },
     sleep: function() {
-      (u ? cancelAnimationFrame : clearTimeout)(l), Dr = 0, c = br;
+      (u ? cancelAnimationFrame : clearTimeout)(l), Rr = 0, c = wr;
     },
     lagSmoothing: function(m, p) {
       e = m || 1 / 0, t = Math.min(p || 33, e);
@@ -25538,8 +25572,8 @@ var sn = {
       s = 1e3 / (m || 240), a = h.time * 1e3 + s;
     },
     add: function(m, p, T) {
-      var S = p ? function(_, y, b, C) {
-        m(_, y, b, C), h.remove(S);
+      var S = p ? function(_, y, R, C) {
+        m(_, y, R, C), h.remove(S);
       } : m;
       return h.remove(m), o[T ? "unshift" : "push"](S), nr(), S;
     },
@@ -25549,7 +25583,7 @@ var sn = {
     _listeners: o
   }, h;
 })(), nr = function() {
-  return !Dr && jt.wake();
+  return !Rr && jt.wake();
 }, Qe = {}, kv = /^[\d.\-M][\d.\-,\s]/, Vv = /["']/g, Wv = function(e) {
   for (var t = {}, n = e.substr(1, e.length - 3).split(":"), r = n[0], s = 1, a = n.length, o, l, c; s < a; s++)
     l = n[s], o = s !== a - 1 ? l.lastIndexOf(",") : l.length, c = l.substr(0, o), t[r] = isNaN(c) ? c.replace(Vv, "").trim() : +c, r = l.substr(o + 1).trim();
@@ -25559,7 +25593,7 @@ var sn = {
   return e.substring(t, ~r && r < n ? e.indexOf(")", n + 1) : n);
 }, Yv = function(e) {
   var t = (e + "").split("("), n = Qe[t[0]];
-  return n && t.length > 1 && n.config ? n.config.apply(null, ~e.indexOf("{") ? [Wv(t[1])] : Xv(e).split(",").map(Ec)) : Qe._CE && kv.test(e) ? Qe._CE("", e) : n;
+  return n && t.length > 1 && n.config ? n.config.apply(null, ~e.indexOf("{") ? [Wv(t[1])] : Xv(e).split(",").map(Sc)) : Qe._CE && kv.test(e) ? Qe._CE("", e) : n;
 }, Qv = function(e) {
   return function(t) {
     return 1 - e(1 - t);
@@ -25582,7 +25616,7 @@ var sn = {
     for (var l in s)
       Qe[a + (l === "easeIn" ? ".in" : l === "easeOut" ? ".out" : ".inOut")] = Qe[o + "." + l] = s[l];
   }), s;
-}, Gc = function(e) {
+}, zc = function(e) {
   return function(t) {
     return t < 0.5 ? (1 - e(1 - t * 2)) / 2 : 0.5 + e((t - 0.5) * 2) / 2;
   };
@@ -25591,7 +25625,7 @@ var sn = {
     return u === 1 ? 1 : r * Math.pow(2, -10 * u) * vv((u - a) * s) + 1;
   }, l = e === "out" ? o : e === "in" ? function(c) {
     return 1 - o(1 - c);
-  } : Gc(o);
+  } : zc(o);
   return s = wa / s, l.config = function(c, u) {
     return i(e, c, u);
   }, l;
@@ -25601,7 +25635,7 @@ var sn = {
     return a ? --a * a * ((t + 1) * a + t) + 1 : 0;
   }, r = e === "out" ? n : e === "in" ? function(s) {
     return 1 - n(1 - s);
-  } : Gc(n);
+  } : zc(n);
   return r.config = function(s) {
     return i(e, s);
   }, r;
@@ -25632,7 +25666,7 @@ yi("Expo", function(i) {
   return Math.pow(2, 10 * (i - 1)) * i + i * i * i * i * i * i * (1 - i);
 });
 yi("Circ", function(i) {
-  return -(fc(1 - i * i) - 1);
+  return -(hc(1 - i * i) - 1);
 });
 yi("Sine", function(i) {
   return i === 1 ? 1 : -gv(i * pv) + 1;
@@ -25643,19 +25677,19 @@ Qe.SteppedEase = Qe.steps = an.SteppedEase = {
     e === void 0 && (e = 1);
     var n = 1 / e, r = e + (t ? 0 : 1), s = t ? 1 : 0, a = 1 - st;
     return function(o) {
-      return ((r * Nr(0, a, o) | 0) + s) * n;
+      return ((r * Or(0, a, o) | 0) + s) * n;
     };
   }
 };
-Cr.ease = Qe["quad.out"];
+yr.ease = Qe["quad.out"];
 kt("onComplete,onUpdate,onStart,onRepeat,onReverseComplete,onInterrupt", function(i) {
   return no += i + "," + i + "Params,";
 });
-var Hc = function(e, t) {
-  this.id = mv++, e._gsap = this, this.target = e, this.harness = t, this.get = t ? t.get : Ac, this.set = t ? t.getSetter : lo;
-}, Pr = /* @__PURE__ */ (function() {
+var Gc = function(e, t) {
+  this.id = mv++, e._gsap = this, this.target = e, this.harness = t, this.get = t ? t.get : xc, this.set = t ? t.getSetter : lo;
+}, Dr = /* @__PURE__ */ (function() {
   function i(t) {
-    this.vars = t, this._delay = +t.delay || 0, (this._repeat = t.repeat === 1 / 0 ? -2 : t.repeat || 0) && (this._rDelay = t.repeatDelay || 0, this._yoyo = !!t.yoyo || !!t.yoyoEase), this._ts = 1, tr(this, +t.duration, 1, 1), this.data = t.data, ct && (this._ctx = ct, ct.data.push(this)), Dr || jt.wake();
+    this.vars = t, this._delay = +t.delay || 0, (this._repeat = t.repeat === 1 / 0 ? -2 : t.repeat || 0) && (this._rDelay = t.repeatDelay || 0, this._yoyo = !!t.yoyo || !!t.yoyoEase), this._ts = 1, tr(this, +t.duration, 1, 1), this.data = t.data, ct && (this._ctx = ct, ct.data.push(this)), Rr || jt.wake();
   }
   var e = i.prototype;
   return e.delay = function(n) {
@@ -25669,11 +25703,11 @@ var Hc = function(e, t) {
       return this._tTime;
     var s = this._dp;
     if (s && s.smoothChildTiming && this._ts) {
-      for (bs(this, n), !s._dp || s.parent || yc(s, this); s && s.parent; )
+      for (bs(this, n), !s._dp || s.parent || Tc(s, this); s && s.parent; )
         s.parent._time !== s._start + (s._ts >= 0 ? s._tTime / s._ts : (s.totalDuration() - s._tTime) / -s._ts) && s.totalTime(s._tTime, !0), s = s.parent;
       !this.parent && this._dp.autoRemoveChildren && (this._ts > 0 && n < this._tDur || this._ts < 0 && n > 0 || !this._tDur && !n) && En(this._dp, this, this._start - this._delay);
     }
-    return (this._tTime !== n || !this._dur && !r || this._initted && Math.abs(this._zTime) === st || !this._initted && this._dur && n || !n && !this._initted && (this.add || this._ptLookup)) && (this._ts || (this._pTime = n), Sc(this, n, r)), this;
+    return (this._tTime !== n || !this._dur && !r || this._initted && Math.abs(this._zTime) === st || !this._initted && this._dur && n || !n && !this._initted && (this.add || this._ptLookup)) && (this._ts || (this._pTime = n), Ac(this, n, r)), this;
   }, e.time = function(n, r) {
     return arguments.length ? this.totalTime(Math.min(this.totalDuration(), n + El(this)) % (this._dur + this._rDelay) || (n ? this._dur : 0), r) : this._time;
   }, e.totalProgress = function(n, r) {
@@ -25688,8 +25722,8 @@ var Hc = function(e, t) {
       return this._rts === -st ? 0 : this._rts;
     if (this._rts === n)
       return this;
-    var s = this.parent && this._ts ? Ss(this.parent._time, this) : this._tTime;
-    return this._rts = +n || 0, this._ts = this._ps || n === -st ? 0 : this._rts, this.totalTime(Nr(-Math.abs(this._delay), this.totalDuration(), s), r !== !1), ws(this), wv(this);
+    var s = this.parent && this._ts ? As(this.parent._time, this) : this._tTime;
+    return this._rts = +n || 0, this._ts = this._ps || n === -st ? 0 : this._rts, this.totalTime(Or(-Math.abs(this._delay), this.totalDuration(), s), r !== !1), ws(this), wv(this);
   }, e.paused = function(n) {
     return arguments.length ? (this._ps !== n && (this._ps = n, n ? (this._pTime = this._tTime || Math.max(-this._delay, this.rawTime()), this._ts = this._act = 0) : (nr(), this._ts = this._rts, this.totalTime(this.parent && !this.parent.smoothChildTiming ? this.rawTime() : this._tTime || this._pTime, this.progress() === 1 && Math.abs(this._zTime) !== st && (this._tTime -= st)))), this) : this._ps;
   }, e.startTime = function(n) {
@@ -25703,7 +25737,7 @@ var Hc = function(e, t) {
     return this._start + (Ht(n) ? this.totalDuration() : this.duration()) / Math.abs(this._ts || 1);
   }, e.rawTime = function(n) {
     var r = this.parent || this._dp;
-    return r ? n && (!this._ts || this._repeat && this._time && this.totalProgress() < 1) ? this._tTime % (this._dur + this._rDelay) : this._ts ? Ss(r.rawTime(n), this) : this._tTime : this._tTime;
+    return r ? n && (!this._ts || this._repeat && this._time && this.totalProgress() < 1) ? this._tTime % (this._dur + this._rDelay) : this._ts ? As(r.rawTime(n), this) : this._tTime : this._tTime;
   }, e.revert = function(n) {
     n === void 0 && (n = Mv);
     var r = Dt;
@@ -25747,7 +25781,7 @@ var Hc = function(e, t) {
   }, e.then = function(n) {
     var r = this, s = r._prom;
     return new Promise(function(a) {
-      var o = gt(n) ? n : Mc, l = function() {
+      var o = gt(n) ? n : Ec, l = function() {
         var u = r.then;
         r.then = null, s && s(), gt(o) && (o = o(r)) && (o.then || o === r) && (r.then = u), a(o), r.then = u;
       };
@@ -25757,7 +25791,7 @@ var Hc = function(e, t) {
     gr(this);
   }, i;
 })();
-on(Pr.prototype, {
+on(Dr.prototype, {
   _time: 0,
   _start: 0,
   _end: 0,
@@ -25778,10 +25812,10 @@ on(Pr.prototype, {
   _rts: 1
 });
 var Gt = /* @__PURE__ */ (function(i) {
-  hc(e, i);
+  uc(e, i);
   function e(n, r) {
     var s;
-    return n === void 0 && (n = {}), s = i.call(this, n) || this, s.labels = {}, s.smoothChildTiming = !!n.smoothChildTiming, s.autoRemoveChildren = !!n.autoRemoveChildren, s._sort = Ht(n.sortChildren), dt && En(n.parent || dt, Bn(s), r), n.reversed && s.reverse(), n.paused && s.paused(!0), n.scrollTrigger && Cc(Bn(s), n.scrollTrigger), s;
+    return n === void 0 && (n = {}), s = i.call(this, n) || this, s.labels = {}, s.smoothChildTiming = !!n.smoothChildTiming, s.autoRemoveChildren = !!n.autoRemoveChildren, s._sort = Ht(n.sortChildren), dt && En(n.parent || dt, Bn(s), r), n.reversed && s.reverse(), n.paused && s.paused(!0), n.scrollTrigger && yc(Bn(s), n.scrollTrigger), s;
   }
   var t = e.prototype;
   return t.to = function(r, s, a) {
@@ -25801,16 +25835,16 @@ var Gt = /* @__PURE__ */ (function(i) {
   }, t.staggerFromTo = function(r, s, a, o, l, c, u, h) {
     return o.startAt = a, Ar(o).immediateRender = Ht(o.immediateRender), this.staggerTo(r, s, o, l, c, u, h);
   }, t.render = function(r, s, a) {
-    var o = this._time, l = this._dirty ? this.totalDuration() : this._tDur, c = this._dur, u = r <= 0 ? 0 : ft(r), h = this._zTime < 0 != r < 0 && (this._initted || !c), f, d, v, g, m, p, T, S, _, y, b, C;
+    var o = this._time, l = this._dirty ? this.totalDuration() : this._tDur, c = this._dur, u = r <= 0 ? 0 : ft(r), h = this._zTime < 0 != r < 0 && (this._initted || !c), f, d, v, g, m, p, T, S, _, y, R, C;
     if (this !== dt && u > l && r >= 0 && (u = l), u !== this._tTime || a || h) {
       if (o !== this._time && c && (u += this._time - o, r += this._time - o), f = u, _ = this._start, S = this._ts, p = !S, h && (c || (o = this._zTime), (r || !s) && (this._zTime = r)), this._repeat) {
-        if (b = this._yoyo, m = c + this._rDelay, this._repeat < -1 && r < 0)
+        if (R = this._yoyo, m = c + this._rDelay, this._repeat < -1 && r < 0)
           return this.totalTime(m * 100 + r, s, a);
-        if (f = ft(u % m), u === l ? (g = this._repeat, f = c) : (y = ft(u / m), g = ~~y, g && g === y && (f = c, g--), f > c && (f = c)), y = er(this._tTime, m), !o && this._tTime && y !== g && this._tTime - y * m - this._dur <= 0 && (y = g), b && g & 1 && (f = c - f, C = 1), g !== y && !this._lock) {
-          var D = b && y & 1, x = D === (b && g & 1);
-          if (g < y && (D = !D), o = D ? 0 : u % c ? c : u, this._lock = 1, this.render(o || (C ? 0 : ft(g * m)), s, !c)._lock = 0, this._tTime = u, !s && this.parent && en(this, "onRepeat"), this.vars.repeatRefresh && !C && (this.invalidate()._lock = 1, y = g), o && o !== this._time || p !== !this._ts || this.vars.onRepeat && !this.parent && !this._act)
+        if (f = ft(u % m), u === l ? (g = this._repeat, f = c) : (y = ft(u / m), g = ~~y, g && g === y && (f = c, g--), f > c && (f = c)), y = er(this._tTime, m), !o && this._tTime && y !== g && this._tTime - y * m - this._dur <= 0 && (y = g), R && g & 1 && (f = c - f, C = 1), g !== y && !this._lock) {
+          var P = R && y & 1, x = P === (R && g & 1);
+          if (g < y && (P = !P), o = P ? 0 : u % c ? c : u, this._lock = 1, this.render(o || (C ? 0 : ft(g * m)), s, !c)._lock = 0, this._tTime = u, !s && this.parent && en(this, "onRepeat"), this.vars.repeatRefresh && !C && (this.invalidate()._lock = 1, y = g), o && o !== this._time || p !== !this._ts || this.vars.onRepeat && !this.parent && !this._act)
             return this;
-          if (c = this._dur, l = this._tDur, x && (this._lock = 2, o = D ? c : -1e-4, this.render(o, !0), this.vars.repeatRefresh && !C && this.invalidate()), this._lock = 0, !this._ts && !p)
+          if (c = this._dur, l = this._tDur, x && (this._lock = 2, o = P ? c : -1e-4, this.render(o, !0), this.vars.repeatRefresh && !C && this.invalidate()), this._lock = 0, !this._ts && !p)
             return this;
         }
       }
@@ -25849,7 +25883,7 @@ var Gt = /* @__PURE__ */ (function(i) {
     return this;
   }, t.add = function(r, s) {
     var a = this;
-    if (zn(s) || (s = hn(this, s, r)), !(r instanceof Pr)) {
+    if (zn(s) || (s = hn(this, s, r)), !(r instanceof Dr)) {
       if (Ut(r))
         return r.forEach(function(o) {
           return a.add(o, s);
@@ -25880,7 +25914,7 @@ var Gt = /* @__PURE__ */ (function(i) {
   }, t.removeLabel = function(r) {
     return delete this.labels[r], this;
   }, t.addPause = function(r, s, a) {
-    var o = At.delayedCall(0, s || br, a);
+    var o = At.delayedCall(0, s || wr, a);
     return o.data = "isPause", this._hasPause = 1, En(this, o, hn(this, r));
   }, t.removePause = function(r) {
     var s = this._first;
@@ -25956,7 +25990,7 @@ var Gt = /* @__PURE__ */ (function(i) {
     }
     return a._tDur;
   }, e.updateRoot = function(r) {
-    if (dt._ts && (Sc(dt, Ss(r, dt)), xc = jt.frame), jt.frame >= Al) {
+    if (dt._ts && (Ac(dt, As(r, dt)), _c = jt.frame), jt.frame >= Al) {
       Al += sn.autoSleep || 120;
       var s = dt._first;
       if ((!s || !s._ts) && sn.autoSleep && jt._listeners.length < 2) {
@@ -25966,15 +26000,15 @@ var Gt = /* @__PURE__ */ (function(i) {
       }
     }
   }, e;
-})(Pr);
+})(Dr);
 on(Gt.prototype, {
   _lock: 0,
   _hasPause: 0,
   _forcing: 0
 });
 var qv = function(e, t, n, r, s, a, o) {
-  var l = new Vt(this._pt, e, t, 0, 1, Qc, null, s), c = 0, u = 0, h, f, d, v, g, m, p, T;
-  for (l.b = n, l.e = r, n += "", r += "", (p = ~r.indexOf("random(")) && (r = Rr(r)), a && (T = [n, r], a(T, e, t), n = T[0], r = T[1]), f = n.match(da) || []; h = da.exec(r); )
+  var l = new Vt(this._pt, e, t, 0, 1, Yc, null, s), c = 0, u = 0, h, f, d, v, g, m, p, T;
+  for (l.b = n, l.e = r, n += "", r += "", (p = ~r.indexOf("random(")) && (r = br(r)), a && (T = [n, r], a(T, e, t), n = T[0], r = T[1]), f = n.match(da) || []; h = da.exec(r); )
     v = h[0], g = r.substring(c, h.index), d ? d = (d + 1) % 5 : g.substr(-5) === "rgba(" && (d = 1), v !== f[u++] && (m = parseFloat(f[u - 1]) || 0, l._pt = {
       _next: l._pt,
       p: g || u === 1 ? g : ",",
@@ -25983,29 +26017,29 @@ var qv = function(e, t, n, r, s, a, o) {
       c: v.charAt(1) === "=" ? qi(m, v) - m : parseFloat(v) - m,
       m: d && d < 4 ? Math.round : 0
     }, c = da.lastIndex);
-  return l.c = c < r.length ? r.substring(c, r.length) : "", l.fp = o, (mc.test(r) || p) && (l.e = 0), this._pt = l, l;
+  return l.c = c < r.length ? r.substring(c, r.length) : "", l.fp = o, (pc.test(r) || p) && (l.e = 0), this._pt = l, l;
 }, so = function(e, t, n, r, s, a, o, l, c, u) {
   gt(r) && (r = r(s || 0, e, a));
-  var h = e[t], f = n !== "get" ? n : gt(h) ? c ? e[t.indexOf("set") || !gt(e["get" + t.substr(3)]) ? t : "get" + t.substr(3)](c) : e[t]() : h, d = gt(h) ? c ? $v : Xc : oo, v;
-  if (bt(r) && (~r.indexOf("random(") && (r = Rr(r)), r.charAt(1) === "=" && (v = qi(f, r) + (Bt(f) || 0), (v || v === 0) && (r = v))), !u || f !== r || Ua)
-    return !isNaN(f * r) && r !== "" ? (v = new Vt(this._pt, e, t, +f || 0, r - (f || 0), typeof h == "boolean" ? t_ : Yc, 0, d), c && (v.fp = c), o && v.modifier(o, this, e), this._pt = v) : (!h && !(t in e) && eo(t, r), qv.call(this, e, t, f, r, d, l || sn.stringFilter, c));
+  var h = e[t], f = n !== "get" ? n : gt(h) ? c ? e[t.indexOf("set") || !gt(e["get" + t.substr(3)]) ? t : "get" + t.substr(3)](c) : e[t]() : h, d = gt(h) ? c ? $v : Wc : oo, v;
+  if (bt(r) && (~r.indexOf("random(") && (r = br(r)), r.charAt(1) === "=" && (v = qi(f, r) + (Bt(f) || 0), (v || v === 0) && (r = v))), !u || f !== r || Ua)
+    return !isNaN(f * r) && r !== "" ? (v = new Vt(this._pt, e, t, +f || 0, r - (f || 0), typeof h == "boolean" ? t_ : Xc, 0, d), c && (v.fp = c), o && v.modifier(o, this, e), this._pt = v) : (!h && !(t in e) && eo(t, r), qv.call(this, e, t, f, r, d, l || sn.stringFilter, c));
 }, Kv = function(e, t, n, r, s) {
-  if (gt(e) && (e = Er(e, s, t, n, r)), !Cn(e) || e.style && e.nodeType || Ut(e) || dc(e))
+  if (gt(e) && (e = Er(e, s, t, n, r)), !Cn(e) || e.style && e.nodeType || Ut(e) || fc(e))
     return bt(e) ? Er(e, s, t, n, r) : e;
   var a = {}, o;
   for (o in e)
     a[o] = Er(e[o], s, t, n, r);
   return a;
-}, kc = function(e, t, n, r, s, a) {
+}, Hc = function(e, t, n, r, s, a) {
   var o, l, c, u;
   if (Jt[e] && (o = new Jt[e]()).init(s, o.rawVars ? t[e] : Kv(t[e], r, s, a, n), n, r, a) !== !1 && (n._pt = l = new Vt(n._pt, s, e, 0, 1, o.render, o, 0, o.priority), n !== Yi))
     for (c = n._ptLookup[n._targets.indexOf(s)], u = o._props.length; u--; )
       c[o._props[u]] = l;
   return o;
 }, Jn, Ua, ao = function i(e, t, n) {
-  var r = e.vars, s = r.ease, a = r.startAt, o = r.immediateRender, l = r.lazy, c = r.onUpdate, u = r.runBackwards, h = r.yoyoEase, f = r.keyframes, d = r.autoRevert, v = e._dur, g = e._startAt, m = e._targets, p = e.parent, T = p && p.data === "nested" ? p.vars.targets : m, S = e._overwrite === "auto" && !Ja, _ = e.timeline, y = r.easeReverse || h, b, C, D, x, E, L, z, H, Q, Y, O, R, I;
-  if (_ && (!f || !s) && (s = "none"), e._ease = Mi(s, Cr.ease), e._rEase = y && (Mi(y) || e._ease), e._from = !_ && !!r.runBackwards, e._from && (e.ratio = 1), !_ || f && !r.stagger) {
-    if (H = m[0] ? Si(m[0]).harness : 0, R = H && r[H.prop], b = As(r, to), g && (g._zTime < 0 && g.progress(1), t < 0 && u && o && !d ? g.render(-1, !0) : g.revert(u && v ? hs : Ev), g._lazy = 0), a) {
+  var r = e.vars, s = r.ease, a = r.startAt, o = r.immediateRender, l = r.lazy, c = r.onUpdate, u = r.runBackwards, h = r.yoyoEase, f = r.keyframes, d = r.autoRevert, v = e._dur, g = e._startAt, m = e._targets, p = e.parent, T = p && p.data === "nested" ? p.vars.targets : m, S = e._overwrite === "auto" && !Ja, _ = e.timeline, y = r.easeReverse || h, R, C, P, x, E, L, z, V, Q, Y, O, w, D;
+  if (_ && (!f || !s) && (s = "none"), e._ease = Mi(s, yr.ease), e._rEase = y && (Mi(y) || e._ease), e._from = !_ && !!r.runBackwards, e._from && (e.ratio = 1), !_ || f && !r.stagger) {
+    if (V = m[0] ? Si(m[0]).harness : 0, w = V && r[V.prop], R = xs(r, to), g && (g._zTime < 0 && g.progress(1), t < 0 && u && o && !d ? g.render(-1, !0) : g.revert(u && v ? us : Ev), g._lazy = 0), a) {
       if (ni(e._startAt = At.set(m, on({
         data: "isStart",
         overwrite: !1,
@@ -26018,12 +26052,12 @@ var qv = function(e, t, n, r, s, a, o) {
           return en(e, "onUpdate");
         },
         stagger: 0
-      }, a))), e._startAt._dp = 0, e._startAt._sat = e, t < 0 && (Dt || !o && !d) && e._startAt.revert(hs), o && v && t <= 0 && n <= 0) {
+      }, a))), e._startAt._dp = 0, e._startAt._sat = e, t < 0 && (Dt || !o && !d) && e._startAt.revert(us), o && v && t <= 0 && n <= 0) {
         t && (e._zTime = t);
         return;
       }
     } else if (u && v && !g) {
-      if (t && (o = !1), D = on({
+      if (t && (o = !1), P = on({
         overwrite: !1,
         data: "isFromStart",
         //we tag the tween with as "isFromStart" so that if [inside a plugin] we need to only do something at the very END of a tween, we have a way of identifying this tween as merely the one that's setting the beginning values for a "from()" tween. For example, clearProps in CSSPlugin should only get applied at the very END of a tween and without this tag, from(...{height:100, clearProps:"height", delay:1}) would wipe the height at the beginning of the tween and after 1 second, it'd kick back in.
@@ -26033,22 +26067,22 @@ var qv = function(e, t, n, r, s, a, o) {
         stagger: 0,
         parent: p
         //ensures that nested tweens that had a stagger are handled properly, like gsap.from(".class", {y: gsap.utils.wrap([-100,100]), stagger: 0.5})
-      }, b), R && (D[H.prop] = R), ni(e._startAt = At.set(m, D)), e._startAt._dp = 0, e._startAt._sat = e, t < 0 && (Dt ? e._startAt.revert(hs) : e._startAt.render(-1, !0)), e._zTime = t, !o)
+      }, R), w && (P[V.prop] = w), ni(e._startAt = At.set(m, P)), e._startAt._dp = 0, e._startAt._sat = e, t < 0 && (Dt ? e._startAt.revert(us) : e._startAt.render(-1, !0)), e._zTime = t, !o)
         i(e._startAt, st, st);
       else if (!t)
         return;
     }
     for (e._pt = e._ptCache = 0, l = v && Ht(l) || l && !v, C = 0; C < m.length; C++) {
-      if (E = m[C], z = E._gsap || io(m)[C]._gsap, e._ptLookup[C] = Y = {}, Ra[z.id] && $n.length && xs(), O = T === m ? C : T.indexOf(E), H && (Q = new H()).init(E, R || b, e, O, T) !== !1 && (e._pt = x = new Vt(e._pt, E, Q.name, 0, 1, Q.render, Q, 0, Q.priority), Q._props.forEach(function(k) {
+      if (E = m[C], z = E._gsap || io(m)[C]._gsap, e._ptLookup[C] = Y = {}, Ra[z.id] && $n.length && _s(), O = T === m ? C : T.indexOf(E), V && (Q = new V()).init(E, w || R, e, O, T) !== !1 && (e._pt = x = new Vt(e._pt, E, Q.name, 0, 1, Q.render, Q, 0, Q.priority), Q._props.forEach(function(k) {
         Y[k] = x;
-      }), Q.priority && (L = 1)), !H || R)
-        for (D in b)
-          Jt[D] && (Q = kc(D, b, e, O, E, T)) ? Q.priority && (L = 1) : Y[D] = x = so.call(e, E, D, "get", b[D], O, T, 0, r.stringFilter);
-      e._op && e._op[C] && e.kill(E, e._op[C]), S && e._pt && (Jn = e, dt.killTweensOf(E, Y, e.globalTime(t)), I = !e.parent, Jn = 0), e._pt && l && (Ra[z.id] = 1);
+      }), Q.priority && (L = 1)), !V || w)
+        for (P in R)
+          Jt[P] && (Q = Hc(P, R, e, O, E, T)) ? Q.priority && (L = 1) : Y[P] = x = so.call(e, E, P, "get", R[P], O, T, 0, r.stringFilter);
+      e._op && e._op[C] && e.kill(E, e._op[C]), S && e._pt && (Jn = e, dt.killTweensOf(E, Y, e.globalTime(t)), D = !e.parent, Jn = 0), e._pt && l && (Ra[z.id] = 1);
     }
-    L && qc(e), e._onInit && e._onInit(e);
+    L && Qc(e), e._onInit && e._onInit(e);
   }
-  e._onUpdate = c, e._initted = (!e._op || e._pt) && !I, f && t <= 0 && _.render(fn, !0, !0);
+  e._onUpdate = c, e._initted = (!e._op || e._pt) && !D, f && t <= 0 && _.render(fn, !0, !0);
 }, Jv = function(e, t, n, r, s, a, o, l) {
   var c = (e._pt && e._ptCache || (e._ptCache = {}))[t], u, h, f, d;
   if (!c)
@@ -26057,7 +26091,7 @@ var qv = function(e, t, n, r, s, a, o) {
         for (u = u.d._pt; u && u.p !== t && u.fp !== t; )
           u = u._next;
       if (!u)
-        return Ua = 1, e.vars[t] = "+=0", ao(e, o), Ua = 0, l ? wr(t + " not eligible for reset. Try splitting into individual properties") : 1;
+        return Ua = 1, e.vars[t] = "+=0", ao(e, o), Ua = 0, l ? Cr(t + " not eligible for reset. Try splitting into individual properties") : 1;
       c.push(u);
     }
   for (d = c.length; d--; )
@@ -26090,36 +26124,36 @@ var qv = function(e, t, n, r, s, a, o) {
         e: s
       });
 }, Er = function(e, t, n, r, s) {
-  return gt(e) ? e.call(t, n, r, s) : bt(e) && ~e.indexOf("random(") ? Rr(e) : e;
-}, Vc = no + "repeat,repeatDelay,yoyo,repeatRefresh,yoyoEase,easeReverse,autoRevert", Wc = {};
-kt(Vc + ",id,stagger,delay,duration,paused,scrollTrigger", function(i) {
-  return Wc[i] = 1;
+  return gt(e) ? e.call(t, n, r, s) : bt(e) && ~e.indexOf("random(") ? br(e) : e;
+}, kc = no + "repeat,repeatDelay,yoyo,repeatRefresh,yoyoEase,easeReverse,autoRevert", Vc = {};
+kt(kc + ",id,stagger,delay,duration,paused,scrollTrigger", function(i) {
+  return Vc[i] = 1;
 });
 var At = /* @__PURE__ */ (function(i) {
-  hc(e, i);
+  uc(e, i);
   function e(n, r, s, a) {
     var o;
     typeof r == "number" && (s.duration = r, r = s, s = null), o = i.call(this, a ? r : Ar(r)) || this;
-    var l = o.vars, c = l.duration, u = l.delay, h = l.immediateRender, f = l.stagger, d = l.overwrite, v = l.keyframes, g = l.defaults, m = l.scrollTrigger, p = r.parent || dt, T = (Ut(n) || dc(n) ? zn(n[0]) : "length" in r) ? [n] : dn(n), S, _, y, b, C, D, x, E;
-    if (o._targets = T.length ? io(T) : wr("GSAP target " + n + " not found. https://gsap.com", !sn.nullTargetWarn) || [], o._ptLookup = [], o._overwrite = d, v || f || cs(c) || cs(u)) {
+    var l = o.vars, c = l.duration, u = l.delay, h = l.immediateRender, f = l.stagger, d = l.overwrite, v = l.keyframes, g = l.defaults, m = l.scrollTrigger, p = r.parent || dt, T = (Ut(n) || fc(n) ? zn(n[0]) : "length" in r) ? [n] : dn(n), S, _, y, R, C, P, x, E;
+    if (o._targets = T.length ? io(T) : Cr("GSAP target " + n + " not found. https://gsap.com", !sn.nullTargetWarn) || [], o._ptLookup = [], o._overwrite = d, v || f || ls(c) || ls(u)) {
       r = o.vars;
       var L = r.easeReverse || r.yoyoEase;
       if (S = o.timeline = new Gt({
         data: "nested",
         defaults: g || {},
         targets: p && p.data === "nested" ? p.vars.targets : T
-      }), S.kill(), S.parent = S._dp = Bn(o), S._start = 0, f || cs(c) || cs(u)) {
-        if (b = T.length, x = f && Dc(f), Cn(f))
+      }), S.kill(), S.parent = S._dp = Bn(o), S._start = 0, f || ls(c) || ls(u)) {
+        if (R = T.length, x = f && Rc(f), Cn(f))
           for (C in f)
-            ~Vc.indexOf(C) && (E || (E = {}), E[C] = f[C]);
-        for (_ = 0; _ < b; _++)
-          y = As(r, Wc), y.stagger = 0, L && (y.easeReverse = L), E && $i(y, E), D = T[_], y.duration = +Er(c, Bn(o), _, D, T), y.delay = (+Er(u, Bn(o), _, D, T) || 0) - o._delay, !f && b === 1 && y.delay && (o._delay = u = y.delay, o._start += u, y.delay = 0), S.to(D, y, x ? x(_, D, T) : 0), S._ease = Qe.none;
+            ~kc.indexOf(C) && (E || (E = {}), E[C] = f[C]);
+        for (_ = 0; _ < R; _++)
+          y = xs(r, Vc), y.stagger = 0, L && (y.easeReverse = L), E && $i(y, E), P = T[_], y.duration = +Er(c, Bn(o), _, P, T), y.delay = (+Er(u, Bn(o), _, P, T) || 0) - o._delay, !f && R === 1 && y.delay && (o._delay = u = y.delay, o._start += u, y.delay = 0), S.to(P, y, x ? x(_, P, T) : 0), S._ease = Qe.none;
         S.duration() ? c = u = 0 : o.timeline = 0;
       } else if (v) {
         Ar(on(S.vars.defaults, {
           ease: "none"
         })), S._ease = Mi(v.ease || r.ease || "none");
-        var z = 0, H, Q, Y;
+        var z = 0, V, Q, Y;
         if (Ut(v))
           v.forEach(function(O) {
             return S.to(T, O, ">");
@@ -26129,12 +26163,12 @@ var At = /* @__PURE__ */ (function(i) {
           for (C in v)
             C === "ease" || C === "easeEach" || jv(C, v[C], y, v.easeEach);
           for (C in y)
-            for (H = y[C].sort(function(O, R) {
-              return O.t - R.t;
-            }), z = 0, _ = 0; _ < H.length; _++)
-              Q = H[_], Y = {
+            for (V = y[C].sort(function(O, w) {
+              return O.t - w.t;
+            }), z = 0, _ = 0; _ < V.length; _++)
+              Q = V[_], Y = {
                 ease: Q.e,
-                duration: (Q.t - (_ ? H[_ - 1].t : 0)) / 100 * c
+                duration: (Q.t - (_ ? V[_ - 1].t : 0)) / 100 * c
               }, Y[C] = Q.v, S.to(T, Y, z), z += Y.duration;
           S.duration() < c && S.to({}, {
             duration: c - S.duration()
@@ -26144,7 +26178,7 @@ var At = /* @__PURE__ */ (function(i) {
       c || o.duration(c = S.duration());
     } else
       o.timeline = 0;
-    return d === !0 && !Ja && (Jn = Bn(o), dt.killTweensOf(T), Jn = 0), En(p, Bn(o), s), r.reversed && o.reverse(), r.paused && o.paused(!0), (h || !c && !v && o._start === ft(p._time) && Ht(h) && bv(Bn(o)) && p.data !== "nested") && (o._tTime = -st, o.render(Math.max(0, -u) || 0)), m && Cc(Bn(o), m), o;
+    return d === !0 && !Ja && (Jn = Bn(o), dt.killTweensOf(T), Jn = 0), En(p, Bn(o), s), r.reversed && o.reverse(), r.paused && o.paused(!0), (h || !c && !v && o._start === ft(p._time) && Ht(h) && bv(Bn(o)) && p.data !== "nested") && (o._tTime = -st, o.render(Math.max(0, -u) || 0)), m && yc(Bn(o), m), o;
   }
   var t = e.prototype;
   return t.render = function(r, s, a) {
@@ -26160,7 +26194,7 @@ var At = /* @__PURE__ */ (function(i) {
         v !== m && this.vars.repeatRefresh && !p && !this._lock && f !== g && this._initted && (this._lock = a = 1, this.render(ft(g * v), !0).invalidate()._lock = 0);
       }
       if (!this._initted) {
-        if (wc(this, u ? r : f, a, s, h))
+        if (Cc(this, u ? r : f, a, s, h))
           return this._tTime = 0, this;
         if (o !== this._time && !(a && this.vars.repeatRefresh && v !== m))
           return this;
@@ -26188,9 +26222,9 @@ var At = /* @__PURE__ */ (function(i) {
   }, t.invalidate = function(r) {
     return (!r || !this.vars.runBackwards) && (this._startAt = 0), this._pt = this._op = this._onUpdate = this._lazy = this.ratio = 0, this._ptLookup = [], this.timeline && this.timeline.invalidate(r), i.prototype.invalidate.call(this, r);
   }, t.resetTo = function(r, s, a, o, l) {
-    Dr || jt.wake(), this._ts || this.play();
+    Rr || jt.wake(), this._ts || this.play();
     var c = Math.min(this._dur, (this._dp._time - this._start) * this._ts), u;
-    return this._initted || ao(this, c), u = this._ease(c / this._dur), Jv(this, r, s, a, o, u, c, l) ? this.resetTo(r, s, a, o, 1) : (bs(this, 0), this.parent || Tc(this._dp, this, "_first", "_last", this._dp._sort ? "_start" : 0), this.render(0));
+    return this._initted || ao(this, c), u = this._ease(c / this._dur), Jv(this, r, s, a, o, u, c, l) ? this.resetTo(r, s, a, o, 1) : (bs(this, 0), this.parent || Mc(this._dp, this, "_first", "_last", this._dp._sort ? "_start" : 0), this.render(0));
   }, t.kill = function(r, s) {
     if (s === void 0 && (s = "all"), !r && (!s || s === "all"))
       return this._lazy = this._pt = 0, this.parent ? gr(this) : this.scrollTrigger && this.scrollTrigger.kill(!!Dt), this;
@@ -26233,7 +26267,7 @@ var At = /* @__PURE__ */ (function(i) {
   }, e.killTweensOf = function(r, s, a) {
     return dt.killTweensOf(r, s, a);
   }, e;
-})(Pr);
+})(Dr);
 on(At.prototype, {
   _targets: [],
   _lazy: 0,
@@ -26249,19 +26283,19 @@ kt("staggerTo,staggerFrom,staggerFromTo", function(i) {
 });
 var oo = function(e, t, n) {
   return e[t] = n;
-}, Xc = function(e, t, n) {
+}, Wc = function(e, t, n) {
   return e[t](n);
 }, $v = function(e, t, n, r) {
   return e[t](r.fp, n);
 }, e_ = function(e, t, n) {
   return e.setAttribute(t, n);
 }, lo = function(e, t) {
-  return gt(e[t]) ? Xc : Za(e[t]) && e.setAttribute ? e_ : oo;
-}, Yc = function(e, t) {
+  return gt(e[t]) ? Wc : Za(e[t]) && e.setAttribute ? e_ : oo;
+}, Xc = function(e, t) {
   return t.set(t.t, t.p, Math.round((t.s + t.c * e) * 1e6) / 1e6, t);
 }, t_ = function(e, t) {
   return t.set(t.t, t.p, !!(t.s + t.c * e), t);
-}, Qc = function(e, t) {
+}, Yc = function(e, t) {
   var n = t._pt, r = "";
   if (!e && t.b)
     r = t.b;
@@ -26285,7 +26319,7 @@ var oo = function(e, t, n) {
   return !n;
 }, r_ = function(e, t, n, r) {
   r.mSet(e, t, r.m.call(r.tween, n, r.mt), r);
-}, qc = function(e) {
+}, Qc = function(e) {
   for (var t = e._pt, n, r, s, a; t; ) {
     for (n = t._next, r = s; r && r.pr > t.pr; )
       r = r._next;
@@ -26294,7 +26328,7 @@ var oo = function(e, t, n) {
   e._pt = s;
 }, Vt = /* @__PURE__ */ (function() {
   function i(t, n, r, s, a, o, l, c, u) {
-    this.t = n, this.s = s, this.c = a, this.p = r, this.r = o || Yc, this.d = l || this, this.set = c || oo, this.pr = u || 0, this._next = t, t && (t._prev = this);
+    this.t = n, this.s = s, this.c = a, this.p = r, this.r = o || Xc, this.d = l || this, this.set = c || oo, this.pr = u || 0, this._next = t, t && (t._prev = this);
   }
   var e = i.prototype;
   return e.modifier = function(n, r, s) {
@@ -26308,14 +26342,14 @@ an.TweenMax = an.TweenLite = At;
 an.TimelineLite = an.TimelineMax = Gt;
 dt = new Gt({
   sortChildren: !1,
-  defaults: Cr,
+  defaults: yr,
   autoRemoveChildren: !0,
   id: "root",
   smoothChildTiming: !0
 });
-sn.stringFilter = zc;
-var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
-  return (ds[e] || s_).map(function(t) {
+sn.stringFilter = Nc;
+var Ti = [], fs = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
+  return (fs[e] || s_).map(function(t) {
     return t();
   });
 }, Fa = function() {
@@ -26330,7 +26364,7 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
       return n.add(null, r);
     });
   }), Cl = e, _a("matchMedia"));
-}, Kc = /* @__PURE__ */ (function() {
+}, qc = /* @__PURE__ */ (function() {
   function i(t, n) {
     this.selector = n && La(n), this.data = [], this._r = [], this.isReverted = !1, this.id = a_++, t && this.add(t);
   }
@@ -26392,7 +26426,7 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
     Cn(n) || (n = {
       matches: n
     });
-    var a = new Kc(0, s || this.scope), o = a.conditions = {}, l, c, u;
+    var a = new qc(0, s || this.scope), o = a.conditions = {}, l, c, u;
     ct && !a.selector && (a.selector = ct.selector), this.contexts.push(a), r = a.add("onMatch", r), a.queries = n;
     for (c in n)
       c === "all" ? u = 1 : (l = An.matchMedia(n[c]), l && (Ti.indexOf(a) < 0 && Ti.push(a), (o[c] = l.matches) && (u = 1), l.addListener ? l.addListener(Fa) : l.addEventListener("change", Fa)));
@@ -26406,12 +26440,12 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
       return r.kill(n, !0);
     });
   }, i;
-})(), Es = {
+})(), Ss = {
   registerPlugin: function() {
     for (var e = arguments.length, t = new Array(e), n = 0; n < e; n++)
       t[n] = arguments[n];
     t.forEach(function(r) {
-      return Fc(r);
+      return Uc(r);
     });
   },
   timeline: function(e) {
@@ -26422,7 +26456,7 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
   },
   getProperty: function(e, t, n, r) {
     bt(e) && (e = dn(e)[0]);
-    var s = Si(e || {}).get, a = n ? Mc : Ec;
+    var s = Si(e || {}).get, a = n ? Ec : Sc;
     return n === "native" && (n = ""), e && (t ? a((Jt[t] && Jt[t].get || s)(e, t, n, r)) : function(o, l, c) {
       return a((Jt[o] && Jt[o].get || s)(e, o, l, c));
     });
@@ -26456,7 +26490,7 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
     return dt.getTweensOf(e, !0).length > 0;
   },
   defaults: function(e) {
-    return e && e.ease && (e.ease = Mi(e.ease, Cr.ease)), Sl(Cr, e || {});
+    return e && e.ease && (e.ease = Mi(e.ease, yr.ease)), Sl(yr, e || {});
   },
   config: function(e) {
     return Sl(sn, e || {});
@@ -26464,7 +26498,7 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
   registerEffect: function(e) {
     var t = e.name, n = e.effect, r = e.plugins, s = e.defaults, a = e.extendTimeline;
     (r || "").split(",").forEach(function(o) {
-      return o && !Jt[o] && !an[o] && wr(t + " effect requires " + o + " plugin.");
+      return o && !Jt[o] && !an[o] && Cr(t + " effect requires " + o + " plugin.");
     }), pa[t] = function(o, l, c) {
       return n(dn(o), on(l || {}, s), c);
     }, a && (Gt.prototype[t] = function(o, l, c) {
@@ -26488,7 +26522,7 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
     return En(dt, n, 0), n;
   },
   context: function(e, t) {
-    return e ? new Kc(e, t) : ct;
+    return e ? new qc(e, t) : ct;
   },
   matchMedia: function(e) {
     return new o_(e);
@@ -26502,32 +26536,32 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
     }) || Fa();
   },
   addEventListener: function(e, t) {
-    var n = ds[e] || (ds[e] = []);
+    var n = fs[e] || (fs[e] = []);
     ~n.indexOf(t) || n.push(t);
   },
   removeEventListener: function(e, t) {
-    var n = ds[e], r = n && n.indexOf(t);
+    var n = fs[e], r = n && n.indexOf(t);
     r >= 0 && n.splice(r, 1);
   },
   utils: {
     wrap: Nv,
     wrapYoyo: zv,
-    distribute: Dc,
-    random: Ic,
-    snap: Pc,
+    distribute: Rc,
+    random: Pc,
+    snap: Dc,
     normalize: Ov,
     getUnit: Bt,
     clamp: Lv,
-    splitColor: Oc,
+    splitColor: Fc,
     toArray: dn,
     selector: La,
-    mapRange: Bc,
+    mapRange: Lc,
     pipe: Uv,
     unitize: Fv,
     interpolate: Gv,
-    shuffle: Rc
+    shuffle: bc
   },
-  install: vc,
+  install: gc,
   effects: pa,
   ticker: jt,
   updateRoot: Gt.updateRoot,
@@ -26535,10 +26569,10 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
   globalTimeline: dt,
   core: {
     PropTween: Vt,
-    globals: _c,
+    globals: vc,
     Tween: At,
     Timeline: Gt,
-    Animation: Pr,
+    Animation: Dr,
     getCache: Si,
     _removeLinkedListItem: Cs,
     reverting: function() {
@@ -26553,10 +26587,10 @@ var Ti = [], ds = {}, s_ = [], Cl = 0, a_ = 0, _a = function(e) {
   }
 };
 kt("to,from,fromTo,delayedCall,set,killTweensOf", function(i) {
-  return Es[i] = At[i];
+  return Ss[i] = At[i];
 });
 jt.add(Gt.updateRoot);
-Yi = Es.to({}, {
+Yi = Ss.to({}, {
   duration: 0
 });
 var l_ = function(e, t) {
@@ -26589,7 +26623,7 @@ var l_ = function(e, t) {
       };
     }
   };
-}, Xt = Es.registerPlugin({
+}, Xt = Ss.registerPlugin({
   name: "attr",
   init: function(e, t, n, r, s) {
     var a, o, l;
@@ -26608,9 +26642,9 @@ var l_ = function(e, t) {
     for (var n = t.length; n--; )
       this.add(e, n, e[n] || 0, t[n], 0, 0, 0, 0, 0, 1);
   }
-}, xa("roundProps", Ba), xa("modifiers"), xa("snap", Pc)) || Es;
+}, xa("roundProps", Ba), xa("modifiers"), xa("snap", Dc)) || Ss;
 At.version = Gt.version = Xt.version = "3.15.0";
-gc = 1;
+mc = 1;
 ja() && nr();
 Qe.Power0;
 Qe.Power1;
@@ -26647,9 +26681,9 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
 }, g_ = function(e, t) {
   var n = t.s + t.c * e;
   t.set(t.t, t.p, ~~(n + (n < 0 ? -0.5 : 0.5)) + t.u, t);
-}, Jc = function(e, t) {
+}, Kc = function(e, t) {
   return t.set(t.t, t.p, e ? t.e : t.b, t);
-}, Zc = function(e, t) {
+}, Jc = function(e, t) {
   return t.set(t.t, t.p, e !== 1 ? t.b : t.e, t);
 }, v_ = function(e, t, n) {
   return e.style[t] = n;
@@ -26681,7 +26715,7 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
     a.svg && (this.svgo = r.getAttribute("data-svg-origin"), this.props.push(Wt, t, "")), e = pt;
   }
   (s || t) && this.props.push(e, t, s[e]);
-}, jc = function(e) {
+}, Zc = function(e) {
   e.translate && (e.removeProperty("translate"), e.removeProperty("scale"), e.removeProperty("rotate"));
 }, T_ = function() {
   var e = this.props, t = this.target, n = t.style, r = t._gsap, s, a;
@@ -26690,9 +26724,9 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
   if (this.tfm) {
     for (a in this.tfm)
       r[a] = this.tfm[a];
-    r.svg && (r.renderTransform(), t.setAttribute("data-svg-origin", this.svgo || "")), s = ho(), (!s || !s.isStart) && !n[pt] && (jc(n), r.zOrigin && n[Wt] && (n[Wt] += " " + r.zOrigin + "px", r.zOrigin = 0, r.renderTransform()), r.uncache = 1);
+    r.svg && (r.renderTransform(), t.setAttribute("data-svg-origin", this.svgo || "")), s = ho(), (!s || !s.isStart) && !n[pt] && (Zc(n), r.zOrigin && n[Wt] && (n[Wt] += " " + r.zOrigin + "px", r.zOrigin = 0, r.renderTransform()), r.uncache = 1);
   }
-}, $c = function(e, t) {
+}, jc = function(e, t) {
   var n = {
     target: e,
     props: [],
@@ -26702,7 +26736,7 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
   return e._gsap || Xt.core.getCache(e), t && e.style && e.nodeType && t.split(",").forEach(function(r) {
     return n.save(r);
   }), n;
-}, eu, Na = function(e, t) {
+}, $c, Na = function(e, t) {
   var n = Zn.createElementNS ? Zn.createElementNS((t || "http://www.w3.org/1999/xhtml").replace(/^https/, "http"), e) : Zn.createElement(e);
   return n && n.style ? n : Zn.createElement(e);
 }, tn = function i(e, t, n) {
@@ -26718,7 +26752,7 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
 }, za = function() {
   u_() && window.document && (wl = window, Zn = wl.document, Ki = Zn.documentElement, Ai = Na("div") || {
     style: {}
-  }, Na("div"), pt = ir(pt), Wt = pt + "Origin", Ai.style.cssText = "border-width:0;line-height:0;position:absolute;padding:0", eu = !!ir("perspective"), ho = Xt.core.reverting, uo = 1);
+  }, Na("div"), pt = ir(pt), Wt = pt + "Origin", Ai.style.cssText = "border-width:0;line-height:0;position:absolute;padding:0", $c = !!ir("perspective"), ho = Xt.core.reverting, uo = 1);
 }, Pl = function(e) {
   var t = e.ownerSVGElement, n = Na("svg", t && t.getAttribute("xmlns") || "http://www.w3.org/2000/svg"), r = e.cloneNode(!0), s;
   r.style.display = "block", n.appendChild(r), Ki.appendChild(n);
@@ -26731,7 +26765,7 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
   for (var n = t.length; n--; )
     if (e.hasAttribute(t[n]))
       return e.getAttribute(t[n]);
-}, tu = function(e) {
+}, eu = function(e) {
   var t, n;
   try {
     t = e.getBBox();
@@ -26744,15 +26778,15 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
     width: 0,
     height: 0
   } : t;
-}, nu = function(e) {
-  return !!(e.getCTM && (!e.parentNode || e.ownerSVGElement) && tu(e));
+}, tu = function(e) {
+  return !!(e.getCTM && (!e.parentNode || e.ownerSVGElement) && eu(e));
 }, ii = function(e, t) {
   if (t) {
     var n = e.style, r;
     t in Gn && t !== Wt && (t = pt), n.removeProperty ? (r = t.substr(0, 2), (r === "ms" || t.substr(0, 6) === "webkit") && (t = "-" + t), n.removeProperty(r === "--" ? t : t.replace(fo, "-$1").toLowerCase())) : n.removeAttribute(t);
   }
 }, jn = function(e, t, n, r, s, a) {
-  var o = new Vt(e._pt, t, n, 0, 1, a ? Zc : Jc);
+  var o = new Vt(e._pt, t, n, 0, 1, a ? Jc : Kc);
   return e._pt = o, o.b = r, o.e = s, e._props.push(n), o;
 }, Ll = {
   deg: 1,
@@ -26765,7 +26799,7 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
   var s = parseFloat(n) || 0, a = (n + "").trim().substr((s + "").length) || "px", o = Ai.style, l = h_.test(t), c = e.tagName.toLowerCase() === "svg", u = (c ? "client" : "offset") + (l ? "Width" : "Height"), h = 100, f = r === "px", d = r === "%", v, g, m, p;
   if (r === a || !s || Ll[r] || Ll[a])
     return s;
-  if (a !== "px" && !f && (s = i(e, t, n, "px")), p = e.getCTM && nu(e), (d || a === "%") && (Gn[t] || ~t.indexOf("adius")))
+  if (a !== "px" && !f && (s = i(e, t, n, "px")), p = e.getCTM && tu(e), (d || a === "%") && (Gn[t] || ~t.indexOf("adius")))
     return v = p ? e.getBBox()[l ? "width" : "height"] : e[u], _t(d ? s / v * h : s / 100 * v);
   if (o[l ? "width" : "height"] = h + (f ? a : r), g = r !== "rem" && ~t.indexOf("adius") || r === "em" && e.appendChild && !c ? e : e.parentNode, p && (g = (e.ownerSVGElement || {}).parentNode), (!g || g === Zn || !g.appendChild) && (g = Zn.body), m = g._gsap, m && d && m.width && l && m.time === jt.time && !m.uncache)
     return _t(s / m.width * h);
@@ -26777,14 +26811,14 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
   return l && d && (m = Si(g), m.time = jt.time, m.width = g[u]), _t(f ? v * s / h : v && s ? h / v * s : 0);
 }, Un = function(e, t, n, r) {
   var s;
-  return uo || za(), t in Tn && t !== "transform" && (t = Tn[t], ~t.indexOf(",") && (t = t.split(",")[0])), Gn[t] && t !== "transform" ? (s = Lr(e, r), s = t !== "transformOrigin" ? s[t] : s.svg ? s.origin : Ts(tn(e, Wt)) + " " + s.zOrigin + "px") : (s = e.style[t], (!s || s === "auto" || r || ~(s + "").indexOf("calc(")) && (s = Ms[t] && Ms[t](e, t, n) || tn(e, t) || Ac(e, t) || (t === "opacity" ? 1 : 0))), n && !~(s + "").trim().indexOf(" ") ? ri(e, t, s, n) + n : s;
+  return uo || za(), t in Tn && t !== "transform" && (t = Tn[t], ~t.indexOf(",") && (t = t.split(",")[0])), Gn[t] && t !== "transform" ? (s = Ir(e, r), s = t !== "transformOrigin" ? s[t] : s.svg ? s.origin : Ms(tn(e, Wt)) + " " + s.zOrigin + "px") : (s = e.style[t], (!s || s === "auto" || r || ~(s + "").indexOf("calc(")) && (s = Es[t] && Es[t](e, t, n) || tn(e, t) || xc(e, t) || (t === "opacity" ? 1 : 0))), n && !~(s + "").trim().indexOf(" ") ? ri(e, t, s, n) + n : s;
 }, C_ = function(e, t, n, r) {
   if (!n || n === "none") {
     var s = ir(t, e, 1), a = s && tn(e, s, 1);
     a && a !== n ? (t = s, n = a) : t === "borderColor" && (n = tn(e, "borderTopColor"));
   }
-  var o = new Vt(this._pt, e.style, t, 0, 1, Qc), l = 0, c = 0, u, h, f, d, v, g, m, p, T, S, _, y;
-  if (o.b = n, o.e = r, n += "", r += "", r.substring(0, 6) === "var(--" && (r = tn(e, r.substring(4, r.indexOf(")")))), r === "auto" && (g = e.style[t], e.style[t] = r, r = tn(e, t) || r, g ? e.style[t] = g : ii(e, t)), u = [n, r], zc(u), n = u[0], r = u[1], f = n.match(Xi) || [], y = r.match(Xi) || [], y.length) {
+  var o = new Vt(this._pt, e.style, t, 0, 1, Yc), l = 0, c = 0, u, h, f, d, v, g, m, p, T, S, _, y;
+  if (o.b = n, o.e = r, n += "", r += "", r.substring(0, 6) === "var(--" && (r = tn(e, r.substring(4, r.indexOf(")")))), r === "auto" && (g = e.style[t], e.style[t] = r, r = tn(e, t) || r, g ? e.style[t] = g : ii(e, t)), u = [n, r], Nc(u), n = u[0], r = u[1], f = n.match(Xi) || [], y = r.match(Xi) || [], y.length) {
     for (; h = Xi.exec(r); )
       m = h[0], T = r.substring(l, h.index), v ? v = (v + 1) % 5 : (T.substr(-5) === "rgba(" || T.substr(-5) === "hsla(") && (v = 1), m !== (g = f[c++] || "") && (d = parseFloat(g) || 0, _ = g.substr((d + "").length), m.charAt(1) === "=" && (m = qi(d, m) + _), p = parseFloat(m), S = m.substr((p + "").length), l = Xi.lastIndex - S.length, S || (S = S || sn.units[t] || _, l === r.length && (r += S, o.e += S)), _ !== S && (d = ri(e, t, g, S) || 0), o._pt = {
         _next: o._pt,
@@ -26796,8 +26830,8 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
       });
     o.c = l < r.length ? r.substring(l, r.length) : "";
   } else
-    o.r = t === "display" && r === "none" ? Zc : Jc;
-  return mc.test(r) && (o.e = 0), this._pt = o, o;
+    o.r = t === "display" && r === "none" ? Jc : Kc;
+  return pc.test(r) && (o.e = 0), this._pt = o, o;
 }, Bl = {
   top: "0%",
   bottom: "100%",
@@ -26815,9 +26849,9 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
     else
       for (s = s.split(","), c = s.length; --c > -1; )
         o = s[c], Gn[o] && (l = 1, o = o === "transformOrigin" ? Wt : pt), ii(n, o);
-    l && (ii(n, pt), a && (a.svg && n.removeAttribute("transform"), r.scale = r.rotate = r.translate = "none", Lr(n, 1), a.uncache = 1, jc(r)));
+    l && (ii(n, pt), a && (a.svg && n.removeAttribute("transform"), r.scale = r.rotate = r.translate = "none", Ir(n, 1), a.uncache = 1, Zc(r)));
   }
-}, Ms = {
+}, Es = {
   clearProps: function(e, t, n, r, s) {
     if (s.data !== "isFromStart") {
       var a = e._pt = new Vt(e._pt, t, n, 0, 0, b_);
@@ -26887,40 +26921,40 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
   	return 1;
   }
   */
-}, Ir = [1, 0, 0, 1, 0, 0], iu = {}, ru = function(e) {
+}, Pr = [1, 0, 0, 1, 0, 0], nu = {}, iu = function(e) {
   return e === "matrix(1, 0, 0, 1, 0, 0)" || e === "none" || !e;
 }, Ul = function(e) {
   var t = tn(e, pt);
-  return ru(t) ? Ir : t.substr(7).match(pc).map(_t);
+  return iu(t) ? Pr : t.substr(7).match(dc).map(_t);
 }, po = function(e, t) {
   var n = e._gsap || Si(e), r = e.style, s = Ul(e), a, o, l, c;
-  return n.svg && e.getAttribute("transform") ? (l = e.transform.baseVal.consolidate().matrix, s = [l.a, l.b, l.c, l.d, l.e, l.f], s.join(",") === "1,0,0,1,0,0" ? Ir : s) : (s === Ir && !e.offsetParent && e !== Ki && !n.svg && (l = r.display, r.display = "block", a = e.parentNode, (!a || !e.offsetParent && !e.getBoundingClientRect().width) && (c = 1, o = e.nextElementSibling, Ki.appendChild(e)), s = Ul(e), l ? r.display = l : ii(e, "display"), c && (o ? a.insertBefore(e, o) : a ? a.appendChild(e) : Ki.removeChild(e))), t && s.length > 6 ? [s[0], s[1], s[4], s[5], s[12], s[13]] : s);
+  return n.svg && e.getAttribute("transform") ? (l = e.transform.baseVal.consolidate().matrix, s = [l.a, l.b, l.c, l.d, l.e, l.f], s.join(",") === "1,0,0,1,0,0" ? Pr : s) : (s === Pr && !e.offsetParent && e !== Ki && !n.svg && (l = r.display, r.display = "block", a = e.parentNode, (!a || !e.offsetParent && !e.getBoundingClientRect().width) && (c = 1, o = e.nextElementSibling, Ki.appendChild(e)), s = Ul(e), l ? r.display = l : ii(e, "display"), c && (o ? a.insertBefore(e, o) : a ? a.appendChild(e) : Ki.removeChild(e))), t && s.length > 6 ? [s[0], s[1], s[4], s[5], s[12], s[13]] : s);
 }, Ga = function(e, t, n, r, s, a) {
-  var o = e._gsap, l = s || po(e, !0), c = o.xOrigin || 0, u = o.yOrigin || 0, h = o.xOffset || 0, f = o.yOffset || 0, d = l[0], v = l[1], g = l[2], m = l[3], p = l[4], T = l[5], S = t.split(" "), _ = parseFloat(S[0]) || 0, y = parseFloat(S[1]) || 0, b, C, D, x;
-  n ? l !== Ir && (C = d * m - v * g) && (D = _ * (m / C) + y * (-g / C) + (g * T - m * p) / C, x = _ * (-v / C) + y * (d / C) - (d * T - v * p) / C, _ = D, y = x) : (b = tu(e), _ = b.x + (~S[0].indexOf("%") ? _ / 100 * b.width : _), y = b.y + (~(S[1] || S[0]).indexOf("%") ? y / 100 * b.height : y)), r || r !== !1 && o.smooth ? (p = _ - c, T = y - u, o.xOffset = h + (p * d + T * g) - p, o.yOffset = f + (p * v + T * m) - T) : o.xOffset = o.yOffset = 0, o.xOrigin = _, o.yOrigin = y, o.smooth = !!r, o.origin = t, o.originIsAbsolute = !!n, e.style[Wt] = "0px 0px", a && (jn(a, o, "xOrigin", c, _), jn(a, o, "yOrigin", u, y), jn(a, o, "xOffset", h, o.xOffset), jn(a, o, "yOffset", f, o.yOffset)), e.setAttribute("data-svg-origin", _ + " " + y);
-}, Lr = function(e, t) {
-  var n = e._gsap || new Hc(e);
+  var o = e._gsap, l = s || po(e, !0), c = o.xOrigin || 0, u = o.yOrigin || 0, h = o.xOffset || 0, f = o.yOffset || 0, d = l[0], v = l[1], g = l[2], m = l[3], p = l[4], T = l[5], S = t.split(" "), _ = parseFloat(S[0]) || 0, y = parseFloat(S[1]) || 0, R, C, P, x;
+  n ? l !== Pr && (C = d * m - v * g) && (P = _ * (m / C) + y * (-g / C) + (g * T - m * p) / C, x = _ * (-v / C) + y * (d / C) - (d * T - v * p) / C, _ = P, y = x) : (R = eu(e), _ = R.x + (~S[0].indexOf("%") ? _ / 100 * R.width : _), y = R.y + (~(S[1] || S[0]).indexOf("%") ? y / 100 * R.height : y)), r || r !== !1 && o.smooth ? (p = _ - c, T = y - u, o.xOffset = h + (p * d + T * g) - p, o.yOffset = f + (p * v + T * m) - T) : o.xOffset = o.yOffset = 0, o.xOrigin = _, o.yOrigin = y, o.smooth = !!r, o.origin = t, o.originIsAbsolute = !!n, e.style[Wt] = "0px 0px", a && (jn(a, o, "xOrigin", c, _), jn(a, o, "yOrigin", u, y), jn(a, o, "xOffset", h, o.xOffset), jn(a, o, "yOffset", f, o.yOffset)), e.setAttribute("data-svg-origin", _ + " " + y);
+}, Ir = function(e, t) {
+  var n = e._gsap || new Gc(e);
   if ("x" in n && !t && !n.uncache)
     return n;
-  var r = e.style, s = n.scaleX < 0, a = "px", o = "deg", l = getComputedStyle(e), c = tn(e, Wt) || "0", u, h, f, d, v, g, m, p, T, S, _, y, b, C, D, x, E, L, z, H, Q, Y, O, R, I, k, V, ee, le, Ee, we, pe;
-  return u = h = f = g = m = p = T = S = _ = 0, d = v = 1, n.svg = !!(e.getCTM && nu(e)), l.translate && ((l.translate !== "none" || l.scale !== "none" || l.rotate !== "none") && (r[pt] = (l.translate !== "none" ? "translate3d(" + (l.translate + " 0 0").split(" ").slice(0, 3).join(", ") + ") " : "") + (l.rotate !== "none" ? "rotate(" + l.rotate + ") " : "") + (l.scale !== "none" ? "scale(" + l.scale.split(" ").join(",") + ") " : "") + (l[pt] !== "none" ? l[pt] : "")), r.scale = r.rotate = r.translate = "none"), C = po(e, n.svg), n.svg && (n.uncache ? (I = e.getBBox(), c = n.xOrigin - I.x + "px " + (n.yOrigin - I.y) + "px", R = "") : R = !t && e.getAttribute("data-svg-origin"), Ga(e, R || c, !!R || n.originIsAbsolute, n.smooth !== !1, C)), y = n.xOrigin || 0, b = n.yOrigin || 0, C !== Ir && (L = C[0], z = C[1], H = C[2], Q = C[3], u = Y = C[4], h = O = C[5], C.length === 6 ? (d = Math.sqrt(L * L + z * z), v = Math.sqrt(Q * Q + H * H), g = L || z ? Hi(z, L) * _i : 0, T = H || Q ? Hi(H, Q) * _i + g : 0, T && (v *= Math.abs(Math.cos(T * Ji))), n.svg && (u -= y - (y * L + b * H), h -= b - (y * z + b * Q))) : (pe = C[6], Ee = C[7], V = C[8], ee = C[9], le = C[10], we = C[11], u = C[12], h = C[13], f = C[14], D = Hi(pe, le), m = D * _i, D && (x = Math.cos(-D), E = Math.sin(-D), R = Y * x + V * E, I = O * x + ee * E, k = pe * x + le * E, V = Y * -E + V * x, ee = O * -E + ee * x, le = pe * -E + le * x, we = Ee * -E + we * x, Y = R, O = I, pe = k), D = Hi(-H, le), p = D * _i, D && (x = Math.cos(-D), E = Math.sin(-D), R = L * x - V * E, I = z * x - ee * E, k = H * x - le * E, we = Q * E + we * x, L = R, z = I, H = k), D = Hi(z, L), g = D * _i, D && (x = Math.cos(D), E = Math.sin(D), R = L * x + z * E, I = Y * x + O * E, z = z * x - L * E, O = O * x - Y * E, L = R, Y = I), m && Math.abs(m) + Math.abs(g) > 359.9 && (m = g = 0, p = 180 - p), d = _t(Math.sqrt(L * L + z * z + H * H)), v = _t(Math.sqrt(O * O + pe * pe)), D = Hi(Y, O), T = Math.abs(D) > 2e-4 ? D * _i : 0, _ = we ? 1 / (we < 0 ? -we : we) : 0), n.svg && (R = e.getAttribute("transform"), n.forceCSS = e.setAttribute("transform", "") || !ru(tn(e, pt)), R && e.setAttribute("transform", R))), Math.abs(T) > 90 && Math.abs(T) < 270 && (s ? (d *= -1, T += g <= 0 ? 180 : -180, g += g <= 0 ? 180 : -180) : (v *= -1, T += T <= 0 ? 180 : -180)), t = t || n.uncache, n.x = u - ((n.xPercent = u && (!t && n.xPercent || (Math.round(e.offsetWidth / 2) === Math.round(-u) ? -50 : 0))) ? e.offsetWidth * n.xPercent / 100 : 0) + a, n.y = h - ((n.yPercent = h && (!t && n.yPercent || (Math.round(e.offsetHeight / 2) === Math.round(-h) ? -50 : 0))) ? e.offsetHeight * n.yPercent / 100 : 0) + a, n.z = f + a, n.scaleX = _t(d), n.scaleY = _t(v), n.rotation = _t(g) + o, n.rotationX = _t(m) + o, n.rotationY = _t(p) + o, n.skewX = T + o, n.skewY = S + o, n.transformPerspective = _ + a, (n.zOrigin = parseFloat(c.split(" ")[2]) || !t && n.zOrigin || 0) && (r[Wt] = Ts(c)), n.xOffset = n.yOffset = 0, n.force3D = sn.force3D, n.renderTransform = n.svg ? D_ : eu ? su : R_, n.uncache = 0, n;
-}, Ts = function(e) {
+  var r = e.style, s = n.scaleX < 0, a = "px", o = "deg", l = getComputedStyle(e), c = tn(e, Wt) || "0", u, h, f, d, v, g, m, p, T, S, _, y, R, C, P, x, E, L, z, V, Q, Y, O, w, D, k, G, $, le, Ee, we, pe;
+  return u = h = f = g = m = p = T = S = _ = 0, d = v = 1, n.svg = !!(e.getCTM && tu(e)), l.translate && ((l.translate !== "none" || l.scale !== "none" || l.rotate !== "none") && (r[pt] = (l.translate !== "none" ? "translate3d(" + (l.translate + " 0 0").split(" ").slice(0, 3).join(", ") + ") " : "") + (l.rotate !== "none" ? "rotate(" + l.rotate + ") " : "") + (l.scale !== "none" ? "scale(" + l.scale.split(" ").join(",") + ") " : "") + (l[pt] !== "none" ? l[pt] : "")), r.scale = r.rotate = r.translate = "none"), C = po(e, n.svg), n.svg && (n.uncache ? (D = e.getBBox(), c = n.xOrigin - D.x + "px " + (n.yOrigin - D.y) + "px", w = "") : w = !t && e.getAttribute("data-svg-origin"), Ga(e, w || c, !!w || n.originIsAbsolute, n.smooth !== !1, C)), y = n.xOrigin || 0, R = n.yOrigin || 0, C !== Pr && (L = C[0], z = C[1], V = C[2], Q = C[3], u = Y = C[4], h = O = C[5], C.length === 6 ? (d = Math.sqrt(L * L + z * z), v = Math.sqrt(Q * Q + V * V), g = L || z ? Hi(z, L) * _i : 0, T = V || Q ? Hi(V, Q) * _i + g : 0, T && (v *= Math.abs(Math.cos(T * Ji))), n.svg && (u -= y - (y * L + R * V), h -= R - (y * z + R * Q))) : (pe = C[6], Ee = C[7], G = C[8], $ = C[9], le = C[10], we = C[11], u = C[12], h = C[13], f = C[14], P = Hi(pe, le), m = P * _i, P && (x = Math.cos(-P), E = Math.sin(-P), w = Y * x + G * E, D = O * x + $ * E, k = pe * x + le * E, G = Y * -E + G * x, $ = O * -E + $ * x, le = pe * -E + le * x, we = Ee * -E + we * x, Y = w, O = D, pe = k), P = Hi(-V, le), p = P * _i, P && (x = Math.cos(-P), E = Math.sin(-P), w = L * x - G * E, D = z * x - $ * E, k = V * x - le * E, we = Q * E + we * x, L = w, z = D, V = k), P = Hi(z, L), g = P * _i, P && (x = Math.cos(P), E = Math.sin(P), w = L * x + z * E, D = Y * x + O * E, z = z * x - L * E, O = O * x - Y * E, L = w, Y = D), m && Math.abs(m) + Math.abs(g) > 359.9 && (m = g = 0, p = 180 - p), d = _t(Math.sqrt(L * L + z * z + V * V)), v = _t(Math.sqrt(O * O + pe * pe)), P = Hi(Y, O), T = Math.abs(P) > 2e-4 ? P * _i : 0, _ = we ? 1 / (we < 0 ? -we : we) : 0), n.svg && (w = e.getAttribute("transform"), n.forceCSS = e.setAttribute("transform", "") || !iu(tn(e, pt)), w && e.setAttribute("transform", w))), Math.abs(T) > 90 && Math.abs(T) < 270 && (s ? (d *= -1, T += g <= 0 ? 180 : -180, g += g <= 0 ? 180 : -180) : (v *= -1, T += T <= 0 ? 180 : -180)), t = t || n.uncache, n.x = u - ((n.xPercent = u && (!t && n.xPercent || (Math.round(e.offsetWidth / 2) === Math.round(-u) ? -50 : 0))) ? e.offsetWidth * n.xPercent / 100 : 0) + a, n.y = h - ((n.yPercent = h && (!t && n.yPercent || (Math.round(e.offsetHeight / 2) === Math.round(-h) ? -50 : 0))) ? e.offsetHeight * n.yPercent / 100 : 0) + a, n.z = f + a, n.scaleX = _t(d), n.scaleY = _t(v), n.rotation = _t(g) + o, n.rotationX = _t(m) + o, n.rotationY = _t(p) + o, n.skewX = T + o, n.skewY = S + o, n.transformPerspective = _ + a, (n.zOrigin = parseFloat(c.split(" ")[2]) || !t && n.zOrigin || 0) && (r[Wt] = Ms(c)), n.xOffset = n.yOffset = 0, n.force3D = sn.force3D, n.renderTransform = n.svg ? D_ : $c ? ru : R_, n.uncache = 0, n;
+}, Ms = function(e) {
   return (e = e.split(" "))[0] + " " + e[1];
 }, Aa = function(e, t, n) {
   var r = Bt(t);
   return _t(parseFloat(t) + parseFloat(ri(e, "x", n + "px", r))) + r;
 }, R_ = function(e, t) {
-  t.z = "0px", t.rotationY = t.rotationX = "0deg", t.force3D = 0, su(e, t);
-}, pi = "0deg", dr = "0px", mi = ") ", su = function(e, t) {
+  t.z = "0px", t.rotationY = t.rotationX = "0deg", t.force3D = 0, ru(e, t);
+}, pi = "0deg", dr = "0px", mi = ") ", ru = function(e, t) {
   var n = t || this, r = n.xPercent, s = n.yPercent, a = n.x, o = n.y, l = n.z, c = n.rotation, u = n.rotationY, h = n.rotationX, f = n.skewX, d = n.skewY, v = n.scaleX, g = n.scaleY, m = n.transformPerspective, p = n.force3D, T = n.target, S = n.zOrigin, _ = "", y = p === "auto" && e && e !== 1 || p === !0;
   if (S && (h !== pi || u !== pi)) {
-    var b = parseFloat(u) * Ji, C = Math.sin(b), D = Math.cos(b), x;
-    b = parseFloat(h) * Ji, x = Math.cos(b), a = Aa(T, a, C * x * -S), o = Aa(T, o, -Math.sin(b) * -S), l = Aa(T, l, D * x * -S + S);
+    var R = parseFloat(u) * Ji, C = Math.sin(R), P = Math.cos(R), x;
+    R = parseFloat(h) * Ji, x = Math.cos(R), a = Aa(T, a, C * x * -S), o = Aa(T, o, -Math.sin(R) * -S), l = Aa(T, l, P * x * -S + S);
   }
   m !== dr && (_ += "perspective(" + m + mi), (r || s) && (_ += "translate(" + r + "%, " + s + "%) "), (y || a !== dr || o !== dr || l !== dr) && (_ += l !== dr || y ? "translate3d(" + a + ", " + o + ", " + l + ") " : "translate(" + a + ", " + o + mi), c !== pi && (_ += "rotate(" + c + mi), u !== pi && (_ += "rotateY(" + u + mi), h !== pi && (_ += "rotateX(" + h + mi), (f !== pi || d !== pi) && (_ += "skew(" + f + ", " + d + mi), (v !== 1 || g !== 1) && (_ += "scale(" + v + ", " + g + mi), T.style[pt] = _ || "translate(0, 0)";
 }, D_ = function(e, t) {
-  var n = t || this, r = n.xPercent, s = n.yPercent, a = n.x, o = n.y, l = n.rotation, c = n.skewX, u = n.skewY, h = n.scaleX, f = n.scaleY, d = n.target, v = n.xOrigin, g = n.yOrigin, m = n.xOffset, p = n.yOffset, T = n.forceCSS, S = parseFloat(a), _ = parseFloat(o), y, b, C, D, x;
-  l = parseFloat(l), c = parseFloat(c), u = parseFloat(u), u && (u = parseFloat(u), c += u, l += u), l || c ? (l *= Ji, c *= Ji, y = Math.cos(l) * h, b = Math.sin(l) * h, C = Math.sin(l - c) * -f, D = Math.cos(l - c) * f, c && (u *= Ji, x = Math.tan(c - u), x = Math.sqrt(1 + x * x), C *= x, D *= x, u && (x = Math.tan(u), x = Math.sqrt(1 + x * x), y *= x, b *= x)), y = _t(y), b = _t(b), C = _t(C), D = _t(D)) : (y = h, D = f, b = C = 0), (S && !~(a + "").indexOf("px") || _ && !~(o + "").indexOf("px")) && (S = ri(d, "x", a, "px"), _ = ri(d, "y", o, "px")), (v || g || m || p) && (S = _t(S + v - (v * y + g * C) + m), _ = _t(_ + g - (v * b + g * D) + p)), (r || s) && (x = d.getBBox(), S = _t(S + r / 100 * x.width), _ = _t(_ + s / 100 * x.height)), x = "matrix(" + y + "," + b + "," + C + "," + D + "," + S + "," + _ + ")", d.setAttribute("transform", x), T && (d.style[pt] = x);
+  var n = t || this, r = n.xPercent, s = n.yPercent, a = n.x, o = n.y, l = n.rotation, c = n.skewX, u = n.skewY, h = n.scaleX, f = n.scaleY, d = n.target, v = n.xOrigin, g = n.yOrigin, m = n.xOffset, p = n.yOffset, T = n.forceCSS, S = parseFloat(a), _ = parseFloat(o), y, R, C, P, x;
+  l = parseFloat(l), c = parseFloat(c), u = parseFloat(u), u && (u = parseFloat(u), c += u, l += u), l || c ? (l *= Ji, c *= Ji, y = Math.cos(l) * h, R = Math.sin(l) * h, C = Math.sin(l - c) * -f, P = Math.cos(l - c) * f, c && (u *= Ji, x = Math.tan(c - u), x = Math.sqrt(1 + x * x), C *= x, P *= x, u && (x = Math.tan(u), x = Math.sqrt(1 + x * x), y *= x, R *= x)), y = _t(y), R = _t(R), C = _t(C), P = _t(P)) : (y = h, P = f, R = C = 0), (S && !~(a + "").indexOf("px") || _ && !~(o + "").indexOf("px")) && (S = ri(d, "x", a, "px"), _ = ri(d, "y", o, "px")), (v || g || m || p) && (S = _t(S + v - (v * y + g * C) + m), _ = _t(_ + g - (v * R + g * P) + p)), (r || s) && (x = d.getBBox(), S = _t(S + r / 100 * x.width), _ = _t(_ + s / 100 * x.height)), x = "matrix(" + y + "," + R + "," + C + "," + P + "," + S + "," + _ + ")", d.setAttribute("transform", x), T && (d.style[pt] = x);
 }, P_ = function(e, t, n, r, s) {
   var a = 360, o = bt(s), l = parseFloat(s) * (o && ~s.indexOf("rad") ? _i : 1), c = l - r, u = r + c + "deg", h, f;
   return o && (h = s.split("_")[1], h === "short" && (c %= a, c !== c % (a / 2) && (c += c < 0 ? a : -a)), h === "cw" && c < 0 ? c = (c + a * Rl) % a - ~~(c / a) * a : h === "ccw" && c > 0 && (c = (c - a * Rl) % a - ~~(c / a) * a)), e._pt = f = new Vt(e._pt, t, n, r, c, d_), f.e = u, f.u = "deg", e._props.push(n), f;
@@ -26930,7 +26964,7 @@ var wl, Zn, Ki, uo, Ai, bl, ho, u_ = function() {
   return e;
 }, I_ = function(e, t, n) {
   var r = Fl({}, n._gsap), s = "perspective,force3D,transformOrigin,svgOrigin", a = n.style, o, l, c, u, h, f, d, v;
-  r.svg ? (c = n.getAttribute("transform"), n.setAttribute("transform", ""), a[pt] = t, o = Lr(n, 1), ii(n, pt), n.setAttribute("transform", c)) : (c = getComputedStyle(n)[pt], a[pt] = t, o = Lr(n, 1), a[pt] = c);
+  r.svg ? (c = n.getAttribute("transform"), n.setAttribute("transform", ""), a[pt] = t, o = Ir(n, 1), ii(n, pt), n.setAttribute("transform", c)) : (c = getComputedStyle(n)[pt], a[pt] = t, o = Ir(n, 1), a[pt] = c);
   for (l in Gn)
     c = r[l], u = o[l], c !== u && s.indexOf(l) < 0 && (d = Bt(c), v = Bt(u), h = d !== v ? ri(n, l, c, v) : parseFloat(c), f = parseFloat(u), e._pt = new Vt(e._pt, o, l, h, f - h, Oa), e._pt.u = v || 0, e._props.push(l));
   Fl(o, r);
@@ -26939,7 +26973,7 @@ kt("padding,margin,Width,Radius", function(i, e) {
   var t = "Top", n = "Right", r = "Bottom", s = "Left", a = (e < 3 ? [t, n, r, s] : [t + s, t + n, r + n, r + s]).map(function(o) {
     return e < 2 ? i + o : "border" + o + i;
   });
-  Ms[e > 1 ? "border" + i : i] = function(o, l, c, u, h) {
+  Es[e > 1 ? "border" + i : i] = function(o, l, c, u, h) {
     var f, d;
     if (arguments.length < 4)
       return f = a.map(function(v) {
@@ -26950,23 +26984,23 @@ kt("padding,margin,Width,Radius", function(i, e) {
     }), o.init(l, d, h);
   };
 });
-var au = {
+var su = {
   name: "css",
   register: za,
   targetTest: function(e) {
     return e.style && e.nodeType;
   },
   init: function(e, t, n, r, s) {
-    var a = this._props, o = e.style, l = n.vars.startAt, c, u, h, f, d, v, g, m, p, T, S, _, y, b, C, D, x;
-    uo || za(), this.styles = this.styles || $c(e), D = this.styles.props, this.tween = n;
+    var a = this._props, o = e.style, l = n.vars.startAt, c, u, h, f, d, v, g, m, p, T, S, _, y, R, C, P, x;
+    uo || za(), this.styles = this.styles || jc(e), P = this.styles.props, this.tween = n;
     for (g in t)
-      if (g !== "autoRound" && (u = t[g], !(Jt[g] && kc(g, t, n, r, e, s)))) {
-        if (d = typeof u, v = Ms[g], d === "function" && (u = u.call(n, r, e, s), d = typeof u), d === "string" && ~u.indexOf("random(") && (u = Rr(u)), v)
+      if (g !== "autoRound" && (u = t[g], !(Jt[g] && Hc(g, t, n, r, e, s)))) {
+        if (d = typeof u, v = Es[g], d === "function" && (u = u.call(n, r, e, s), d = typeof u), d === "string" && ~u.indexOf("random(") && (u = br(u)), v)
           v(this, e, g, u, n) && (C = 1);
         else if (g.substr(0, 2) === "--")
-          c = (getComputedStyle(e).getPropertyValue(g) + "").trim(), u += "", ei.lastIndex = 0, ei.test(c) || (m = Bt(c), p = Bt(u), p ? m !== p && (c = ri(e, g, c, p) + p) : m && (u += m)), this.add(o, "setProperty", c, u, r, s, 0, 0, g), a.push(g), D.push(g, 0, o[g]);
+          c = (getComputedStyle(e).getPropertyValue(g) + "").trim(), u += "", ei.lastIndex = 0, ei.test(c) || (m = Bt(c), p = Bt(u), p ? m !== p && (c = ri(e, g, c, p) + p) : m && (u += m)), this.add(o, "setProperty", c, u, r, s, 0, 0, g), a.push(g), P.push(g, 0, o[g]);
         else if (d !== "undefined") {
-          if (l && g in l ? (c = typeof l[g] == "function" ? l[g].call(n, r, e, s) : l[g], bt(c) && ~c.indexOf("random(") && (c = Rr(c)), Bt(c + "") || c === "auto" || (c += sn.units[g] || Bt(Un(e, g)) || ""), (c + "").charAt(1) === "=" && (c = Un(e, g))) : c = Un(e, g), f = parseFloat(c), T = d === "string" && u.charAt(1) === "=" && u.substr(0, 2), T && (u = u.substr(2)), h = parseFloat(u), g in Tn && (g === "autoAlpha" && (f === 1 && Un(e, "visibility") === "hidden" && h && (f = 0), D.push("visibility", 0, o.visibility), jn(this, o, "visibility", f ? "inherit" : "hidden", h ? "inherit" : "hidden", !h)), g !== "scale" && g !== "transform" && (g = Tn[g], ~g.indexOf(",") && (g = g.split(",")[0]))), S = g in Gn, S) {
+          if (l && g in l ? (c = typeof l[g] == "function" ? l[g].call(n, r, e, s) : l[g], bt(c) && ~c.indexOf("random(") && (c = br(c)), Bt(c + "") || c === "auto" || (c += sn.units[g] || Bt(Un(e, g)) || ""), (c + "").charAt(1) === "=" && (c = Un(e, g))) : c = Un(e, g), f = parseFloat(c), T = d === "string" && u.charAt(1) === "=" && u.substr(0, 2), T && (u = u.substr(2)), h = parseFloat(u), g in Tn && (g === "autoAlpha" && (f === 1 && Un(e, "visibility") === "hidden" && h && (f = 0), P.push("visibility", 0, o.visibility), jn(this, o, "visibility", f ? "inherit" : "hidden", h ? "inherit" : "hidden", !h)), g !== "scale" && g !== "transform" && (g = Tn[g], ~g.indexOf(",") && (g = g.split(",")[0]))), S = g in Gn, S) {
             if (this.styles.save(g), x = u, d === "string" && u.substring(0, 6) === "var(--") {
               if (u = tn(e, u.substring(4, u.indexOf(")"))), u.substring(0, 5) === "calc(") {
                 var E = e.style.perspective;
@@ -26974,15 +27008,15 @@ var au = {
               }
               h = parseFloat(u);
             }
-            if (_ || (y = e._gsap, y.renderTransform && !t.parseTransform || Lr(e, t.parseTransform), b = t.smoothOrigin !== !1 && y.smooth, _ = this._pt = new Vt(this._pt, o, pt, 0, 1, y.renderTransform, y, 0, -1), _.dep = 1), g === "scale")
+            if (_ || (y = e._gsap, y.renderTransform && !t.parseTransform || Ir(e, t.parseTransform), R = t.smoothOrigin !== !1 && y.smooth, _ = this._pt = new Vt(this._pt, o, pt, 0, 1, y.renderTransform, y, 0, -1), _.dep = 1), g === "scale")
               this._pt = new Vt(this._pt, y, "scaleY", y.scaleY, (T ? qi(y.scaleY, T + h) : h) - y.scaleY || 0, Oa), this._pt.u = 0, a.push("scaleY", g), g += "X";
             else if (g === "transformOrigin") {
-              D.push(Wt, 0, o[Wt]), u = w_(u), y.svg ? Ga(e, u, 0, b, 0, this) : (p = parseFloat(u.split(" ")[2]) || 0, p !== y.zOrigin && jn(this, y, "zOrigin", y.zOrigin, p), jn(this, o, g, Ts(c), Ts(u)));
+              P.push(Wt, 0, o[Wt]), u = w_(u), y.svg ? Ga(e, u, 0, R, 0, this) : (p = parseFloat(u.split(" ")[2]) || 0, p !== y.zOrigin && jn(this, y, "zOrigin", y.zOrigin, p), jn(this, o, g, Ms(c), Ms(u)));
               continue;
             } else if (g === "svgOrigin") {
-              Ga(e, u, 1, b, 0, this);
+              Ga(e, u, 1, R, 0, this);
               continue;
-            } else if (g in iu) {
+            } else if (g in nu) {
               P_(this, y, g, f, T ? qi(f, T + u) : u);
               continue;
             } else if (g === "smoothOrigin") {
@@ -27006,10 +27040,10 @@ var au = {
             eo(g, u);
             continue;
           }
-          S || (g in o ? D.push(g, 0, o[g]) : typeof e[g] == "function" ? D.push(g, 2, e[g]()) : D.push(g, 1, c || e[g])), a.push(g);
+          S || (g in o ? P.push(g, 0, o[g]) : typeof e[g] == "function" ? P.push(g, 2, e[g]()) : P.push(g, 1, c || e[g])), a.push(g);
         }
       }
-    C && qc(this);
+    C && Qc(this);
   },
   render: function(e, t) {
     if (t.tween._time || !ho())
@@ -27030,13 +27064,13 @@ var au = {
   }
 };
 Xt.utils.checkPrefix = ir;
-Xt.core.getStyleSaver = $c;
+Xt.core.getStyleSaver = jc;
 (function(i, e, t, n) {
   var r = kt(i + "," + e + "," + t, function(s) {
     Gn[s] = 1;
   });
   kt(e, function(s) {
-    sn.units[s] = "deg", iu[s] = 1;
+    sn.units[s] = "deg", nu[s] = 1;
   }), Tn[r[13]] = i + "," + e, kt(n, function(s) {
     var a = s.split(":");
     Tn[a[1]] = r[a[0]];
@@ -27045,8 +27079,8 @@ Xt.core.getStyleSaver = $c;
 kt("x,y,z,top,right,bottom,left,width,height,fontSize,padding,margin,perspective", function(i) {
   sn.units[i] = "px";
 });
-Xt.registerPlugin(au);
-var Mr = Xt.registerPlugin(au) || Xt;
+Xt.registerPlugin(su);
+var Mr = Xt.registerPlugin(su) || Xt;
 Mr.core.Tween;
 const Sa = (i, e, t, n) => ({
   x: i * e,
@@ -27096,14 +27130,14 @@ function B_(i, {
   }, f = Array.from(i.children);
   let d = Array.from({ length: f.length }, (_, y) => y), v = null, g = null;
   i.classList.add("reactbits-card-swap-container"), i.style.width = typeof e == "number" ? `${e}px` : e, i.style.height = typeof t == "number" ? `${t}px` : t, f.forEach((_, y) => {
-    _.classList.add("reactbits-card"), _.style.width = typeof e == "number" ? `${e}px` : e, _.style.height = typeof t == "number" ? `${t}px` : t, _.addEventListener("click", (b) => {
-      b.target.closest("a, button, input, select, textarea") || o?.(y);
+    _.classList.add("reactbits-card"), _.style.width = typeof e == "number" ? `${e}px` : e, _.style.height = typeof t == "number" ? `${t}px` : t, _.addEventListener("click", (R) => {
+      R.target.closest("a, button, input, select, textarea") || o?.(y);
     }), L_(_, Sa(y, n, r, f.length), c);
   });
   const m = () => {
     if (d.length < 2 || v?.isActive()) return;
-    const [_, ...y] = d, b = f[_], C = Mr.timeline();
-    v = C, C.to(b, {
+    const [_, ...y] = d, R = f[_], C = Mr.timeline();
+    v = C, C.to(R, {
       y: "+=500",
       duration: h.durDrop,
       ease: h.ease
@@ -27121,13 +27155,13 @@ function B_(i, {
         `promote+=${E * 0.15}`
       );
     });
-    const D = Sa(f.length - 1, n, r, f.length);
-    C.addLabel("return", `promote+=${h.durMove * h.returnDelay}`), C.call(() => Mr.set(b, { zIndex: D.zIndex }), void 0, "return"), C.to(
-      b,
+    const P = Sa(f.length - 1, n, r, f.length);
+    C.addLabel("return", `promote+=${h.durMove * h.returnDelay}`), C.call(() => Mr.set(R, { zIndex: P.zIndex }), void 0, "return"), C.to(
+      R,
       {
-        x: D.x,
-        y: D.y,
-        z: D.z,
+        x: P.x,
+        y: P.y,
+        z: P.z,
         duration: h.durReturn,
         ease: h.ease
       },
@@ -27149,16 +27183,27 @@ function B_(i, {
     }
   };
 }
-const U_ = new URLSearchParams(window.location.search).has("motion-preview"), pr = window.matchMedia("(prefers-reduced-motion: reduce)").matches && !U_, ps = document.querySelector("[data-hyperspeed]");
-let Tr = null;
+const U_ = new URLSearchParams(window.location.search).has("motion-preview"), pr = window.matchMedia("(prefers-reduced-motion: reduce)").matches && !U_, ds = document.querySelector("[data-hyperspeed]");
+let Ts = null;
 function Ea(i, e) {
   const t = getComputedStyle(document.documentElement).getPropertyValue(i).trim();
   return /^#[0-9a-f]{6}$/i.test(t) ? Number.parseInt(t.slice(1), 16) : e;
 }
-function Ol() {
-  if (!ps) return null;
+function au() {
   const i = Ea("--daily-accent", 12865810), e = Ea("--daily-accent-dark", 9384970), t = Ea("--daily-accent-soft", 16757611);
-  return ps.dataset.motionActive = "true", dv(ps, {
+  return {
+    roadColor: 15259848,
+    islandColor: 14204067,
+    background: 16775148,
+    shoulderLines: i,
+    brokenLines: e,
+    leftCars: [i, e, t],
+    rightCars: [3416088, e, t],
+    sticks: i
+  };
+}
+function F_() {
+  return ds ? (ds.dataset.motionActive = "true", dv(ds, {
     distortion: "turbulentDistortion",
     length: 400,
     roadWidth: 10,
@@ -27172,26 +27217,17 @@ function Ol() {
     lightPairsPerRoadWay: pr ? 18 : 28,
     movingAwaySpeed: pr ? [32, 42] : [48, 64],
     movingCloserSpeed: pr ? [-58, -76] : [-92, -120],
-    colors: {
-      roadColor: 15259848,
-      islandColor: 14204067,
-      background: 16775148,
-      shoulderLines: i,
-      brokenLines: e,
-      leftCars: [i, e, t],
-      rightCars: [3416088, e, t],
-      sticks: i
-    }
-  });
+    colors: au()
+  })) : null;
 }
-ps && (Tr = Ol(), window.addEventListener("ajaynxt:palette-change", () => {
-  Tr?.dispose(), Tr = Ol();
+ds && (Ts = F_(), window.addEventListener("ajaynxt:palette-change", () => {
+  Ts?.setColors(au());
 }));
-const Vi = document.querySelector("[data-card-swap]"), Nl = Vi?.querySelector("[data-collab-track]");
-let ms = null;
-if (Vi && Nl) {
+const Vi = document.querySelector("[data-card-swap]"), Ol = Vi?.querySelector("[data-collab-track]");
+let ps = null;
+if (Vi && Ol) {
   const i = Vi.querySelector("[data-collab-current]"), e = Vi.querySelector("[data-collab-total]"), t = window.matchMedia("(max-width: 700px)").matches;
-  ms = B_(Nl, {
+  ps = B_(Ol, {
     width: t ? 300 : 700,
     height: t ? 470 : 420,
     cardDistance: t ? 14 : 30,
@@ -27203,13 +27239,13 @@ if (Vi && Nl) {
     onCardChange(n, r) {
       i && (i.textContent = String(n + 1).padStart(2, "0")), e && (e.textContent = String(r).padStart(2, "0"));
     }
-  }), Vi.querySelector("[data-collab-prev]")?.addEventListener("click", ms.swap), Vi.querySelector("[data-collab-next]")?.addEventListener("click", ms.swap);
+  }), Vi.querySelector("[data-collab-prev]")?.addEventListener("click", ps.swap), Vi.querySelector("[data-collab-next]")?.addEventListener("click", ps.swap);
 }
-document.documentElement.dataset.motionReady = Tr ? "full" : "reduced";
+document.documentElement.dataset.motionReady = Ts ? "full" : "reduced";
 window.addEventListener(
   "pagehide",
   () => {
-    Tr?.dispose(), ms?.dispose();
+    Ts?.dispose(), ps?.dispose();
   },
   { once: !0 }
 );

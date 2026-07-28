@@ -15,15 +15,28 @@ function cssColorNumber(variable, fallback) {
     : fallback;
 }
 
+function getHyperspeedColors() {
+  const dailyAccent = cssColorNumber('--daily-accent', 0xc45112);
+  const dailyAccentDark = cssColorNumber('--daily-accent-dark', 0x8f340a);
+  const dailyAccentSoft = cssColorNumber('--daily-accent-soft', 0xffb36b);
+
+  return {
+    roadColor: 0xe8d8c8,
+    islandColor: 0xd8bca3,
+    background: 0xfff7ec,
+    shoulderLines: dailyAccent,
+    brokenLines: dailyAccentDark,
+    leftCars: [dailyAccent, dailyAccentDark, dailyAccentSoft],
+    rightCars: [0x342018, dailyAccentDark, dailyAccentSoft],
+    sticks: dailyAccent
+  };
+}
+
 // AJAY NXT's hero motion is an intentional part of the brand experience.
 // Keep it available even when the OS requests reduced motion, but use a
 // calmer configuration in that case instead of removing the canvas entirely.
 function startHyperspeed() {
   if (!hyperspeedContainer) return null;
-
-  const dailyAccent = cssColorNumber('--daily-accent', 0xc45112);
-  const dailyAccentDark = cssColorNumber('--daily-accent-dark', 0x8f340a);
-  const dailyAccentSoft = cssColorNumber('--daily-accent-soft', 0xffb36b);
 
   hyperspeedContainer.dataset.motionActive = 'true';
   return createHyperspeed(hyperspeedContainer, {
@@ -40,24 +53,16 @@ function startHyperspeed() {
     lightPairsPerRoadWay: prefersReducedMotion ? 18 : 28,
     movingAwaySpeed: prefersReducedMotion ? [32, 42] : [48, 64],
     movingCloserSpeed: prefersReducedMotion ? [-58, -76] : [-92, -120],
-    colors: {
-      roadColor: 0xe8d8c8,
-      islandColor: 0xd8bca3,
-      background: 0xfff7ec,
-      shoulderLines: dailyAccent,
-      brokenLines: dailyAccentDark,
-      leftCars: [dailyAccent, dailyAccentDark, dailyAccentSoft],
-      rightCars: [0x342018, dailyAccentDark, dailyAccentSoft],
-      sticks: dailyAccent
-    }
+    colors: getHyperspeedColors()
   });
 }
 
 if (hyperspeedContainer) {
   hyperspeed = startHyperspeed();
   window.addEventListener('ajaynxt:palette-change', () => {
-    hyperspeed?.dispose();
-    hyperspeed = startHyperspeed();
+    // Recolour the existing WebGL scene in place. Recreating the renderer
+    // every five seconds would be expensive and can briefly interrupt motion.
+    hyperspeed?.setColors(getHyperspeedColors());
   });
 }
 
@@ -75,7 +80,7 @@ if (collabSlider && collabTrack && !reducedMotion) {
     height: compact ? 470 : 420,
     cardDistance: compact ? 14 : 30,
     verticalDistance: compact ? 16 : 32,
-    delay: 3200,
+    delay: 2600,
     pauseOnHover: true,
     skewAmount: compact ? 1 : 2,
     easing: 'linear',

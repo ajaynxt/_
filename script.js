@@ -38,26 +38,97 @@
 
   if (year) year.textContent = new Date().getFullYear();
 
-  const activeAccent = getComputedStyle(root).getPropertyValue('--daily-accent').trim();
   const themeColor = document.querySelector('meta[name="theme-color"]');
-  if (themeColor && activeAccent) themeColor.content = activeAccent;
-
-  const rotatingPalettes = ['sunset', 'ocean', 'emerald', 'violet', 'rose', 'teal', 'gold'];
-  let paletteIndex = Math.max(0, rotatingPalettes.indexOf(root.dataset.dailyPalette));
+  const totalPalettes = 5000;
+  let paletteIndex = 0;
   const paletteDelay = new URLSearchParams(window.location.search).has('palette-preview')
-    ? 1500
-    : 5 * 60 * 1000;
+    ? 1200
+    : 5000;
+
+  const hslToRgb = (hue, saturation, lightness) => {
+    const s = saturation / 100;
+    const l = lightness / 100;
+    const chroma = (1 - Math.abs(2 * l - 1)) * s;
+    const segment = hue / 60;
+    const x = chroma * (1 - Math.abs((segment % 2) - 1));
+    const [red, green, blue] = segment < 1
+      ? [chroma, x, 0]
+      : segment < 2
+        ? [x, chroma, 0]
+        : segment < 3
+          ? [0, chroma, x]
+          : segment < 4
+            ? [0, x, chroma]
+            : segment < 5
+              ? [x, 0, chroma]
+              : [chroma, 0, x];
+    const match = l - chroma / 2;
+    return [red, green, blue].map((channel) => Math.round((channel + match) * 255));
+  };
+
+  const rgbToHex = (rgb) => `#${rgb
+    .map((channel) => channel.toString(16).padStart(2, '0'))
+    .join('')}`;
+
+  const createPalette = (index) => {
+    if (index === 0) {
+      return {
+        accent: '#c45112',
+        dark: '#8f340a',
+        soft: '#ffb36b',
+        tint: '#fff4e8',
+        rgb: [196, 81, 18]
+      };
+    }
+
+    // A golden-angle hue step plus small saturation/lightness variations creates
+    // 4,999 additional harmonious palettes without shipping 5,000 CSS blocks.
+    const hue = (24 + index * 137.50776405) % 360;
+    const saturation = 54 + ((index * 17) % 15);
+    const accentLightness = hue >= 36 && hue <= 190
+      ? 36 + ((index * 3) % 4)
+      : 42 + ((index * 3) % 4);
+    const accentRgb = hslToRgb(hue, saturation, accentLightness);
+    const darkRgb = hslToRgb(hue, Math.min(74, saturation + 4), Math.max(26, accentLightness - 11));
+    const softRgb = hslToRgb(hue, 58 + ((index * 5) % 10), 86 + ((index * 7) % 4));
+    const tintRgb = hslToRgb(hue, 64, 97);
+
+    return {
+      accent: rgbToHex(accentRgb),
+      dark: rgbToHex(darkRgb),
+      soft: rgbToHex(softRgb),
+      tint: rgbToHex(tintRgb),
+      rgb: accentRgb
+    };
+  };
+
+  const applyPalette = (index) => {
+    const palette = createPalette(index);
+    root.dataset.dailyPalette = index === 0 ? 'sunset' : `soft-${index}`;
+    root.style.setProperty('--daily-accent', palette.accent);
+    root.style.setProperty('--daily-accent-dark', palette.dark);
+    root.style.setProperty('--daily-accent-soft', palette.soft);
+    root.style.setProperty('--daily-rgb', palette.rgb.join(' '));
+    root.style.setProperty('--daily-tint', palette.tint);
+    if (themeColor) themeColor.content = palette.accent;
+    return palette;
+  };
+
+  applyPalette(paletteIndex);
 
   const rotatePalette = () => {
-    paletteIndex = (paletteIndex + 1) % rotatingPalettes.length;
-    root.classList.add('palette-shifting');
-    root.dataset.dailyPalette = rotatingPalettes[paletteIndex];
+    if (document.hidden) return;
 
-    const nextAccent = getComputedStyle(root).getPropertyValue('--daily-accent').trim();
-    if (themeColor && nextAccent) themeColor.content = nextAccent;
+    paletteIndex = (paletteIndex + 1) % totalPalettes;
+    root.classList.add('palette-shifting');
+    const palette = applyPalette(paletteIndex);
 
     window.dispatchEvent(new CustomEvent('ajaynxt:palette-change', {
-      detail: { palette: rotatingPalettes[paletteIndex] }
+      detail: {
+        index: paletteIndex,
+        total: totalPalettes,
+        palette
+      }
     }));
     window.setTimeout(() => root.classList.remove('palette-shifting'), 900);
   };
@@ -744,24 +815,3 @@
 
   scheduleMotionBundle();
 })();
-
-// Load the large 3D motion bundle after the core page is interactive.
-// This keeps the first paint quick without changing the real React Bits-derived effects.
-const loadMotionEffects = () => {
-  const motionScript = document.createElement('script');
-  motionScript.type = 'module';
-  motionScript.src = new URL(
-    './motion/motion-bundle.js?v=20260727-palette19',
-    document.baseURI
-  ).href;
-  motionScript.addEventListener('error', () => {
-    document.documentElement.dataset.motionReady = 'reduced';
-  }, { once: true });
-  document.head.append(motionScript);
-};
-
-if ('requestIdleCallback' in window) {
-  window.requestIdleCallback(loadMotionEffects, { timeout: 500 });
-} else {
-  window.setTimeout(loadMotionEffects, 100);
-}
