@@ -13,7 +13,7 @@
   <link href="./admin.css?v=20260728-admin1" rel="stylesheet"/>
   <script src="../firebase-config.js"></script>
   <script src="../site-data.js"></script>
-  <script type="module" src="../firebase-dist/admin.js?v=20260728-admin1"></script>
+  <script type="module" src="../firebase-dist/admin.js?v=20260728-collab1"></script>
 </head>
 <body>
   <header class="admin-header">
@@ -48,6 +48,7 @@
       <nav aria-label="Admin sections" class="admin-tabs">
         <button class="is-active" data-admin-tab="content" type="button">Content</button>
         <button data-admin-tab="projects" type="button">Case studies</button>
+        <button data-admin-tab="collaborations" type="button">Collaborations <b data-collaboration-count>0</b></button>
         <button data-admin-tab="reviews" type="button">Reviews <b data-review-count>0</b></button>
         <button data-admin-tab="enquiries" type="button">Enquiries <b data-enquiry-count>0</b></button>
         <button data-admin-tab="analytics" type="button">Analytics</button>
@@ -92,6 +93,18 @@
           <button class="primary-button" data-save-projects type="button">Save case studies</button>
         </div>
         <div class="project-editors" data-project-editors></div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="collaborations">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Shared work</p><h2>Collaborations</h2></div>
+          <div class="panel-actions">
+            <button class="quiet-button" data-add-collaboration type="button">+ Add collaboration</button>
+            <button class="primary-button" data-save-collaborations type="button">Save collaborations</button>
+          </div>
+        </div>
+        <p class="panel-note">Change the visual, copy, roles and destination links. Published items appear in the public CardSwap.</p>
+        <div class="collaboration-editors" data-collaboration-editors></div>
       </section>
 
       <section class="admin-panel" data-admin-panel="reviews">

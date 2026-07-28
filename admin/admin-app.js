@@ -37,6 +37,8 @@ const saveStatus = document.querySelector('[data-save-status]');
 const liveStatus = saveStatus?.closest('.live-status');
 const contentForm = document.querySelector('[data-content-form]');
 const projectEditors = document.querySelector('[data-project-editors]');
+const collaborationEditors = document.querySelector('[data-collaboration-editors]');
+const collaborationCount = document.querySelector('[data-collaboration-count]');
 const reviewEditors = document.querySelector('[data-review-editors]');
 const reviewCount = document.querySelector('[data-review-count]');
 const enquiryList = document.querySelector('[data-enquiry-list]');
@@ -137,6 +139,86 @@ function collectProjects() {
   return projects;
 }
 
+function normaliseCollaborations(source = content) {
+  return (Array.isArray(source.collaborations) ? source.collaborations : []).map((item, index) => ({
+    id: clean(item.id || `collaboration-${index + 1}`, 80),
+    kicker: clean(item.kicker, 100),
+    title: clean(item.title, 100),
+    highlight: clean(item.highlight, 100),
+    summary: clean(item.summary, 500),
+    image: clean(item.image, 500),
+    imageAlt: clean(item.imageAlt, 160),
+    roles: Array.isArray(item.roles) ? item.roles.map((role) => clean(role, 60)).filter(Boolean).slice(0, 8) : [],
+    website: clean(item.website, 500),
+    googleBusiness: clean(item.googleBusiness, 500),
+    instagram: clean(item.instagram, 500),
+    facebook: clean(item.facebook, 500),
+    published: item.published !== false
+  }));
+}
+
+function previewUrl(value) {
+  try {
+    return new URL(String(value || ''), new URL('../', window.location.href)).href;
+  } catch {
+    return '../assets/ajay-nxt-orange-mark.png';
+  }
+}
+
+function renderCollaborationEditors() {
+  if (!collaborationEditors) return;
+  const collaborations = normaliseCollaborations();
+  if (collaborationCount) collaborationCount.textContent = String(collaborations.length);
+  collaborationEditors.innerHTML = collaborations.map((item, index) => `
+    <article class="collaboration-editor" data-collaboration-editor="${escapeHtml(item.id)}">
+      <div class="collaboration-preview">
+        <img alt="" data-collaboration-preview src="${escapeHtml(previewUrl(item.image))}"/>
+      </div>
+      <div class="collaboration-editor-body">
+        <div class="review-editor-head">
+          <div><small>Collaboration ${index + 1}</small><h3>${escapeHtml(item.title || 'New collaboration')}</h3></div>
+          <button class="danger-button" data-delete-collaboration type="button">Delete</button>
+        </div>
+        <label class="toggle-row review-publish">
+          <span><strong>Published</strong><small>Show this collaboration on the public website.</small></span>
+          <input data-collaboration-field="published" type="checkbox" ${item.published ? 'checked' : ''}/>
+        </label>
+        <label>Visual / photo URL or local path<input data-collaboration-field="image" maxlength="500" value="${escapeHtml(item.image)}"/></label>
+        <label>Image description<input data-collaboration-field="imageAlt" maxlength="160" value="${escapeHtml(item.imageAlt)}"/></label>
+        <div class="two-fields">
+          <label>Small label<input data-collaboration-field="kicker" maxlength="100" value="${escapeHtml(item.kicker)}"/></label>
+          <label>Heading<input data-collaboration-field="title" maxlength="100" value="${escapeHtml(item.title)}"/></label>
+        </div>
+        <label>Highlighted heading text<input data-collaboration-field="highlight" maxlength="100" value="${escapeHtml(item.highlight)}"/></label>
+        <label>Short description<textarea data-collaboration-field="summary" maxlength="500" rows="4">${escapeHtml(item.summary)}</textarea></label>
+        <label>Roles — comma separated<input data-collaboration-field="roles" maxlength="400" value="${escapeHtml(item.roles.join(', '))}"/></label>
+        <div class="two-fields">
+          <label>Website<input data-collaboration-field="website" type="url" value="${escapeHtml(item.website)}"/></label>
+          <label>Google Business<input data-collaboration-field="googleBusiness" type="url" value="${escapeHtml(item.googleBusiness)}"/></label>
+        </div>
+        <div class="two-fields">
+          <label>Instagram<input data-collaboration-field="instagram" type="url" value="${escapeHtml(item.instagram)}"/></label>
+          <label>Facebook<input data-collaboration-field="facebook" type="url" value="${escapeHtml(item.facebook)}"/></label>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function collectCollaborations() {
+  return [...(collaborationEditors?.querySelectorAll('[data-collaboration-editor]') || [])].map((editor, index) => {
+    const item = { id: clean(editor.dataset.collaborationEditor || `collaboration-${index + 1}`, 80) };
+    editor.querySelectorAll('[data-collaboration-field]').forEach((field) => {
+      const name = field.dataset.collaborationField;
+      if (name === 'published') item[name] = field.checked;
+      else if (name === 'roles') {
+        item[name] = clean(field.value, 400).split(',').map((role) => role.trim()).filter(Boolean).slice(0, 8);
+      } else item[name] = clean(field.value, name === 'summary' ? 500 : 500);
+    });
+    return item;
+  }).filter((item) => item.title || item.summary || item.image);
+}
+
 function normaliseReviews(source = content) {
   const items = Array.isArray(source.reviews) && source.reviews.length
     ? source.reviews
@@ -212,6 +294,7 @@ async function loadContent() {
   if (!Array.isArray(remote.reviews) && remote.review) content.reviews = [clone(content.review)];
   hydrateContentForm();
   renderProjectEditors();
+  renderCollaborationEditors();
   renderReviewEditors();
   const rotation = document.querySelector('[data-setting-rotation]');
   const delay = document.querySelector('[data-setting-delay]');
@@ -366,6 +449,60 @@ document.querySelector('[data-save-reviews]')?.addEventListener('click', async (
   } catch (error) {
     setStatus(error.message || 'Reviews could not be saved.', 'error');
   }
+});
+
+document.querySelector('[data-add-collaboration]')?.addEventListener('click', () => {
+  const next = clone(content);
+  next.collaborations = collectCollaborations();
+  next.collaborations.push({
+    id: `collaboration-${Date.now()}`,
+    kicker: '',
+    title: '',
+    highlight: '',
+    summary: '',
+    image: '',
+    imageAlt: '',
+    roles: [],
+    website: '',
+    googleBusiness: '',
+    instagram: '',
+    facebook: '',
+    published: true
+  });
+  content = next;
+  renderCollaborationEditors();
+  collaborationEditors?.querySelector('[data-collaboration-editor]:last-child input[data-collaboration-field="title"]')?.focus();
+  setStatus('New collaboration ready — save when complete');
+});
+
+document.querySelector('[data-save-collaborations]')?.addEventListener('click', async () => {
+  try {
+    const next = clone(content);
+    next.collaborations = collectCollaborations();
+    await saveContent(next, 'Collaborations saved');
+    renderCollaborationEditors();
+  } catch (error) {
+    setStatus(error.message || 'Collaborations could not be saved.', 'error');
+  }
+});
+
+collaborationEditors?.addEventListener('input', (event) => {
+  const field = event.target.closest('[data-collaboration-field="image"]');
+  if (!field) return;
+  const preview = field.closest('[data-collaboration-editor]')?.querySelector('[data-collaboration-preview]');
+  if (preview) preview.src = previewUrl(field.value);
+});
+
+collaborationEditors?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-delete-collaboration]');
+  if (!button) return;
+  const editor = button.closest('[data-collaboration-editor]');
+  if (!window.confirm('Delete this collaboration? Save collaborations to publish the change.')) return;
+  const next = clone(content);
+  next.collaborations = collectCollaborations().filter((item) => item.id !== editor.dataset.collaborationEditor);
+  content = next;
+  renderCollaborationEditors();
+  setStatus('Collaboration removed — save to publish');
 });
 
 reviewEditors?.addEventListener('click', (event) => {

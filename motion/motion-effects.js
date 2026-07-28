@@ -66,11 +66,21 @@ if (hyperspeedContainer) {
   });
 }
 
-const collabSlider = document.querySelector('[data-card-swap]');
-const collabTrack = collabSlider?.querySelector('[data-collab-track]');
 let cardSwap = null;
+let collabPrevControl = null;
+let collabNextControl = null;
+let collabPrevHandler = null;
+let collabNextHandler = null;
 
-if (collabSlider && collabTrack && !reducedMotion) {
+function setupCardSwap() {
+  if (collabPrevControl && collabPrevHandler) collabPrevControl.removeEventListener('click', collabPrevHandler);
+  if (collabNextControl && collabNextHandler) collabNextControl.removeEventListener('click', collabNextHandler);
+  cardSwap?.dispose();
+  cardSwap = null;
+  const collabSlider = document.querySelector('[data-card-swap]');
+  const collabTrack = collabSlider?.querySelector('[data-collab-track]');
+  if (!collabSlider || !collabTrack || reducedMotion) return;
+
   const current = collabSlider.querySelector('[data-collab-current]');
   const total = collabSlider.querySelector('[data-collab-total]');
   const compact = window.matchMedia('(max-width: 700px)').matches;
@@ -90,9 +100,16 @@ if (collabSlider && collabTrack && !reducedMotion) {
     }
   });
 
-  collabSlider.querySelector('[data-collab-prev]')?.addEventListener('click', cardSwap.swap);
-  collabSlider.querySelector('[data-collab-next]')?.addEventListener('click', cardSwap.swap);
+  collabPrevControl = collabSlider.querySelector('[data-collab-prev]');
+  collabNextControl = collabSlider.querySelector('[data-collab-next]');
+  collabPrevHandler = () => cardSwap?.swap();
+  collabNextHandler = () => cardSwap?.swap();
+  collabPrevControl?.addEventListener('click', collabPrevHandler);
+  collabNextControl?.addEventListener('click', collabNextHandler);
 }
+
+setupCardSwap();
+window.addEventListener('ajaynxt:collaborations-rendered', setupCardSwap);
 
 document.documentElement.dataset.motionReady = hyperspeed ? 'full' : 'reduced';
 
@@ -101,6 +118,7 @@ window.addEventListener(
   () => {
     hyperspeed?.dispose();
     cardSwap?.dispose();
+    window.removeEventListener('ajaynxt:collaborations-rendered', setupCardSwap);
   },
   { once: true }
 );

@@ -12,6 +12,7 @@
   --dark-line:rgba(7,19,29,.16);
   --max:1380px;
   --pad:clamp(20px,4vw,68px);
+  --luxury-heading-font:"Playfair Display",Georgia,serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -3473,4 +3474,17 @@ html[data-theme="light"] .review-carousel-controls button{background:rgba(255,25
   .case-dialog-foot .button{width:100%}
   .review-proof{align-items:flex-start;flex-direction:column}
   .review-carousel-controls{margin-top:10px}
+}
+
+/* Only headings rotate through restrained luxury serif families. */
+h1,h2,h3,h4{
+  font-family:var(--luxury-heading-font)!important;
+  font-optical-sizing:auto;
+  text-wrap:balance;
+}
+.dynamic-collab-card{grid-template-columns:.78fr 1.22fr}
+.dynamic-collab-visual{background:linear-gradient(145deg,#19130f,#2a2019)}
+.dynamic-collab-visual img{width:100%;height:100%;object-fit:contain}
+@media(max-width:700px){
+  .dynamic-collab-card{grid-template-columns:1fr}
 }

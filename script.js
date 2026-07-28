@@ -55,6 +55,23 @@
 
   if (year) year.textContent = new Date().getFullYear();
 
+  const luxuryHeadingFonts = [
+    '"Playfair Display", Georgia, serif',
+    '"Cormorant Garamond", Garamond, serif',
+    '"DM Serif Display", Georgia, serif'
+  ];
+  let luxuryHeadingIndex = Math.floor(Date.now() / 3000) % luxuryHeadingFonts.length;
+  const applyLuxuryHeadingFont = () => {
+    root.style.setProperty('--luxury-heading-font', luxuryHeadingFonts[luxuryHeadingIndex]);
+    root.dataset.luxuryHeading = String(luxuryHeadingIndex + 1);
+  };
+  applyLuxuryHeadingFont();
+  const luxuryHeadingTimer = window.setInterval(() => {
+    luxuryHeadingIndex = (luxuryHeadingIndex + 1) % luxuryHeadingFonts.length;
+    applyLuxuryHeadingFont();
+  }, 3000);
+  window.addEventListener('pagehide', () => window.clearInterval(luxuryHeadingTimer), { once: true });
+
   const themeColor = document.querySelector('meta[name="theme-color"]');
   const totalPalettes = 5000;
   let paletteIndex = 0;
@@ -255,6 +272,104 @@
     }
   }
 
+  function safeMediaUrl(value) {
+    try {
+      const url = new URL(String(value || ''), window.location.href);
+      return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+    } catch {
+      return '';
+    }
+  }
+
+  function createCollaborationLink(label, value, primary = false) {
+    const href = safeProofUrl(value);
+    if (!href) return null;
+    const link = document.createElement('a');
+    link.className = `button ${primary ? 'button-primary' : 'button-quiet'}`;
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noreferrer';
+    link.dataset.track = 'project_live_click';
+    link.textContent = `${label} ↗`;
+    return link;
+  }
+
+  function renderSiteCollaborations(source) {
+    const track = document.querySelector('[data-collab-track]');
+    if (!track) return;
+    const items = (Array.isArray(source.collaborations) ? source.collaborations : [])
+      .filter((item) => item && item.published !== false && (item.title || item.summary || item.image));
+    if (!items.length) return;
+
+    const slides = items.map((item) => {
+      const slide = document.createElement('article');
+      slide.className = 'collab-card collab-slide dynamic-collab-card';
+      slide.dataset.collabSlide = '';
+
+      const visual = document.createElement('div');
+      visual.className = 'collab-visual-card dynamic-collab-visual';
+      const image = document.createElement('img');
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.alt = item.imageAlt || `${item.title || 'Collaboration'} visual`;
+      image.src = safeMediaUrl(item.image) || './assets/ajay-nxt-orange-mark.png';
+      const shine = document.createElement('div');
+      shine.className = 'collab-visual-shine';
+      shine.setAttribute('aria-hidden', 'true');
+      visual.append(image, shine);
+
+      const copy = document.createElement('div');
+      copy.className = 'collab-copy dynamic-collab-copy';
+      const kicker = document.createElement('p');
+      kicker.className = 'section-kicker';
+      kicker.textContent = item.kicker || 'Creative collaboration';
+      const heading = document.createElement('h3');
+      heading.append(document.createTextNode(item.title || 'Collaboration'));
+      if (item.highlight) {
+        heading.append(document.createElement('br'));
+        const accent = document.createElement('span');
+        accent.className = 'accent-lime-dark';
+        accent.textContent = item.highlight;
+        heading.append(accent);
+      }
+      const summary = document.createElement('p');
+      summary.textContent = item.summary || '';
+      copy.append(kicker, heading, summary);
+
+      const roles = document.createElement('div');
+      roles.className = 'role-list';
+      (Array.isArray(item.roles) ? item.roles : []).slice(0, 8).forEach((role) => {
+        const tag = document.createElement('span');
+        tag.textContent = role;
+        roles.appendChild(tag);
+      });
+      if (roles.childElementCount) copy.appendChild(roles);
+
+      const actions = document.createElement('div');
+      actions.className = 'collab-action-grid';
+      [
+        ['Visit website', item.website, true],
+        ['Google Business', item.googleBusiness, false],
+        ['Instagram', item.instagram, false],
+        ['Facebook', item.facebook, false]
+      ].forEach(([label, url, primary]) => {
+        const link = createCollaborationLink(label, url, primary);
+        if (link) actions.appendChild(link);
+      });
+      if (actions.childElementCount) copy.appendChild(actions);
+
+      slide.append(visual, copy);
+      return slide;
+    });
+
+    track.replaceChildren(...slides);
+    const total = document.querySelector('[data-collab-total]');
+    const current = document.querySelector('[data-collab-current]');
+    if (total) total.textContent = String(slides.length).padStart(2, '0');
+    if (current) current.textContent = '01';
+    window.dispatchEvent(new CustomEvent('ajaynxt:collaborations-rendered'));
+  }
+
   function showReview(index, animate = false) {
     if (!publicReviews.length || !reviewCard) return;
     activeReviewIndex = (index + publicReviews.length) % publicReviews.length;
@@ -338,6 +453,7 @@
       if (typeof value === 'string' && value.trim()) element.href = value;
     });
 
+    renderSiteCollaborations(siteContent);
     renderSiteReviews(siteContent);
     configurePalette(siteContent.settings);
   }
