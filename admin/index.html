@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="noindex, nofollow" name="robots"/>
+  <meta content="#fff8ef" name="theme-color"/>
+  <title>AJAY NXT Admin</title>
+  <link href="../assets/ajay-nxt-orange-mark.png" rel="icon" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="./admin.css?v=20260728-admin1" rel="stylesheet"/>
+  <script src="../firebase-config.js"></script>
+  <script src="../site-data.js"></script>
+  <script type="module" src="../firebase-dist/admin.js?v=20260728-admin1"></script>
+</head>
+<body>
+  <header class="admin-header">
+    <a class="admin-brand" href="../">
+      <img alt="" height="42" src="../assets/ajay-nxt-orange-mark.png" width="42"/>
+      <span><strong>AJAY NXT</strong><small>Private admin</small></span>
+    </a>
+    <div class="admin-actions">
+      <a class="quiet-button" href="../" target="_blank" rel="noreferrer">View website ↗</a>
+      <button class="quiet-button" data-sign-out hidden type="button">Sign out</button>
+    </div>
+  </header>
+
+  <main class="admin-shell">
+    <section class="login-panel" data-login-panel>
+      <p class="eyebrow">Secure access</p>
+      <h1>Manage AJAY NXT.</h1>
+      <p>Only the verified Google account <strong>ajayx3neha@gmail.com</strong> can open this dashboard.</p>
+      <button class="primary-button" data-google-login type="button">Continue with Google</button>
+      <p class="status-line" data-auth-status aria-live="polite">Checking Firebase connection…</p>
+    </section>
+
+    <section class="dashboard" data-dashboard hidden>
+      <div class="dashboard-top">
+        <div>
+          <p class="eyebrow">Control centre</p>
+          <h1>Good to see you, Ajay.</h1>
+        </div>
+        <div class="live-status"><i></i><span data-save-status>All changes synced</span></div>
+      </div>
+
+      <nav aria-label="Admin sections" class="admin-tabs">
+        <button class="is-active" data-admin-tab="content" type="button">Content</button>
+        <button data-admin-tab="projects" type="button">Case studies</button>
+        <button data-admin-tab="enquiries" type="button">Enquiries <b data-enquiry-count>0</b></button>
+        <button data-admin-tab="analytics" type="button">Analytics</button>
+        <button data-admin-tab="settings" type="button">Settings</button>
+      </nav>
+
+      <form class="admin-panel is-active" data-admin-panel="content" data-content-form>
+        <div class="panel-heading">
+          <div><p class="eyebrow">Public website</p><h2>Main content</h2></div>
+          <button class="primary-button" type="submit">Save content</button>
+        </div>
+
+        <div class="editor-grid">
+          <fieldset>
+            <legend>Hero</legend>
+            <label>Eyebrow<input name="hero.eyebrow" maxlength="80"/></label>
+            <label>Opening line<input name="hero.lineOne" maxlength="90"/></label>
+            <label>Business line<input name="hero.lineTwo" maxlength="70"/></label>
+            <label>Highlighted line<input name="hero.highlight" maxlength="80"/></label>
+            <label>Short description<textarea name="hero.lede" maxlength="220" rows="3"></textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>About</legend>
+            <label>Heading<textarea name="about.heading" maxlength="180" rows="3"></textarea></label>
+            <label>Introduction<textarea name="about.body" maxlength="350" rows="4"></textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Review</legend>
+            <label>Label<input name="review.label" maxlength="80"/></label>
+            <label>Review<textarea name="review.quote" maxlength="600" rows="5"></textarea></label>
+            <div class="two-fields">
+              <label>Name<input name="review.name" maxlength="80"/></label>
+              <label>Rating<input name="review.rating" maxlength="8"/></label>
+            </div>
+            <label>Company<input name="review.company" maxlength="100"/></label>
+            <label>Proof URL<input name="review.proofUrl" type="url"/></label>
+            <label>Proof button text<input name="review.proofLabel" maxlength="40"/></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Contact links</legend>
+            <label>Instagram<input name="social.instagram" type="url"/></label>
+            <label>WhatsApp<input name="social.whatsapp" type="url"/></label>
+            <label>Email link<input name="social.email"/></label>
+            <label>Phone link<input name="social.phone"/></label>
+          </fieldset>
+        </div>
+      </form>
+
+      <section class="admin-panel" data-admin-panel="projects">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Selected work</p><h2>Case studies</h2></div>
+          <button class="primary-button" data-save-projects type="button">Save case studies</button>
+        </div>
+        <div class="project-editors" data-project-editors></div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="enquiries">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Project leads</p><h2>Enquiries</h2></div>
+          <button class="quiet-button" data-refresh-enquiries type="button">Refresh</button>
+        </div>
+        <div class="empty-state" data-enquiries-empty>No enquiries yet.</div>
+        <div class="enquiry-list" data-enquiry-list></div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="analytics">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Privacy-conscious</p><h2>Clicks and actions</h2></div>
+          <button class="quiet-button" data-refresh-analytics type="button">Refresh</button>
+        </div>
+        <div class="metric-grid" data-metric-grid></div>
+        <p class="panel-note">Counts show recent site actions only. No visitor names, IP addresses or advertising profiles are collected.</p>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="settings">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Experience</p><h2>Colour settings</h2></div>
+          <button class="primary-button" data-save-settings type="button">Save settings</button>
+        </div>
+        <div class="settings-card">
+          <label class="toggle-row">
+            <span><strong>Automatic colour rotation</strong><small>Move through the 5,000 soft palettes.</small></span>
+            <input data-setting-rotation type="checkbox"/>
+          </label>
+          <label>Change interval (seconds)
+            <input data-setting-delay max="3600" min="5" step="1" type="number"/>
+          </label>
+          <button class="danger-button" data-reset-content type="button">Restore default content</button>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

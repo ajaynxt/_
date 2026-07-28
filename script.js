@@ -5,10 +5,27 @@
   const nav = document.querySelector('[data-nav]');
   const year = document.querySelector('[data-year]');
   const themeButton = document.querySelector('[data-theme-toggle]');
+  const paletteLockButton = document.querySelector('[data-palette-lock]');
   // Motion is part of the approved AJAY NXT presentation. Individual effects
   // use calmer settings when needed, but the page should not become static.
   const reduceMotion = false;
   const motionSrc = window.AJAY_NXT_MOTION_SRC;
+  const firebaseSrc = window.AJAY_NXT_FIREBASE_SRC;
+  let firebaseBundlePromise = null;
+
+  function loadFirebaseBundle() {
+    const config = window.AJAY_NXT_FIREBASE_CONFIG;
+    const ready = Boolean(config?.apiKey && config?.authDomain && config?.projectId && config?.appId);
+    if (!firebaseSrc || !ready) return Promise.resolve(null);
+    if (!firebaseBundlePromise) firebaseBundlePromise = import(firebaseSrc);
+    return firebaseBundlePromise;
+  }
+
+  function trackEvent(name, path) {
+    loadFirebaseBundle()
+      .then(() => window.AJAY_NXT_FIREBASE?.track?.(name, path))
+      .catch(() => false);
+  }
 
   function loadMotionBundle() {
     if (!motionSrc || document.querySelector('[data-motion-bundle]')) return;
@@ -41,9 +58,35 @@
   const themeColor = document.querySelector('meta[name="theme-color"]');
   const totalPalettes = 5000;
   let paletteIndex = 0;
-  const paletteDelay = new URLSearchParams(window.location.search).has('palette-preview')
+  let paletteDelay = new URLSearchParams(window.location.search).has('palette-preview')
     ? 1200
     : 5000;
+  let paletteRotationEnabled = true;
+  let paletteTimer = null;
+  let paletteLocked = false;
+
+  try {
+    const savedLock = JSON.parse(localStorage.getItem('ajaynxt-palette-lock') || 'null');
+    if (savedLock?.locked && Number.isInteger(savedLock.index)) {
+      paletteLocked = true;
+      paletteIndex = Math.max(0, Math.min(totalPalettes - 1, savedLock.index));
+    }
+  } catch {
+    localStorage.removeItem('ajaynxt-palette-lock');
+  }
+
+  function scheduleFirebaseBundle() {
+    if (!firebaseSrc || !window.AJAY_NXT_FIREBASE_CONFIG) return;
+    const start = () => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadFirebaseBundle, { timeout: 2500 });
+      } else {
+        window.setTimeout(loadFirebaseBundle, 1800);
+      }
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+  }
 
   const hslToRgb = (hue, saturation, lightness) => {
     const s = saturation / 100;
@@ -117,7 +160,7 @@
   applyPalette(paletteIndex);
 
   const rotatePalette = () => {
-    if (document.hidden) return;
+    if (document.hidden || paletteLocked || !paletteRotationEnabled) return;
 
     paletteIndex = (paletteIndex + 1) % totalPalettes;
     root.classList.add('palette-shifting');
@@ -133,8 +176,106 @@
     window.setTimeout(() => root.classList.remove('palette-shifting'), 900);
   };
 
-  const paletteTimer = window.setInterval(rotatePalette, paletteDelay);
-  window.addEventListener('pagehide', () => window.clearInterval(paletteTimer), { once: true });
+  function updatePaletteLockButton() {
+    if (!paletteLockButton) return;
+    paletteLockButton.setAttribute('aria-pressed', String(paletteLocked));
+    paletteLockButton.setAttribute('aria-label', paletteLocked
+      ? 'Unlock colour rotation'
+      : 'Lock the current colour palette');
+    const label = paletteLockButton.querySelector('[data-palette-lock-text]');
+    if (label) label.textContent = paletteLocked ? 'Colour locked' : 'Lock colour';
+  }
+
+  function stopPaletteRotation() {
+    window.clearInterval(paletteTimer);
+    paletteTimer = null;
+  }
+
+  function startPaletteRotation() {
+    stopPaletteRotation();
+    if (!paletteLocked && paletteRotationEnabled) {
+      paletteTimer = window.setInterval(rotatePalette, paletteDelay);
+    }
+  }
+
+  function configurePalette(settings = {}) {
+    paletteRotationEnabled = settings.paletteRotationEnabled !== false;
+    const nextDelay = Number(settings.paletteDelayMs);
+    if (Number.isFinite(nextDelay)) paletteDelay = Math.max(5000, Math.min(3600000, nextDelay));
+    startPaletteRotation();
+  }
+
+  paletteLockButton?.addEventListener('click', () => {
+    paletteLocked = !paletteLocked;
+    if (paletteLocked) {
+      localStorage.setItem('ajaynxt-palette-lock', JSON.stringify({ locked: true, index: paletteIndex }));
+      trackEvent('palette_lock');
+    } else {
+      localStorage.removeItem('ajaynxt-palette-lock');
+    }
+    updatePaletteLockButton();
+    startPaletteRotation();
+  });
+
+  updatePaletteLockButton();
+  startPaletteRotation();
+  window.addEventListener('pagehide', stopPaletteRotation, { once: true });
+
+  const mergeContent = (target, source) => {
+    if (!source || typeof source !== 'object') return target;
+    Object.entries(source).forEach(([key, value]) => {
+      if (value && typeof value === 'object' && !Array.isArray(value)) {
+        target[key] = mergeContent(target[key] || {}, value);
+      } else {
+        target[key] = value;
+      }
+    });
+    return target;
+  };
+
+  let siteContent = structuredClone(window.AJAY_NXT_DEFAULT_CONTENT || {});
+
+  function valueAtPath(object, path) {
+    return path.split('.').reduce((value, key) => value?.[key], object);
+  }
+
+  function applySiteContent(remote = {}) {
+    siteContent = mergeContent(structuredClone(window.AJAY_NXT_DEFAULT_CONTENT || {}), remote);
+    window.AJAY_NXT_SITE_CONTENT = siteContent;
+
+    document.querySelectorAll('[data-content]').forEach((element) => {
+      const value = valueAtPath(siteContent, element.dataset.content);
+      if (typeof value !== 'string' || !value.trim()) return;
+      if (element.dataset.contentStyle === 'about') {
+        const highlights = /(design|visual storytelling)/gi;
+        element.replaceChildren();
+        value.split(highlights).filter(Boolean).forEach((part) => {
+          if (highlights.test(part)) {
+            highlights.lastIndex = 0;
+            const accent = document.createElement('span');
+            accent.className = /visual/i.test(part) ? 'accent-lime-dark' : 'accent-cyan-dark';
+            accent.textContent = part;
+            element.appendChild(accent);
+          } else {
+            element.appendChild(document.createTextNode(part));
+          }
+          highlights.lastIndex = 0;
+        });
+        return;
+      }
+      element.textContent = value;
+    });
+
+    document.querySelectorAll('[data-content-link]').forEach((element) => {
+      const value = valueAtPath(siteContent, element.dataset.contentLink);
+      if (typeof value === 'string' && value.trim()) element.href = value;
+    });
+
+    configurePalette(siteContent.settings);
+  }
+
+  applySiteContent(window.AJAY_NXT_REMOTE_CONTENT || {});
+  window.addEventListener('ajaynxt:content-ready', (event) => applySiteContent(event.detail || {}));
 
   const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
   updateHeader();
@@ -766,7 +907,8 @@
 
   // WhatsApp booking form.
   const bookingForm = document.querySelector('[data-booking-form]');
-  bookingForm?.addEventListener('submit', (event) => {
+  const formStatus = document.querySelector('[data-form-status]');
+  bookingForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const form = new FormData(bookingForm);
     const budgetAmount = Number(form.get('budgetAmount') || 0);
@@ -788,7 +930,89 @@
       `Project details: ${form.get('details') || ''}`, '',
       'Sent from AJAY NXT portfolio.'
     ].filter(Boolean).join('\n');
-    window.open(`https://wa.me/919929562585?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+
+    const enquiry = {
+      name: form.get('name') || '',
+      email: form.get('email') || '',
+      phone: `${countryCode || ''} ${form.get('phone') || ''}`.trim(),
+      service: form.get('service') || '',
+      timeline: form.get('timeline') || '',
+      budget,
+      budgetInr,
+      details: form.get('details') || ''
+    };
+    const whatsappUrl = `https://wa.me/919929562585?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+    if (formStatus) formStatus.textContent = 'WhatsApp opened. Saving your enquiry…';
+    try {
+      await loadFirebaseBundle();
+      const result = await window.AJAY_NXT_FIREBASE?.saveEnquiry?.(enquiry);
+      if (formStatus) {
+        formStatus.textContent = result?.saved
+          ? 'Enquiry saved. Continue in WhatsApp.'
+          : 'Continue in WhatsApp.';
+      }
+    } catch {
+      if (formStatus) formStatus.textContent = 'Opening WhatsApp. Your message is ready.';
+    }
+    window.AJAY_NXT_FIREBASE?.track?.('book_submit');
+  });
+
+  document.addEventListener('click', (event) => {
+    const tracked = event.target.closest('[data-track]');
+    if (!tracked || tracked.closest('form') && tracked.type === 'submit') return;
+    trackEvent(tracked.dataset.track);
+  });
+
+  // Compact, accessible case studies. Firebase can replace their copy without
+  // rebuilding the rest of the portfolio.
+  const caseDialog = document.querySelector('[data-case-dialog]');
+  const caseLive = caseDialog?.querySelector('[data-case-live]');
+
+  function openCaseStudy(key) {
+    const project = window.AJAY_NXT_SITE_CONTENT?.projects?.[key]
+      || window.AJAY_NXT_DEFAULT_CONTENT?.projects?.[key];
+    if (!caseDialog || !project) return;
+
+    const fields = {
+      '[data-case-eyebrow]': project.eyebrow,
+      '[data-case-title]': project.title,
+      '[data-case-summary]': project.summary,
+      '[data-case-challenge]': project.challenge,
+      '[data-case-solution]': project.solution,
+      '[data-case-result]': project.result
+    };
+    Object.entries(fields).forEach(([selector, value]) => {
+      const element = caseDialog.querySelector(selector);
+      if (element) element.textContent = value || '';
+    });
+
+    const serviceList = caseDialog.querySelector('[data-case-services]');
+    if (serviceList) {
+      serviceList.innerHTML = '';
+      (project.services || []).slice(0, 8).forEach((service) => {
+        const tag = document.createElement('span');
+        tag.textContent = service;
+        serviceList.appendChild(tag);
+      });
+    }
+
+    if (caseLive) {
+      caseLive.hidden = !project.url;
+      caseLive.href = project.url || '#';
+    }
+
+    caseDialog.showModal();
+    trackEvent('case_study_open', `${window.location.pathname}#${key}`);
+  }
+
+  document.querySelectorAll('[data-case-study]').forEach((button) => {
+    button.addEventListener('click', () => openCaseStudy(button.dataset.caseStudy));
+  });
+  caseDialog?.querySelector('[data-case-close]')?.addEventListener('click', () => caseDialog.close());
+  caseDialog?.addEventListener('click', (event) => {
+    if (event.target === caseDialog) caseDialog.close();
   });
 
   // Wedding Shedding links are kept in site-config.js so they can be replaced later.
@@ -814,4 +1038,5 @@
   });
 
   scheduleMotionBundle();
+  scheduleFirebaseBundle();
 })();

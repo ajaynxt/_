@@ -3388,3 +3388,83 @@ html.palette-shifting [class*="accent-"]{
     border-color .8s ease,
     box-shadow .8s ease;
 }
+
+/* Admin-connected finishing layer */
+.header-controls{gap:10px}
+.palette-lock{
+  flex:0 0 auto;min-height:42px;padding:0 13px;border:1px solid rgba(17,22,27,.14);
+  border-radius:13px;background:rgba(255,255,255,.54);color:#171b20;
+  display:inline-flex;align-items:center;gap:8px;font:800 9px/1 Manrope,sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(14px);
+  transition:transform .2s ease,border-color .3s ease,background .3s ease
+}
+.palette-lock:hover{transform:translateY(-1px);border-color:rgb(var(--daily-rgb) / .45)}
+.palette-lock i{
+  width:12px;height:12px;border-radius:50%;background:var(--daily-accent);
+  box-shadow:0 0 0 5px rgb(var(--daily-rgb) / .12);
+  transition:background .85s ease,box-shadow .85s ease
+}
+.palette-lock[aria-pressed="true"]{border-color:rgb(var(--daily-rgb) / .45);background:var(--daily-tint)}
+
+.case-study-button{
+  margin-top:18px;min-height:43px;padding:0 15px;border:1px solid var(--line);
+  border-radius:13px;background:transparent;color:inherit;font:800 10px/1 Manrope,sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease
+}
+.case-study-button:hover{transform:translateY(-2px);border-color:rgb(var(--daily-rgb) / .5);background:var(--daily-tint)}
+.case-study-button span{color:var(--daily-accent)}
+
+.case-dialog{
+  width:min(920px,calc(100% - 28px));max-height:min(820px,calc(100dvh - 28px));
+  padding:0;border:1px solid rgba(27,24,21,.14);border-radius:28px;background:#fffaf4;
+  color:#171b20;box-shadow:0 35px 120px rgba(40,23,11,.25);overflow:auto
+}
+.case-dialog::backdrop{background:rgba(17,13,10,.42);backdrop-filter:blur(10px)}
+.case-dialog-close{
+  position:sticky;z-index:3;top:14px;float:right;width:42px;height:42px;margin:14px 14px 0 0;
+  border:1px solid rgba(23,27,32,.14);border-radius:50%;background:rgba(255,255,255,.82);
+  color:#171b20;font-size:24px;cursor:pointer
+}
+.case-dialog-head{padding:clamp(32px,6vw,70px) clamp(24px,6vw,70px) 30px}
+.case-dialog-head>p:first-child{
+  margin:0 0 13px;color:var(--daily-accent);font-size:10px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase
+}
+.case-dialog-head h2{
+  max-width:720px;margin:0;font:600 clamp(38px,6vw,72px)/.96 Syne,sans-serif;
+  letter-spacing:-.06em
+}
+.case-dialog-head>p:last-child{max-width:650px;margin:22px 0 0;color:#5e6a72;font-size:15px;line-height:1.7}
+.case-dialog-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:0 clamp(24px,6vw,70px);
+  border:1px solid rgba(23,27,32,.12);border-radius:18px;overflow:hidden;background:rgba(23,27,32,.12)
+}
+.case-dialog-grid article{padding:22px;background:white}
+.case-dialog-grid small{color:var(--daily-accent);font-size:9px;font-weight:800;letter-spacing:.1em}
+.case-dialog-grid p{margin:16px 0 0;color:#5e6a72;font-size:12px;line-height:1.65}
+.case-dialog-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:25px clamp(24px,6vw,70px) clamp(32px,6vw,60px)
+}
+.case-dialog-foot>div{display:flex;flex-wrap:wrap;gap:7px}
+.case-dialog-foot>div span{
+  padding:7px 10px;border-radius:999px;background:var(--daily-tint);
+  color:var(--daily-accent-dark);font-size:9px;font-weight:800
+}
+.review-proof{display:flex;align-items:center;gap:10px}
+.review-proof a{color:#f3f1e9;font-size:10px;font-weight:800;text-underline-offset:4px}
+.form-status{min-height:18px;margin:9px 0 0!important;color:#4e5d48!important;font-size:11px;font-weight:700}
+
+@media(max-width:980px){
+  .palette-lock span{display:none}
+  .palette-lock{width:42px;padding:0;justify-content:center}
+}
+@media(max-width:700px){
+  .palette-lock{order:-1}
+  .case-dialog{border-radius:21px}
+  .case-dialog-grid{grid-template-columns:1fr}
+  .case-dialog-foot{align-items:stretch;flex-direction:column}
+  .case-dialog-foot .button{width:100%}
+  .review-proof{align-items:flex-start;flex-direction:column}
+}

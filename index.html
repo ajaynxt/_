@@ -8,24 +8,24 @@
 <meta content="telephone=yes" name="format-detection"/>
 <meta content="AJAY NXT builds premium websites, app UI, web apps, video edits and visual content for brands that want trust, speed and stronger online presence." name="description"/>
 <meta content="index, follow, max-image-preview:large" name="robots"/>
-<!-- Search engine verification: replace these values after adding the site in each webmaster tool. -->
-<meta content="GOOGLE_VERIFICATION_CODE_REPLACE_ME" name="google-site-verification"/>
-<meta content="BING_VERIFICATION_CODE_REPLACE_ME" name="msvalidate.01"/>
 <meta content="AJAY NXT | Web Design, App UI, Video Editing & Visual Design" property="og:title"/>
 <meta content="Premium web design, app UI, website development, video editing and visual design services for businesses in India and worldwide." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="AJAY NXT" property="og:site_name"/>
 <meta content="en_IN" property="og:locale"/>
-<meta content="https://ajaynxt.com/assets/ajay-hero-color-embedded.webp" property="og:image"/>
-<meta content="AJAY NXT creative website, app and visual design portfolio" property="og:image:alt"/>
+<meta content="https://ajaynxt.com/assets/ajaynxt-social-card.jpg" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="image/jpeg" property="og:image:type"/>
+<meta content="AJAY NXT — Create What's Next. Web, app, video and visuals." property="og:image:alt"/>
 <title>AJAY NXT | Web Design, App UI, Video Editing &amp; Visual Design</title>
 <link href="https://ajaynxt.com/" rel="canonical"/>
 <meta content="https://ajaynxt.com/" property="og:url"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="AJAY NXT | Web Design, App UI, Video Editing &amp; Visual Design" name="twitter:title"/>
 <meta content="Premium websites, app experiences, cinematic edits and visual content for growing brands." name="twitter:description"/>
-<meta content="https://ajaynxt.com/assets/ajay-hero-color-embedded.webp" name="twitter:image"/>
-<meta content="AJAY NXT creative portfolio preview" name="twitter:image:alt"/>
+<meta content="https://ajaynxt.com/assets/ajaynxt-social-card.jpg" name="twitter:image"/>
+<meta content="AJAY NXT — Create What's Next. Web, app, video and visuals." name="twitter:image:alt"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="AJAY NXT" name="apple-mobile-web-app-title"/>
 <meta content="default" name="apple-mobile-web-app-status-bar-style"/>
@@ -46,7 +46,7 @@
   document.documentElement.dataset.dailyPalette = 'sunset';
 })();
 </script><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="./style.css?v=20260728-soft5000-22" rel="stylesheet"/>
+<link href="./style.css?v=20260728-admin1" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -141,7 +141,14 @@
   ]
 }
 </script>
-<script src="./site-config.js"></script><script>window.AJAY_NXT_MOTION_SRC='./motion/motion-bundle.js?v=20260728-soft5000-22';</script><script defer="" src="./script.js?v=20260728-soft5000-22"></script>
+<script src="./site-config.js"></script>
+<script src="./site-data.js"></script>
+<script src="./firebase-config.js"></script>
+<script>
+window.AJAY_NXT_MOTION_SRC='./motion/motion-bundle.js?v=20260728-admin1';
+window.AJAY_NXT_FIREBASE_SRC='./firebase-dist/site.js?v=20260728-admin1';
+</script>
+<script defer="" src="./script.js?v=20260728-admin1"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a><div aria-hidden="true" class="shader-bg"><i class="shader-blob shader-one"></i><i class="shader-blob shader-two"></i><i class="shader-blob shader-three"></i></div>
@@ -157,7 +164,11 @@
 </a>
 
 
-<div class="header-controls"><nav class="site-nav" data-nav="" id="site-nav">
+<div class="header-controls">
+<button aria-label="Lock the current colour palette" aria-pressed="false" class="palette-lock" data-palette-lock type="button">
+<i aria-hidden="true"></i><span data-palette-lock-text>Lock colour</span>
+</button>
+<nav class="site-nav" data-nav="" id="site-nav">
 <a href="#top">Home</a>
 <a href="#work">Work</a>
 <a class="nav-secondary" href="#services">Services</a>
@@ -173,13 +184,13 @@
 <div aria-hidden="true" class="hero-orbit orbit-one"></div>
 <div aria-hidden="true" class="hero-orbit orbit-two"></div>
 <div class="hero-copy reveal">
-<div class="eyebrow"><span class="status-dot"></span>Web • App • Video • Visuals</div>
+<div class="eyebrow"><span class="status-dot"></span><span data-content="hero.eyebrow">Web • App • Video • Visuals</span></div>
 <h1 class="hero-title-old">
-<span>Digital work that makes</span>
-<span class="hero-business">good businesses</span>
-<em>impossible to ignore.</em>
+<span data-content="hero.lineOne">Digital work that makes</span>
+<span class="hero-business" data-content="hero.lineTwo">good businesses</span>
+<em data-content="hero.highlight">impossible to ignore.</em>
 </h1>
-<p class="hero-lede">Premium websites, app experiences and cinematic content for growing brands.</p>
+<p class="hero-lede" data-content="hero.lede">Premium websites, app experiences and cinematic content for growing brands.</p>
 <div class="hero-actions">
 <a class="button button-primary magnetic" href="#work">View work <span>↘</span></a>
 <a class="button button-quiet" href="#book">Let’s talk</a>
@@ -265,7 +276,7 @@
 <p>Restaurant website + admin system</p>
 <h3>Diamond Restaurants</h3>
 </div>
-<a class="project-link" href="https://diamondrestaurants.com/" rel="noreferrer" target="_blank">Live website ↗</a>
+<a class="project-link" data-track="project_live_click" href="https://diamondrestaurants.com/" rel="noreferrer" target="_blank">Live website ↗</a>
 </div>
 <div aria-label="Diamond Restaurants project overview" class="project-system-card">
 <div class="system-orb orb-a"></div>
@@ -301,6 +312,7 @@
 <li>Complete handover</li>
 </ul>
 </div>
+<button class="case-study-button" data-case-study="diamond" type="button">View case study <span>↗</span></button>
 </article>
 <article class="project rajmahal-project reveal">
 <div class="project-meta">
@@ -309,7 +321,7 @@
 <p>Luxury hospitality demo website</p>
 <h3>Rajmahal Palace</h3>
 </div>
-<a class="project-link" href="https://rajmahal.ajaynxt.com/" rel="noreferrer" target="_blank">Live demo &rarr;</a>
+<a class="project-link" data-track="project_live_click" href="https://rajmahal.ajaynxt.com/" rel="noreferrer" target="_blank">Live demo &rarr;</a>
 </div>
 <a aria-label="View Rajmahal Palace demo" class="project-gallery-cover rajmahal-cover" href="https://rajmahal.ajaynxt.com/" rel="noreferrer" target="_blank">
 <img alt="Rajmahal Palace luxury hospitality demo website preview" height="820" loading="lazy" decoding="async" src="./assets/rajmahal-demo-preview.jpg" width="1440"/>
@@ -328,6 +340,7 @@
 <li>AJAY NXT demo</li>
 </ul>
 </div>
+<button class="case-study-button" data-case-study="rajmahal" type="button">View case study <span>↗</span></button>
 </article>
 <article class="project concept-project reveal">
 <div class="project-meta">
@@ -371,6 +384,7 @@
 <li>Admin dashboard</li>
 </ul>
 </div>
+<button class="case-study-button" data-case-study="moveToGo" type="button">View case study <span>↗</span></button>
 </article>
 </div>
 <div class="work-panel" data-work-panel="video">
@@ -611,8 +625,8 @@
 </div>
 <div class="about-copy reveal">
 <p class="section-kicker">About Ajay</p>
-<h2>I combine <span class="accent-cyan-dark">design</span>, development and <span class="accent-lime-dark">visual storytelling.</span></h2>
-<p>I’m Ajay Saini, a digital creator from India. I turn ideas into clear, polished digital experiences.</p>
+<h2 data-content="about.heading" data-content-style="about">I combine <span class="accent-cyan-dark">design</span>, development and <span class="accent-lime-dark">visual storytelling.</span></h2>
+<p data-content="about.body">I’m Ajay Saini, a digital creator from India. I turn ideas into clear, polished digital experiences.</p>
 <div class="about-tags">
 <span>Web + App</span>
 <span>Video + Visuals</span>
@@ -640,17 +654,20 @@
 </div>
 <div class="review-layout review-layout-compact reveal">
 <article class="review-card primary-review">
-<small>DIAMOND RESTAURANTS</small>
-<blockquote>
+<small data-content="review.label">DIAMOND RESTAURANTS</small>
+<blockquote data-content="review.quote">
           “Premium, responsive and easy to manage. Ajay understood our requirements
           and delivered a website that represents Diamond Restaurants professionally.”
         </blockquote>
 <footer>
 <div>
-<strong>Aman Sharma</strong>
-<span>Diamond Restaurants</span>
+<strong data-content="review.name">Aman Sharma</strong>
+<span data-content="review.company">Diamond Restaurants</span>
 </div>
-<span class="review-badge">★★★★★ 5.0</span>
+<div class="review-proof">
+<span class="review-badge">★★★★★ <b data-content="review.rating">5.0</b></span>
+<a data-content-link="review.proofUrl" data-content="review.proofLabel" data-track="project_live_click" href="https://diamondrestaurants.com/" rel="noreferrer" target="_blank">View project</a>
+</div>
 </footer>
 </article>
 </div>
@@ -746,21 +763,22 @@
 <textarea name="details" placeholder="What do you want to create?" required="" rows="3"></textarea>
 </label>
 </div>
-<button class="button button-primary light" type="submit">
+<button class="button button-primary light" data-track="book_submit" type="submit">
             Continue on WhatsApp ↗
           </button>
+<p class="form-status" data-form-status aria-live="polite"></p>
 </form>
 <div class="social-links">
-<a href="https://www.instagram.com/ajay_nxt_/" rel="noreferrer" target="_blank">
+<a data-content-link="social.instagram" data-track="instagram_click" href="https://www.instagram.com/ajay_nxt_/" rel="noreferrer" target="_blank">
 <span>◎</span><b>Instagram</b><small>@ajay_nxt_</small>
 </a>
-<a href="https://wa.me/919929562585" rel="noreferrer" target="_blank">
+<a data-content-link="social.whatsapp" data-track="whatsapp_click" href="https://wa.me/919929562585" rel="noreferrer" target="_blank">
 <span>◉</span><b>WhatsApp</b><small>Discuss a project</small>
 </a>
-<a href="mailto:ajayx3neha@gmail.com">
+<a data-content-link="social.email" href="mailto:ajayx3neha@gmail.com">
 <span>✉</span><b>Email</b><small>ajayx3neha@gmail.com</small>
 </a>
-<a href="tel:+919929562585">
+<a data-content-link="social.phone" href="tel:+919929562585">
 <span>☎</span><b>Call</b><small>+91 99295 62585</small>
 </a>
 </div>
@@ -770,6 +788,7 @@
 <footer class="footer">
 <span>© <span data-year=""></span> AJAY NXT</span>
 <span>Web · App · Video · Visuals</span>
+<a href="./admin/">Admin</a>
 <a href="#top">Back to top ↑</a>
 </footer>
 <div class="mobile-contact">
@@ -777,5 +796,22 @@
 <a href="https://wa.me/919929562585" rel="noreferrer" target="_blank">WhatsApp</a>
 <a href="#book">Book Project</a>
 </div>
+<dialog class="case-dialog" data-case-dialog>
+<button aria-label="Close case study" class="case-dialog-close" data-case-close type="button">×</button>
+<div class="case-dialog-head">
+<p data-case-eyebrow></p>
+<h2 data-case-title></h2>
+<p data-case-summary></p>
+</div>
+<div class="case-dialog-grid">
+<article><small>01 · Challenge</small><p data-case-challenge></p></article>
+<article><small>02 · Solution</small><p data-case-solution></p></article>
+<article><small>03 · Result</small><p data-case-result></p></article>
+</div>
+<div class="case-dialog-foot">
+<div data-case-services></div>
+<a class="button button-primary" data-case-live data-track="project_live_click" href="#" rel="noreferrer" target="_blank">View live project ↗</a>
+</div>
+</dialog>
 </body>
 </html>
