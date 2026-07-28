@@ -13,6 +13,9 @@
   --max:1380px;
   --pad:clamp(20px,4vw,68px);
   --luxury-heading-font:"Playfair Display",Georgia,serif;
+  --luxury-heading-size-adjust:.5;
+  --luxury-heading-line-height:1.02;
+  --luxury-heading-tracking:-.035em;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -3479,8 +3482,12 @@ html[data-theme="light"] .review-carousel-controls button{background:rgba(255,25
 /* Only headings rotate through restrained luxury serif families. */
 h1,h2,h3,h4{
   font-family:var(--luxury-heading-font)!important;
+  font-size-adjust:var(--luxury-heading-size-adjust);
+  line-height:var(--luxury-heading-line-height);
+  letter-spacing:var(--luxury-heading-tracking);
   font-optical-sizing:auto;
   text-wrap:balance;
+  transition:font-family .55s ease,font-size-adjust .55s ease,line-height .55s ease,letter-spacing .55s ease;
 }
 .dynamic-collab-card{grid-template-columns:.78fr 1.22fr}
 .dynamic-collab-visual{background:linear-gradient(145deg,#19130f,#2a2019)}

@@ -55,19 +55,38 @@
 
   if (year) year.textContent = new Date().getFullYear();
 
-  const luxuryHeadingFonts = [
-    '"Playfair Display", Georgia, serif',
-    '"Cormorant Garamond", Garamond, serif',
-    '"DM Serif Display", Georgia, serif'
+  const luxuryHeadingStyles = [
+    {
+      font: '"Playfair Display", Georgia, serif',
+      sizeAdjust: '0.50',
+      lineHeight: '1.02',
+      tracking: '-0.035em'
+    },
+    {
+      font: '"Cormorant Garamond", Garamond, serif',
+      sizeAdjust: '0.54',
+      lineHeight: '0.98',
+      tracking: '-0.025em'
+    },
+    {
+      font: '"DM Serif Display", Georgia, serif',
+      sizeAdjust: '0.48',
+      lineHeight: '1',
+      tracking: '-0.03em'
+    }
   ];
-  let luxuryHeadingIndex = Math.floor(Date.now() / 3000) % luxuryHeadingFonts.length;
+  let luxuryHeadingIndex = Math.floor(Date.now() / 3000) % luxuryHeadingStyles.length;
   const applyLuxuryHeadingFont = () => {
-    root.style.setProperty('--luxury-heading-font', luxuryHeadingFonts[luxuryHeadingIndex]);
+    const style = luxuryHeadingStyles[luxuryHeadingIndex];
+    root.style.setProperty('--luxury-heading-font', style.font);
+    root.style.setProperty('--luxury-heading-size-adjust', style.sizeAdjust);
+    root.style.setProperty('--luxury-heading-line-height', style.lineHeight);
+    root.style.setProperty('--luxury-heading-tracking', style.tracking);
     root.dataset.luxuryHeading = String(luxuryHeadingIndex + 1);
   };
   applyLuxuryHeadingFont();
   const luxuryHeadingTimer = window.setInterval(() => {
-    luxuryHeadingIndex = (luxuryHeadingIndex + 1) % luxuryHeadingFonts.length;
+    luxuryHeadingIndex = (luxuryHeadingIndex + 1) % luxuryHeadingStyles.length;
     applyLuxuryHeadingFont();
   }, 3000);
   window.addEventListener('pagehide', () => window.clearInterval(luxuryHeadingTimer), { once: true });
