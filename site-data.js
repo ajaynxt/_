@@ -112,6 +112,18 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       caseStudy: '',
       tags: ['Three concepts', 'Clinic booking', 'Live customizer'],
       published: true
+    },
+    {
+      id: 'movegrid-logistics',
+      label: 'Logistics business demo',
+      title: 'MOVEGRID Logistics',
+      summary: 'Ten business-ready styles with freight quotes, shipment tracking and operations flows.',
+      image: './assets/logistics-demo-preview.png',
+      imageAlt: 'MOVEGRID logistics website demo preview',
+      url: 'https://logistics.ajaynxt.com/',
+      caseStudy: '',
+      tags: ['10 visual styles', 'Freight quotes', 'Shipment tracking'],
+      published: true
     }
   ],
   collaborations: [
@@ -131,21 +143,6 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       published: true
     },
     {
-      id: 'diamond-restaurants',
-      kicker: 'Srijanbhog Co. Pvt. Ltd.',
-      title: 'Diamond Restaurants',
-      highlight: 'digital experience.',
-      summary: 'Brand presentation, content systems and a confident digital launch.',
-      image: './assets/collaboration/diamond-cloche.webp',
-      imageAlt: 'Diamond Restaurants premium cloche visual',
-      roles: ['UI direction', 'Development', 'Content system', 'Deployment'],
-      website: 'https://diamondrestaurants.com/',
-      googleBusiness: '',
-      instagram: '',
-      facebook: '',
-      published: true
-    },
-    {
       id: 'rajmahal-palace',
       kicker: 'AJAY NXT demo concept',
       title: 'Rajmahal Palace',
@@ -155,6 +152,21 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       imageAlt: 'Rajmahal Palace luxury hospitality demo preview',
       roles: ['Luxury website', 'Motion direction', 'Visual storytelling', 'Demo showcase'],
       website: 'https://rajmahal.ajaynxt.com/',
+      googleBusiness: '',
+      instagram: '',
+      facebook: '',
+      published: true
+    },
+    {
+      id: 'movegrid-logistics',
+      kicker: 'AJAY NXT logistics demo',
+      title: 'MOVEGRID Logistics',
+      highlight: 'freight experience.',
+      summary: 'A business-ready logistics showcase covering freight quotes, tracking and operations.',
+      image: './assets/logistics-demo-preview.png',
+      imageAlt: 'MOVEGRID logistics website demo preview',
+      roles: ['Logistics website', 'Quote flow', 'Shipment tracking', 'Visual systems'],
+      website: 'https://logistics.ajaynxt.com/',
       googleBusiness: '',
       instagram: '',
       facebook: '',
