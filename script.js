@@ -6,6 +6,7 @@
   const year = document.querySelector('[data-year]');
   const themeButton = document.querySelector('[data-theme-toggle]');
   const paletteLockButton = document.querySelector('[data-palette-lock]');
+  const textLockButton = document.querySelector('[data-text-lock]');
   // Motion is part of the approved AJAY NXT presentation. Individual effects
   // use calmer settings when needed, but the page should not become static.
   const reduceMotion = false;
@@ -76,6 +77,9 @@
     }
   ];
   let luxuryHeadingIndex = Math.floor(Date.now() / 3000) % luxuryHeadingStyles.length;
+  let luxuryHeadingTimer = null;
+  let textLocked = localStorage.getItem('ajaynxt-text-lock') === 'true';
+  let headingRotationEnabled = true;
   const applyLuxuryHeadingFont = () => {
     const style = luxuryHeadingStyles[luxuryHeadingIndex];
     root.style.setProperty('--luxury-heading-font', style.font);
@@ -85,11 +89,41 @@
     root.dataset.luxuryHeading = String(luxuryHeadingIndex + 1);
   };
   applyLuxuryHeadingFont();
-  const luxuryHeadingTimer = window.setInterval(() => {
-    luxuryHeadingIndex = (luxuryHeadingIndex + 1) % luxuryHeadingStyles.length;
-    applyLuxuryHeadingFont();
-  }, 3000);
-  window.addEventListener('pagehide', () => window.clearInterval(luxuryHeadingTimer), { once: true });
+  const stopLuxuryHeadingRotation = () => {
+    window.clearInterval(luxuryHeadingTimer);
+    luxuryHeadingTimer = null;
+  };
+  const startLuxuryHeadingRotation = () => {
+    stopLuxuryHeadingRotation();
+    if (textLocked || !headingRotationEnabled) return;
+    luxuryHeadingTimer = window.setInterval(() => {
+      luxuryHeadingIndex = (luxuryHeadingIndex + 1) % luxuryHeadingStyles.length;
+      applyLuxuryHeadingFont();
+    }, 3000);
+  };
+  const updateTextLockButton = () => {
+    if (!textLockButton) return;
+    textLockButton.setAttribute('aria-pressed', String(textLocked));
+    textLockButton.setAttribute('aria-label', textLocked
+      ? 'Unlock heading font rotation'
+      : 'Lock the current heading font');
+    const label = textLockButton.querySelector('[data-text-lock-text]');
+    if (label) label.textContent = textLocked ? 'Text locked' : 'Lock text';
+  };
+  textLockButton?.addEventListener('click', () => {
+    textLocked = !textLocked;
+    localStorage.setItem('ajaynxt-text-lock', String(textLocked));
+    updateTextLockButton();
+    startLuxuryHeadingRotation();
+  });
+  updateTextLockButton();
+  startLuxuryHeadingRotation();
+  window.addEventListener('pagehide', stopLuxuryHeadingRotation, { once: true });
+
+  function configureHeadingRotation(settings = {}) {
+    headingRotationEnabled = settings.headingRotationEnabled !== false;
+    startLuxuryHeadingRotation();
+  }
 
   const themeColor = document.querySelector('meta[name="theme-color"]');
   const totalPalettes = 5000;
@@ -313,6 +347,127 @@
     return link;
   }
 
+  let activeWebsiteIndex = 0;
+  let websiteSlides = [];
+  let websiteSliderTimer = null;
+  const websiteTrack = document.querySelector('[data-website-track]');
+  const websiteDots = document.querySelector('[data-website-dots]');
+  const websiteCurrent = document.querySelector('[data-website-current]');
+  const websiteTotal = document.querySelector('[data-website-total]');
+  const websiteSlider = document.querySelector('[data-website-slider]');
+
+  function normaliseWebsiteItems(source) {
+    return (Array.isArray(source.websites) ? source.websites : [])
+      .filter((item) => item && item.published !== false && item.title && item.url)
+      .map((item, index) => ({
+        id: String(item.id || `website-${index + 1}`),
+        label: String(item.label || 'Website project'),
+        title: String(item.title || 'Website project'),
+        summary: String(item.summary || ''),
+        image: safeMediaUrl(item.image) || './assets/ajay-nxt-orange-mark.png',
+        imageAlt: String(item.imageAlt || `${item.title || 'Website'} preview`),
+        url: safeProofUrl(item.url),
+        caseStudy: ['diamond', 'rajmahal', 'moveToGo'].includes(item.caseStudy) ? item.caseStudy : '',
+        tags: Array.isArray(item.tags) ? item.tags.filter(Boolean).slice(0, 6) : []
+      }));
+  }
+
+  function escapeWebsiteText(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (character) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[character]);
+  }
+
+  function stopWebsiteSlider() {
+    window.clearInterval(websiteSliderTimer);
+    websiteSliderTimer = null;
+  }
+
+  function startWebsiteSlider() {
+    stopWebsiteSlider();
+    if (websiteSlides.length > 1) {
+      websiteSliderTimer = window.setInterval(() => showWebsite(activeWebsiteIndex + 1), 5200);
+    }
+  }
+
+  function showWebsite(index, animate = true) {
+    if (!websiteSlides.length || !websiteTrack) return;
+    activeWebsiteIndex = (index + websiteSlides.length) % websiteSlides.length;
+    websiteTrack.style.transform = `translate3d(-${activeWebsiteIndex * 100}%,0,0)`;
+    if (websiteCurrent) websiteCurrent.textContent = String(activeWebsiteIndex + 1).padStart(2, '0');
+    websiteDots?.querySelectorAll('button').forEach((dot, dotIndex) => {
+      dot.classList.toggle('is-active', dotIndex === activeWebsiteIndex);
+      dot.setAttribute('aria-current', dotIndex === activeWebsiteIndex ? 'true' : 'false');
+    });
+    if (animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      websiteSlides[activeWebsiteIndex]?.animate(
+        [{ opacity: 0.5, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
+        { duration: 360, easing: 'cubic-bezier(.2,.8,.2,1)' }
+      );
+    }
+  }
+
+  function renderSiteWebsites(source) {
+    if (!websiteTrack) return;
+    const items = normaliseWebsiteItems(source);
+    websiteSlides = items.map((item, index) => {
+      const slide = document.createElement('article');
+      slide.className = 'website-slide';
+      slide.dataset.websiteSlide = item.id;
+      slide.innerHTML = `
+        <a class="website-slide-visual" href="${escapeWebsiteText(item.url)}" target="_blank" rel="noreferrer" data-track="project_live_click">
+          <img alt="${escapeWebsiteText(item.imageAlt)}" decoding="async" loading="${index === 0 ? 'eager' : 'lazy'}" src="${escapeWebsiteText(item.image)}"/>
+          <span>Open live website ↗</span>
+        </a>
+        <div class="website-slide-copy">
+          <p class="section-kicker">${escapeWebsiteText(item.label)}</p>
+          <h4>${escapeWebsiteText(item.title)}</h4>
+          <p>${escapeWebsiteText(item.summary)}</p>
+          <div class="website-tags">${item.tags.map((tag) => `<span>${escapeWebsiteText(tag)}</span>`).join('')}</div>
+          <div class="website-slide-actions">
+            <a class="button button-primary" href="${escapeWebsiteText(item.url)}" target="_blank" rel="noreferrer" data-track="project_live_click">View website <span>↗</span></a>
+            ${item.caseStudy ? `<button class="button button-quiet" data-case-study="${item.caseStudy}" type="button">Case study <span>↗</span></button>` : ''}
+          </div>
+        </div>
+      `;
+      return slide;
+    });
+
+    websiteTrack.replaceChildren(...websiteSlides);
+    if (websiteTotal) websiteTotal.textContent = String(websiteSlides.length).padStart(2, '0');
+    if (websiteDots) {
+      websiteDots.replaceChildren(...websiteSlides.map((_, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Show website ${index + 1}`);
+        dot.addEventListener('click', () => {
+          showWebsite(index);
+          startWebsiteSlider();
+        });
+        return dot;
+      }));
+    }
+    activeWebsiteIndex = Math.min(activeWebsiteIndex, Math.max(0, websiteSlides.length - 1));
+    showWebsite(activeWebsiteIndex, false);
+    startWebsiteSlider();
+  }
+
+  websiteSlider?.querySelector('[data-website-prev]')?.addEventListener('click', () => {
+    showWebsite(activeWebsiteIndex - 1);
+    startWebsiteSlider();
+  });
+  websiteSlider?.querySelector('[data-website-next]')?.addEventListener('click', () => {
+    showWebsite(activeWebsiteIndex + 1);
+    startWebsiteSlider();
+  });
+  websiteSlider?.addEventListener('mouseenter', stopWebsiteSlider);
+  websiteSlider?.addEventListener('mouseleave', startWebsiteSlider);
+  window.addEventListener('pagehide', stopWebsiteSlider, { once: true });
+
   function renderSiteCollaborations(source) {
     const track = document.querySelector('[data-collab-track]');
     if (!track) return;
@@ -472,9 +627,11 @@
       if (typeof value === 'string' && value.trim()) element.href = value;
     });
 
+    renderSiteWebsites(siteContent);
     renderSiteCollaborations(siteContent);
     renderSiteReviews(siteContent);
     configurePalette(siteContent.settings);
+    configureHeadingRotation(siteContent.settings);
   }
 
   applySiteContent(window.AJAY_NXT_REMOTE_CONTENT || {});
@@ -1210,8 +1367,9 @@
     trackEvent('case_study_open', `${window.location.pathname}#${key}`);
   }
 
-  document.querySelectorAll('[data-case-study]').forEach((button) => {
-    button.addEventListener('click', () => openCaseStudy(button.dataset.caseStudy));
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-case-study]');
+    if (button) openCaseStudy(button.dataset.caseStudy);
   });
   caseDialog?.querySelector('[data-case-close]')?.addEventListener('click', () => caseDialog.close());
   caseDialog?.addEventListener('click', (event) => {

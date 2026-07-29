@@ -92,7 +92,7 @@ button { cursor: pointer; }
 .panel-heading h2 { font-size:clamp(28px,3.2vw,44px); }
 .panel-actions { display:flex;flex-wrap:wrap;gap:8px; }
 .editor-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
-fieldset,.settings-card,.project-editor,.review-editor,.collaboration-editor {
+fieldset,.settings-card,.project-editor,.review-editor,.collaboration-editor,.website-editor {
   min-width:0;
   margin:0;
   padding:20px;
@@ -126,11 +126,13 @@ input:focus,textarea:focus,select:focus { border-color:var(--orange);box-shadow:
 .review-editor h3 { margin:3px 0 0;font:700 20px Syne; }
 .review-editor-head small { color:var(--orange);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.14em; }
 .review-publish { margin:16px 0 2px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.62); }
-.collaboration-editors { display:grid;gap:16px; }
-.collaboration-editor { display:grid;grid-template-columns:minmax(220px,.72fr) minmax(0,1.28fr);gap:18px; }
+.collaboration-editors,.website-editors { display:grid;gap:16px; }
+.collaboration-editor,.website-editor { display:grid;grid-template-columns:minmax(220px,.72fr) minmax(0,1.28fr);gap:18px; }
 .collaboration-preview { min-height:280px;overflow:hidden;border:1px solid var(--line);border-radius:15px;background:#251d18; }
 .collaboration-preview img { width:100%;height:100%;min-height:280px;object-fit:contain;display:block; }
-.collaboration-editor-body { min-width:0; }
+.collaboration-editor-body,.website-editor-body { min-width:0; }
+.website-preview { min-height:220px;border-radius:18px;overflow:hidden;background:#17120f; }
+.website-preview img { width:100%;height:100%;min-height:220px;object-fit:cover;display:block; }
 
 .enquiry-list { display:grid;gap:12px; }
 .enquiry-card { padding:20px;border:1px solid var(--line);border-radius:17px;background:#fffaf4; }
@@ -158,7 +160,7 @@ input:focus,textarea:focus,select:focus { border-color:var(--orange);box-shadow:
 
 @media (max-width: 850px) {
   .editor-grid,.project-editors,.review-editors,.metric-grid { grid-template-columns:1fr; }
-  .collaboration-editor { grid-template-columns:1fr; }
+  .collaboration-editor,.website-editor { grid-template-columns:1fr; }
   .collaboration-preview,.collaboration-preview img { min-height:220px;max-height:320px; }
   .dashboard-top,.panel-heading { align-items:start;flex-direction:column; }
 }

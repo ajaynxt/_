@@ -64,6 +64,44 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       url: ''
     }
   },
+  websites: [
+    {
+      id: 'diamond-restaurants',
+      label: 'Restaurant website',
+      title: 'Diamond Restaurants',
+      summary: 'A premium customer website with responsive menus and simple content controls.',
+      image: 'https://diamondrestaurants.com/assets/home-slides/home-v30-03-sweeten-every-moment.webp',
+      imageAlt: 'Diamond Restaurants website preview',
+      url: 'https://diamondrestaurants.com/',
+      caseStudy: 'diamond',
+      tags: ['Responsive website', 'Content controls', 'Restaurant experience'],
+      published: true
+    },
+    {
+      id: 'rajmahal-palace',
+      label: 'Luxury hospitality demo',
+      title: 'Rajmahal Palace',
+      summary: 'A cinematic hospitality concept shaped with editorial design and restrained motion.',
+      image: './assets/rajmahal-demo-preview.jpg',
+      imageAlt: 'Rajmahal Palace luxury hospitality demo preview',
+      url: 'https://rajmahal.ajaynxt.com/',
+      caseStudy: 'rajmahal',
+      tags: ['Luxury direction', 'Motion', 'Hospitality concept'],
+      published: true
+    },
+    {
+      id: 'ironpulse-gym',
+      label: 'Gym business demo',
+      title: 'IRONPULSE Fitness Club',
+      summary: 'A conversion-focused gym demo with memberships, free-trial booking, trainers and supplement enquiries.',
+      image: 'https://images.pexels.com/photos/35609526/pexels-photo-35609526.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      imageAlt: 'IRONPULSE gym website demo preview',
+      url: 'https://gym.ajaynxt.com/#top',
+      caseStudy: '',
+      tags: ['Free trials', 'Memberships', 'Trainer profiles'],
+      published: true
+    }
+  ],
   collaborations: [
     {
       id: 'wedding-shedding',
@@ -120,6 +158,7 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
   },
   settings: {
     paletteRotationEnabled: true,
-    paletteDelayMs: 5000
+    paletteDelayMs: 5000,
+    headingRotationEnabled: true
   }
 };

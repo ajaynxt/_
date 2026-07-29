@@ -10,10 +10,10 @@
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700&display=swap" rel="stylesheet"/>
-  <link href="./admin.css?v=20260728-admin1" rel="stylesheet"/>
+  <link href="./admin.css?v=20260729-gym1" rel="stylesheet"/>
   <script src="../firebase-config.js"></script>
-  <script src="../site-data.js"></script>
-  <script type="module" src="../firebase-dist/admin.js?v=20260728-linkedin1"></script>
+  <script src="../site-data.js?v=20260729-gym1"></script>
+  <script type="module" src="../firebase-dist/admin.js?v=20260729-gym1"></script>
 </head>
 <body>
   <header class="admin-header">
@@ -47,6 +47,7 @@
 
       <nav aria-label="Admin sections" class="admin-tabs">
         <button class="is-active" data-admin-tab="content" type="button">Content</button>
+        <button data-admin-tab="websites" type="button">Websites <b data-website-count>0</b></button>
         <button data-admin-tab="projects" type="button">Case studies</button>
         <button data-admin-tab="collaborations" type="button">Collaborations <b data-collaboration-count>0</b></button>
         <button data-admin-tab="reviews" type="button">Reviews <b data-review-count>0</b></button>
@@ -87,6 +88,18 @@
           </fieldset>
         </div>
       </form>
+
+      <section class="admin-panel" data-admin-panel="websites">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Live work &amp; demos</p><h2>Website showcase</h2></div>
+          <div class="panel-actions">
+            <button class="quiet-button" data-add-website type="button">+ Add website</button>
+            <button class="primary-button" data-save-websites type="button">Save websites</button>
+          </div>
+        </div>
+        <p class="panel-note">Add a photo URL or local asset path, website link and short copy. Published items appear in the website slider.</p>
+        <div class="website-editors" data-website-editors></div>
+      </section>
 
       <section class="admin-panel" data-admin-panel="projects">
         <div class="panel-heading">
@@ -147,6 +160,10 @@
           <label class="toggle-row">
             <span><strong>Automatic colour rotation</strong><small>Move through the 5,000 soft palettes.</small></span>
             <input data-setting-rotation type="checkbox"/>
+          </label>
+          <label class="toggle-row">
+            <span><strong>Automatic heading font rotation</strong><small>Cycle through the three restrained luxury heading styles.</small></span>
+            <input data-setting-heading-rotation type="checkbox"/>
           </label>
           <label>Change interval (seconds)
             <input data-setting-delay max="3600" min="5" step="1" type="number"/>

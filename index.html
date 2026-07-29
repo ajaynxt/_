@@ -42,11 +42,14 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <script>
 (() => {
-  document.documentElement.dataset.theme = 'light';
+  const savedTheme = localStorage.getItem('ajay-nxt-theme');
+  document.documentElement.dataset.theme = savedTheme === 'dark' || savedTheme === 'light'
+    ? savedTheme
+    : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   document.documentElement.dataset.dailyPalette = 'sunset';
 })();
 </script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=DM+Serif+Display&amp;family=Manrope:wght@400;500;600&amp;family=Playfair+Display:wght@400;500;600&amp;family=Syne:wght@500;600&amp;display=swap" rel="stylesheet"/>
-<link href="./style.css?v=20260728-linkedin1" rel="stylesheet"/>
+<link href="./style.css?v=20260729-gym1" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -142,13 +145,13 @@
 }
 </script>
 <script src="./site-config.js"></script>
-<script src="./site-data.js?v=20260728-linkedin1"></script>
+<script src="./site-data.js?v=20260729-gym1"></script>
 <script src="./firebase-config.js"></script>
 <script>
 window.AJAY_NXT_MOTION_SRC='./motion/motion-bundle.js?v=20260728-collab1';
 window.AJAY_NXT_FIREBASE_SRC='./firebase-dist/site.js?v=20260728-admin1';
 </script>
-<script defer="" src="./script.js?v=20260728-collab2"></script>
+<script defer="" src="./script.js?v=20260729-gym1"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a><div aria-hidden="true" class="shader-bg"><i class="shader-blob shader-one"></i><i class="shader-blob shader-two"></i><i class="shader-blob shader-three"></i></div>
@@ -167,6 +170,12 @@ window.AJAY_NXT_FIREBASE_SRC='./firebase-dist/site.js?v=20260728-admin1';
 <div class="header-controls">
 <button aria-label="Lock the current colour palette" aria-pressed="false" class="palette-lock" data-palette-lock type="button">
 <i aria-hidden="true"></i><span data-palette-lock-text>Lock colour</span>
+</button>
+<button aria-label="Lock the current heading font" aria-pressed="false" class="text-lock" data-text-lock type="button">
+<i aria-hidden="true">Aa</i><span data-text-lock-text>Lock text</span>
+</button>
+<button aria-label="Switch colour theme" class="theme-toggle" data-theme-toggle type="button">
+<span aria-hidden="true" class="theme-icon">☾</span><span class="theme-text">Dark</span>
 </button>
 <nav class="site-nav" data-nav="" id="site-nav">
 <a href="#top">Home</a>
@@ -269,7 +278,24 @@ window.AJAY_NXT_FIREBASE_SRC='./firebase-dist/site.js?v=20260728-admin1';
 </div>
 <div class="work-panels">
 <div class="work-panel is-active" data-work-panel="websites">
-<article class="project project-featured reveal">
+<section aria-label="Website showcase" class="website-showcase reveal" data-website-slider>
+<div class="website-showcase-head">
+<div>
+<p class="section-kicker">Live websites &amp; demos</p>
+<h3>Explore the <span class="accent-lime-dark">website work.</span></h3>
+</div>
+<div class="website-slider-controls">
+<button aria-label="Previous website" data-website-prev type="button">←</button>
+<span><b data-website-current>01</b> / <i data-website-total>01</i></span>
+<button aria-label="Next website" data-website-next type="button">→</button>
+</div>
+</div>
+<div class="website-slider-viewport">
+<div class="website-slider-track" data-website-track></div>
+</div>
+<div aria-label="Choose a website" class="website-slider-dots" data-website-dots></div>
+</section>
+<article class="project project-featured legacy-website-detail reveal">
 <div class="project-meta">
 <span class="project-index">01</span>
 <div>
@@ -314,7 +340,7 @@ window.AJAY_NXT_FIREBASE_SRC='./firebase-dist/site.js?v=20260728-admin1';
 </div>
 <button class="case-study-button" data-case-study="diamond" type="button">View case study <span>↗</span></button>
 </article>
-<article class="project rajmahal-project reveal">
+<article class="project rajmahal-project legacy-website-detail reveal">
 <div class="project-meta">
 <span class="project-index">02</span>
 <div>

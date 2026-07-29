@@ -36,6 +36,8 @@ const authStatus = document.querySelector('[data-auth-status]');
 const saveStatus = document.querySelector('[data-save-status]');
 const liveStatus = saveStatus?.closest('.live-status');
 const contentForm = document.querySelector('[data-content-form]');
+const websiteEditors = document.querySelector('[data-website-editors]');
+const websiteCount = document.querySelector('[data-website-count]');
 const projectEditors = document.querySelector('[data-project-editors]');
 const collaborationEditors = document.querySelector('[data-collaboration-editors]');
 const collaborationCount = document.querySelector('[data-collaboration-count]');
@@ -98,6 +100,68 @@ function collectContentForm() {
     setAt(next, field.name, clean(field.value, field.tagName === 'TEXTAREA' ? 1500 : 300));
   });
   return next;
+}
+
+function normaliseWebsites(source = content) {
+  return (Array.isArray(source.websites) ? source.websites : []).map((item, index) => ({
+    id: clean(item.id || `website-${index + 1}`, 80),
+    label: clean(item.label, 100),
+    title: clean(item.title, 120),
+    summary: clean(item.summary, 500),
+    image: clean(item.image, 700),
+    imageAlt: clean(item.imageAlt, 180),
+    url: clean(item.url, 700),
+    caseStudy: clean(item.caseStudy, 30),
+    tags: Array.isArray(item.tags) ? item.tags.map((tag) => clean(tag, 60)).filter(Boolean).slice(0, 8) : [],
+    published: item.published !== false
+  }));
+}
+
+function renderWebsiteEditors() {
+  if (!websiteEditors) return;
+  const websites = normaliseWebsites();
+  if (websiteCount) websiteCount.textContent = String(websites.length);
+  websiteEditors.innerHTML = websites.map((item, index) => `
+    <article class="website-editor" data-website-editor="${escapeHtml(item.id)}">
+      <div class="website-preview">
+        <img alt="" data-website-preview src="${escapeHtml(previewUrl(item.image))}"/>
+      </div>
+      <div class="website-editor-body">
+        <div class="review-editor-head">
+          <div><small>Website ${index + 1}</small><h3>${escapeHtml(item.title || 'New website')}</h3></div>
+          <button class="danger-button" data-delete-website type="button">Delete</button>
+        </div>
+        <label class="toggle-row review-publish">
+          <span><strong>Published</strong><small>Show this website in the public slider.</small></span>
+          <input data-website-field="published" type="checkbox" ${item.published ? 'checked' : ''}/>
+        </label>
+        <label>Website photo URL or local path<input data-website-field="image" maxlength="700" value="${escapeHtml(item.image)}"/></label>
+        <label>Image description<input data-website-field="imageAlt" maxlength="180" value="${escapeHtml(item.imageAlt)}"/></label>
+        <div class="two-fields">
+          <label>Small label<input data-website-field="label" maxlength="100" value="${escapeHtml(item.label)}"/></label>
+          <label>Website title<input data-website-field="title" maxlength="120" value="${escapeHtml(item.title)}"/></label>
+        </div>
+        <label>Short description<textarea data-website-field="summary" maxlength="500" rows="4">${escapeHtml(item.summary)}</textarea></label>
+        <label>Tags — comma separated<input data-website-field="tags" maxlength="400" value="${escapeHtml(item.tags.join(', '))}"/></label>
+        <label>Live website link<input data-website-field="url" type="url" value="${escapeHtml(item.url)}"/></label>
+        <label>Linked case study key (optional)<input data-website-field="caseStudy" maxlength="30" placeholder="diamond / rajmahal / moveToGo" value="${escapeHtml(item.caseStudy)}"/></label>
+      </div>
+    </article>
+  `).join('');
+}
+
+function collectWebsites() {
+  return [...(websiteEditors?.querySelectorAll('[data-website-editor]') || [])].map((editor, index) => {
+    const item = { id: clean(editor.dataset.websiteEditor || `website-${index + 1}`, 80) };
+    editor.querySelectorAll('[data-website-field]').forEach((field) => {
+      const name = field.dataset.websiteField;
+      if (name === 'published') item[name] = field.checked;
+      else if (name === 'tags') {
+        item[name] = clean(field.value, 400).split(',').map((tag) => tag.trim()).filter(Boolean).slice(0, 8);
+      } else item[name] = clean(field.value, name === 'image' || name === 'url' ? 700 : 500);
+    });
+    return item;
+  }).filter((item) => item.title || item.summary || item.image || item.url);
 }
 
 const projectOrder = ['diamond', 'rajmahal', 'moveToGo'];
@@ -293,12 +357,15 @@ async function loadContent() {
   content = mergeDeep(clone(defaults), remote);
   if (!Array.isArray(remote.reviews) && remote.review) content.reviews = [clone(content.review)];
   hydrateContentForm();
+  renderWebsiteEditors();
   renderProjectEditors();
   renderCollaborationEditors();
   renderReviewEditors();
   const rotation = document.querySelector('[data-setting-rotation]');
+  const headingRotation = document.querySelector('[data-setting-heading-rotation]');
   const delay = document.querySelector('[data-setting-delay]');
   if (rotation) rotation.checked = content.settings?.paletteRotationEnabled !== false;
+  if (headingRotation) headingRotation.checked = content.settings?.headingRotationEnabled !== false;
   if (delay) delay.value = Math.max(5, Number(content.settings?.paletteDelayMs || 5000) / 1000);
 }
 
@@ -420,6 +487,57 @@ document.querySelector('[data-save-projects]')?.addEventListener('click', async 
   }
 });
 
+document.querySelector('[data-add-website]')?.addEventListener('click', () => {
+  const next = clone(content);
+  next.websites = collectWebsites();
+  next.websites.push({
+    id: `website-${Date.now()}`,
+    label: 'Website project',
+    title: '',
+    summary: '',
+    image: '',
+    imageAlt: '',
+    url: '',
+    caseStudy: '',
+    tags: [],
+    published: true
+  });
+  content = next;
+  renderWebsiteEditors();
+  websiteEditors?.querySelector('[data-website-editor]:last-child input[data-website-field="title"]')?.focus();
+  setStatus('New website ready — save when complete');
+});
+
+document.querySelector('[data-save-websites]')?.addEventListener('click', async () => {
+  try {
+    const next = clone(content);
+    next.websites = collectWebsites();
+    await saveContent(next, 'Websites saved');
+    renderWebsiteEditors();
+  } catch (error) {
+    setStatus(error.message || 'Websites could not be saved.', 'error');
+  }
+});
+
+websiteEditors?.addEventListener('input', (event) => {
+  const field = event.target.closest('[data-website-field="image"]');
+  if (!field) return;
+  const preview = field.closest('[data-website-editor]')?.querySelector('[data-website-preview]');
+  if (preview) preview.src = previewUrl(field.value);
+});
+
+websiteEditors?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-delete-website]');
+  if (!button) return;
+  const editor = button.closest('[data-website-editor]');
+  if (!window.confirm('Delete this website? Save websites to publish the change.')) return;
+  const next = clone(content);
+  next.websites = collectWebsites().filter((item) => item.id !== editor.dataset.websiteEditor);
+  content = next;
+  renderWebsiteEditors();
+  setStatus('Website removed — save to publish');
+});
+
 document.querySelector('[data-add-review]')?.addEventListener('click', () => {
   const next = clone(content);
   next.reviews = collectReviews();
@@ -523,7 +641,8 @@ document.querySelector('[data-save-settings]')?.addEventListener('click', async 
     const next = clone(content);
     next.settings = {
       paletteRotationEnabled: document.querySelector('[data-setting-rotation]')?.checked !== false,
-      paletteDelayMs: Math.max(5, Number(document.querySelector('[data-setting-delay]')?.value || 5)) * 1000
+      paletteDelayMs: Math.max(5, Number(document.querySelector('[data-setting-delay]')?.value || 5)) * 1000,
+      headingRotationEnabled: document.querySelector('[data-setting-heading-rotation]')?.checked !== false
     };
     await saveContent(next, 'Settings saved');
   } catch (error) {
