@@ -183,6 +183,21 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       instagram: '',
       facebook: '',
       published: true
+    },
+    {
+      id: 'nexora-biomech-demo',
+      kicker: 'AJAY NXT medical-tech demo',
+      title: 'Nexora Biomech.',
+      highlight: 'Human-focused innovation.',
+      summary: 'A seven-style concept for prosthetics, medical robotics and clinical research.',
+      image: './assets/biomech-demo-preview.webp',
+      imageAlt: 'Nexora Biomech medical technology demo preview',
+      roles: ['Web design', 'Responsive build', 'Product storytelling', 'Care pathway'],
+      website: 'https://biomech.ajaynxt.com/',
+      googleBusiness: '',
+      instagram: '',
+      facebook: '',
+      published: true
     }
   ],
   social: {
