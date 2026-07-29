@@ -136,6 +136,18 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       caseStudy: '',
       tags: ['7 visual styles', 'Product storytelling', 'Care pathway'],
       published: true
+    },
+    {
+      id: 'estara-properties',
+      label: 'Real-estate portal demo',
+      title: 'Estara Properties',
+      summary: 'A 10-style property experience with filters, virtual tours, EMI planning and site-visit booking.',
+      image: 'https://images.pexels.com/photos/30506378/pexels-photo-30506378.jpeg?auto=compress&cs=tinysrgb&w=2000',
+      imageAlt: 'Estara Properties luxury real-estate website demo preview',
+      url: 'https://estate.ajaynxt.com/',
+      caseStudy: '',
+      tags: ['10 visual styles', 'Property search', 'Site-visit booking'],
+      published: true
     }
   ],
   collaborations: [
@@ -194,6 +206,21 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       imageAlt: 'Nexora Biomech medical technology demo preview',
       roles: ['Web design', 'Responsive build', 'Product storytelling', 'Care pathway'],
       website: 'https://biomech.ajaynxt.com/',
+      googleBusiness: '',
+      instagram: '',
+      facebook: '',
+      published: true
+    },
+    {
+      id: 'estara-properties-demo',
+      kicker: 'AJAY NXT real-estate demo',
+      title: 'Estara Properties.',
+      highlight: 'Property discovery, refined.',
+      summary: 'A luxury property concept with search, virtual tours, EMI planning and organised enquiries.',
+      image: 'https://images.pexels.com/photos/30506378/pexels-photo-30506378.jpeg?auto=compress&cs=tinysrgb&w=2000',
+      imageAlt: 'Estara Properties luxury real-estate website demo preview',
+      roles: ['Property search', 'Virtual tour', 'EMI calculator', 'WhatsApp visits'],
+      website: 'https://estate.ajaynxt.com/',
       googleBusiness: '',
       instagram: '',
       facebook: '',
