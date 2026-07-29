@@ -100,6 +100,18 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       caseStudy: '',
       tags: ['Free trials', 'Memberships', 'Trainer profiles'],
       published: true
+    },
+    {
+      id: 'dental-design-studio',
+      label: 'Dental clinic demo',
+      title: 'Dental Design Studio',
+      summary: 'Three responsive clinic concepts with live colour, font and content controls.',
+      image: './assets/dental-demo-preview.png',
+      imageAlt: 'Dental Design Studio website demo preview',
+      url: 'https://dental.ajaynxt.com/',
+      caseStudy: '',
+      tags: ['Three concepts', 'Clinic booking', 'Live customizer'],
+      published: true
     }
   ],
   collaborations: [
