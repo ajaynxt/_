@@ -124,6 +124,18 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       caseStudy: '',
       tags: ['10 visual styles', 'Freight quotes', 'Shipment tracking'],
       published: true
+    },
+    {
+      id: 'nexora-biomech',
+      label: 'Biomechanical technology demo',
+      title: 'Nexora Biomech',
+      summary: 'A multi-style biomedical technology showcase for healthcare, prosthetics and research.',
+      image: './assets/biomech-demo-preview.webp',
+      imageAlt: 'Nexora Biomech website demo preview',
+      url: 'https://biomech.ajaynxt.com/',
+      caseStudy: '',
+      tags: ['10 visual styles', 'Biomechanical tech', 'Responsive demo'],
+      published: false
     }
   ],
   collaborations: [
