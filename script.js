@@ -464,6 +464,21 @@
     showWebsite(activeWebsiteIndex + 1);
     startWebsiteSlider();
   });
+  let websitePointerStartX = null;
+  websiteSlider?.addEventListener('pointerdown', (event) => {
+    websitePointerStartX = event.clientX;
+  });
+  websiteSlider?.addEventListener('pointerup', (event) => {
+    if (websitePointerStartX === null) return;
+    const distance = event.clientX - websitePointerStartX;
+    websitePointerStartX = null;
+    if (Math.abs(distance) < 45) return;
+    showWebsite(activeWebsiteIndex + (distance < 0 ? 1 : -1));
+    startWebsiteSlider();
+  });
+  websiteSlider?.addEventListener('pointercancel', () => {
+    websitePointerStartX = null;
+  });
   websiteSlider?.addEventListener('mouseenter', stopWebsiteSlider);
   websiteSlider?.addEventListener('mouseleave', startWebsiteSlider);
   window.addEventListener('pagehide', stopWebsiteSlider, { once: true });
