@@ -148,6 +148,18 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       caseStudy: '',
       tags: ['10 visual styles', 'Property search', 'Site-visit booking'],
       published: true
+    },
+    {
+      id: 'vow-and-frame-weddings',
+      label: 'Wedding studio demo',
+      title: 'Vow & Frame Weddings',
+      summary: 'A 10-style wedding experience with stories, films, packages, availability and WhatsApp enquiries.',
+      image: 'https://images.pexels.com/photos/33485965/pexels-photo-33485965.jpeg?auto=compress&cs=tinysrgb&w=2000',
+      imageAlt: 'Vow and Frame luxury wedding website demo preview',
+      url: 'https://wedding.ajaynxt.com/',
+      caseStudy: '',
+      tags: ['10 visual styles', 'Wedding films', 'Date booking'],
+      published: true
     }
   ],
   collaborations: [
@@ -221,6 +233,21 @@ window.AJAY_NXT_DEFAULT_CONTENT = {
       imageAlt: 'Estara Properties luxury real-estate website demo preview',
       roles: ['Property search', 'Virtual tour', 'EMI calculator', 'WhatsApp visits'],
       website: 'https://estate.ajaynxt.com/',
+      googleBusiness: '',
+      instagram: '',
+      facebook: '',
+      published: true
+    },
+    {
+      id: 'vow-and-frame-demo',
+      kicker: 'AJAY NXT wedding demo',
+      title: 'Vow & Frame.',
+      highlight: 'Stories that stay alive.',
+      summary: 'A luxury wedding concept for photography, films, planning, albums and destination logistics.',
+      image: 'https://images.pexels.com/photos/33485965/pexels-photo-33485965.jpeg?auto=compress&cs=tinysrgb&w=2000',
+      imageAlt: 'Vow and Frame luxury wedding website demo preview',
+      roles: ['Photography', 'Wedding films', 'Planning', 'Availability booking'],
+      website: 'https://wedding.ajaynxt.com/',
       googleBusiness: '',
       instagram: '',
       facebook: '',
