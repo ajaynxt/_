@@ -1,0 +1,18 @@
+{
+  "name": "AJAY NXT Portfolio",
+  "short_name": "AJAY NXT",
+  "description": "Premium web design, app UI, website development, video editing and visual design by AJAY NXT.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fffaf1",
+  "theme_color": "#07131d",
+  "icons": [
+    {
+      "src": "/assets/ajay-nxt-orange-mark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
