@@ -1,0 +1,19 @@
+{
+  "auth": {
+    "providers": {
+      "anonymous": false,
+      "emailPassword": false,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "AJAY NXT",
+        "supportEmail": "ajayx3neha@gmail.com",
+        "authorizedRedirectUris": [
+          "https://ajaynxt.com"
+        ]
+      }
+    }
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}
