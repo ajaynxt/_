@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="noindex, nofollow" name="robots"/>
+  <meta content="#fff8ef" name="theme-color"/>
+  <title>AJAY NXT Admin</title>
+  <link href="../assets/ajay-nxt-orange-mark.png" rel="icon" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="./admin.css?v=20260729-gym1" rel="stylesheet"/>
+  <script src="../firebase-config.js"></script>
+  <script src="../site-data.js?v=20260729-wedding1"></script>
+  <script type="module" src="../firebase-dist/admin.js?v=20260729-gym1"></script>
+</head>
+<body>
+  <header class="admin-header">
+    <a class="admin-brand" href="../">
+      <img alt="" height="42" src="../assets/ajay-nxt-orange-mark.png" width="42"/>
+      <span><strong>AJAY NXT</strong><small>Private admin</small></span>
+    </a>
+    <div class="admin-actions">
+      <a class="quiet-button" href="../" target="_blank" rel="noreferrer">View website ↗</a>
+      <button class="quiet-button" data-sign-out hidden type="button">Sign out</button>
+    </div>
+  </header>
+
+  <main class="admin-shell">
+    <section class="login-panel" data-login-panel>
+      <p class="eyebrow">Secure access</p>
+      <h1>Manage AJAY NXT.</h1>
+      <p>Only the verified Google account <strong>ajayx3neha@gmail.com</strong> can open this dashboard.</p>
+      <button class="primary-button" data-google-login type="button">Continue with Google</button>
+      <p class="status-line" data-auth-status aria-live="polite">Checking Firebase connection…</p>
+    </section>
+
+    <section class="dashboard" data-dashboard hidden>
+      <div class="dashboard-top">
+        <div>
+          <p class="eyebrow">Control centre</p>
+          <h1>Good to see you, Ajay.</h1>
+        </div>
+        <div class="live-status"><i></i><span data-save-status>All changes synced</span></div>
+      </div>
+
+      <nav aria-label="Admin sections" class="admin-tabs">
+        <button class="is-active" data-admin-tab="content" type="button">Content</button>
+        <button data-admin-tab="websites" type="button">Websites <b data-website-count>0</b></button>
+        <button data-admin-tab="projects" type="button">Case studies</button>
+        <button data-admin-tab="reviews" type="button">Reviews <b data-review-count>0</b></button>
+        <button data-admin-tab="enquiries" type="button">Enquiries <b data-enquiry-count>0</b></button>
+        <button data-admin-tab="analytics" type="button">Analytics</button>
+        <button data-admin-tab="settings" type="button">Settings</button>
+      </nav>
+
+      <form class="admin-panel is-active" data-admin-panel="content" data-content-form>
+        <div class="panel-heading">
+          <div><p class="eyebrow">Public website</p><h2>Main content</h2></div>
+          <button class="primary-button" type="submit">Save content</button>
+        </div>
+
+        <div class="editor-grid">
+          <fieldset>
+            <legend>Hero</legend>
+            <label>Eyebrow<input name="hero.eyebrow" maxlength="80"/></label>
+            <label>Opening line<input name="hero.role" maxlength="90"/></label>
+            <label>Business line<input name="hero.lineTwo" maxlength="70"/></label>
+            <label>Highlighted line<input name="hero.highlight" maxlength="80"/></label>
+            <label>Short description<textarea name="hero.ledeV3" maxlength="220" rows="3"></textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>About</legend>
+            <label>Heading<textarea name="about.headingV3" maxlength="180" rows="3"></textarea></label>
+            <label>Introduction<textarea name="about.bodyV3" maxlength="350" rows="4"></textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Contact links</legend>
+            <label>Instagram<input name="social.instagram" type="url"/></label>
+            <label>LinkedIn<input name="social.linkedin" type="url"/></label>
+            <label>Threads<input name="social.threads" type="url"/></label>
+            <label>Facebook<input name="social.facebook" type="url"/></label>
+            <label>YouTube<input name="social.youtube" type="url"/></label>
+            <label>GitHub<input name="social.github" type="url"/></label>
+            <label>WhatsApp<input name="social.whatsapp" type="url"/></label>
+            <label>Email link<input name="social.email"/></label>
+            <label>Phone link<input name="social.phone"/></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Portfolio appearance</legend>
+            <label>Luxury heading font
+              <select name="appearance.headingFont">
+                <option value="cormorant">Cormorant Garamond</option><option value="italiana">Italiana</option><option value="forum">Forum</option><option value="marcellus">Marcellus</option><option value="playfair">Playfair Display</option><option value="bodoni">Bodoni Moda</option><option value="baskerville">Libre Baskerville</option>
+              </select>
+            </label>
+            <label>Starting colour tone
+              <select name="appearance.paletteStart"><option value="lime">Lime</option><option value="azure">Azure + violet</option><option value="gold">Warm gold</option><option value="emerald">Emerald</option><option value="coral">Coral</option><option value="violet">Violet</option><option value="ice">Ice blue</option></select>
+            </label>
+            <label>Motion level
+              <select name="appearance.motionLevel"><option value="subtle">Subtle</option><option value="off">Off</option></select>
+            </label>
+            <small>Save through “Save content”. The selected luxury font starts the sequence. The selected font starts the sequence. Fonts rotate every minute; the accent moves through an unlimited colour spectrum every two seconds with a smooth transition.</small>
+          </fieldset>
+        </div>
+      </form>
+
+      <section class="admin-panel" data-admin-panel="websites">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Live work &amp; demos</p><h2>Website showcase</h2></div>
+          <div class="panel-actions">
+            <button class="quiet-button" data-add-website type="button">+ Add website</button>
+            <button class="primary-button" data-save-websites type="button">Save websites</button>
+          </div>
+        </div>
+        <p class="panel-note">Add a photo URL or local asset path, website link and short copy. Published items appear in the website slider.</p>
+        <div class="website-editors" data-website-editors></div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="projects">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Selected work</p><h2>Case studies</h2></div>
+          <button class="primary-button" data-save-projects type="button">Save case studies</button>
+        </div>
+        <div class="project-editors" data-project-editors></div>
+      </section>
+<section class="admin-panel" data-admin-panel="reviews">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Client confidence</p><h2>Reviews</h2></div>
+          <div class="panel-actions">
+            <button class="quiet-button" data-add-review type="button">+ Add review</button>
+            <button class="primary-button" data-save-reviews type="button">Save reviews</button>
+          </div>
+        </div>
+        <p class="panel-note">Published reviews appear on the website in this order. Keep only real, approved client feedback.</p>
+        <div class="review-editors" data-review-editors></div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="enquiries">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Project leads</p><h2>Enquiries</h2></div>
+          <button class="quiet-button" data-refresh-enquiries type="button">Refresh</button>
+        </div>
+        <div class="empty-state" data-enquiries-empty>No enquiries yet.</div>
+        <div class="enquiry-list" data-enquiry-list></div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="analytics">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Privacy-conscious</p><h2>Clicks and actions</h2></div>
+          <button class="quiet-button" data-refresh-analytics type="button">Refresh</button>
+        </div>
+        <div class="metric-grid" data-metric-grid></div>
+        <p class="panel-note">Counts show recent site actions only. No visitor names, IP addresses or advertising profiles are collected.</p>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="settings">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Experience</p><h2>Colour settings</h2></div>
+          <button class="primary-button" data-save-settings type="button">Save settings</button>
+        </div>
+        <div class="settings-card">
+          <label class="toggle-row">
+            <span><strong>Automatic colour rotation</strong><small>Move through an unlimited smooth colour spectrum every two seconds.</small></span>
+            <input data-setting-rotation type="checkbox"/>
+          </label>
+          <label class="toggle-row">
+            <span><strong>Automatic luxury font rotation</strong><small>Start from the selected font, then rotate through seven thin luxury fonts every minute.</small></span>
+            <input data-setting-heading-rotation type="checkbox"/>
+          </label>
+          <p class="panel-note">Colour interval is fixed at 2 seconds for the public portfolio.</p>
+          <input data-setting-delay type="hidden" value="2"/>
+          <button class="danger-button" data-reset-content type="button">Restore default content</button>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
